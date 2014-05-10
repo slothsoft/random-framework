@@ -1,0 +1,14 @@
+name
+lastname
+last-name
+last_name
+familyname
+family-name
+family_name
+surname
+sur_name
+sur-name
+nachname
+zuname
+beiname
+familienname
