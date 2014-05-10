@@ -12,8 +12,8 @@
 	</properties>
 
 	<modules>
-		<module>de.slothsoft.random</module>
-		<module>de.slothsoft.random.example</module>
+		<module>random</module>
+		<module>random-example</module>
 	</modules>
 
 	<dependencyManagement>
