@@ -1,0 +1,12 @@
+birthdate
+birth-date
+birth_date
+birthday
+birth-day
+birth_day
+geburtstag
+geburts-tag
+geburts_tag
+geburtsdatum
+geburts-datum
+geburts_datum

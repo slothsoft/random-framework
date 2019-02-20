@@ -1,0 +1,14 @@
+street
+streetname
+street_name
+street-name
+straße
+straßename
+straßenname
+straßen-name
+straßen-name
+strasse
+strassename
+strassenname
+strassen-name
+strassen-name
