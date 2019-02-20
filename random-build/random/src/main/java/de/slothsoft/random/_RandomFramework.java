@@ -7,6 +7,14 @@ package de.slothsoft.random;
  */
 class _RandomFramework {
 
+	// FIXME: move these to issue handling
+	// FIXME: type should be based on type, not name (only), e.g. for boolean / numbers
+	// FIXME: what about better tests?
+	// FIXME: options should be type specific, not global
+	
+	
+	// OLD STUFF (TODO: check this stuff)
+	
 	// TODO probability of boolean true
 	// TODO zipCode
 	// TODO random words
