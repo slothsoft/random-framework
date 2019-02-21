@@ -1,6 +1,6 @@
 package de.slothsoft.random.db;
 
-import de.slothsoft.random.io.AbstractDatabaseReader;
+import de.slothsoft.random.io.DatabaseReader;
 
 public abstract class AbstractSynonymRandomField<T> extends
 		AbstractRandomField<T> {
@@ -13,7 +13,7 @@ public abstract class AbstractSynonymRandomField<T> extends
 	}
 
 	protected void readSynonyms(String id) {
-		this.synonyms = AbstractDatabaseReader.getInstance().readSynonyms(id);
+		this.synonyms = DatabaseReader.getInstance().readSynonyms(id);
 	}
 
 	@Override

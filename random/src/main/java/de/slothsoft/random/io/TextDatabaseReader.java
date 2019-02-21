@@ -6,13 +6,14 @@ import java.text.MessageFormat;
 import de.slothsoft.random.FileUtil;
 import de.slothsoft.random.RandomFactoryLogger;
 
-public class TextDatabaseReader extends AbstractDatabaseReader {
+public class TextDatabaseReader implements DatabaseReader {
 
 	private static final String ENTRIES_FILE = "text/{0}.txt";
 	private static String SYNONYM_FILE = "synonyms/{0}s.txt";
 
 	@Override
 	public String[] readSynonyms(String fileName) {
+		// TODO: is it really necessary to splatter - and _ throughout the files?
 		String file = MessageFormat.format(SYNONYM_FILE, fileName);
 		return readFile(file);
 	}

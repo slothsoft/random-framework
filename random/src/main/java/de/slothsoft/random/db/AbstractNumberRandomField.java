@@ -5,6 +5,8 @@ import java.util.Set;
 import de.slothsoft.random.Option;
 import de.slothsoft.random.Options;
 
+// TODO: shouldn't this class have  a type <T extends Number>?
+
 public abstract class AbstractNumberRandomField extends
 		AbstractRandomField<Number> {
 

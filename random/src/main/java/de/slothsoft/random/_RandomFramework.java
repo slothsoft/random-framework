@@ -2,7 +2,7 @@ package de.slothsoft.random;
 
 /**
  * How did you view this? This is just a class for storing my TODOs. xD
- * 
+ *
  * @author Steffi
  */
 class _RandomFramework {
@@ -11,10 +11,12 @@ class _RandomFramework {
 	// FIXME: type should be based on type, not name (only), e.g. for boolean / numbers
 	// FIXME: what about better tests?
 	// FIXME: options should be type specific, not global
-	
-	
+	// FIXME: de.slothsoft.random.db should be de.slothsoft.random.internal I guess
+	// FIXME: i should really check what to put in which package
+	// FIXME: i don't think the interfaces are really necessary
+
 	// OLD STUFF (TODO: check this stuff)
-	
+
 	// TODO probability of boolean true
 	// TODO zipCode
 	// TODO random words

@@ -1,7 +1,7 @@
 package de.slothsoft.random;
 
 /**
- * An exception occuring while creating random data.
+ * An exception occurring while creating random data.
  * 
  * @author Steffi
  */

@@ -7,6 +7,8 @@ package de.slothsoft.random;
  */
 public class RandomFactoryLogger {
 
+	// TODO: why not use an existing logger?
+	
 	public static boolean LOG = false;
 
 	/**

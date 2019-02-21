@@ -18,6 +18,8 @@ import java.util.ArrayList;
  */
 
 public class FileUtil {
+	
+	// TODO: these methods might be in the JDK now
 
 	public static final String LINE_SEPARATOR = System
 			.getProperty("line.separator"); //$NON-NLS-1$

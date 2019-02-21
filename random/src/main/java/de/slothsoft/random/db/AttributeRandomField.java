@@ -3,7 +3,7 @@ package de.slothsoft.random.db;
 import java.util.Set;
 
 import de.slothsoft.random.Option;
-import de.slothsoft.random.io.AbstractDatabaseReader;
+import de.slothsoft.random.io.DatabaseReader;
 
 public class AttributeRandomField extends AbstractSynonymRandomField<String> {
 
@@ -37,7 +37,7 @@ public class AttributeRandomField extends AbstractSynonymRandomField<String> {
 	}
 
 	protected void readAttributes(String id) {
-		this.attributes = AbstractDatabaseReader.getInstance().readAttributes(
+		this.attributes = DatabaseReader.getInstance().readAttributes(
 				id);
 	}
 

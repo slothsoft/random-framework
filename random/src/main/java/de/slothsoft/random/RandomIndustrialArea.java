@@ -1,12 +1,16 @@
 package de.slothsoft.random;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 /**
  * A wrapper for many <code>RandomFactory</code>s and possible some self made
  * random fields or options or whatever might be necessary for even better
- * optimization.
+ * optimization.<br><br>
+ * <i>An industrial area has many factories.</i>
+ * 
  * 
  * @author Steffi
  * 
@@ -25,7 +29,7 @@ public interface RandomIndustrialArea {
 	 *             if none was fond
 	 */
 
-	public <T> RandomFactory<T> getRandomFactory(Class<T> createdClass)
+	 <T> RandomFactory<T> getRandomFactory(Class<T> createdClass)
 			throws RandomException;
 
 	/**
@@ -39,7 +43,7 @@ public interface RandomIndustrialArea {
 	 * @throws RandomException
 	 *             if none was fond
 	 */
-	public <T> boolean containsRandomFactoryFor(Class<T> createdClass);
+	<T> boolean containsRandomFactoryFor(Class<T> createdClass);
 
 	/**
 	 * Creates a single instance of the class. For all the attributes of this
@@ -52,8 +56,10 @@ public interface RandomIndustrialArea {
 	 * @throws RandomException
 	 *             - if something went wrong
 	 */
-
-	public <T> T createSingle(Class<T> createdClass) throws RandomException;
+	
+	default <T> T createSingle(Class<T> createdClass) throws RandomException {
+		return createSingle(createdClass, new HashSet<Option>());
+	}
 
 	/**
 	 * Creates a single instance of the class this factory is for. For all the
@@ -67,7 +73,7 @@ public interface RandomIndustrialArea {
 	 *             - if something went wrong
 	 */
 
-	public <T> T createSingle(Class<T> createdClass, Set<Option> options)
+	<T> T createSingle(Class<T> createdClass, Set<Option> options)
 			throws RandomException;
 
 	/**
@@ -82,8 +88,11 @@ public interface RandomIndustrialArea {
 	 *             - if something went wrong
 	 */
 
-	public <T> List<T> create(Class<T> createdClass, int count)
-			throws RandomException;
+	default <T> List<T> create(Class<T> createdClass, int count)
+			throws RandomException {
+		return create(createdClass, count, new HashSet<Option>());
+	}
+
 
 	/**
 	 * Creates some instances of the class this factory is for. For all the
@@ -99,6 +108,12 @@ public interface RandomIndustrialArea {
 	 *             - if something went wrong
 	 */
 
-	public <T> List<T> create(Class<T> createdClass, int count,
-			Set<Option> options) throws RandomException;
+	default <T> List<T> create(Class<T> createdClass, int count,
+			Set<Option> options) throws RandomException {
+		List<T> result = new ArrayList<T>();
+		for (int i = 0; i < count; i++) {
+			result.add(createSingle(createdClass, options));
+		}
+		return result;
+	}
 }

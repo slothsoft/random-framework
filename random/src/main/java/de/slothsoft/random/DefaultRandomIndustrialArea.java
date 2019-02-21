@@ -20,34 +20,17 @@ public class DefaultRandomIndustrialArea extends AbstractRandomIndustrialArea {
 		this.randomFactories.put(factory.getCreatedClass(), factory);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * de.slothsoft.random.AbstractRandomIndustrialArea#doGetRandomFactory(java
-	 * .lang.Class)
-	 */
-
 	@Override
 	@SuppressWarnings("unchecked")
 	public <T> RandomFactory<T> doGetRandomFactory(Class<T> createdClass) {
 		return (RandomFactory<T>) this.randomFactories.get(createdClass);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * de.slothsoft.random.RandomIndustrialArea#containsRandomFactoryFor(java
-	 * .lang.Class)
-	 */
-
 	@Override
 	@SuppressWarnings("unchecked")
 	public <T> boolean containsRandomFactoryFor(Class<T> createdClass) {
 		try {
-			RandomFactory<T> result = (RandomFactory<T>) this.randomFactories
-					.get(createdClass);
+			RandomFactory<T> result = (RandomFactory<T>) this.randomFactories.get(createdClass);
 			return result != null;
 		} catch (Exception e) {
 			// might be a class cast exception or something
@@ -55,28 +38,17 @@ public class DefaultRandomIndustrialArea extends AbstractRandomIndustrialArea {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * de.slothsoft.random.RandomIndustrialArea#createSingle(java.lang.Class,
-	 * java.util.Set)
-	 */
-
 	@Override
-	public <T> T createSingle(Class<T> createdClass, Set<Option> options)
-			throws RandomException {
+	public <T> T createSingle(Class<T> createdClass, Set<Option> options) throws RandomException {
 		return doCreateSingle(createdClass, options, this.recursion);
 	}
 
-	public <T> T doCreateSingle(Class<T> createdClass, Set<Option> options,
-			int recursionSteps) throws RandomException {
+	public <T> T doCreateSingle(Class<T> createdClass, Set<Option> options, int recursionSteps) throws RandomException {
 		RandomFactory<T> factory = getRandomFactory(createdClass);
 		T result = factory.createSingle(options);
 
 		if (recursionSteps > 0) {
-			Map<String, Class<?>> attributes = MappingUtil
-					.getAttributes(createdClass);
+			Map<String, Class<?>> attributes = MappingUtil.getAttributes(createdClass);
 			// now check, if one of the factories is better in generating one of
 			// the
 			// attributes
@@ -84,19 +56,13 @@ public class DefaultRandomIndustrialArea extends AbstractRandomIndustrialArea {
 				Class<?> attributeClass = attributes.get(attribute);
 				if (containsRandomFactoryFor(attributeClass)) {
 					try {
-						String setterName = MappingUtil
-								.getSetterName(attribute);
-						Method setter = createdClass.getMethod(setterName,
-								attributeClass);
+						String setterName = MappingUtil.getSetterName(attribute);
+						Method setter = createdClass.getMethod(setterName, attributeClass);
 						try {
-							setter.invoke(
-									result,
-									doCreateSingle(attributeClass, options,
-											recursionSteps - 1));
+							setter.invoke(result, doCreateSingle(attributeClass, options, recursionSteps - 1));
 						} catch (Exception e) {
 							throw new RandomException(
-									"Could not set attribute " + attribute
-											+ " by RandomIndustrialArea", e);
+									"Could not set attribute " + attribute + " by RandomIndustrialArea", e);
 						}
 					} catch (NoSuchMethodException e) {
 						// wrong attribute class, just go on

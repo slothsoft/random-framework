@@ -10,7 +10,7 @@ import java.util.Set;
  * @param <T>
  *            - the type to be created
  */
-public class DefaultRandomFactory<T> extends AbstractRandomFactory<T> {
+public class DefaultRandomFactory<T> implements RandomFactory<T> {
 
 	private Class<T> createdClass;
 	private Map<String, String> attributeMapping;
@@ -40,11 +40,6 @@ public class DefaultRandomFactory<T> extends AbstractRandomFactory<T> {
 		this.attributeMapping = attributeMapping;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.slothsoft.random.RandomFactor#createSingle(java.util.Set)
-	 */
 
 	@Override
 	public T createSingle(Set<Option> options) throws RandomException {
