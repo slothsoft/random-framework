@@ -3,16 +3,13 @@ package de.slothsoft.random.example;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
-import de.slothsoft.random.DefaultRandomFactory;
-import de.slothsoft.random.Gender;
-import de.slothsoft.random.Option;
-import de.slothsoft.random.Options;
 import de.slothsoft.random.RandomFactory;
-import de.slothsoft.random.RandomFields;
+import de.slothsoft.random.RandomField;
+import de.slothsoft.random.types.DateRandomField;
+import de.slothsoft.random.types.FirstNameRandomField;
+import de.slothsoft.random.types.FirstNameRandomField.Gender;
 
 public class ExtendedPersonTest {
 
@@ -20,19 +17,16 @@ public class ExtendedPersonTest {
 
 	public static void main(String[] args) {
 
-		Map<String, String> mapping = new HashMap<String, String>();
-		mapping.put("blob", RandomFields.FIRST_NAME);
-		mapping.put("flup", RandomFields.LAST_NAME);
-		mapping.put("date", RandomFields.DATE);
+		final Map<String, RandomField<?>> mapping = new HashMap<>();
+		mapping.put("blob", new FirstNameRandomField().gender(Gender.MALE));
+//		mapping.put("flup", RandomFields.LAST_NAME);
+		mapping.put("date", new DateRandomField());
 
-		RandomFactory<Person> factory = new DefaultRandomFactory<Person>(Person.class,
-				mapping);
+		final RandomFactory<Person> factory = new RandomFactory<>(Person::new, mapping);
 
 		System.out.println("Random Persons");
 		System.out.println("--------------");
-		Set<Option> options = new HashSet<Option>();
-		options.add(new Option("firstName", Options.GENDER, Gender.MALE));
-		for (Person person : factory.create(5)) {
+		for (final Person person : factory.create(5)) {
 			System.out.println(person);
 		}
 	}
@@ -78,8 +72,7 @@ public class ExtendedPersonTest {
 
 		@Override
 		public String toString() {
-			return this.blob + " " + this.flup + "   "
-					+ FORMAT.format(this.date);
+			return this.blob + " " + this.flup + "   " + FORMAT.format(this.date);
 		}
 	}
 

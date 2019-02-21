@@ -3,9 +3,13 @@ package de.slothsoft.random;
 import java.lang.reflect.Method;
 import java.util.List;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 
 import org.junit.Test;
+
+import de.slothsoft.random.RandomException;
+import de.slothsoft.random.RandomIndustrialArea;
+import de.slothsoft.random.RandomIndustrialAreas;
 
 public class IndustrialAreaGeneralTest {
 
@@ -30,7 +34,7 @@ public class IndustrialAreaGeneralTest {
 					IAGAddress.class);
 			System.out.println(setter);
 		} catch (NoSuchMethodException e) {
-			// wrong attribute class, just go on
+			// wrong field class, just go on
 			e.printStackTrace();
 		}
 	}

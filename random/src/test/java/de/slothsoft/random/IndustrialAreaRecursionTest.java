@@ -2,9 +2,12 @@ package de.slothsoft.random;
 
 import java.util.List;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 
 import org.junit.Test;
+
+import de.slothsoft.random.DefaultRandomIndustrialArea;
+import de.slothsoft.random.RandomIndustrialAreas;
 
 public class IndustrialAreaRecursionTest {
 

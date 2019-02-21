@@ -22,7 +22,7 @@ public abstract class RandomIndustrialAreas {
 	public static DefaultRandomIndustrialArea create(Class<?>... createdClasses) {
 		DefaultRandomIndustrialArea industrialArea = new DefaultRandomIndustrialArea();
 		for (Class<?> createdClass : createdClasses) {
-			industrialArea.add(new DefaultRandomFactory(createdClass));
+			industrialArea.add(new RandomFactory(createdClass));
 		}
 		return industrialArea;
 	}

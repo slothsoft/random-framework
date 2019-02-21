@@ -1,53 +1,34 @@
 package de.slothsoft.random;
 
-import java.util.Set;
+import java.util.Random;
 
 /**
  * Interface for all various random fields.
- * 
+ *
  * @author Steffi
- * 
- * @param <T>
- *            - the class of the return value
+ *
+ * @param <T> - the class of the return value
  */
 public interface RandomField<T> {
 
+	// TODO: t is not necessary probably
+
+	Random RND = new Random(); // else we have too many instances to little apart
+
 	/**
-	 * Returns a random attribute for an attribute name and options.
-	 * 
-	 * @param attributeName
-	 *            - attribute name
-	 * @param options
-	 *            - options for this random field
-	 * @return a random attribute
+	 * Returns a random value.
+	 *
+	 * @return a random value
 	 */
 
-	T getRandomAttribute(String attributeName, Class<?> attributeClass,
-			Set<Option> options);
+	T nextValue();
 
 	/**
-	 * Returns the possible classes of T
-	 * 
+	 * Returns the class of T
+	 *
 	 * @return a class
 	 */
 
-	Class<?>[] getAttributeClasses();
-
-	/**
-	 * Returns a display name not really used for displaying. More or less an
-	 * id.
-	 * 
-	 * @return a string
-	 */
-	String getDisplayName();
-
-	/**
-	 * Returns if this random field should be used to render the attribute name.
-	 * 
-	 * @param attributeName
-	 * @return a boolean
-	 */
-
-	boolean isMapped(String name, Class<?> parameterType);
+	Class<?> getFieldClass();
 
 }

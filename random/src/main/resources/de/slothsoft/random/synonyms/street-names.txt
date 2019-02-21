@@ -1,0 +1,8 @@
+street
+streetname
+straße
+straßename
+straßenname
+strasse
+strassename
+strassenname

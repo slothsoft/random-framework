@@ -2,14 +2,10 @@ package de.slothsoft.random.example;
 
 import java.text.DateFormat;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
-import de.slothsoft.random.DefaultRandomFactory;
-import de.slothsoft.random.Gender;
-import de.slothsoft.random.Option;
-import de.slothsoft.random.Options;
 import de.slothsoft.random.RandomFactory;
+import de.slothsoft.random.types.FirstNameRandomField;
+import de.slothsoft.random.types.FirstNameRandomField.Gender;
 
 public class BasicPersonTest {
 
@@ -18,30 +14,28 @@ public class BasicPersonTest {
 	public static void main(String[] args) {
 
 		long time = System.currentTimeMillis();
-		RandomFactory<Person> factory = new DefaultRandomFactory<Person>(Person.class);
+		final RandomFactory<Person> factory = RandomFactory.forClass(Person.class);
 		time = System.currentTimeMillis() - time;
 
 		System.out.println(time + "ms to initialize!\n");
 
 		System.out.println("Persons of Both Genders");
 		System.out.println("-----------------------");
-		for (Person person : factory.create(5)) {
+		for (final Person person : factory.create(5)) {
 			System.out.println(person);
 		}
 
 		System.out.println("\n\nPersons of Male Genders");
 		System.out.println("-----------------------");
-		Set<Option> options = new HashSet<Option>();
-		options.add(new Option("firstName", Options.GENDER, Gender.MALE));
-		for (Person person : factory.create(5, options)) {
+		factory.addRandomField("FirstName", new FirstNameRandomField().gender(Gender.MALE));
+		for (final Person person : factory.create(5)) {
 			System.out.println(person);
 		}
 
 		System.out.println("\n\nPersons of Female Genders");
 		System.out.println("-------------------------");
-		options = new HashSet<Option>();
-		options.add(new Option("firstName", Options.GENDER, Gender.FEMALE));
-		for (Person person : factory.create(5, options)) {
+		factory.addRandomField("FirstName", new FirstNameRandomField().gender(Gender.FEMALE));
+		for (final Person person : factory.create(5)) {
 			System.out.println(person);
 		}
 	}
@@ -127,10 +121,8 @@ public class BasicPersonTest {
 
 		@Override
 		public String toString() {
-			return this.firstName + " " + this.lastName + "   " + this.street
-					+ "   *" + FORMAT.format(this.birthdate) + "   "
-					+ this.city + "\n\tage: " + this.age + "   integer: "
-					+ this.integer;
+			return this.firstName + " " + this.lastName + "   " + this.street + "   *" + FORMAT.format(this.birthdate)
+					+ "   " + this.city + "\n\tage: " + this.age + "   integer: " + this.integer;
 		}
 	}
 
