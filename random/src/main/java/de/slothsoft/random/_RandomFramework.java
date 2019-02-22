@@ -8,12 +8,12 @@ package de.slothsoft.random;
 class _RandomFramework {
 
 	// FIXME: move these to issue handling
-	// FIXME: type should be based on type, not name (only), e.g. for boolean / numbers
-	// FIXME: what about better tests?
-	// FIXME: options should be type specific, not global
-	// FIXME: de.slothsoft.random.db should be de.slothsoft.random.internal I guess
-	// FIXME: i should really check what to put in which package
-	// FIXME: i don't think the interfaces are really necessary
+
+	// FIXME: for each class, check the following:
+	// - public methods vs. private methods
+	// - JavaDoc (especially that author info is consistent)
+	// - that there are tests
+	// - that there are examples / doc of any kind
 
 	// OLD STUFF (TODO: check this stuff)
 

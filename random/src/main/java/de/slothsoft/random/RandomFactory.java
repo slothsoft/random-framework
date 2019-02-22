@@ -77,6 +77,7 @@ public class RandomFactory<T> {
 
 	private final Supplier<T> pojoSupplier;
 	private final Map<String, RandomField<?>> fieldMapping;
+	private final Class<?> pojoClass;
 
 	/**
 	 * A constructor that takes one class. The mapping of fields to the factories filling
@@ -100,6 +101,7 @@ public class RandomFactory<T> {
 	public RandomFactory(Supplier<T> pojoSupplier, Map<String, RandomField<?>> fieldMapping) {
 		this.pojoSupplier = pojoSupplier;
 		this.fieldMapping = fieldMapping;
+		this.pojoClass = pojoSupplier.get().getClass();
 	}
 
 	/**
@@ -146,5 +148,9 @@ public class RandomFactory<T> {
 
 	public void addRandomField(String property, RandomField<?> randomField) {
 		this.fieldMapping.put(property, randomField);
+	}
+
+	public Class<?> getPojoClass() {
+		return this.pojoClass;
 	}
 }

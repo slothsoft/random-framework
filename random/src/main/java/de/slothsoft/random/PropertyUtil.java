@@ -18,7 +18,7 @@ final class PropertyUtil {
 		}
 	}
 
-	private static String getSetterName(String property) {
+	static String getSetterName(String property) {
 		return SET_PREFIX + property.substring(0, 1).toUpperCase() + property.substring(1);
 	}
 

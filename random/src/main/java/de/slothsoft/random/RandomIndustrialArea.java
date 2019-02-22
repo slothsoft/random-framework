@@ -3,10 +3,8 @@ package de.slothsoft.random;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * A wrapper for many <code>RandomFactory</code>s and possible some self made random
@@ -21,8 +19,26 @@ import java.util.Set;
 
 public class RandomIndustrialArea {
 
+	/**
+	 * Creates a default <code>RandomFactory</code> for the class. This is a handy method
+	 * for creating an entire <code>RandomIndustrialArea</code> based on guess work.
+	 *
+	 * @param createdClasses - the classes to be guessed
+	 * @return the brand new object
+	 */
+
+	@SuppressWarnings({"unchecked", "rawtypes"})
+	public static RandomIndustrialArea create(Class<?>... createdClasses) {
+		final RandomIndustrialArea industrialArea = new RandomIndustrialArea();
+		for (final Class<?> createdClass : createdClasses) {
+			industrialArea.addFactory(RandomFactory.forClass(createdClass));
+		}
+		return industrialArea;
+	}
+
 	private final Map<Class<?>, RandomFactory<?>> randomFactories = new HashMap<>();
-	private int recursion = 5;
+	private int recursion = 5; // TODO: rename this field to something that speaks to
+								// users
 
 	/**
 	 * Adds a <code>RandomFactory</code> to this industrial area.
@@ -30,35 +46,23 @@ public class RandomIndustrialArea {
 	 * @param factory
 	 */
 
-	public void add(RandomFactory<?> factory) {
-		this.randomFactories.put(factory.getCreatedClass(), factory);
+	public void addFactory(RandomFactory<?> factory) {
+		this.randomFactories.put(factory.getPojoClass(), factory);
 	}
 
 	/**
 	 * Returns the <code>RandomFactory</code> for the class.
 	 *
-	 * @param <T>
-	 *            - the type the factory is for
-	 * @param createdClass
-	 *            - the class that should be created
+	 * @param <T> - the type the factory is for
+	 * @param createdClass - the class that should be created
 	 * @return a random factory
-	 * @throws RandomException
-	 *             if none was fond
+	 * @throws RandomException if none was fond
 	 */
 
-
-	@Override
-	public <T> RandomFactory<T> getRandomFactory(Class<T> createdClass)
-			throws RandomException;if(!containsRandomFactoryFor(createdClass)) {
-			throw new RandomException("Could not find RandomFactory for class "
-					+ createdClass);
-		}
-		return doGetRandomFactory(createdClass);
-	}
-
-	@Override
 	@SuppressWarnings("unchecked")
-	public <T> RandomFactory<T> doGetRandomFactory(Class<T> createdClass) {
+	public <T> RandomFactory<T> getRandomFactory(Class<T> createdClass) throws RandomException {
+		if (!containsRandomFactoryFor(createdClass))
+			throw new RandomException("Could not find RandomFactory for class " + createdClass);
 		return (RandomFactory<T>) this.randomFactories.get(createdClass);
 	}
 
@@ -93,15 +97,15 @@ public class RandomIndustrialArea {
 	 */
 
 	public <T> T createSingle(Class<T> createdClass) throws RandomException {
-		return doCreateSingle(createdClass, options, this.recursion);
+		return doCreateSingle(createdClass, this.recursion);
 	}
 
-	public <T> T doCreateSingle(Class<T> createdClass, Set<Option> options, int recursionSteps) throws RandomException {
+	private <T> T doCreateSingle(Class<T> createdClass, int recursions) throws RandomException {
 		final RandomFactory<T> factory = getRandomFactory(createdClass);
-		final T result = factory.createSingle(options);
+		final T result = factory.createSingle();
 
-		if (recursionSteps > 0) {
-			final Map<String, Class<?>> fields = MappingUtil.getFields(createdClass);
+		if (recursions > 0) {
+			final Map<String, Class<?>> fields = PropertyUtil.getFields(createdClass);
 			// now check, if one of the factories is better in generating one of
 			// the
 			// fields
@@ -109,10 +113,10 @@ public class RandomIndustrialArea {
 				final Class<?> fieldClass = fields.get(field);
 				if (containsRandomFactoryFor(fieldClass)) {
 					try {
-						final String setterName = MappingUtil.getSetterName(field);
+						final String setterName = PropertyUtil.getSetterName(field);
 						final Method setter = createdClass.getMethod(setterName, fieldClass);
 						try {
-							setter.invoke(result, doCreateSingle(fieldClass, options, recursionSteps - 1));
+							setter.invoke(result, doCreateSingle(fieldClass, recursions - 1));
 						} catch (final Exception e) {
 							throw new RandomException("Could not set field " + field + " by RandomIndustrialArea", e);
 						}
@@ -124,23 +128,6 @@ public class RandomIndustrialArea {
 		}
 		return result;
 	}
-
-	default <T> T createSingle(Class<T> createdClass) throws RandomException {
-		return createSingle(createdClass, new HashSet<Option>());
-	}
-
-	/**
-	 * Creates a single instance of the class this factory is for. For all the fields of
-	 * this class, the factories of this area are asked, if they want to create it. If
-	 * not, the normal procedure is used.
-	 *
-	 * @param options - some options for the values
-	 * @return a single dummy instance
-	 * @throws RandomException - if something went wrong
-	 */
-
-	<T> T createSingle(Class<T> createdClass, Set<Option> options) throws RandomException;
-
 	/**
 	 * Creates some instances of the class this factory is for. For all the fields of this
 	 * class, the factories of this area are asked, if they want to create it. If not, the
@@ -151,25 +138,10 @@ public class RandomIndustrialArea {
 	 * @throws RandomException - if something went wrong
 	 */
 
-	default <T> List<T> create(Class<T> createdClass, int count) throws RandomException {
-		return create(createdClass, count, new HashSet<Option>());
-	}
-
-	/**
-	 * Creates some instances of the class this factory is for. For all the fields of this
-	 * class, the factories of this area are asked, if they want to create it. If not, the
-	 * normal procedure is used.
-	 *
-	 * @param count - number of instances to be created
-	 * @param options - some options for the values
-	 * @return some dummy instance
-	 * @throws RandomException - if something went wrong
-	 */
-
-	default <T> List<T> create(Class<T> createdClass, int count, Set<Option> options) throws RandomException {
+	public <T> List<T> create(Class<T> createdClass, int count) throws RandomException {
 		final List<T> result = new ArrayList<>();
 		for (int i = 0; i < count; i++) {
-			result.add(createSingle(createdClass, options));
+			result.add(createSingle(createdClass));
 		}
 		return result;
 	}

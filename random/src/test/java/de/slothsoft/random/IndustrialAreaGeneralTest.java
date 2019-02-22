@@ -4,22 +4,16 @@ import java.lang.reflect.Method;
 import java.util.List;
 
 import org.junit.Assert;
-
 import org.junit.Test;
-
-import de.slothsoft.random.RandomException;
-import de.slothsoft.random.RandomIndustrialArea;
-import de.slothsoft.random.RandomIndustrialAreas;
 
 public class IndustrialAreaGeneralTest {
 
 	@Test
 	public void positiveTest() {
-		RandomIndustrialArea industrialArea = RandomIndustrialAreas.create(
-				IAGPerson.class, IAGAddress.class);
+		final RandomIndustrialArea industrialArea = RandomIndustrialArea.create(IAGPerson.class, IAGAddress.class);
 
-		List<IAGPerson> persons = industrialArea.create(IAGPerson.class, 100);
-		for (IAGPerson person : persons) {
+		final List<IAGPerson> persons = industrialArea.create(IAGPerson.class, 100);
+		for (final IAGPerson person : persons) {
 			Assert.assertNotNull(person);
 			Assert.assertNotNull(person.getFirstName());
 			Assert.assertNotNull(person.getAddress());
@@ -30,10 +24,9 @@ public class IndustrialAreaGeneralTest {
 	@Test
 	public void testGetSetter() {
 		try {
-			Method setter = IAGPerson.class.getMethod("setAddress",
-					IAGAddress.class);
+			final Method setter = IAGPerson.class.getMethod("setAddress", IAGAddress.class);
 			System.out.println(setter);
-		} catch (NoSuchMethodException e) {
+		} catch (final NoSuchMethodException e) {
 			// wrong field class, just go on
 			e.printStackTrace();
 		}
@@ -41,11 +34,10 @@ public class IndustrialAreaGeneralTest {
 
 	@Test
 	public void negativeTest() {
-		RandomIndustrialArea industrialArea = RandomIndustrialAreas
-				.create(IAGPerson.class);
+		final RandomIndustrialArea industrialArea = RandomIndustrialArea.create(IAGPerson.class);
 
-		List<IAGPerson> persons = industrialArea.create(IAGPerson.class, 100);
-		for (IAGPerson person : persons) {
+		final List<IAGPerson> persons = industrialArea.create(IAGPerson.class, 100);
+		for (final IAGPerson person : persons) {
 			Assert.assertNotNull(person);
 			Assert.assertNotNull(person.getFirstName());
 			Assert.assertNull(person.getAddress());
@@ -54,13 +46,12 @@ public class IndustrialAreaGeneralTest {
 
 	@Test
 	public void negativeExceptionTest() {
-		RandomIndustrialArea industrialArea = RandomIndustrialAreas
-				.create(IAGPerson.class);
+		final RandomIndustrialArea industrialArea = RandomIndustrialArea.create(IAGPerson.class);
 
 		try {
 			industrialArea.create(IAGAddress.class, 100);
 			Assert.fail();
-		} catch (RandomException e) {
+		} catch (final RandomException e) {
 			// should bring an exception: Could not find RandomFactory for class
 		}
 	}
