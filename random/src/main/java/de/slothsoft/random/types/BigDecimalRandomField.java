@@ -2,6 +2,15 @@ package de.slothsoft.random.types;
 
 import java.math.BigDecimal;
 
+import de.slothsoft.random.RandomField;
+
+/**
+ * A {@link RandomField} representing a {@link BigDecimal}.
+ *
+ * @author Steffi Schulz
+ * @since 1.0.0
+ */
+
 public class BigDecimalRandomField extends AbstractNumberRandomField<BigDecimal> {
 
 	private static final BigDecimal START = BigDecimal.ZERO;
@@ -19,12 +28,12 @@ public class BigDecimalRandomField extends AbstractNumberRandomField<BigDecimal>
 	}
 
 	@Override
-	BigDecimal getDefaultNumberRangeStart() {
+	BigDecimal getDefaultRangeStart() {
 		return START;
 	}
 
 	@Override
-	BigDecimal getDefaultNumberRangeEnd() {
+	BigDecimal getDefaultRangeEnd() {
 		return END;
 	}
 

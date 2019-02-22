@@ -2,6 +2,15 @@ package de.slothsoft.random.types;
 
 import java.math.BigInteger;
 
+import de.slothsoft.random.RandomField;
+
+/**
+ * A {@link RandomField} representing a {@link BigInteger}.
+ *
+ * @author Steffi Schulz
+ * @since 1.0.0
+ */
+
 public class BigIntegerRandomField extends AbstractNumberRandomField<BigInteger> {
 
 	private static final BigInteger START = BigInteger.ZERO;
@@ -19,12 +28,12 @@ public class BigIntegerRandomField extends AbstractNumberRandomField<BigInteger>
 	}
 
 	@Override
-	BigInteger getDefaultNumberRangeStart() {
+	BigInteger getDefaultRangeStart() {
 		return START;
 	}
 
 	@Override
-	BigInteger getDefaultNumberRangeEnd() {
+	BigInteger getDefaultRangeEnd() {
 		return END;
 	}
 

@@ -2,6 +2,14 @@ package de.slothsoft.random.types;
 
 import de.slothsoft.random.RandomField;
 
+/**
+ * A base class for creating a {@link RandomField} from a {@link Number}.
+ *
+ * @author Steffi Schulz
+ * @since 1.0.0
+ * @param <N> - a type of number
+ */
+
 public abstract class AbstractNumberRandomField<N extends Number> implements RandomField<N> {
 
 	private final Class<?> fieldClass;
@@ -20,8 +28,8 @@ public abstract class AbstractNumberRandomField<N extends Number> implements Ran
 
 	@Override
 	public N nextValue() {
-		N start = this.startValue == null ? getDefaultNumberRangeStart() : this.startValue;
-		N end = this.endValue == null ? getDefaultNumberRangeEnd() : this.endValue;
+		N start = this.startValue == null ? getDefaultRangeStart() : this.startValue;
+		N end = this.endValue == null ? getDefaultRangeEnd() : this.endValue;
 
 		if (end.equals(start)) return start;
 
@@ -35,9 +43,9 @@ public abstract class AbstractNumberRandomField<N extends Number> implements Ran
 
 	protected abstract N getRandomNumber(N numberRangeStart, N numberRangeEnd);
 
-	abstract N getDefaultNumberRangeStart();
+	abstract N getDefaultRangeStart();
 
-	abstract N getDefaultNumberRangeEnd();
+	abstract N getDefaultRangeEnd();
 
 	public N getStartValue() {
 		return this.startValue;

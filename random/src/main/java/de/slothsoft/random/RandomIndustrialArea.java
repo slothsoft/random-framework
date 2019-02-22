@@ -27,7 +27,6 @@ public class RandomIndustrialArea {
 	 * @return the brand new object
 	 */
 
-	@SuppressWarnings({"unchecked", "rawtypes"})
 	public static RandomIndustrialArea create(Class<?>... createdClasses) {
 		final RandomIndustrialArea industrialArea = new RandomIndustrialArea();
 		for (final Class<?> createdClass : createdClasses) {
@@ -37,13 +36,14 @@ public class RandomIndustrialArea {
 	}
 
 	private final Map<Class<?>, RandomFactory<?>> randomFactories = new HashMap<>();
-	private int recursion = 5; // TODO: rename this field to something that speaks to
-								// users
+	private int creationDepth = 5;
+
+	// TODO: comment and test these methods
 
 	/**
 	 * Adds a <code>RandomFactory</code> to this industrial area.
 	 *
-	 * @param factory
+	 * @param factory - a factory to add
 	 */
 
 	public void addFactory(RandomFactory<?> factory) {
@@ -51,35 +51,55 @@ public class RandomIndustrialArea {
 	}
 
 	/**
+	 * Removes a <code>RandomFactory</code> from this industrial area.
+	 *
+	 * @param factory - the factory to remove
+	 */
+
+	public void removeFactory(RandomFactory<?> factory) {
+		this.randomFactories.remove(factory.getPojoClass());
+	}
+
+	/**
 	 * Returns the <code>RandomFactory</code> for the class.
 	 *
 	 * @param <T> - the type the factory is for
-	 * @param createdClass - the class that should be created
+	 * @param pojoClass - the class that should be created
 	 * @return a random factory
-	 * @throws RandomException if none was fond
+	 * @throws RandomException if none was found
+	 */
+
+	public <T> RandomFactory<T> getRandomFactory(Class<T> pojoClass) throws RandomException {
+		if (!containsRandomFactoryFor(pojoClass))
+			throw new RandomException("Could not find RandomFactory for class " + pojoClass);
+		return findRandomFactory(pojoClass);
+	}
+
+	/**
+	 * Returns the <code>RandomFactory</code> for the class or null.
+	 *
+	 * @param <T> - the type the factory is for
+	 * @param pojoClass - the class that should be created
+	 * @return a random factory or null
 	 */
 
 	@SuppressWarnings("unchecked")
-	public <T> RandomFactory<T> getRandomFactory(Class<T> createdClass) throws RandomException {
-		if (!containsRandomFactoryFor(createdClass))
-			throw new RandomException("Could not find RandomFactory for class " + createdClass);
-		return (RandomFactory<T>) this.randomFactories.get(createdClass);
+	public <T> RandomFactory<T> findRandomFactory(Class<T> pojoClass) {
+		return (RandomFactory<T>) this.randomFactories.get(pojoClass);
 	}
 
 	/**
 	 * Returns if there is a <code>RandomFactory</code> for the class.
 	 *
 	 * @param <T> - the type the factory is for
-	 * @param createdClass - the class that should be created
+	 * @param pojoClass - the class that should be created
 	 * @return true, if there is a random factory
 	 * @throws RandomException if none was fond
 	 */
 
-	@SuppressWarnings("unchecked")
-	public <T> boolean containsRandomFactoryFor(Class<T> createdClass) {
+	public <T> boolean containsRandomFactoryFor(Class<T> pojoClass) {
 		try {
-			final RandomFactory<T> result = (RandomFactory<T>) this.randomFactories.get(createdClass);
-			return result != null;
+			return findRandomFactory(pojoClass) != null;
 		} catch (final Exception e) {
 			// might be a class cast exception or something
 			return false;
@@ -91,13 +111,13 @@ public class RandomIndustrialArea {
 	 * factories of this area are asked, if they want to create it. If not, the normal
 	 * procedure is used.
 	 *
-	 * @param createdClazz - the class to be created
+	 * @param pojoClass - the class to be created
 	 * @return a single dummy instance
 	 * @throws RandomException - if something went wrong
 	 */
 
-	public <T> T createSingle(Class<T> createdClass) throws RandomException {
-		return doCreateSingle(createdClass, this.recursion);
+	public <T> T createSingle(Class<T> pojoClass) throws RandomException {
+		return doCreateSingle(pojoClass, this.creationDepth);
 	}
 
 	private <T> T doCreateSingle(Class<T> createdClass, int recursions) throws RandomException {
@@ -105,10 +125,9 @@ public class RandomIndustrialArea {
 		final T result = factory.createSingle();
 
 		if (recursions > 0) {
-			final Map<String, Class<?>> fields = PropertyUtil.getFields(createdClass);
+			final Map<String, Class<?>> fields = PropertyUtil.getProperties(createdClass);
 			// now check, if one of the factories is better in generating one of
-			// the
-			// fields
+			// the fields
 			for (final String field : fields.keySet()) {
 				final Class<?> fieldClass = fields.get(field);
 				if (containsRandomFactoryFor(fieldClass)) {
@@ -128,6 +147,7 @@ public class RandomIndustrialArea {
 		}
 		return result;
 	}
+
 	/**
 	 * Creates some instances of the class this factory is for. For all the fields of this
 	 * class, the factories of this area are asked, if they want to create it. If not, the
@@ -146,12 +166,36 @@ public class RandomIndustrialArea {
 		return result;
 	}
 
-	public int getRecursion() {
-		return this.recursion;
+	/**
+	 * Returns the depth for the hierarchical POJOs that might be created.
+	 *
+	 * @return a integer > 0
+	 */
+
+	public int getCreationDepth() {
+		return this.creationDepth;
 	}
 
-	public void setRecursion(int recursion) {
-		this.recursion = recursion;
+	/**
+	 * Returns the depth for the hierarchical POJOs that might be created.
+	 *
+	 * @param newCreationDepth - a integer > 0
+	 * @return this instance
+	 */
+
+	public RandomIndustrialArea creationDepth(int newCreationDepth) {
+		setCreationDepth(newCreationDepth);
+		return this;
+	}
+
+	/**
+	 * Returns the depth for the hierarchical POJOs that might be created.
+	 *
+	 * @param creationDepth - a integer > 0
+	 */
+
+	public void setCreationDepth(int creationDepth) {
+		this.creationDepth = creationDepth;
 	}
 
 }

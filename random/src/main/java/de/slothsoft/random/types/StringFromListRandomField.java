@@ -4,6 +4,14 @@ import java.util.Objects;
 
 import de.slothsoft.random.RandomField;
 
+/**
+ * A {@link RandomField} representing a {@link String} that is filled with a random list
+ * element.
+ *
+ * @author Steffi Schulz
+ * @since 2.0.0
+ */
+
 public class StringFromListRandomField implements RandomField<String> {
 
 	private final String[] fields;

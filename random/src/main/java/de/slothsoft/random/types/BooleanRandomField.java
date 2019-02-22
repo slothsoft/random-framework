@@ -2,6 +2,13 @@ package de.slothsoft.random.types;
 
 import de.slothsoft.random.RandomField;
 
+/**
+ * A {@link RandomField} representing a {@link Boolean} or it's primitive counterpart.
+ *
+ * @author Steffi Schulz
+ * @since 1.0.0
+ */
+
 public class BooleanRandomField implements RandomField<Boolean> {
 
 	private boolean primitive;

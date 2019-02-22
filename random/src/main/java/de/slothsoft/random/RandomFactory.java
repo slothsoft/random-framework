@@ -7,9 +7,10 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 /**
- * The main class for creating random data.
+ * The main class for creating random data inside a defined POJO.
  *
- * @author Steffi Schulz
+ * @author Stef Schulz
+ * @since 1.0.0
  * @param <T> - the type to be created
  */
 
@@ -54,14 +55,14 @@ public class RandomFactory<T> {
 	}
 
 	/**
-	 * Guesses the mapping from the actual name of the getter and setter
+	 * Guesses the mapping from the actual name of the getter and setter.
 	 *
-	 * @param clazz - the class
+	 * @param pojoClass - the class
 	 * @return a mapping
 	 */
 
-	static Map<String, RandomField<?>> guessMapping(Class<?> clazz) {
-		final Map<String, Class<?>> fields = PropertyUtil.getFields(clazz);
+	static Map<String, RandomField<?>> guessMapping(Class<?> pojoClass) {
+		final Map<String, Class<?>> fields = PropertyUtil.getProperties(pojoClass);
 		final Map<String, RandomField<?>> result = new HashMap<>();
 
 		for (final Entry<String, Class<?>> fieldEntry : fields.entrySet()) {
@@ -71,7 +72,6 @@ public class RandomFactory<T> {
 				result.put(fieldEntry.getKey(), field.createRandomField());
 			}
 		}
-
 		return result;
 	}
 
@@ -80,8 +80,8 @@ public class RandomFactory<T> {
 	private final Class<?> pojoClass;
 
 	/**
-	 * A constructor that takes one class. The mapping of fields to the factories filling
-	 * them is guessed.
+	 * A constructor that takes one {@link Supplier}. The mapping of properties to the
+	 * factories filling them is guessed.
 	 *
 	 * @param pojoSupplier - the supplier for the POJO
 	 */
@@ -91,7 +91,7 @@ public class RandomFactory<T> {
 	}
 
 	/**
-	 * A constructor that takes one class and the mapping of fields to the factories
+	 * A constructor that takes one class and the mapping of properties to the factories
 	 * filling them.
 	 *
 	 * @param pojoSupplier - the supplier for the POJO
@@ -150,7 +150,7 @@ public class RandomFactory<T> {
 		this.fieldMapping.put(property, randomField);
 	}
 
-	public Class<?> getPojoClass() {
+	Class<?> getPojoClass() {
 		return this.pojoClass;
 	}
 }

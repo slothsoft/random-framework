@@ -1,5 +1,14 @@
 package de.slothsoft.random.types;
 
+import de.slothsoft.random.RandomField;
+
+/**
+ * A {@link RandomField} representing a {@link Float} or it's primitive counterpart.
+ *
+ * @author Steffi Schulz
+ * @since 1.0.0
+ */
+
 public class FloatRandomField extends AbstractPrimitiveNumberRandomField<Float> {
 
 	private static final Float START = Float.valueOf(1);
@@ -16,12 +25,12 @@ public class FloatRandomField extends AbstractPrimitiveNumberRandomField<Float> 
 	}
 
 	@Override
-	Float getDefaultNumberRangeStart() {
+	Float getDefaultRangeStart() {
 		return START;
 	}
 
 	@Override
-	Float getDefaultNumberRangeEnd() {
+	Float getDefaultRangeEnd() {
 		return END;
 	}
 

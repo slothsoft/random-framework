@@ -1,5 +1,7 @@
 package de.slothsoft.random;
 
+import java.util.Map;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -46,5 +48,15 @@ public class PropertyUtilTest {
 	public void testSetPropertyWrongPropertyName() throws Exception {
 		final Pojo pojo = new Pojo();
 		PropertyUtil.setProperty(pojo, "walue", String.class, "LOL");
+	}
+
+	@Test
+	public void testGetProperties() throws Exception {
+		final Map<String, Class<?>> properties = PropertyUtil.getProperties(Pojo.class);
+
+		Assert.assertNotNull(properties);
+		Assert.assertEquals(1, properties.size());
+		Assert.assertTrue("Key should exist: " + properties, properties.containsKey("Value"));
+		Assert.assertEquals(String.class, properties.get("Value"));
 	}
 }

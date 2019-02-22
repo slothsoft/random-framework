@@ -26,22 +26,37 @@ import de.slothsoft.random.types.StreetRandomField;
 import de.slothsoft.random.types.StringFromListRandomField;
 
 /**
- * Interface for storing the display names, that are in fact ids, of the random fields
- * that can be accessed.
+ * Util class for storing managing all the random field this module brings along.
  *
  * @author Steffi Schulz
+ * @since 2.0.0
  */
+
 public abstract class RandomFieldSupplier {
 
 	private static List<RandomFieldSupplier> suppliers;
 
-	public static RandomFieldSupplier findSupplierByField(String fieldName, Class<?> fieldClass) {
-		final String name = fieldName.toLowerCase();
+	/**
+	 * Returns a {@link RandomFieldSupplier} for a property name and class.
+	 *
+	 * @param propertyName - the property's name
+	 * @param propertyClass - the property's class
+	 * @return a {@link RandomFieldSupplier} or null
+	 */
+
+	public static RandomFieldSupplier findSupplierByField(String propertyName, Class<?> propertyClass) {
+		final String name = propertyName.toLowerCase();
 		for (final RandomFieldSupplier supplier : getAllSuppliers()) {
-			if (supplier.canSupply(name, fieldClass)) return supplier;
+			if (supplier.canSupply(name, propertyClass)) return supplier;
 		}
 		return null;
 	}
+
+	/**
+	 * Returns all {@link RandomFieldSupplier}s that this module brings along.
+	 *
+	 * @return a list of {@link RandomFieldSupplier}; never null; probably never empty
+	 */
 
 	public static List<RandomFieldSupplier> getAllSuppliers() {
 		if (suppliers == null) {
@@ -74,6 +89,8 @@ public abstract class RandomFieldSupplier {
 		}
 		return suppliers;
 	}
+
+	// these constructors are not that great, but are a problem for future Stef now
 
 	static RandomFieldSupplier forFieldClass(Class<?> wantedFieldClass, Supplier<RandomField<?>> supplier) {
 		return new RandomFieldSupplier(supplier) {
@@ -120,6 +137,13 @@ public abstract class RandomFieldSupplier {
 	 */
 
 	public abstract boolean canSupply(String fieldName, Class<?> fieldClass);
+
+	/**
+	 * Creates a <b>new instance</b> of {@link RandomField} to use for a
+	 * {@link RandomFactory}.
+	 *
+	 * @return a new instance
+	 */
 
 	public RandomField<?> createRandomField() {
 		return this.supplier.get();

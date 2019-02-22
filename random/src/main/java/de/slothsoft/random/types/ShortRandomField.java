@@ -1,5 +1,14 @@
 package de.slothsoft.random.types;
 
+import de.slothsoft.random.RandomField;
+
+/**
+ * A {@link RandomField} representing a {@link Short} or it's primitive counterpart.
+ *
+ * @author Steffi Schulz
+ * @since 1.0.0
+ */
+
 public class ShortRandomField extends AbstractPrimitiveNumberRandomField<Short> {
 
 	private static final Short START = Short.valueOf((short) 1);
@@ -16,12 +25,12 @@ public class ShortRandomField extends AbstractPrimitiveNumberRandomField<Short> 
 	}
 
 	@Override
-	Short getDefaultNumberRangeStart() {
+	Short getDefaultRangeStart() {
 		return START;
 	}
 
 	@Override
-	Short getDefaultNumberRangeEnd() {
+	Short getDefaultRangeEnd() {
 		return END;
 	}
 }

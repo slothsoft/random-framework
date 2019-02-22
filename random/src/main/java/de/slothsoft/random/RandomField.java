@@ -5,13 +5,13 @@ import java.util.Random;
 /**
  * Interface for all various random fields.
  *
- * @author Steffi
- *
+ * @author Stef Schulz
+ * @since 1.0.0
  * @param <T> - the class of the return value
  */
 public interface RandomField<T> {
 
-	// TODO: t is not necessary probably
+	// XXX: <T> is not necessary probably
 
 	Random RND = new Random(); // else we have too many instances to little apart
 

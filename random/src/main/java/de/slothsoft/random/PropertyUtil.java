@@ -4,11 +4,19 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * A simple util class for everything property related. Might need to swap this class with
+ * Apache utils or something like that in the future.
+ *
+ * @author Stef Schulz
+ * @since 2.0.0
+ */
+
 final class PropertyUtil {
 
 	private static final String SET_PREFIX = "set";
 
-	public static void setProperty(Object pojo, String propertyName, Class<?> propertyClass, Object value) {
+	static void setProperty(Object pojo, String propertyName, Class<?> propertyClass, Object value) {
 		final String setterName = getSetterName(propertyName);
 		try {
 			final Method setter = pojo.getClass().getMethod(setterName, propertyClass);
@@ -23,12 +31,11 @@ final class PropertyUtil {
 	}
 
 	/**
-	 * Fields are fields that have a setter with only one parameter.
-	 *
-	 * TODO: test this method
+	 * Properties are fields that have a setter with only one parameter. Right now
+	 * properties start with a capital letter.
 	 */
 
-	static Map<String, Class<?>> getFields(Class<?> clazz) {
+	static Map<String, Class<?>> getProperties(Class<?> clazz) {
 		final Map<String, Class<?>> setters = new HashMap<>();
 
 		for (final Method method : clazz.getMethods()) {

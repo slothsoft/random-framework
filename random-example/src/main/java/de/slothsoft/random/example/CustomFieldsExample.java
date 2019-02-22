@@ -11,7 +11,7 @@ import de.slothsoft.random.types.DateRandomField;
 import de.slothsoft.random.types.FirstNameRandomField;
 import de.slothsoft.random.types.FirstNameRandomField.Gender;
 
-public class ExtendedPersonTest {
+public class CustomFieldsExample {
 
 	protected static DateFormat FORMAT = DateFormat.getDateInstance();
 

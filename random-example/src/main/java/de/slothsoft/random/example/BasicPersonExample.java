@@ -7,7 +7,7 @@ import de.slothsoft.random.RandomFactory;
 import de.slothsoft.random.types.FirstNameRandomField;
 import de.slothsoft.random.types.FirstNameRandomField.Gender;
 
-public class BasicPersonTest {
+public class BasicPersonExample {
 
 	protected static DateFormat FORMAT = DateFormat.getDateInstance();
 
@@ -40,17 +40,12 @@ public class BasicPersonTest {
 		}
 	}
 
-	public static enum PersonGender {
-		MALE, FEMALE;
-	}
-
 	public static class Person {
 
 		private String firstName;
 		private String lastName;
 		private String street;
 		private Date birthdate;
-		private PersonGender gender = null;
 		private String city;
 		private int age;
 		private Integer integer;
@@ -93,14 +88,6 @@ public class BasicPersonTest {
 
 		public void setStreet(String street) {
 			this.street = street;
-		}
-
-		public PersonGender getGender() {
-			return this.gender;
-		}
-
-		public void setGender(PersonGender gender) {
-			this.gender = gender;
 		}
 
 		public Date getBirthdate() {

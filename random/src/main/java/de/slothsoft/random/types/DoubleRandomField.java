@@ -16,12 +16,12 @@ public class DoubleRandomField extends AbstractPrimitiveNumberRandomField<Double
 	}
 
 	@Override
-	Double getDefaultNumberRangeStart() {
+	Double getDefaultRangeStart() {
 		return START;
 	}
 
 	@Override
-	Double getDefaultNumberRangeEnd() {
+	Double getDefaultRangeEnd() {
 		return END;
 	}
 

@@ -2,9 +2,11 @@ package de.slothsoft.random;
 
 /**
  * An exception occurring while creating random data.
- * 
- * @author Steffi
+ *
+ * @author Stef Schulz
+ * @since 1.0.0
  */
+
 public class RandomException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
@@ -13,21 +15,16 @@ public class RandomException extends RuntimeException {
 		super();
 	}
 
-	public RandomException(String message, Throwable cause,
-			boolean enableSuppression, boolean writableStackTrace) {
-		super(message, cause, enableSuppression, writableStackTrace);
-	}
-
-	public RandomException(String message, Throwable cause) {
-		super(message, cause);
-	}
-
 	public RandomException(String message) {
 		super(message);
 	}
 
 	public RandomException(Throwable cause) {
 		super(cause);
+	}
+
+	public RandomException(String message, Throwable cause) {
+		super(message, cause);
 	}
 
 }

@@ -1,5 +1,14 @@
 package de.slothsoft.random.types;
 
+import de.slothsoft.random.RandomField;
+
+/**
+ * A {@link RandomField} representing a {@link Integer} or it's primitive counterpart.
+ *
+ * @author Steffi Schulz
+ * @since 1.0.0
+ */
+
 public class IntegerRandomField extends AbstractPrimitiveNumberRandomField<Integer> {
 
 	private static final Integer START = Integer.valueOf(1);
@@ -16,12 +25,12 @@ public class IntegerRandomField extends AbstractPrimitiveNumberRandomField<Integ
 	}
 
 	@Override
-	Integer getDefaultNumberRangeStart() {
+	Integer getDefaultRangeStart() {
 		return START;
 	}
 
 	@Override
-	Integer getDefaultNumberRangeEnd() {
+	Integer getDefaultRangeEnd() {
 		return END;
 	}
 
