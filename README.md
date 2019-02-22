@@ -8,8 +8,8 @@
 
 A framework for creating dummy data for [POJO](https://de.wikipedia.org/wiki/Plain_Old_Java_Object)s. It can fill a lot of fields with random data, and is even able to recognize some fields that need special values to look pretty.
 
-**Features:**
-
+<details><summary>**Features:**</summary>
+<p>
 - `BigDecimal`
 - `BigInteger`
 - `Date` (and "birthdays", which have another range)
@@ -23,6 +23,8 @@ A framework for creating dummy data for [POJO](https://de.wikipedia.org/wiki/Pla
     * first names
     * last names
     * streets (with house number)
+</p>
+</details>
      
 ## Getting Started
 
