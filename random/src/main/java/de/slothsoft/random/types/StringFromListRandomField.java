@@ -8,7 +8,7 @@ import de.slothsoft.random.RandomField;
  * A {@link RandomField} representing a {@link String} that is filled with a random list
  * element.
  *
- * @author Steffi Schulz
+ * @author Stef Schulz
  * @since 2.0.0
  */
 

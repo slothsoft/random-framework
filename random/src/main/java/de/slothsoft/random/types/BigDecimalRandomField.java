@@ -7,7 +7,7 @@ import de.slothsoft.random.RandomField;
 /**
  * A {@link RandomField} representing a {@link BigDecimal}.
  *
- * @author Steffi Schulz
+ * @author Stef Schulz
  * @since 1.0.0
  */
 

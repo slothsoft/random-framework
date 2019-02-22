@@ -13,7 +13,7 @@ import java.util.Map;
  * <i>An industrial area has many factories.</i>
  *
  *
- * @author Steffi
+ * @author Stef
  *
  */
 

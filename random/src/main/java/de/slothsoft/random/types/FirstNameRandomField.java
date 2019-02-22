@@ -12,7 +12,7 @@ import de.slothsoft.random.RandomField;
 /**
  * A {@link RandomField} representing a {@link String} that should look like a first name.
  *
- * @author Steffi Schulz
+ * @author Stef Schulz
  * @since 1.0.0
  */
 

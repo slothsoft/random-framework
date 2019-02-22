@@ -6,7 +6,7 @@ import de.slothsoft.random.RandomField;
  * A {@link RandomField} representing a birthday, i.e. a date between last year and 100
  * years ago.
  *
- * @author Steffi Schulz
+ * @author Stef Schulz
  * @since 1.0.0
  */
 

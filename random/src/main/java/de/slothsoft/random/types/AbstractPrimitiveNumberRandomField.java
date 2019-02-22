@@ -6,7 +6,7 @@ import de.slothsoft.random.RandomField;
  * A base class for creating a {@link RandomField} from a {@link Number} that has a
  * primitive counterpart.
  *
- * @author Steffi Schulz
+ * @author Stef Schulz
  * @since 2.0.0
  * @param <N> - a type of number
  */

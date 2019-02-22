@@ -5,7 +5,7 @@ import de.slothsoft.random.RandomField;
 /**
  * A {@link RandomField} representing a {@link Short} or it's primitive counterpart.
  *
- * @author Steffi Schulz
+ * @author Stef Schulz
  * @since 1.0.0
  */
 

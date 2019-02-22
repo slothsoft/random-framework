@@ -9,7 +9,7 @@ import de.slothsoft.random.RandomField;
  * A {@link RandomField} representing a {@link Date} between 10 years ago and 10 years in
  * the future.
  *
- * @author Steffi Schulz
+ * @author Stef Schulz
  * @since 1.0.0
  */
 

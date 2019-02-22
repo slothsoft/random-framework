@@ -28,7 +28,7 @@ import de.slothsoft.random.types.StringFromListRandomField;
 /**
  * Util class for storing managing all the random field this module brings along.
  *
- * @author Steffi Schulz
+ * @author Stef Schulz
  * @since 2.0.0
  */
 
