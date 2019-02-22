@@ -10,6 +10,7 @@ A framework for creating dummy data for [POJO](https://de.wikipedia.org/wiki/Pla
 
 <details><summary><b>Features:</b></summary>
 <p>
+
 - `BigDecimal`
 - `BigInteger`
 - `Date` (and "birthdays", which have another range)
@@ -23,6 +24,7 @@ A framework for creating dummy data for [POJO](https://de.wikipedia.org/wiki/Pla
     * first names
     * last names
     * streets (with house number)
+    
 </p>
 </details>
      
