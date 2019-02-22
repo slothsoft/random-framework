@@ -9,7 +9,7 @@ import de.slothsoft.random.RandomField;
  * @since 1.0.0
  */
 
-public class BooleanRandomField implements RandomField<Boolean> {
+public class BooleanRandomField implements RandomField {
 
 	private boolean primitive;
 

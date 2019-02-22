@@ -10,14 +10,12 @@ import org.junit.Test;
 import de.slothsoft.random.RandomFactory;
 import de.slothsoft.random.RandomField;
 
-public abstract class AbstractRandomFieldTest<T> {
+public abstract class AbstractRandomFieldTest {
 
 	protected static final String PROPERTY = "Value";
 
 	protected final Object pojo;
-
-	protected RandomField<T> randomField;
-	protected RandomFactory<?> randomFactory;
+	protected RandomField randomField;
 
 	public AbstractRandomFieldTest(Object pojo) {
 		this.pojo = pojo;
@@ -28,16 +26,15 @@ public abstract class AbstractRandomFieldTest<T> {
 		this.randomField = createRandomField();
 	}
 
-	protected abstract RandomField<T> createRandomField();
+	protected abstract RandomField createRandomField();
 
 	@Test
 	public void testForClassGuess() throws Exception {
-		this.randomFactory = RandomFactory.forClass(this.pojo.getClass());
+		final RandomFactory<?> randomFactory = RandomFactory.forClass(this.pojo.getClass());
 
-		Assert.assertEquals(this.randomField.getFieldClass(),
-				this.randomFactory.getRandomField(PROPERTY).getFieldClass());
+		Assert.assertEquals(this.randomField.getFieldClass(), randomFactory.getRandomField(PROPERTY).getFieldClass());
 
-		final Object createdPojo = this.randomFactory.createSingle();
+		final Object createdPojo = randomFactory.createSingle();
 		Assert.assertNotNull(getPropertyValue(createdPojo));
 	}
 
@@ -49,33 +46,32 @@ public abstract class AbstractRandomFieldTest<T> {
 
 	@Test
 	public void testConstructorGuess() throws Exception {
-		this.randomFactory = new RandomFactory<>(() -> this.pojo);
+		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo);
 
-		Assert.assertEquals(this.randomField.getFieldClass(),
-				this.randomFactory.getRandomField(PROPERTY).getFieldClass());
+		Assert.assertEquals(this.randomField.getFieldClass(), randomFactory.getRandomField(PROPERTY).getFieldClass());
 
-		final Object createdPojo = this.randomFactory.createSingle();
+		final Object createdPojo = randomFactory.createSingle();
 		Assert.assertNotNull(getPropertyValue(createdPojo));
 	}
 
 	@Test
 	public void testConstructorEmptyMap() throws Exception {
-		this.randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
+		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
 
-		Assert.assertEquals(null, this.randomFactory.getRandomField(PROPERTY));
+		Assert.assertEquals(null, randomFactory.getRandomField(PROPERTY));
 
-		final Object createdPojo = this.randomFactory.createSingle();
+		final Object createdPojo = randomFactory.createSingle();
 		Assert.assertNull(getPropertyValue(createdPojo));
 	}
 
 	@Test
 	public void testConstructorManual() throws Exception {
-		this.randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
-		this.randomFactory.addRandomField(PROPERTY, this.randomField);
+		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
+		randomFactory.addRandomField(PROPERTY, this.randomField);
 
-		Assert.assertSame(this.randomField, this.randomFactory.getRandomField(PROPERTY));
+		Assert.assertSame(this.randomField, randomFactory.getRandomField(PROPERTY));
 
-		final Object createdPojo = this.randomFactory.createSingle();
+		final Object createdPojo = randomFactory.createSingle();
 		Assert.assertNotNull(getPropertyValue(createdPojo));
 	}
 }

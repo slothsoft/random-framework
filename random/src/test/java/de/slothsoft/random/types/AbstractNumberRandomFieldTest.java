@@ -8,11 +8,9 @@ import org.junit.Test;
 
 import de.slothsoft.random.RandomFactory;
 
-public abstract class AbstractNumberRandomFieldTest<N extends Number> extends AbstractRandomFieldTest<N> {
+public abstract class AbstractNumberRandomFieldTest<N extends Number> extends AbstractRandomFieldTest {
 
-	protected static final String PROPERTY = "value";
-
-	protected AbstractNumberRandomField<N> randomField;
+	protected AbstractNumberRandomField<N> numberField;
 
 	private final N seven;
 	private final N ninetyTwo;
@@ -27,7 +25,7 @@ public abstract class AbstractNumberRandomFieldTest<N extends Number> extends Ab
 	@Before
 	public void setUp() throws Exception {
 		super.setUp();
-		this.randomField = createRandomField();
+		this.numberField = createRandomField();
 	}
 
 	@Override
@@ -36,28 +34,28 @@ public abstract class AbstractNumberRandomFieldTest<N extends Number> extends Ab
 	@Override
 	@Test
 	public void testConstructorEmptyMap() throws Exception {
-		this.randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
+		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
 
-		Assert.assertEquals(null, this.randomFactory.getRandomField(PROPERTY));
+		Assert.assertEquals(null, randomFactory.getRandomField(PROPERTY));
 
-		if (this.randomField instanceof AbstractPrimitiveNumberRandomField<?>
-				&& !((AbstractPrimitiveNumberRandomField<?>) this.randomField).isPrimitive()) {
-			final Object createdPojo = this.randomFactory.createSingle();
+		if (this.numberField instanceof AbstractPrimitiveNumberRandomField
+				&& !((AbstractPrimitiveNumberRandomField<?>) this.numberField).isPrimitive()) {
+			final Object createdPojo = randomFactory.createSingle();
 			Assert.assertNull(getPropertyValue(createdPojo));
 		}
 	}
 
 	@Test
 	public void testRandomFactoryStartValue() throws Exception {
-		this.randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
-		this.randomFactory.addRandomField(PROPERTY, this.randomField);
+		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
+		randomFactory.addRandomField(PROPERTY, this.numberField);
 
-		Assert.assertSame(this.randomField, this.randomFactory.getRandomField(PROPERTY));
+		Assert.assertSame(this.numberField, randomFactory.getRandomField(PROPERTY));
 
-		this.randomField.setStartValue(this.ninetyTwo);
+		this.numberField.setStartValue(this.ninetyTwo);
 
 		for (int i = 0; i < 100; i++) {
-			final Object createdPojo = this.randomFactory.createSingle();
+			final Object createdPojo = randomFactory.createSingle();
 			final Number value = (Number) getPropertyValue(createdPojo);
 			Assert.assertNotNull(value);
 			Assert.assertTrue("Value is to small: " + value, value.doubleValue() >= this.ninetyTwo.doubleValue());
@@ -66,10 +64,10 @@ public abstract class AbstractNumberRandomFieldTest<N extends Number> extends Ab
 
 	@Test
 	public void testStartValue() throws Exception {
-		this.randomField.setStartValue(this.ninetyTwo);
+		this.numberField.setStartValue(this.ninetyTwo);
 
 		for (int i = 0; i < 100; i++) {
-			final N value = this.randomField.nextValue();
+			final N value = this.numberField.nextValue();
 			Assert.assertNotNull(value);
 			Assert.assertTrue("Value is to small: " + value, value.doubleValue() >= this.ninetyTwo.doubleValue());
 		}
@@ -77,15 +75,15 @@ public abstract class AbstractNumberRandomFieldTest<N extends Number> extends Ab
 
 	@Test
 	public void testRandomFactoryEndValue() throws Exception {
-		this.randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
-		this.randomFactory.addRandomField(PROPERTY, this.randomField);
+		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
+		randomFactory.addRandomField(PROPERTY, this.numberField);
 
-		Assert.assertSame(this.randomField, this.randomFactory.getRandomField(PROPERTY));
+		Assert.assertSame(this.numberField, randomFactory.getRandomField(PROPERTY));
 
-		this.randomField.setEndValue(this.ninetyTwo);
+		this.numberField.setEndValue(this.ninetyTwo);
 
 		for (int i = 0; i < 100; i++) {
-			final Object createdPojo = this.randomFactory.createSingle();
+			final Object createdPojo = randomFactory.createSingle();
 			final Number value = (Number) getPropertyValue(createdPojo);
 			Assert.assertNotNull(value);
 			Assert.assertTrue("Value is to big: " + value, value.doubleValue() < this.ninetyTwo.doubleValue());
@@ -94,10 +92,10 @@ public abstract class AbstractNumberRandomFieldTest<N extends Number> extends Ab
 
 	@Test
 	public void testEndValue() throws Exception {
-		this.randomField.setEndValue(this.ninetyTwo);
+		this.numberField.setEndValue(this.ninetyTwo);
 
 		for (int i = 0; i < 100; i++) {
-			final N value = this.randomField.nextValue();
+			final N value = this.numberField.nextValue();
 			Assert.assertNotNull(value);
 			Assert.assertTrue("Value is to big: " + value, value.doubleValue() < this.ninetyTwo.doubleValue());
 		}
@@ -105,16 +103,16 @@ public abstract class AbstractNumberRandomFieldTest<N extends Number> extends Ab
 
 	@Test
 	public void testRandomFactoryStartValueAndEndValue() throws Exception {
-		this.randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
-		this.randomFactory.addRandomField(PROPERTY, this.randomField);
+		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
+		randomFactory.addRandomField(PROPERTY, this.numberField);
 
-		Assert.assertSame(this.randomField, this.randomFactory.getRandomField(PROPERTY));
+		Assert.assertSame(this.numberField, randomFactory.getRandomField(PROPERTY));
 
-		this.randomField.setStartValue(this.seven);
-		this.randomField.setEndValue(this.ninetyTwo);
+		this.numberField.setStartValue(this.seven);
+		this.numberField.setEndValue(this.ninetyTwo);
 
 		for (int i = 0; i < 100; i++) {
-			final Object createdPojo = this.randomFactory.createSingle();
+			final Object createdPojo = randomFactory.createSingle();
 			final Number value = (Number) getPropertyValue(createdPojo);
 			Assert.assertTrue("Value is to small: " + value, value.doubleValue() >= this.seven.doubleValue());
 			Assert.assertTrue("Value is to big: " + value, value.doubleValue() < this.ninetyTwo.doubleValue());
@@ -123,11 +121,11 @@ public abstract class AbstractNumberRandomFieldTest<N extends Number> extends Ab
 
 	@Test
 	public void testStartValueAndEndValue() throws Exception {
-		this.randomField.setStartValue(this.seven);
-		this.randomField.setEndValue(this.ninetyTwo);
+		this.numberField.setStartValue(this.seven);
+		this.numberField.setEndValue(this.ninetyTwo);
 
 		for (int i = 0; i < 100; i++) {
-			final N value = this.randomField.nextValue();
+			final N value = this.numberField.nextValue();
 			Assert.assertNotNull(value);
 			Assert.assertTrue("Value is to small: " + value, value.doubleValue() >= this.seven.doubleValue());
 			Assert.assertTrue("Value is to big: " + value, value.doubleValue() < this.ninetyTwo.doubleValue());
@@ -136,16 +134,16 @@ public abstract class AbstractNumberRandomFieldTest<N extends Number> extends Ab
 
 	@Test
 	public void testRandomFactoryStartValueAndEndValueSwitched() throws Exception {
-		this.randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
-		this.randomFactory.addRandomField(PROPERTY, this.randomField);
+		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
+		randomFactory.addRandomField(PROPERTY, this.numberField);
 
-		Assert.assertSame(this.randomField, this.randomFactory.getRandomField(PROPERTY));
+		Assert.assertSame(this.numberField, randomFactory.getRandomField(PROPERTY));
 
-		this.randomField.setStartValue(this.ninetyTwo);
-		this.randomField.setEndValue(this.seven);
+		this.numberField.setStartValue(this.ninetyTwo);
+		this.numberField.setEndValue(this.seven);
 
 		for (int i = 0; i < 100; i++) {
-			final Object createdPojo = this.randomFactory.createSingle();
+			final Object createdPojo = randomFactory.createSingle();
 			final Number value = (Number) getPropertyValue(createdPojo);
 			Assert.assertTrue("Value is to small: " + value, value.doubleValue() >= this.seven.doubleValue());
 			Assert.assertTrue("Value is to big: " + value, value.doubleValue() < this.ninetyTwo.doubleValue());
@@ -154,11 +152,11 @@ public abstract class AbstractNumberRandomFieldTest<N extends Number> extends Ab
 
 	@Test
 	public void testStartValueAndEndValueSwitched() throws Exception {
-		this.randomField.setStartValue(this.ninetyTwo);
-		this.randomField.setEndValue(this.seven);
+		this.numberField.setStartValue(this.ninetyTwo);
+		this.numberField.setEndValue(this.seven);
 
 		for (int i = 0; i < 100; i++) {
-			final N value = this.randomField.nextValue();
+			final N value = this.numberField.nextValue();
 			Assert.assertNotNull(value);
 			Assert.assertTrue("Value is to small: " + value, value.doubleValue() >= this.seven.doubleValue());
 			Assert.assertTrue("Value is to big: " + value, value.doubleValue() < this.ninetyTwo.doubleValue());
@@ -166,16 +164,16 @@ public abstract class AbstractNumberRandomFieldTest<N extends Number> extends Ab
 	}
 	@Test
 	public void testRandomFactoryStartValueEqualsEndValue() throws Exception {
-		this.randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
-		this.randomFactory.addRandomField(PROPERTY, this.randomField);
+		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
+		randomFactory.addRandomField(PROPERTY, this.numberField);
 
-		Assert.assertSame(this.randomField, this.randomFactory.getRandomField(PROPERTY));
+		Assert.assertSame(this.numberField, randomFactory.getRandomField(PROPERTY));
 
-		this.randomField.setStartValue(this.ninetyTwo);
-		this.randomField.setEndValue(this.ninetyTwo);
+		this.numberField.setStartValue(this.ninetyTwo);
+		this.numberField.setEndValue(this.ninetyTwo);
 
 		for (int i = 0; i < 100; i++) {
-			final Object createdPojo = this.randomFactory.createSingle();
+			final Object createdPojo = randomFactory.createSingle();
 			final Number value = (Number) getPropertyValue(createdPojo);
 			Assert.assertEquals(value.doubleValue(), this.ninetyTwo.doubleValue(), 0.001);
 		}
@@ -183,11 +181,11 @@ public abstract class AbstractNumberRandomFieldTest<N extends Number> extends Ab
 
 	@Test
 	public void testStartValueEqualsEndValue() throws Exception {
-		this.randomField.setStartValue(this.seven);
-		this.randomField.setEndValue(this.seven);
+		this.numberField.setStartValue(this.seven);
+		this.numberField.setEndValue(this.seven);
 
 		for (int i = 0; i < 100; i++) {
-			final N value = this.randomField.nextValue();
+			final N value = this.numberField.nextValue();
 			Assert.assertNotNull(value);
 			Assert.assertEquals(value.doubleValue(), this.seven.doubleValue(), 0.001);
 		}

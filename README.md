@@ -8,26 +8,6 @@
 
 A framework for creating dummy data for [POJO](https://de.wikipedia.org/wiki/Plain_Old_Java_Object)s. It can fill a lot of fields with random data, and is even able to recognize some fields that need special values to look pretty.
 
-<details><summary><b>Features</b></summary>
-<p>
-
-- `BigDecimal`
-- `BigInteger`
-- `Date` (and "birthdays", which have another range)
-- `Double` and `double`
-- `Float` and `float`
-- `Integer` and `int`
-- `Long` and `long`
-- `Short` and `short`
-- some special `Strings`
-    * cities
-    * first names
-    * last names
-    * streets (with house number)
-    
-</p>
-</details>
-     
 ## Getting Started
 
 ### Prerequisites
@@ -95,6 +75,25 @@ System.out.println(factory.createSingle());
 Even more examples are located [here](https://github.com/slothsoft/framework-random/tree/master/random-example/src/main/java/de/slothsoft/random/example). To see all types have a look at [the package "types"](https://github.com/slothsoft/framework-random/tree/master/random/src/main/java/de/slothsoft/random/types).
 
 
+##  Features
+
+The following classes and sematic fields are supported.
+
+- `BigDecimal`
+- `BigInteger`
+- `Date` (and "birthdays", which have another range)
+- `Double` and `double`
+- `Float` and `float`
+- `Integer` and `int`
+- `Long` and `long`
+- `Short` and `short`
+- some special `Strings`
+    * cities
+    * first names
+    * last names
+    * streets (with house number)
+    
+     
 ## License
 
 This project is licensed under the MIT License - see the [MIT license](https://opensource.org/licenses/MIT) for details.

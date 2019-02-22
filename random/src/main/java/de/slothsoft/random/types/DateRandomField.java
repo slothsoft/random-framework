@@ -13,7 +13,7 @@ import de.slothsoft.random.RandomField;
  * @since 1.0.0
  */
 
-public class DateRandomField implements RandomField<Date> {
+public class DateRandomField implements RandomField {
 
 	static final int CURRENT_YEAR = Calendar.getInstance().get(Calendar.YEAR);
 

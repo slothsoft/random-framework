@@ -12,7 +12,7 @@ import de.slothsoft.random.RandomField;
  * @since 2.0.0
  */
 
-public class StringFromListRandomField implements RandomField<String> {
+public class StringFromListRandomField implements RandomField {
 
 	private final String[] fields;
 

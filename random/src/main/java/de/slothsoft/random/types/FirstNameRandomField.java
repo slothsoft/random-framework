@@ -16,7 +16,7 @@ import de.slothsoft.random.RandomField;
  * @since 1.0.0
  */
 
-public class FirstNameRandomField implements RandomField<String> {
+public class FirstNameRandomField implements RandomField {
 
 	/**
 	 * Enum for setting the Gender of the first name.

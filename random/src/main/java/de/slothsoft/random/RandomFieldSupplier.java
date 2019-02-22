@@ -92,7 +92,7 @@ public abstract class RandomFieldSupplier {
 
 	// these constructors are not that great, but are a problem for future Stef now
 
-	static RandomFieldSupplier forFieldClass(Class<?> wantedFieldClass, Supplier<RandomField<?>> supplier) {
+	static RandomFieldSupplier forFieldClass(Class<?> wantedFieldClass, Supplier<RandomField> supplier) {
 		return new RandomFieldSupplier(supplier) {
 
 			@Override
@@ -102,7 +102,7 @@ public abstract class RandomFieldSupplier {
 		};
 	}
 
-	static RandomFieldSupplier forSynonymeList(String fileName, Supplier<RandomField<?>> supplier) {
+	static RandomFieldSupplier forSynonymeList(String fileName, Supplier<RandomField> supplier) {
 		final List<String> synonyms = Arrays.asList(readFile(RandomFieldSupplier.class.getResourceAsStream(fileName)));
 		return new RandomFieldSupplier(supplier) {
 
@@ -113,7 +113,7 @@ public abstract class RandomFieldSupplier {
 		};
 	}
 
-	private static Supplier<RandomField<?>> createStringListSupplier(String fileName) {
+	private static Supplier<RandomField> createStringListSupplier(String fileName) {
 		final String[] strings = readFile(RandomFieldSupplier.class.getResourceAsStream(fileName));
 		return () -> new StringFromListRandomField(strings);
 	}
@@ -122,9 +122,9 @@ public abstract class RandomFieldSupplier {
 		return new BufferedReader(new InputStreamReader(inputStream)).lines().parallel().toArray(String[]::new);
 	}
 
-	private final Supplier<RandomField<?>> supplier;
+	private final Supplier<RandomField> supplier;
 
-	protected RandomFieldSupplier(Supplier<RandomField<?>> supplier) {
+	protected RandomFieldSupplier(Supplier<RandomField> supplier) {
 		this.supplier = supplier;
 	}
 
@@ -145,7 +145,7 @@ public abstract class RandomFieldSupplier {
 	 * @return a new instance
 	 */
 
-	public RandomField<?> createRandomField() {
+	public RandomField createRandomField() {
 		return this.supplier.get();
 	}
 

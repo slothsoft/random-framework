@@ -7,11 +7,8 @@ import java.util.Random;
  *
  * @author Stef Schulz
  * @since 1.0.0
- * @param <T> - the class of the return value
  */
-public interface RandomField<T> {
-
-	// XXX: <T> is not necessary probably
+public interface RandomField {
 
 	Random RND = new Random(); // else we have too many instances to little apart
 
@@ -21,7 +18,7 @@ public interface RandomField<T> {
 	 * @return a random value
 	 */
 
-	T nextValue();
+	Object nextValue();
 
 	/**
 	 * Returns the class of T

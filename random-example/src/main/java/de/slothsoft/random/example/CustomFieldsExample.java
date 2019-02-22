@@ -17,7 +17,7 @@ public class CustomFieldsExample {
 
 	public static void main(String[] args) {
 
-		final Map<String, RandomField<?>> mapping = new HashMap<>();
+		final Map<String, RandomField> mapping = new HashMap<>();
 		mapping.put("blob", new FirstNameRandomField().gender(Gender.MALE));
 //		mapping.put("flup", RandomFields.LAST_NAME);
 		mapping.put("date", new DateRandomField());

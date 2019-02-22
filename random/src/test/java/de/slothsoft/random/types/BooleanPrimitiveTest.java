@@ -8,7 +8,7 @@ import org.junit.Test;
 import de.slothsoft.random.RandomFactory;
 import de.slothsoft.random.RandomField;
 
-public class BooleanPrimitiveTest extends AbstractRandomFieldTest<Boolean> {
+public class BooleanPrimitiveTest extends AbstractRandomFieldTest {
 
 	public static class Pojo {
 
@@ -29,19 +29,19 @@ public class BooleanPrimitiveTest extends AbstractRandomFieldTest<Boolean> {
 	}
 
 	@Override
-	protected RandomField<Boolean> createRandomField() {
+	protected RandomField createRandomField() {
 		return new BooleanRandomField().primitive(true);
 	}
 
 	@Test
 	public void testRandomFactoryValue() throws Exception {
-		this.randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
-		this.randomFactory.addRandomField(PROPERTY, this.randomField);
+		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
+		randomFactory.addRandomField(PROPERTY, this.randomField);
 
-		Assert.assertSame(this.randomField, this.randomFactory.getRandomField(PROPERTY));
+		Assert.assertSame(this.randomField, randomFactory.getRandomField(PROPERTY));
 
 		for (int i = 0; i < 100; i++) {
-			final Object createdPojo = this.randomFactory.createSingle();
+			final Object createdPojo = randomFactory.createSingle();
 			final Object value = getPropertyValue(createdPojo);
 			Assert.assertNotNull(value);
 		}
@@ -58,8 +58,8 @@ public class BooleanPrimitiveTest extends AbstractRandomFieldTest<Boolean> {
 	@Override
 	@Test
 	public void testConstructorEmptyMap() throws Exception {
-		this.randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
+		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
 
-		Assert.assertEquals(null, this.randomFactory.getRandomField(PROPERTY));
+		Assert.assertEquals(null, randomFactory.getRandomField(PROPERTY));
 	}
 }

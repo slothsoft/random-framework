@@ -61,9 +61,9 @@ public class RandomFactory<T> {
 	 * @return a mapping
 	 */
 
-	static Map<String, RandomField<?>> guessMapping(Class<?> pojoClass) {
+	static Map<String, RandomField> guessMapping(Class<?> pojoClass) {
 		final Map<String, Class<?>> fields = PropertyUtil.getProperties(pojoClass);
-		final Map<String, RandomField<?>> result = new HashMap<>();
+		final Map<String, RandomField> result = new HashMap<>();
 
 		for (final Entry<String, Class<?>> fieldEntry : fields.entrySet()) {
 			final RandomFieldSupplier field = RandomFieldSupplier.findSupplierByField(fieldEntry.getKey(),
@@ -76,7 +76,7 @@ public class RandomFactory<T> {
 	}
 
 	private final Supplier<T> pojoSupplier;
-	private final Map<String, RandomField<?>> fieldMapping;
+	private final Map<String, RandomField> fieldMapping;
 	private final Class<?> pojoClass;
 
 	/**
@@ -98,7 +98,7 @@ public class RandomFactory<T> {
 	 * @param fieldMapping - the initial mapping for the fields
 	 */
 
-	public RandomFactory(Supplier<T> pojoSupplier, Map<String, RandomField<?>> fieldMapping) {
+	public RandomFactory(Supplier<T> pojoSupplier, Map<String, RandomField> fieldMapping) {
 		this.pojoSupplier = pojoSupplier;
 		this.fieldMapping = fieldMapping;
 		this.pojoClass = pojoSupplier.get().getClass();
@@ -118,8 +118,8 @@ public class RandomFactory<T> {
 	}
 
 	void fillFields(T value) throws RandomException {
-		for (final Entry<String, RandomField<?>> fieldEntry : this.fieldMapping.entrySet()) {
-			final RandomField<?> randomField = fieldEntry.getValue();
+		for (final Entry<String, RandomField> fieldEntry : this.fieldMapping.entrySet()) {
+			final RandomField randomField = fieldEntry.getValue();
 			PropertyUtil.setProperty(value, fieldEntry.getKey(), randomField.getFieldClass(), randomField.nextValue());
 		}
 	}
@@ -142,11 +142,11 @@ public class RandomFactory<T> {
 
 	// TODO: comment and test these methods
 
-	public RandomField<?> getRandomField(String property) {
+	public RandomField getRandomField(String property) {
 		return this.fieldMapping.get(property);
 	}
 
-	public void addRandomField(String property, RandomField<?> randomField) {
+	public void addRandomField(String property, RandomField randomField) {
 		this.fieldMapping.put(property, randomField);
 	}
 
