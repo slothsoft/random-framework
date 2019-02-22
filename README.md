@@ -8,7 +8,7 @@
 
 A framework for creating dummy data for [POJO](https://de.wikipedia.org/wiki/Plain_Old_Java_Object)s. It can fill a lot of fields with random data, and is even able to recognize some fields that need special values to look pretty.
 
-<details><summary>**Features:**</summary>
+<details><summary><b>Features:</b></summary>
 <p>
 - `BigDecimal`
 - `BigInteger`
