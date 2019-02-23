@@ -22,7 +22,7 @@ public class DoublePrimitiveTest extends AbstractNumberRandomFieldTest<Double> {
 
 	@Override
 	protected AbstractNumberRandomField<Double> createRandomField() {
-		return new DoubleRandomField().primitive(true);
+		return new DoubleRandomField();
 	}
 
 }

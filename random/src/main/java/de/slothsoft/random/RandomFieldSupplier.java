@@ -75,19 +75,19 @@ public abstract class RandomFieldSupplier {
 			suppliers.add(forFieldClass(Date.class, DateRandomField::new));
 
 			suppliers.add(forFieldClass(Short.class, ShortRandomField::new));
-			suppliers.add(forFieldClass(short.class, () -> new ShortRandomField().primitive(true)));
+			suppliers.add(forFieldClass(short.class, () -> new ShortRandomField()));
 			suppliers.add(forFieldClass(Integer.class, IntegerRandomField::new));
-			suppliers.add(forFieldClass(int.class, () -> new IntegerRandomField().primitive(true)));
+			suppliers.add(forFieldClass(int.class, () -> new IntegerRandomField()));
 			suppliers.add(forFieldClass(Long.class, LongRandomField::new));
-			suppliers.add(forFieldClass(long.class, () -> new LongRandomField().primitive(true)));
+			suppliers.add(forFieldClass(long.class, () -> new LongRandomField()));
 			suppliers.add(forFieldClass(Double.class, DoubleRandomField::new));
-			suppliers.add(forFieldClass(double.class, () -> new DoubleRandomField().primitive(true)));
+			suppliers.add(forFieldClass(double.class, () -> new DoubleRandomField()));
 			suppliers.add(forFieldClass(Float.class, FloatRandomField::new));
-			suppliers.add(forFieldClass(float.class, () -> new FloatRandomField().primitive(true)));
+			suppliers.add(forFieldClass(float.class, () -> new FloatRandomField()));
 			suppliers.add(forFieldClass(BigInteger.class, BigIntegerRandomField::new));
 			suppliers.add(forFieldClass(BigDecimal.class, BigDecimalRandomField::new));
 			suppliers.add(forFieldClass(Boolean.class, BooleanRandomField::new));
-			suppliers.add(forFieldClass(boolean.class, () -> new BooleanRandomField().primitive(true)));
+			suppliers.add(forFieldClass(boolean.class, () -> new BooleanRandomField()));
 		}
 		return suppliers;
 	}

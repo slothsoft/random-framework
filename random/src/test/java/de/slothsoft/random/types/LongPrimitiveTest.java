@@ -22,6 +22,6 @@ public class LongPrimitiveTest extends AbstractNumberRandomFieldTest<Long> {
 
 	@Override
 	protected AbstractNumberRandomField<Long> createRandomField() {
-		return new LongRandomField().primitive(true);
+		return new LongRandomField();
 	}
 }

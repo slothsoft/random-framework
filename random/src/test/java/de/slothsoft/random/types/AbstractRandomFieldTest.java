@@ -12,7 +12,7 @@ import de.slothsoft.random.RandomField;
 
 public abstract class AbstractRandomFieldTest {
 
-	protected static final String PROPERTY = "Value";
+	protected static final String PROPERTY = "value";
 
 	protected final Object pojo;
 	protected RandomField randomField;

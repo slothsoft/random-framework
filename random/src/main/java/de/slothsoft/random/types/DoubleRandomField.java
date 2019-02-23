@@ -1,12 +1,22 @@
 package de.slothsoft.random.types;
 
-public class DoubleRandomField extends AbstractPrimitiveNumberRandomField<Double> {
+import de.slothsoft.random.RandomField;
+
+/**
+ * A {@link RandomField} representing a {@link Double} or its primitive counterpart. The
+ * default values are between 1 and 100.
+ *
+ * @author Stef Schulz
+ * @since 1.0.0
+ */
+
+public class DoubleRandomField extends AbstractNumberRandomField<Double> {
 
 	private static final Double START = Double.valueOf(1);
 	private static final Double END = Double.valueOf(100);
 
 	public DoubleRandomField() {
-		super(double.class, Double.class);
+		super(Double.class);
 	}
 
 	@Override

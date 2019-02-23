@@ -37,12 +37,6 @@ public abstract class AbstractNumberRandomFieldTest<N extends Number> extends Ab
 		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
 
 		Assert.assertEquals(null, randomFactory.getRandomField(PROPERTY));
-
-		if (this.numberField instanceof AbstractPrimitiveNumberRandomField
-				&& !((AbstractPrimitiveNumberRandomField<?>) this.numberField).isPrimitive()) {
-			final Object createdPojo = randomFactory.createSingle();
-			Assert.assertNull(getPropertyValue(createdPojo));
-		}
 	}
 
 	@Test

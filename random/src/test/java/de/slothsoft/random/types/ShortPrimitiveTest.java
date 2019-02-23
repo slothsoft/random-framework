@@ -22,6 +22,6 @@ public class ShortPrimitiveTest extends AbstractNumberRandomFieldTest<Short> {
 
 	@Override
 	protected AbstractNumberRandomField<Short> createRandomField() {
-		return new ShortRandomField().primitive(true);
+		return new ShortRandomField();
 	}
 }

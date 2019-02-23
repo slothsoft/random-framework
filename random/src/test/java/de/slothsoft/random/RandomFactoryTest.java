@@ -86,6 +86,11 @@ public class RandomFactoryTest {
 
 		Assert.assertNotNull("Property " + this.propertyName + " was not filled correctly for " + this.pojoClass,
 				propertyValue);
+
+		if (propertyValue instanceof Number) {
+			Assert.assertNotEquals("Value should be over zero on default: " + propertyValue,
+					((Number) propertyValue).doubleValue(), 0.0, 0.0);
+		}
 	}
 
 	private Object getPropertyValue(Object pojo) throws Exception {
@@ -103,6 +108,11 @@ public class RandomFactoryTest {
 
 			Assert.assertNotNull("Property " + this.propertyName + " was not filled correctly for " + this.pojoClass,
 					propertyValue);
+
+			if (propertyValue instanceof Number) {
+				Assert.assertNotEquals("Value should be over zero on default: " + propertyValue,
+						((Number) propertyValue).doubleValue(), 0.0, 0.0);
+			}
 		}
 	}
 
@@ -137,6 +147,11 @@ public class RandomFactoryTest {
 
 		Assert.assertNotNull("Property " + this.propertyName + " was not filled correctly for " + this.pojoClass,
 				propertyValue);
+
+		if (propertyValue instanceof Number) {
+			Assert.assertNotEquals("Value should be over zero on default: " + propertyValue,
+					((Number) propertyValue).doubleValue(), 0.0, 0.0);
+		}
 	}
 
 	@Test
@@ -148,6 +163,11 @@ public class RandomFactoryTest {
 
 			Assert.assertNotNull("Property " + this.propertyName + " was not filled correctly for " + this.pojoClass,
 					propertyValue);
+
+			if (propertyValue instanceof Number) {
+				Assert.assertNotEquals("Value should be over zero on default: " + propertyValue,
+						((Number) propertyValue).doubleValue(), 0.0, 0.0);
+			}
 		}
 	}
 

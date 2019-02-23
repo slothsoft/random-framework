@@ -1,5 +1,10 @@
 package de.slothsoft.random;
 
+import java.beans.BeanInfo;
+import java.beans.IntrospectionException;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,20 +19,34 @@ import java.util.Map;
 
 final class PropertyUtil {
 
-	private static final String SET_PREFIX = "set";
-
-	static void setProperty(Object pojo, String propertyName, Class<?> propertyClass, Object value) {
-		final String setterName = getSetterName(propertyName);
+	static void setProperty(Object pojo, String propertyName, Object value) {
 		try {
-			final Method setter = pojo.getClass().getMethod(setterName, propertyClass);
+			final Method setter = getSetter(pojo.getClass(), propertyName);
 			setter.invoke(pojo, value);
-		} catch (final Exception e) {
-			throw new RandomException("Could not set property " + propertyName, e);
+		} catch (final IllegalAccessException | InvocationTargetException e) {
+			throw new RandomException("Could not call setter " + propertyName + " on " + pojo, e);
 		}
 	}
 
-	static String getSetterName(String property) {
-		return SET_PREFIX + property.substring(0, 1).toUpperCase() + property.substring(1);
+	static Method getSetter(Class<?> pojoClass, String propertyName) {
+		try {
+			final BeanInfo beaninfo = Introspector.getBeanInfo(pojoClass);
+			final PropertyDescriptor descriptors[] = beaninfo.getPropertyDescriptors();
+
+			for (final PropertyDescriptor descriptor : descriptors) {
+				if (descriptor.getName().equals(propertyName)) {
+					final Method setter = descriptor.getWriteMethod();
+					if (setter == null)
+						throw new RandomException(
+								"Could not find setter for " + propertyName + " on " + pojoClass + "!");
+					return setter;
+				}
+			}
+			throw new RandomException("Could not find property " + propertyName + " on " + pojoClass + "!");
+
+		} catch (final IntrospectionException e) {
+			throw new RandomException("Could not introspect " + pojoClass, e);
+		}
 	}
 
 	/**
@@ -36,17 +55,20 @@ final class PropertyUtil {
 	 */
 
 	static Map<String, Class<?>> getProperties(Class<?> clazz) {
-		final Map<String, Class<?>> setters = new HashMap<>();
+		try {
+			final Map<String, Class<?>> setters = new HashMap<>();
 
-		for (final Method method : clazz.getMethods()) {
-			final String name = method.getName();
-			if (name.startsWith(SET_PREFIX)) {
-				final Class<?>[] parameterTypes = method.getParameterTypes();
-				if (parameterTypes.length == 1) {
-					setters.put(name.substring(SET_PREFIX.length()), parameterTypes[0]);
+			final BeanInfo beaninfo = Introspector.getBeanInfo(clazz);
+			final PropertyDescriptor descriptors[] = beaninfo.getPropertyDescriptors();
+
+			for (final PropertyDescriptor descriptor : descriptors) {
+				if (!descriptor.getName().equals("class")) {
+					setters.put(descriptor.getName(), descriptor.getPropertyType());
 				}
 			}
+			return setters;
+		} catch (final IntrospectionException e) {
+			throw new RandomException("Could not introspect " + clazz, e);
 		}
-		return setters;
 	}
 }

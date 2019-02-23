@@ -125,22 +125,17 @@ public class RandomIndustrialArea {
 		final T result = factory.createSingle();
 
 		if (recursions > 0) {
-			final Map<String, Class<?>> fields = PropertyUtil.getProperties(createdClass);
+			final Map<String, Class<?>> properties = PropertyUtil.getProperties(createdClass);
 			// now check, if one of the factories is better in generating one of
 			// the fields
-			for (final String field : fields.keySet()) {
-				final Class<?> fieldClass = fields.get(field);
+			for (final String property : properties.keySet()) {
+				final Class<?> fieldClass = properties.get(property);
 				if (containsRandomFactoryFor(fieldClass)) {
+					final Method setter = PropertyUtil.getSetter(createdClass, property);
 					try {
-						final String setterName = PropertyUtil.getSetterName(field);
-						final Method setter = createdClass.getMethod(setterName, fieldClass);
-						try {
-							setter.invoke(result, doCreateSingle(fieldClass, recursions - 1));
-						} catch (final Exception e) {
-							throw new RandomException("Could not set field " + field + " by RandomIndustrialArea", e);
-						}
-					} catch (final NoSuchMethodException e) {
-						// wrong field class, just go on
+						setter.invoke(result, doCreateSingle(fieldClass, recursions - 1));
+					} catch (final Exception e) {
+						throw new RandomException("Could not set field " + property + " by RandomIndustrialArea", e);
 					}
 				}
 			}

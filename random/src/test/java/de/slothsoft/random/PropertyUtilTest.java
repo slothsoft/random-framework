@@ -24,7 +24,7 @@ public class PropertyUtilTest {
 	@Test
 	public void testSetProperty() throws Exception {
 		final Pojo pojo = new Pojo();
-		PropertyUtil.setProperty(pojo, "value", String.class, "LOL");
+		PropertyUtil.setProperty(pojo, "value", "LOL");
 
 		Assert.assertEquals("LOL", pojo.getValue());
 	}
@@ -33,21 +33,15 @@ public class PropertyUtilTest {
 	public void testSetPropertyNull() throws Exception {
 		final Pojo pojo = new Pojo();
 		pojo.setValue("-");
-		PropertyUtil.setProperty(pojo, "value", String.class, null);
+		PropertyUtil.setProperty(pojo, "value", null);
 
 		Assert.assertEquals(null, pojo.getValue());
 	}
 
 	@Test(expected = RandomException.class)
-	public void testSetPropertyWrongClass() throws Exception {
-		final Pojo pojo = new Pojo();
-		PropertyUtil.setProperty(pojo, "value", Integer.class, "LOL");
-	}
-
-	@Test(expected = RandomException.class)
 	public void testSetPropertyWrongPropertyName() throws Exception {
 		final Pojo pojo = new Pojo();
-		PropertyUtil.setProperty(pojo, "walue", String.class, "LOL");
+		PropertyUtil.setProperty(pojo, "walue", "LOL");
 	}
 
 	@Test
@@ -55,8 +49,8 @@ public class PropertyUtilTest {
 		final Map<String, Class<?>> properties = PropertyUtil.getProperties(Pojo.class);
 
 		Assert.assertNotNull(properties);
-		Assert.assertEquals(1, properties.size());
-		Assert.assertTrue("Key should exist: " + properties, properties.containsKey("Value"));
-		Assert.assertEquals(String.class, properties.get("Value"));
+		Assert.assertEquals("Wrong property count: " + properties, 1, properties.size());
+		Assert.assertTrue("Key should exist: " + properties, properties.containsKey("value"));
+		Assert.assertEquals(String.class, properties.get("value"));
 	}
 }
