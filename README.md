@@ -94,6 +94,15 @@ for (final MyPerson person : factory.create(MyPerson.class, 5)) {
 Even more examples are located [here](https://github.com/slothsoft/framework-random/tree/master/random-example/src/main/java/de/slothsoft/random/example). To see all types have a look at [the package "types"](https://github.com/slothsoft/framework-random/tree/master/random/src/main/java/de/slothsoft/random/types).
 
 
+##  Versions
+
+
+| Version       | Changes       |
+| ------------- | ------------- |
+| [2.0.0](https://github.com/slothsoft/framework-random/milestone/1?closed=1) | streamlined the API and documentation; moved to Maven Central |
+| 1.0.0         | internal version with basic API |
+
+
 ##  Features
 
 The following classes and sematic fields are supported.
@@ -114,16 +123,6 @@ The following classes and sematic fields are supported.
     
 If something is missing, request it via [a new issue](https://github.com/slothsoft/framework-random/issues/new).
     
-
-##  Versions
-
-
-| Version       | Changes       |
-| ------------- | ------------- |
-| [2.0.0](https://github.com/slothsoft/framework-random/milestone/1?closed=1) | streamlined the API and documentation; moved to Maven Central |
-| 1.0.0         | internal version with basic API |
-
-
 
 ## License
 
