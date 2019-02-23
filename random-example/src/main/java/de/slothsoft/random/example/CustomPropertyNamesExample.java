@@ -10,8 +10,17 @@ import de.slothsoft.random.RandomField;
 import de.slothsoft.random.types.DateRandomField;
 import de.slothsoft.random.types.FirstNameRandomField;
 import de.slothsoft.random.types.FirstNameRandomField.Gender;
+import de.slothsoft.random.types.LastNameRandomField;
 
-public class CustomFieldsExample {
+/**
+ * This example shows how to set this framework up if you want to customize one or all of
+ * the fields.
+ *
+ * @author Stef Schulz
+ * @since 2.0.0
+ */
+
+public class CustomPropertyNamesExample {
 
 	protected static DateFormat FORMAT = DateFormat.getDateInstance();
 
@@ -19,7 +28,7 @@ public class CustomFieldsExample {
 
 		final Map<String, RandomField> mapping = new HashMap<>();
 		mapping.put("blob", new FirstNameRandomField().gender(Gender.MALE));
-//		mapping.put("flup", RandomFields.LAST_NAME);
+		mapping.put("flup", new LastNameRandomField());
 		mapping.put("date", new DateRandomField());
 
 		final RandomFactory<Person> factory = new RandomFactory<>(Person::new, mapping);
@@ -35,7 +44,6 @@ public class CustomFieldsExample {
 
 		private String blob;
 		private String flup;
-		private String arg = "default";
 		private Date date;
 
 		public String getBlob() {
@@ -52,14 +60,6 @@ public class CustomFieldsExample {
 
 		public void setFlup(String flup) {
 			this.flup = flup;
-		}
-
-		public String getArg() {
-			return this.arg;
-		}
-
-		public void setArg(String arg) {
-			this.arg = arg;
 		}
 
 		public Date getDate() {

@@ -17,10 +17,6 @@ public class BigIntegerRandomField extends AbstractNumberRandomField<BigInteger>
 	private static final BigInteger START = BigInteger.valueOf(1);
 	private static final BigInteger END = BigInteger.valueOf(100);
 
-	public BigIntegerRandomField() {
-		super(BigInteger.class);
-	}
-
 	@Override
 	protected BigInteger getRandomNumber(BigInteger numberRangeStart, BigInteger numberRangeEnd) {
 		final long diff = numberRangeEnd.longValue() - numberRangeStart.longValue();

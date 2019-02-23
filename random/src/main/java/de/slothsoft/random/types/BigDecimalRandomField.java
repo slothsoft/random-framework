@@ -17,10 +17,6 @@ public class BigDecimalRandomField extends AbstractNumberRandomField<BigDecimal>
 	private static final BigDecimal START = BigDecimal.valueOf(1);
 	private static final BigDecimal END = BigDecimal.valueOf(100L);
 
-	public BigDecimalRandomField() {
-		super(BigDecimal.class);
-	}
-
 	@Override
 	protected BigDecimal getRandomNumber(BigDecimal numberRangeStart, BigDecimal numberRangeEnd) {
 		final long diff = numberRangeEnd.longValue() - numberRangeStart.longValue();

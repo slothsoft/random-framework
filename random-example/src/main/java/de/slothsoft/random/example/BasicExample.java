@@ -7,7 +7,15 @@ import de.slothsoft.random.RandomFactory;
 import de.slothsoft.random.types.FirstNameRandomField;
 import de.slothsoft.random.types.FirstNameRandomField.Gender;
 
-public class BasicPersonExample {
+/**
+ * This example shows how to set this framework up for a single, very basic POJO without
+ * any bells and whistles.
+ *
+ * @author Stef Schulz
+ * @since 2.0.0
+ */
+
+public class BasicExample {
 
 	protected static DateFormat FORMAT = DateFormat.getDateInstance();
 
@@ -22,14 +30,14 @@ public class BasicPersonExample {
 
 		System.out.println("\n\nPersons of Male Genders");
 		System.out.println("-----------------------");
-		factory.addRandomField("FirstName", new FirstNameRandomField().gender(Gender.MALE));
+		factory.addRandomField("firstName", new FirstNameRandomField().gender(Gender.MALE));
 		for (final Person person : factory.create(5)) {
 			System.out.println(person);
 		}
 
 		System.out.println("\n\nPersons of Female Genders");
 		System.out.println("-------------------------");
-		factory.addRandomField("FirstName", new FirstNameRandomField().gender(Gender.FEMALE));
+		factory.addRandomField("firstName", new FirstNameRandomField().gender(Gender.FEMALE));
 		for (final Person person : factory.create(5)) {
 			System.out.println(person);
 		}

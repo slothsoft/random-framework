@@ -4,7 +4,15 @@ import java.text.DateFormat;
 
 import de.slothsoft.random.RandomIndustrialArea;
 
-public class HierarchicalPersonExample {
+/**
+ * This example shows how to set this framework up for multiple POJOs with a hierarchical
+ * structure.
+ *
+ * @author Stef Schulz
+ * @since 2.0.0
+ */
+
+public class HierarchicalExample {
 
 	protected static DateFormat FORMAT = DateFormat.getDateInstance();
 
