@@ -27,7 +27,7 @@ public class RandomIndustrialArea {
 	 * @return the brand new object
 	 */
 
-	public static RandomIndustrialArea create(Class<?>... createdClasses) {
+	public static RandomIndustrialArea forClasses(Class<?>... createdClasses) {
 		final RandomIndustrialArea industrialArea = new RandomIndustrialArea();
 		for (final Class<?> createdClass : createdClasses) {
 			industrialArea.addFactory(RandomFactory.forClass(createdClass));

@@ -9,7 +9,7 @@ public class IndustrialAreaRecursionTest {
 
 	@Test
 	public void positiveTest() {
-		final RandomIndustrialArea industrialArea = RandomIndustrialArea.create(IARPerson.class);
+		final RandomIndustrialArea industrialArea = RandomIndustrialArea.forClasses(IARPerson.class);
 
 		final List<IARPerson> persons = industrialArea.create(IARPerson.class, 100);
 		for (final IARPerson person : persons) {

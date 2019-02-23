@@ -16,7 +16,7 @@ You need at least **Java 1.8** or above to use this library. You can use Maven a
 
 ### Installing
 
-I probably should try to get this library into Maven Central. Then there'd be Maven GAVs like this:
+This library is in Maven Central, so you can easily add it like this:
 
 ```xml
 <dependency>
@@ -26,29 +26,29 @@ I probably should try to get this library into Maven Central. Then there'd be Ma
 </dependency>
 ```
 
-For other build tools and the JAR take a look at [Maven Central](https://mvnrepository.com/artifact/junit/junit).
+For other build tools and the JAR take a look at [Maven Central](https://mvnrepository.com/artifact/de.slothsoft.random/random).
 
 
 ### Using the Framework
 
-The new and improved API is really easy to use. To create a simple POJO without much ado, do this
+The new and improved API is really easy to use. To create a simple POJO without much ado, do this:
 
 ```java
-class MyPojo { 
+class MyPerson { 
     private String firstName;
     private Date birthdate;
     
     // add getter and setter!
 }
 
-RandomFactory<MyPojo> factory = RandomFactory.forClass(MyPojo.class);
+RandomFactory<MyPerson> factory = RandomFactory.forClass(MyPerson.class);
 
 // create a single POJO
 System.out.println(factory.createSingle());
 
 
 // create many POJOs
-for (final Person person : factory.create(5)) {
+for (final MyPerson person : factory.create(5)) {
     System.out.println(person);
 }
 ```
@@ -72,6 +72,25 @@ factory.addRandomField("burzeltag", new BirthdayRandomField());
 System.out.println(factory.createSingle());
 ```
 
+And finally, to create a hierarchical structure of POJOs, use the `RandomIndustrialArea` like this:
+
+```java
+class MyPerson { 
+    private MyPersonsAddress address;
+    // add getter and setter!
+}
+class MyPersonsAddress { 
+    private String city;
+    // add getter and setter!
+}
+
+RandomIndustrialArea factory = RandomIndustrialArea.forClasses(MyPerson.class, MyPersonsAddress.class);
+
+for (final MyPerson person : factory.create(MyPerson.class, 5)) {
+	System.out.println(person);
+}
+```
+
 Even more examples are located [here](https://github.com/slothsoft/framework-random/tree/master/random-example/src/main/java/de/slothsoft/random/example). To see all types have a look at [the package "types"](https://github.com/slothsoft/framework-random/tree/master/random/src/main/java/de/slothsoft/random/types).
 
 
@@ -93,7 +112,19 @@ The following classes and sematic fields are supported.
     * last names
     * streets (with house number)
     
-     
+If something is missing, request it via [a new issue](https://github.com/slothsoft/framework-random/issues/new).
+    
+
+##  Versions
+
+
+| Version       | Changes       |
+| ------------- | ------------- |
+| [2.0.0](https://github.com/slothsoft/framework-random/milestone/1) | streamlined the API and documentation; moved to Maven Central |
+| 1.0.0         | internal version with basic API |
+
+
+
 ## License
 
 This project is licensed under the MIT License - see the [MIT license](https://opensource.org/licenses/MIT) for details.
