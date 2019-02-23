@@ -65,6 +65,8 @@ public abstract class RandomFieldSupplier {
 			final String[] streets = readFile(RandomFieldSupplier.class.getResourceAsStream("text/street-names.txt"));
 			suppliers.add(forSynonymeList("synonyms/street-names.txt", () -> new StreetRandomField(streets)));
 
+			// XXX: we need dedicated RandomFields for first names and cities, too
+
 			suppliers.add(forSynonymeList("synonyms/last-names.txt", createStringListSupplier("text/last-names.txt")));
 			suppliers.add(forSynonymeList("synonyms/city-names.txt", createStringListSupplier("text/city-names.txt")));
 			suppliers.add(forSynonymeList("synonyms/first-names.txt", FirstNameRandomField::new));

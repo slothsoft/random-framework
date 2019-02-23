@@ -12,12 +12,7 @@ public class BasicPersonExample {
 	protected static DateFormat FORMAT = DateFormat.getDateInstance();
 
 	public static void main(String[] args) {
-
-		long time = System.currentTimeMillis();
 		final RandomFactory<Person> factory = RandomFactory.forClass(Person.class);
-		time = System.currentTimeMillis() - time;
-
-		System.out.println(time + "ms to initialize!\n");
 
 		System.out.println("Persons of Both Genders");
 		System.out.println("-----------------------");

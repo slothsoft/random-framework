@@ -10,7 +10,7 @@ public class IndustrialAreaGeneralTest {
 
 	@Test
 	public void positiveTest() {
-		final RandomIndustrialArea industrialArea = RandomIndustrialArea.create(IAGPerson.class, IAGAddress.class);
+		final RandomIndustrialArea industrialArea = RandomIndustrialArea.forClasses(IAGPerson.class, IAGAddress.class);
 
 		final List<IAGPerson> persons = industrialArea.create(IAGPerson.class, 100);
 		for (final IAGPerson person : persons) {
@@ -34,7 +34,7 @@ public class IndustrialAreaGeneralTest {
 
 	@Test
 	public void negativeTest() {
-		final RandomIndustrialArea industrialArea = RandomIndustrialArea.create(IAGPerson.class);
+		final RandomIndustrialArea industrialArea = RandomIndustrialArea.forClasses(IAGPerson.class);
 
 		final List<IAGPerson> persons = industrialArea.create(IAGPerson.class, 100);
 		for (final IAGPerson person : persons) {
@@ -46,7 +46,7 @@ public class IndustrialAreaGeneralTest {
 
 	@Test
 	public void negativeExceptionTest() {
-		final RandomIndustrialArea industrialArea = RandomIndustrialArea.create(IAGPerson.class);
+		final RandomIndustrialArea industrialArea = RandomIndustrialArea.forClasses(IAGPerson.class);
 
 		try {
 			industrialArea.create(IAGAddress.class, 100);
