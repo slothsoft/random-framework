@@ -32,8 +32,6 @@ public abstract class AbstractRandomFieldTest {
 	public void testForClassGuess() throws Exception {
 		final RandomFactory<?> randomFactory = RandomFactory.forClass(this.pojo.getClass());
 
-		Assert.assertEquals(this.randomField.getFieldClass(), randomFactory.getRandomField(PROPERTY).getFieldClass());
-
 		final Object createdPojo = randomFactory.createSingle();
 		Assert.assertNotNull(getPropertyValue(createdPojo));
 	}
@@ -47,8 +45,6 @@ public abstract class AbstractRandomFieldTest {
 	@Test
 	public void testConstructorGuess() throws Exception {
 		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo);
-
-		Assert.assertEquals(this.randomField.getFieldClass(), randomFactory.getRandomField(PROPERTY).getFieldClass());
 
 		final Object createdPojo = randomFactory.createSingle();
 		Assert.assertNotNull(getPropertyValue(createdPojo));

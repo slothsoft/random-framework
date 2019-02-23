@@ -15,10 +15,6 @@ public class ShortRandomField extends AbstractNumberRandomField<Short> {
 	private static final Short START = Short.valueOf((short) 1);
 	private static final Short END = Short.valueOf((short) 100);
 
-	public ShortRandomField() {
-		super(Short.class);
-	}
-
 	@Override
 	protected Short getRandomNumber(Short numberRangeStart, Short numberRangeEnd) {
 		final int diff = numberRangeEnd.intValue() - numberRangeStart.intValue();

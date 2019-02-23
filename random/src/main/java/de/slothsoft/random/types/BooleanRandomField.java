@@ -12,11 +12,6 @@ import de.slothsoft.random.RandomField;
 public class BooleanRandomField implements RandomField {
 
 	@Override
-	public Class<?> getFieldClass() {
-		return Boolean.class;
-	}
-
-	@Override
 	public Boolean nextValue() {
 		return Boolean.valueOf(RND.nextBoolean());
 	}

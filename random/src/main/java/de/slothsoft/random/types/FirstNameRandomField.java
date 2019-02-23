@@ -64,11 +64,6 @@ public class FirstNameRandomField implements RandomField {
 		return this.supportedNames.get(RND.nextInt(this.supportedNames.size()));
 	}
 
-	@Override
-	public Class<?> getFieldClass() {
-		return String.class;
-	}
-
 	public Gender getGender() {
 		return this.gender;
 	}

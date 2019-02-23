@@ -12,19 +12,8 @@ import de.slothsoft.random.RandomField;
 
 public abstract class AbstractNumberRandomField<N extends Number> implements RandomField {
 
-	private final Class<?> fieldClass;
-
 	private N startValue;
 	private N endValue;
-
-	public AbstractNumberRandomField(Class<?> fieldClass) {
-		this.fieldClass = fieldClass;
-	}
-
-	@Override
-	public Class<?> getFieldClass() {
-		return this.fieldClass;
-	}
 
 	@Override
 	public N nextValue() {

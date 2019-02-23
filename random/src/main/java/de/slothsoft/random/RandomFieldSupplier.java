@@ -15,15 +15,17 @@ import de.slothsoft.random.types.BigDecimalRandomField;
 import de.slothsoft.random.types.BigIntegerRandomField;
 import de.slothsoft.random.types.BirthdayRandomField;
 import de.slothsoft.random.types.BooleanRandomField;
+import de.slothsoft.random.types.CityRandomField;
 import de.slothsoft.random.types.DateRandomField;
 import de.slothsoft.random.types.DoubleRandomField;
+import de.slothsoft.random.types.ElementFromListRandomField;
 import de.slothsoft.random.types.FirstNameRandomField;
 import de.slothsoft.random.types.FloatRandomField;
 import de.slothsoft.random.types.IntegerRandomField;
+import de.slothsoft.random.types.LastNameRandomField;
 import de.slothsoft.random.types.LongRandomField;
 import de.slothsoft.random.types.ShortRandomField;
 import de.slothsoft.random.types.StreetRandomField;
-import de.slothsoft.random.types.StringFromListRandomField;
 
 /**
  * Util class for storing managing all the random field this module brings along.
@@ -65,10 +67,8 @@ public abstract class RandomFieldSupplier {
 			final String[] streets = readFile(RandomFieldSupplier.class.getResourceAsStream("text/street-names.txt"));
 			suppliers.add(forSynonymeList("synonyms/street-names.txt", () -> new StreetRandomField(streets)));
 
-			// XXX: we need dedicated RandomFields for first names and cities, too
-
-			suppliers.add(forSynonymeList("synonyms/last-names.txt", createStringListSupplier("text/last-names.txt")));
-			suppliers.add(forSynonymeList("synonyms/city-names.txt", createStringListSupplier("text/city-names.txt")));
+			suppliers.add(forSynonymeList("synonyms/last-names.txt", LastNameRandomField::new));
+			suppliers.add(forSynonymeList("synonyms/city-names.txt", CityRandomField::new));
 			suppliers.add(forSynonymeList("synonyms/first-names.txt", FirstNameRandomField::new));
 			suppliers.add(forSynonymeList("synonyms/birthdays.txt", BirthdayRandomField::new));
 
@@ -117,7 +117,7 @@ public abstract class RandomFieldSupplier {
 
 	private static Supplier<RandomField> createStringListSupplier(String fileName) {
 		final String[] strings = readFile(RandomFieldSupplier.class.getResourceAsStream(fileName));
-		return () -> new StringFromListRandomField(strings);
+		return () -> new ElementFromListRandomField(strings);
 	}
 
 	static String[] readFile(InputStream inputStream) {

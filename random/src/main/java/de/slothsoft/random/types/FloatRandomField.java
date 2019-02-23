@@ -15,10 +15,6 @@ public class FloatRandomField extends AbstractNumberRandomField<Float> {
 	private static final Float START = Float.valueOf(1);
 	private static final Float END = Float.valueOf(100);
 
-	public FloatRandomField() {
-		super(Float.class);
-	}
-
 	@Override
 	protected Float getRandomNumber(Float numberRangeStart, Float numberRangeEnd) {
 		final float diff = numberRangeEnd.floatValue() - numberRangeStart.floatValue();

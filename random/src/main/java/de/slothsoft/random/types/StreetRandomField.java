@@ -10,7 +10,7 @@ import de.slothsoft.random.RandomField;
  * @since 1.0.0
  */
 
-public class StreetRandomField extends StringFromListRandomField {
+public class StreetRandomField extends ElementFromListRandomField<String> {
 
 	public StreetRandomField(String[] fields) {
 		super(fields);

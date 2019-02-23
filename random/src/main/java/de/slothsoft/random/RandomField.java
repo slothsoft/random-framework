@@ -19,13 +19,4 @@ public interface RandomField {
 	 */
 
 	Object nextValue();
-
-	/**
-	 * Returns the class of T
-	 *
-	 * @return a class
-	 */
-
-	Class<?> getFieldClass();
-
 }

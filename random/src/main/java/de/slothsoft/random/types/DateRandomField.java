@@ -34,8 +34,4 @@ public class DateRandomField implements RandomField {
 		return CURRENT_YEAR - 10;
 	}
 
-	@Override
-	public Class<?> getFieldClass() {
-		return Date.class;
-	}
 }

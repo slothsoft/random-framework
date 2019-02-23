@@ -33,7 +33,7 @@ public class StringFromListRandomFieldTest extends AbstractRandomFieldTest {
 
 	@Override
 	protected RandomField createRandomField() {
-		return new StringFromListRandomField(VALUES);
+		return new ElementFromListRandomField(VALUES);
 	}
 
 	@Test

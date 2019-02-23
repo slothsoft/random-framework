@@ -15,10 +15,6 @@ public class LongRandomField extends AbstractNumberRandomField<Long> {
 	private static final Long START = Long.valueOf(1);
 	private static final Long END = Long.valueOf(100);
 
-	public LongRandomField() {
-		super(Long.class);
-	}
-
 	@Override
 	protected Long getRandomNumber(Long numberRangeStart, Long numberRangeEnd) {
 		final int diff = numberRangeEnd.intValue() - numberRangeStart.intValue();
