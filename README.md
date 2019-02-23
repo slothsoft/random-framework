@@ -20,7 +20,7 @@ This library is in Maven Central, so you can easily add it like this:
 
 ```xml
 <dependency>
-    <groupId>de.slothsoft.random</groupId>
+    <groupId>de.slothsoft</groupId>
     <artifactId>random</artifactId>
     <version>2.0.0</version>
 </dependency>
