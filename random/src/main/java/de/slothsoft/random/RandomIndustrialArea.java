@@ -169,7 +169,7 @@ public class RandomIndustrialArea {
 	/**
 	 * Returns the depth for the hierarchical POJOs that might be created.
 	 *
-	 * @return a integer > 0
+	 * @return an integer &gt; 0
 	 */
 
 	public int getCreationDepth() {
@@ -179,7 +179,7 @@ public class RandomIndustrialArea {
 	/**
 	 * Returns the depth for the hierarchical POJOs that might be created.
 	 *
-	 * @param newCreationDepth - a integer > 0
+	 * @param newCreationDepth - an integer &gt; 0
 	 * @return this instance
 	 */
 
@@ -191,7 +191,7 @@ public class RandomIndustrialArea {
 	/**
 	 * Returns the depth for the hierarchical POJOs that might be created.
 	 *
-	 * @param creationDepth - a integer > 0
+	 * @param creationDepth - an integer &gt; 0
 	 */
 
 	public void setCreationDepth(int creationDepth) {

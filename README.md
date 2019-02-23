@@ -120,7 +120,7 @@ If something is missing, request it via [a new issue](https://github.com/slothso
 
 | Version       | Changes       |
 | ------------- | ------------- |
-| [2.0.0](https://github.com/slothsoft/framework-random/milestone/1) | streamlined the API and documentation; moved to Maven Central |
+| [2.0.0](https://github.com/slothsoft/framework-random/milestone/1?closed=1) | streamlined the API and documentation; moved to Maven Central |
 | 1.0.0         | internal version with basic API |
 
 
