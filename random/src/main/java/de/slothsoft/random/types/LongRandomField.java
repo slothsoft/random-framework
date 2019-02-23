@@ -3,19 +3,20 @@ package de.slothsoft.random.types;
 import de.slothsoft.random.RandomField;
 
 /**
- * A {@link RandomField} representing a {@link Long} or it's primitive counterpart.
+ * A {@link RandomField} representing a {@link Long} or its primitive counterpart. The
+ * default values are between 1 and 100.
  *
  * @author Stef Schulz
  * @since 1.0.0
  */
 
-public class LongRandomField extends AbstractPrimitiveNumberRandomField<Long> {
+public class LongRandomField extends AbstractNumberRandomField<Long> {
 
 	private static final Long START = Long.valueOf(1);
 	private static final Long END = Long.valueOf(100);
 
 	public LongRandomField() {
-		super(long.class, Long.class);
+		super(Long.class);
 	}
 
 	@Override

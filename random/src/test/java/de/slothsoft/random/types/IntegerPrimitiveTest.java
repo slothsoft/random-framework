@@ -22,7 +22,7 @@ public class IntegerPrimitiveTest extends AbstractNumberRandomFieldTest<Integer>
 
 	@Override
 	protected AbstractNumberRandomField<Integer> createRandomField() {
-		return new IntegerRandomField().primitive(true);
+		return new IntegerRandomField();
 	}
 
 }

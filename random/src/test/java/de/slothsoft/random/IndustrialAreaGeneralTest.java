@@ -1,6 +1,5 @@
 package de.slothsoft.random;
 
-import java.lang.reflect.Method;
 import java.util.List;
 
 import org.junit.Assert;
@@ -18,17 +17,6 @@ public class IndustrialAreaGeneralTest {
 			Assert.assertNotNull(person.getFirstName());
 			Assert.assertNotNull(person.getAddress());
 			Assert.assertNotNull(person.getAddress().getStreet());
-		}
-	}
-
-	@Test
-	public void testGetSetter() {
-		try {
-			final Method setter = IAGPerson.class.getMethod("setAddress", IAGAddress.class);
-			System.out.println(setter);
-		} catch (final NoSuchMethodException e) {
-			// wrong field class, just go on
-			e.printStackTrace();
 		}
 	}
 

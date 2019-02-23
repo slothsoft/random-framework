@@ -30,7 +30,7 @@ public class BooleanPrimitiveTest extends AbstractRandomFieldTest {
 
 	@Override
 	protected RandomField createRandomField() {
-		return new BooleanRandomField().primitive(true);
+		return new BooleanRandomField();
 	}
 
 	@Test

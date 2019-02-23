@@ -5,7 +5,8 @@ import java.math.BigInteger;
 import de.slothsoft.random.RandomField;
 
 /**
- * A {@link RandomField} representing a {@link BigInteger}.
+ * A {@link RandomField} representing a {@link BigInteger}. The default values are between
+ * 1 and 100.
  *
  * @author Stef Schulz
  * @since 1.0.0
@@ -13,7 +14,7 @@ import de.slothsoft.random.RandomField;
 
 public class BigIntegerRandomField extends AbstractNumberRandomField<BigInteger> {
 
-	private static final BigInteger START = BigInteger.ZERO;
+	private static final BigInteger START = BigInteger.valueOf(1);
 	private static final BigInteger END = BigInteger.valueOf(100);
 
 	public BigIntegerRandomField() {

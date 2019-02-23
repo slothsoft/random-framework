@@ -120,7 +120,7 @@ public class RandomFactory<T> {
 	void fillFields(T value) throws RandomException {
 		for (final Entry<String, RandomField> fieldEntry : this.fieldMapping.entrySet()) {
 			final RandomField randomField = fieldEntry.getValue();
-			PropertyUtil.setProperty(value, fieldEntry.getKey(), randomField.getFieldClass(), randomField.nextValue());
+			PropertyUtil.setProperty(value, fieldEntry.getKey(), randomField.nextValue());
 		}
 	}
 

@@ -3,19 +3,20 @@ package de.slothsoft.random.types;
 import de.slothsoft.random.RandomField;
 
 /**
- * A {@link RandomField} representing a {@link Float} or it's primitive counterpart.
+ * A {@link RandomField} representing a {@link Float} or its primitive counterpart. The
+ * default values are between 1 and 100.
  *
  * @author Stef Schulz
  * @since 1.0.0
  */
 
-public class FloatRandomField extends AbstractPrimitiveNumberRandomField<Float> {
+public class FloatRandomField extends AbstractNumberRandomField<Float> {
 
 	private static final Float START = Float.valueOf(1);
 	private static final Float END = Float.valueOf(100);
 
 	public FloatRandomField() {
-		super(float.class, Float.class);
+		super(Float.class);
 	}
 
 	@Override

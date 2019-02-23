@@ -22,7 +22,7 @@ public class FloatPrimitiveTest extends AbstractNumberRandomFieldTest<Float> {
 
 	@Override
 	protected AbstractNumberRandomField<Float> createRandomField() {
-		return new FloatRandomField().primitive(true);
+		return new FloatRandomField();
 	}
 
 }
