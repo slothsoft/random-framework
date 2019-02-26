@@ -1,5 +1,7 @@
 # Random Framework
 
+[![Maven Central](https://img.shields.io/maven-central/v/de.slothsoft.random/random.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22de.slothsoft.random%22%20AND%20a:%22random%22)
+
 - **Author:** [Stef Schulz](mailto:s.schulz@slothsoft.de)
 - **Repository:** <https://github.com/slothsoft/framework-random>
 - **Open Issues:** <https://github.com/slothsoft/framework-random/issues>
