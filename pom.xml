@@ -160,4 +160,24 @@
 			</build>
 		</profile>
 	</profiles>
+
+
+	<name>Random Framework</name>
+	<url>https://github.com/slothsoft/framework-random</url>
+
+	<licenses>
+		<license>
+			<name>MIT License</name>
+			<url>https://opensource.org/licenses/MIT</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<id>sschulz</id>
+			<name>Stef Schulz</name>
+			<email>s.schulz@slothsoft.de</email>
+		</developer>
+	</developers>
 </project>
