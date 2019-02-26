@@ -28,7 +28,7 @@ This library is in Maven Central, so you can easily add it like this:
 </dependency>
 ```
 
-For other build tools and the JAR take a look at [Maven Central](https://mvnrepository.com/artifact/de.slothsoft.random/random).
+For other build tools and the JAR take a look at [Maven Central](https://search.maven.org/artifact/de.slothsoft.random/random/2.0.0/jar).
 
 
 ### Using the Framework
