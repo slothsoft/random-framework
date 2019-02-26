@@ -180,4 +180,5 @@
 			<email>s.schulz@slothsoft.de</email>
 		</developer>
 	</developers>
+	<description>A framework for creating dummy data for POJOs. It can fill a lot of fields with random data, and is even able to recognize some fields that need special values to look pretty.</description>
 </project>
