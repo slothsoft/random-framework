@@ -1,13 +1,21 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.slothsoft.random</groupId>
 	<artifactId>random-build</artifactId>
 	<version>2.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
+	<name>Random Framework</name>
+	<description>A framework for creating dummy data for POJOs. It can fill a lot of fields with random data, and is even able to recognize some fields that need special values to look pretty.</description>
+	<url>https://github.com/slothsoft/framework-random</url>
+
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+		
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<modules>
@@ -37,6 +45,18 @@
 	</dependencyManagement>
 
 	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>3.0.0-M1</version>
+					<configuration>
+						<skip>true</skip>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
 		<plugins>
 			<plugin>
 				<artifactId>maven-deploy-plugin</artifactId>
@@ -159,10 +179,6 @@
 		</profile>
 	</profiles>
 
-
-	<name>Random Framework</name>
-	<url>https://github.com/slothsoft/framework-random</url>
-
 	<licenses>
 		<license>
 			<name>MIT License</name>
@@ -178,5 +194,4 @@
 			<email>s.schulz@slothsoft.de</email>
 		</developer>
 	</developers>
-	<description>A framework for creating dummy data for POJOs. It can fill a lot of fields with random data, and is even able to recognize some fields that need special values to look pretty.</description>
 </project>

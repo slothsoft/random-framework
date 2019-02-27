@@ -1,6 +1,6 @@
 # Random Framework
 
-[![Maven Central](https://img.shields.io/maven-central/v/de.slothsoft.random/random.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22de.slothsoft.random%22%20AND%20a:%22random%22)
+[![Build Status](https://travis-ci.org/slothsoft/framework-random.svg?branch=master)](https://travis-ci.org/slothsoft/framework-random) [![Maven Central](https://img.shields.io/maven-central/v/de.slothsoft.random/random.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22de.slothsoft.random%22%20AND%20a:%22random%22)
 
 - **Author:** [Stef Schulz](mailto:s.schulz@slothsoft.de)
 - **Repository:** <https://github.com/slothsoft/framework-random>
@@ -28,7 +28,7 @@ This library is in Maven Central, so you can easily add it like this:
 </dependency>
 ```
 
-For other build tools and the JAR take a look at [Maven Central](https://search.maven.org/artifact/de.slothsoft.random/random/2.0.0/jar).
+For other build tools and the JAR take a look at [Maven Central](https://search.maven.org/artifact/de.slothsoft.random/random/2.0.0/jar) or the [MVN Repository](https://mvnrepository.com/artifact/de.slothsoft.random/random).
 
 
 ### Using the Framework
