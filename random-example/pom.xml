@@ -4,10 +4,6 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>random-example</artifactId>
 
-	<name>Random Framework Examples</name>
-	<description>These are the example files.</description>
-	<url>https://github.com/slothsoft/framework-random</url>
-
 	<parent>
 		<groupId>de.slothsoft.random</groupId>
 		<artifactId>random-build</artifactId>
