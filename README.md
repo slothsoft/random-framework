@@ -24,7 +24,7 @@ This library is in Maven Central, so you can easily add it like this:
 <dependency>
     <groupId>de.slothsoft.random</groupId>
     <artifactId>random</artifactId>
-    <version>2.0.0</version>
+    <version>2.0.2</version>
 </dependency>
 ```
 
@@ -101,6 +101,8 @@ Even more examples are located [here](https://github.com/slothsoft/framework-ran
 
 | Version       | Changes       |
 | ------------- | ------------- |
+| [2.0.2](https://github.com/slothsoft/framework-random/milestone/3?closed=1) | fixed file access |
+| 2.0.1         | Made _pom.xml_ pretty |
 | [2.0.0](https://github.com/slothsoft/framework-random/milestone/1?closed=1) | streamlined the API and documentation; moved to Maven Central |
 | 1.0.0         | internal version with basic API |
 
