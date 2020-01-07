@@ -1,6 +1,8 @@
 package de.slothsoft.random.types;
 
 import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,9 +49,14 @@ public class FirstNameRandomField implements RandomField {
 	}
 
 	static String[] readFile(String fileName) {
-		return new BufferedReader(
-				new InputStreamReader(FirstNameRandomField.class.getResourceAsStream("../text/" + fileName))).lines()
-						.parallel().toArray(String[]::new);
+		final String fileNameWithPath = "/de/slothsoft/random/text/" + fileName;
+		try (InputStream inputStream = FirstNameRandomField.class.getResourceAsStream(fileNameWithPath);
+				InputStreamReader streamReader = new InputStreamReader(inputStream);
+				BufferedReader bufferedReader = new BufferedReader(streamReader)) {
+			return bufferedReader.lines().parallel().toArray(String[]::new);
+		} catch (final IOException e) {
+			throw new RuntimeException("Could not open: " + fileName);
+		}
 	}
 
 	private Gender gender;
