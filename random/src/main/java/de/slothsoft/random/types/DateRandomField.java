@@ -35,4 +35,14 @@ public class DateRandomField extends AbstractChronoRandomField<Date> {
 	Date fromLongValue(long date) {
 		return new Date(date);
 	}
+
+	@Override
+	public DateRandomField endValue(Date newEndValue) {
+		return (DateRandomField) super.endValue(newEndValue);
+	}
+
+	@Override
+	public DateRandomField startValue(Date newStartValue) {
+		return (DateRandomField) super.startValue(newStartValue);
+	}
 }

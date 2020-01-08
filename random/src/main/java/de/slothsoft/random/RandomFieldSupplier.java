@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.function.Supplier;
@@ -15,10 +16,10 @@ import de.slothsoft.random.types.BigDecimalRandomField;
 import de.slothsoft.random.types.BigIntegerRandomField;
 import de.slothsoft.random.types.BirthdayRandomField;
 import de.slothsoft.random.types.BooleanRandomField;
+import de.slothsoft.random.types.CalendarRandomField;
 import de.slothsoft.random.types.CityRandomField;
 import de.slothsoft.random.types.DateRandomField;
 import de.slothsoft.random.types.DoubleRandomField;
-import de.slothsoft.random.types.ElementFromListRandomField;
 import de.slothsoft.random.types.FirstNameRandomField;
 import de.slothsoft.random.types.FloatRandomField;
 import de.slothsoft.random.types.IntegerRandomField;
@@ -73,6 +74,7 @@ public abstract class RandomFieldSupplier {
 			suppliers.add(forSynonymeList("synonyms/birthdays.txt", BirthdayRandomField::new));
 
 			suppliers.add(forFieldClass(Date.class, DateRandomField::new));
+			suppliers.add(forFieldClass(Calendar.class, CalendarRandomField::new));
 
 			suppliers.add(forFieldClass(Short.class, ShortRandomField::new));
 			suppliers.add(forFieldClass(short.class, () -> new ShortRandomField()));
@@ -113,11 +115,6 @@ public abstract class RandomFieldSupplier {
 				return synonyms.contains(fieldName.toLowerCase());
 			}
 		};
-	}
-
-	private static Supplier<RandomField> createStringListSupplier(String fileName) {
-		final String[] strings = readFile(RandomFieldSupplier.class.getResourceAsStream(fileName));
-		return () -> new ElementFromListRandomField(strings);
 	}
 
 	static String[] readFile(InputStream inputStream) {

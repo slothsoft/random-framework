@@ -1,6 +1,7 @@
 package de.slothsoft.random.types;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import de.slothsoft.random.RandomField;
 
@@ -23,6 +24,16 @@ public class BirthdayRandomField extends DateRandomField {
 
 		now.set(Calendar.YEAR, currentYear - 1);
 		setEndValue(now.getTime());
+	}
+
+	@Override
+	public BirthdayRandomField endValue(Date newEndValue) {
+		return (BirthdayRandomField) super.endValue(newEndValue);
+	}
+
+	@Override
+	public BirthdayRandomField startValue(Date newStartValue) {
+		return (BirthdayRandomField) super.startValue(newStartValue);
 	}
 
 }
