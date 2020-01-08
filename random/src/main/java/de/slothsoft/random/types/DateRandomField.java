@@ -13,25 +13,26 @@ import de.slothsoft.random.RandomField;
  * @since 1.0.0
  */
 
-public class DateRandomField implements RandomField {
+public class DateRandomField extends AbstractChronoRandomField<Date> {
 
-	static final int CURRENT_YEAR = Calendar.getInstance().get(Calendar.YEAR);
+	public DateRandomField() {
+		final Calendar now = Calendar.getInstance();
+		final int currentYear = now.get(Calendar.YEAR);
+
+		now.set(Calendar.YEAR, currentYear - 10);
+		setStartValue(now.getTime());
+
+		now.set(Calendar.YEAR, currentYear + 10);
+		setEndValue(now.getTime());
+	}
 
 	@Override
-	public Date nextValue() {
-		final Calendar calendar = Calendar.getInstance();
-		calendar.set(Calendar.YEAR, RND.nextInt(getEndYear() - getStartYear()) + getStartYear());
-		calendar.set(Calendar.MONTH, RND.nextInt(12));
-		calendar.set(Calendar.DAY_OF_MONTH, RND.nextInt(calendar.getActualMaximum(Calendar.DAY_OF_MONTH)));
-		return calendar.getTime();
+	long toLongValue(Date value) {
+		return value.getTime();
 	}
 
-	int getEndYear() {
-		return CURRENT_YEAR + 10;
+	@Override
+	Date fromLongValue(long date) {
+		return new Date(date);
 	}
-
-	int getStartYear() {
-		return CURRENT_YEAR - 10;
-	}
-
 }

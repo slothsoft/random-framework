@@ -1,8 +1,8 @@
 street
 streetname
-straße
-straßename
-straßenname
+straÃŸe
+straÃŸename
+straÃŸenname
 strasse
 strassename
 strassenname

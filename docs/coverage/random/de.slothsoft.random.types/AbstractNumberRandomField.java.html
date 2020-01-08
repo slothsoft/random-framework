@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>AbstractNumberRandomField.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Charts Coverage</a> &gt; <a href="../index.html" class="el_bundle">random</a> &gt; <a href="index.source.html" class="el_package">de.slothsoft.random.types</a> &gt; <span class="el_source">AbstractNumberRandomField.java</span></div><h1>AbstractNumberRandomField.java</h1><pre class="source lang-java linenums">package de.slothsoft.random.types;
+
+import de.slothsoft.random.RandomField;
+
+/**
+ * A base class for creating a {@link RandomField} from a {@link Number}.
+ *
+ * @author Stef Schulz
+ * @since 1.0.0
+ * @param &lt;N&gt; - a type of number
+ */
+
+<span class="fc" id="L13">public abstract class AbstractNumberRandomField&lt;N extends Number&gt; implements RandomField {</span>
+
+	private N startValue;
+	private N endValue;
+
+	@Override
+	public N nextValue() {
+<span class="fc bfc" id="L20" title="All 2 branches covered.">		N start = this.startValue == null ? getDefaultRangeStart() : this.startValue;</span>
+<span class="fc bfc" id="L21" title="All 2 branches covered.">		N end = this.endValue == null ? getDefaultRangeEnd() : this.endValue;</span>
+
+<span class="fc bfc" id="L23" title="All 2 branches covered.">		if (end.equals(start)) return start;</span>
+
+<span class="fc bfc" id="L25" title="All 2 branches covered.">		if (end.doubleValue() &lt; start.doubleValue()) {</span>
+<span class="fc" id="L26">			final N dummy = start;</span>
+<span class="fc" id="L27">			start = end;</span>
+<span class="fc" id="L28">			end = dummy;</span>
+		}
+<span class="fc" id="L30">		return getRandomNumber(start, end);</span>
+	}
+
+	protected abstract N getRandomNumber(N numberRangeStart, N numberRangeEnd);
+
+	abstract N getDefaultRangeStart();
+
+	abstract N getDefaultRangeEnd();
+
+	public N getStartValue() {
+<span class="nc" id="L40">		return this.startValue;</span>
+	}
+
+	public AbstractNumberRandomField&lt;N&gt; startValue(N newStartValue) {
+<span class="nc" id="L44">		setStartValue(newStartValue);</span>
+<span class="nc" id="L45">		return this;</span>
+	}
+
+	public void setStartValue(N startValue) {
+<span class="fc" id="L49">		this.startValue = startValue;</span>
+<span class="fc" id="L50">	}</span>
+
+	public N getEndValue() {
+<span class="nc" id="L53">		return this.endValue;</span>
+	}
+
+	public AbstractNumberRandomField&lt;N&gt; endValue(N newEndValue) {
+<span class="nc" id="L57">		setEndValue(newEndValue);</span>
+<span class="nc" id="L58">		return this;</span>
+	}
+
+	public void setEndValue(N endValue) {
+<span class="fc" id="L62">		this.endValue = endValue;</span>
+<span class="fc" id="L63">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>RandomIndustrialArea.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Charts Coverage</a> &gt; <a href="../index.html" class="el_bundle">random</a> &gt; <a href="index.source.html" class="el_package">de.slothsoft.random</a> &gt; <span class="el_source">RandomIndustrialArea.java</span></div><h1>RandomIndustrialArea.java</h1><pre class="source lang-java linenums">package de.slothsoft.random;
+
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * A wrapper for many &lt;code&gt;RandomFactory&lt;/code&gt;s and possible some self made random
+ * fields or options or whatever might be necessary for even better optimization.&lt;br&gt;
+ * &lt;br&gt;
+ * &lt;i&gt;An industrial area has many factories.&lt;/i&gt;
+ *
+ *
+ * @author Stef
+ *
+ */
+
+<span class="fc" id="L20">public class RandomIndustrialArea {</span>
+
+	/**
+	 * Creates a default &lt;code&gt;RandomFactory&lt;/code&gt; for the class. This is a handy method
+	 * for creating an entire &lt;code&gt;RandomIndustrialArea&lt;/code&gt; based on guess work.
+	 *
+	 * @param createdClasses - the classes to be guessed
+	 * @return the brand new object
+	 */
+
+	public static RandomIndustrialArea forClasses(Class&lt;?&gt;... createdClasses) {
+<span class="fc" id="L31">		final RandomIndustrialArea industrialArea = new RandomIndustrialArea();</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">		for (final Class&lt;?&gt; createdClass : createdClasses) {</span>
+<span class="fc" id="L33">			industrialArea.addFactory(RandomFactory.forClass(createdClass));</span>
+		}
+<span class="fc" id="L35">		return industrialArea;</span>
+	}
+
+<span class="fc" id="L38">	private final Map&lt;Class&lt;?&gt;, RandomFactory&lt;?&gt;&gt; randomFactories = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L39">	private int creationDepth = 5;</span>
+
+	// TODO: comment and test these methods
+
+	/**
+	 * Adds a &lt;code&gt;RandomFactory&lt;/code&gt; to this industrial area.
+	 *
+	 * @param factory - a factory to add
+	 */
+
+	public void addFactory(RandomFactory&lt;?&gt; factory) {
+<span class="fc" id="L50">		this.randomFactories.put(factory.getPojoClass(), factory);</span>
+<span class="fc" id="L51">	}</span>
+
+	/**
+	 * Removes a &lt;code&gt;RandomFactory&lt;/code&gt; from this industrial area.
+	 *
+	 * @param factory - the factory to remove
+	 */
+
+	public void removeFactory(RandomFactory&lt;?&gt; factory) {
+<span class="nc" id="L60">		this.randomFactories.remove(factory.getPojoClass());</span>
+<span class="nc" id="L61">	}</span>
+
+	/**
+	 * Returns the &lt;code&gt;RandomFactory&lt;/code&gt; for the class.
+	 *
+	 * @param &lt;T&gt; - the type the factory is for
+	 * @param pojoClass - the class that should be created
+	 * @return a random factory
+	 * @throws RandomException if none was found
+	 */
+
+	public &lt;T&gt; RandomFactory&lt;T&gt; getRandomFactory(Class&lt;T&gt; pojoClass) throws RandomException {
+<span class="fc bfc" id="L73" title="All 2 branches covered.">		if (!containsRandomFactoryFor(pojoClass))</span>
+<span class="fc" id="L74">			throw new RandomException(&quot;Could not find RandomFactory for class &quot; + pojoClass);</span>
+<span class="fc" id="L75">		return findRandomFactory(pojoClass);</span>
+	}
+
+	/**
+	 * Returns the &lt;code&gt;RandomFactory&lt;/code&gt; for the class or null.
+	 *
+	 * @param &lt;T&gt; - the type the factory is for
+	 * @param pojoClass - the class that should be created
+	 * @return a random factory or null
+	 */
+
+	@SuppressWarnings(&quot;unchecked&quot;)
+	public &lt;T&gt; RandomFactory&lt;T&gt; findRandomFactory(Class&lt;T&gt; pojoClass) {
+<span class="fc" id="L88">		return (RandomFactory&lt;T&gt;) this.randomFactories.get(pojoClass);</span>
+	}
+
+	/**
+	 * Returns if there is a &lt;code&gt;RandomFactory&lt;/code&gt; for the class.
+	 *
+	 * @param &lt;T&gt; - the type the factory is for
+	 * @param pojoClass - the class that should be created
+	 * @return true, if there is a random factory
+	 * @throws RandomException if none was fond
+	 */
+
+	public &lt;T&gt; boolean containsRandomFactoryFor(Class&lt;T&gt; pojoClass) {
+		try {
+<span class="fc bfc" id="L102" title="All 2 branches covered.">			return findRandomFactory(pojoClass) != null;</span>
+<span class="nc" id="L103">		} catch (final Exception e) {</span>
+			// might be a class cast exception or something
+<span class="nc" id="L105">			return false;</span>
+		}
+	}
+
+	/**
+	 * Creates a single instance of the class. For all the fields of this class, the
+	 * factories of this area are asked, if they want to create it. If not, the normal
+	 * procedure is used.
+	 *
+	 * @param pojoClass - the class to be created
+	 * @return a single dummy instance
+	 * @throws RandomException - if something went wrong
+	 */
+
+	public &lt;T&gt; T createSingle(Class&lt;T&gt; pojoClass) throws RandomException {
+<span class="fc" id="L120">		return doCreateSingle(pojoClass, this.creationDepth);</span>
+	}
+
+	private &lt;T&gt; T doCreateSingle(Class&lt;T&gt; createdClass, int recursions) throws RandomException {
+<span class="fc" id="L124">		final RandomFactory&lt;T&gt; factory = getRandomFactory(createdClass);</span>
+<span class="fc" id="L125">		final T result = factory.createSingle();</span>
+
+<span class="fc bfc" id="L127" title="All 2 branches covered.">		if (recursions &gt; 0) {</span>
+<span class="fc" id="L128">			final Map&lt;String, Class&lt;?&gt;&gt; properties = PropertyUtil.getProperties(createdClass);</span>
+			// now check, if one of the factories is better in generating one of
+			// the fields
+<span class="fc bfc" id="L131" title="All 2 branches covered.">			for (final String property : properties.keySet()) {</span>
+<span class="fc" id="L132">				final Class&lt;?&gt; fieldClass = properties.get(property);</span>
+<span class="fc bfc" id="L133" title="All 2 branches covered.">				if (containsRandomFactoryFor(fieldClass)) {</span>
+<span class="fc" id="L134">					final Method setter = PropertyUtil.getSetter(createdClass, property);</span>
+					try {
+<span class="fc" id="L136">						setter.invoke(result, doCreateSingle(fieldClass, recursions - 1));</span>
+<span class="nc" id="L137">					} catch (final Exception e) {</span>
+<span class="nc" id="L138">						throw new RandomException(&quot;Could not set field &quot; + property + &quot; by RandomIndustrialArea&quot;, e);</span>
+<span class="fc" id="L139">					}</span>
+				}
+<span class="fc" id="L141">			}</span>
+		}
+<span class="fc" id="L143">		return result;</span>
+	}
+
+	/**
+	 * Creates some instances of the class this factory is for. For all the fields of this
+	 * class, the factories of this area are asked, if they want to create it. If not, the
+	 * normal procedure is used.
+	 *
+	 * @param count - number of instances to be created
+	 * @return some dummy instance
+	 * @throws RandomException - if something went wrong
+	 */
+
+	public &lt;T&gt; List&lt;T&gt; create(Class&lt;T&gt; createdClass, int count) throws RandomException {
+<span class="fc" id="L157">		final List&lt;T&gt; result = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L158" title="All 2 branches covered.">		for (int i = 0; i &lt; count; i++) {</span>
+<span class="fc" id="L159">			result.add(createSingle(createdClass));</span>
+		}
+<span class="fc" id="L161">		return result;</span>
+	}
+
+	/**
+	 * Returns the depth for the hierarchical POJOs that might be created.
+	 *
+	 * @return an integer &amp;gt; 0
+	 */
+
+	public int getCreationDepth() {
+<span class="nc" id="L171">		return this.creationDepth;</span>
+	}
+
+	/**
+	 * Returns the depth for the hierarchical POJOs that might be created.
+	 *
+	 * @param newCreationDepth - an integer &amp;gt; 0
+	 * @return this instance
+	 */
+
+	public RandomIndustrialArea creationDepth(int newCreationDepth) {
+<span class="nc" id="L182">		setCreationDepth(newCreationDepth);</span>
+<span class="nc" id="L183">		return this;</span>
+	}
+
+	/**
+	 * Returns the depth for the hierarchical POJOs that might be created.
+	 *
+	 * @param creationDepth - an integer &amp;gt; 0
+	 */
+
+	public void setCreationDepth(int creationDepth) {
+<span class="nc" id="L193">		this.creationDepth = creationDepth;</span>
+<span class="nc" id="L194">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

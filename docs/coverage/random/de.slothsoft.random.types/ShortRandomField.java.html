@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>ShortRandomField.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Charts Coverage</a> &gt; <a href="../index.html" class="el_bundle">random</a> &gt; <a href="index.source.html" class="el_package">de.slothsoft.random.types</a> &gt; <span class="el_source">ShortRandomField.java</span></div><h1>ShortRandomField.java</h1><pre class="source lang-java linenums">package de.slothsoft.random.types;
+
+import de.slothsoft.random.RandomField;
+
+/**
+ * A {@link RandomField} representing a {@link Short} or its primitive counterpart. The
+ * default values are between 1 and 100.
+ *
+ * @author Stef Schulz
+ * @since 1.0.0
+ */
+
+<span class="fc" id="L13">public class ShortRandomField extends AbstractNumberRandomField&lt;Short&gt; {</span>
+
+<span class="fc" id="L15">	private static final Short START = Short.valueOf((short) 1);</span>
+<span class="fc" id="L16">	private static final Short END = Short.valueOf((short) 100);</span>
+
+	@Override
+	protected Short getRandomNumber(Short numberRangeStart, Short numberRangeEnd) {
+<span class="fc" id="L20">		final int diff = numberRangeEnd.intValue() - numberRangeStart.intValue();</span>
+<span class="fc" id="L21">		return Short.valueOf((short) (RND.nextDouble() * diff + numberRangeStart.intValue()));</span>
+	}
+
+	@Override
+	Short getDefaultRangeStart() {
+<span class="fc" id="L26">		return START;</span>
+	}
+
+	@Override
+	Short getDefaultRangeEnd() {
+<span class="fc" id="L31">		return END;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
