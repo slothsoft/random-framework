@@ -1,0 +1,27 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+Charts Coverage/random,de.slothsoft.random.types,FirstNameRandomField.Gender,0,63,0,0,0,6,0,2,0,2
+Charts Coverage/random,de.slothsoft.random.types,LongRandomField,0,33,0,0,0,7,0,5,0,5
+Charts Coverage/random,de.slothsoft.random.types,BigIntegerRandomField,0,32,0,0,0,8,0,5,0,5
+Charts Coverage/random,de.slothsoft.random.types,BooleanRandomField,0,7,0,0,0,2,0,2,0,2
+Charts Coverage/random,de.slothsoft.random.types,FloatRandomField,0,29,0,0,0,7,0,5,0,5
+Charts Coverage/random,de.slothsoft.random.types,CityRandomField,0,8,0,0,0,4,0,2,0,2
+Charts Coverage/random,de.slothsoft.random.types,ShortRandomField,0,33,0,0,0,7,0,5,0,5
+Charts Coverage/random,de.slothsoft.random.types,ElementFromListRandomField,0,17,0,0,0,4,0,2,0,2
+Charts Coverage/random,de.slothsoft.random.types,FirstNameRandomField,21,102,2,2,5,23,4,7,2,7
+Charts Coverage/random,de.slothsoft.random.types,LastNameRandomField,0,8,0,0,0,4,0,2,0,2
+Charts Coverage/random,de.slothsoft.random.types,IntegerRandomField,0,32,0,0,0,7,0,5,0,5
+Charts Coverage/random,de.slothsoft.random.types,DateRandomField,0,37,0,0,0,10,0,3,0,3
+Charts Coverage/random,de.slothsoft.random.types,AbstractNumberRandomField,16,52,0,8,6,13,4,8,4,4
+Charts Coverage/random,de.slothsoft.random.types,AbstractChronoRandomField,6,128,0,8,2,23,2,14,2,10
+Charts Coverage/random,de.slothsoft.random.types,BigDecimalRandomField,0,32,0,0,0,8,0,5,0,5
+Charts Coverage/random,de.slothsoft.random.types,DoubleRandomField,0,29,0,0,0,7,0,5,0,5
+Charts Coverage/random,de.slothsoft.random.types,BirthdayRandomField,0,29,0,0,0,8,0,1,0,1
+Charts Coverage/random,de.slothsoft.random.types,StreetRandomField,0,21,0,0,0,3,0,2,0,2
+Charts Coverage/random,de.slothsoft.random,RandomFieldSupplier.new RandomFieldSupplier() {...},0,13,0,0,0,2,0,2,0,2
+Charts Coverage/random,de.slothsoft.random,RandomException,12,4,0,0,6,2,3,1,3,1
+Charts Coverage/random,de.slothsoft.random,RandomFieldSupplier.new RandomFieldSupplier() {...},0,15,0,2,0,2,0,3,0,2
+Charts Coverage/random,de.slothsoft.random,RandomFactory,16,145,0,8,2,35,0,15,0,11
+Charts Coverage/random,de.slothsoft.random,RandomField,0,5,0,0,0,1,0,1,0,1
+Charts Coverage/random,de.slothsoft.random,PropertyUtil,67,109,1,9,8,19,2,7,1,3
+Charts Coverage/random,de.slothsoft.random,RandomIndustrialArea,38,159,0,14,11,31,4,16,4,9
+Charts Coverage/random,de.slothsoft.random,RandomFieldSupplier,13,232,0,6,2,37,2,18,2,15

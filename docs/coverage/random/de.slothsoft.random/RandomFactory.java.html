@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>RandomFactory.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Charts Coverage</a> &gt; <a href="../index.html" class="el_bundle">random</a> &gt; <a href="index.source.html" class="el_package">de.slothsoft.random</a> &gt; <span class="el_source">RandomFactory.java</span></div><h1>RandomFactory.java</h1><pre class="source lang-java linenums">package de.slothsoft.random;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
+/**
+ * The main class for creating random data inside a defined POJO.
+ *
+ * @author Stef Schulz
+ * @since 1.0.0
+ * @param &lt;T&gt; - the type to be created
+ */
+
+public class RandomFactory&lt;T&gt; {
+
+	/**
+	 * Represents a supplier of results.
+	 *
+	 * @param &lt;U&gt; the type of results supplied by this supplier
+	 */
+
+	@FunctionalInterface
+	public interface Supplier&lt;U&gt; {
+
+		/**
+		 * Gets a result.
+		 *
+		 * @return a result
+		 * @throws RandomException for any reason
+		 */
+
+		U get() throws RandomException;
+	}
+
+	/**
+	 * Creates a {@link RandomFactory} with just one class and then tries to guess which
+	 * fields to fill. Might not be the best option for some cases.
+	 *
+	 * @param pojoClass - the class of the POJO to be created; the class must have a
+	 *            default constructor and be public
+	 */
+
+	public static &lt;U&gt; RandomFactory&lt;U&gt; forClass(Class&lt;U&gt; pojoClass) {
+<span class="fc" id="L47">		return new RandomFactory&lt;&gt;(() -&gt; {</span>
+			try {
+<span class="fc" id="L49">				return pojoClass.getConstructor().newInstance();</span>
+<span class="nc" id="L50">			} catch (final Exception e) {</span>
+<span class="nc" id="L51">				throw new RandomException(&quot;Could not create instance of class &quot; + pojoClass</span>
+						+ &quot;. Class must have default constructor and be public visible!&quot;, e);
+			}
+<span class="fc" id="L54">		}, guessMapping(pojoClass));</span>
+	}
+
+	/**
+	 * Guesses the mapping from the actual name of the getter and setter.
+	 *
+	 * @param pojoClass - the class
+	 * @return a mapping
+	 */
+
+	static Map&lt;String, RandomField&gt; guessMapping(Class&lt;?&gt; pojoClass) {
+<span class="fc" id="L65">		final Map&lt;String, Class&lt;?&gt;&gt; fields = PropertyUtil.getProperties(pojoClass);</span>
+<span class="fc" id="L66">		final Map&lt;String, RandomField&gt; result = new HashMap&lt;&gt;();</span>
+
+<span class="fc bfc" id="L68" title="All 2 branches covered.">		for (final Entry&lt;String, Class&lt;?&gt;&gt; fieldEntry : fields.entrySet()) {</span>
+<span class="fc" id="L69">			final RandomFieldSupplier field = RandomFieldSupplier.findSupplierByField(fieldEntry.getKey(),</span>
+<span class="fc" id="L70">					fieldEntry.getValue());</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">			if (field != null) {</span>
+<span class="fc" id="L72">				result.put(fieldEntry.getKey(), field.createRandomField());</span>
+			}
+<span class="fc" id="L74">		}</span>
+<span class="fc" id="L75">		return result;</span>
+	}
+
+	private final Supplier&lt;T&gt; pojoSupplier;
+	private final Map&lt;String, RandomField&gt; fieldMapping;
+	private final Class&lt;?&gt; pojoClass;
+
+	/**
+	 * A constructor that takes one {@link Supplier}. The mapping of properties to the
+	 * factories filling them is guessed.
+	 *
+	 * @param pojoSupplier - the supplier for the POJO
+	 */
+
+	public RandomFactory(Supplier&lt;T&gt; pojoSupplier) {
+<span class="fc" id="L90">		this(pojoSupplier, guessMapping(pojoSupplier.get().getClass()));</span>
+<span class="fc" id="L91">	}</span>
+
+	/**
+	 * A constructor that takes one class and the mapping of properties to the factories
+	 * filling them.
+	 *
+	 * @param pojoSupplier - the supplier for the POJO
+	 * @param fieldMapping - the initial mapping for the fields
+	 */
+
+<span class="fc" id="L101">	public RandomFactory(Supplier&lt;T&gt; pojoSupplier, Map&lt;String, RandomField&gt; fieldMapping) {</span>
+<span class="fc" id="L102">		this.pojoSupplier = pojoSupplier;</span>
+<span class="fc" id="L103">		this.fieldMapping = fieldMapping;</span>
+<span class="fc" id="L104">		this.pojoClass = pojoSupplier.get().getClass();</span>
+<span class="fc" id="L105">	}</span>
+
+	/**
+	 * Creates a single instance of the class this factory is for.
+	 *
+	 * @return a single POJO instance
+	 * @throws RandomException - if something went wrong
+	 */
+
+	public T createSingle() throws RandomException {
+<span class="fc" id="L115">		final T result = this.pojoSupplier.get();</span>
+<span class="fc" id="L116">		fillFields(result);</span>
+<span class="fc" id="L117">		return result;</span>
+	}
+
+	void fillFields(T value) throws RandomException {
+<span class="fc bfc" id="L121" title="All 2 branches covered.">		for (final Entry&lt;String, RandomField&gt; fieldEntry : this.fieldMapping.entrySet()) {</span>
+<span class="fc" id="L122">			final RandomField randomField = fieldEntry.getValue();</span>
+<span class="fc" id="L123">			PropertyUtil.setProperty(value, fieldEntry.getKey(), randomField.nextValue());</span>
+<span class="fc" id="L124">		}</span>
+<span class="fc" id="L125">	}</span>
+
+	/**
+	 * Creates some instances of the POJO this factory is for.
+	 *
+	 * @param count - number of instances to be created
+	 * @return some POJO instances
+	 * @throws RandomException - if something went wrong
+	 */
+
+	public List&lt;T&gt; create(int count) {
+<span class="fc" id="L136">		final List&lt;T&gt; result = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L137" title="All 2 branches covered.">		for (int i = 0; i &lt; count; i++) {</span>
+<span class="fc" id="L138">			result.add(createSingle());</span>
+		}
+<span class="fc" id="L140">		return result;</span>
+	}
+
+	// TODO: comment and test these methods
+
+	public RandomField getRandomField(String property) {
+<span class="fc" id="L146">		return this.fieldMapping.get(property);</span>
+	}
+
+	public void addRandomField(String property, RandomField randomField) {
+<span class="fc" id="L150">		this.fieldMapping.put(property, randomField);</span>
+<span class="fc" id="L151">	}</span>
+
+	Class&lt;?&gt; getPojoClass() {
+<span class="fc" id="L154">		return this.pojoClass;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

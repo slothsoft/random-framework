@@ -20,12 +20,12 @@ Accra
 Acheng
 Achinsk
 Adana
-Adapazarä±
+Adapazari
 Addis Ababa
 Adelaide
 Aden
 Adhamiyah
-Adä±yaman
+AdÄ±yaman
 Ado-ekiti
 Adoni
 Afyon
@@ -59,15 +59,15 @@ Al Fayyum
 Al Hasakah
 Al Minya
 Alagoinhas
-Al-aã¯n
+Al-ain
 Alajuela
 Alanya
 Albacete
 Albuquerque
 Albury-wodonga
-Alcalã¡ De Henares
+AlcalÃ¡ De Henares
 Alchevsk
-Alcorcã³n
+AlcorcÃ³n
 Aleppo
 Aletay
 Alexandra
@@ -86,7 +86,7 @@ Almada
 Almalyk
 Almaty
 Almere
-Almerã­a
+AlmerÃ­a
 Almetyevsk
 Alor Setar
 Al-qadarif
@@ -112,7 +112,7 @@ Amsterdam
 Anaheim
 Anand
 Ananindeua
-Anã¡polis
+AnÃ¡polis
 Anchorage
 Anda
 Andimeshk
@@ -122,7 +122,7 @@ Angarsk
 Angeles City
 Angers
 Angren
-Anjå?
+Anjos
 Ankang
 Ankara
 Anlu
@@ -147,9 +147,9 @@ Apopa
 Apucarana
 Ar Raqqah
 Aracaju
-Araã§atuba
+AraÃ§atuba
 Arad
-Araguaã­na
+AraguaÃ­na
 Arak
 Arapiraca
 Araraquara
@@ -180,10 +180,10 @@ Ashikaga
 Asmara
 Astana
 Astrakhan
-Asunciã³n
+AsunciÃ³n
 Aswan
 Asyut
-Aåÿgabat
+AÅŸgabat
 Athens
 Athens
 Atibaia
@@ -201,17 +201,18 @@ Austin
 Avellaneda
 Avignon
 Ayacucho
-Aydä±n
-Ã…rhus    Bab Ezzouar
+AydÄ±n
+Ã…rhus    
+Bab Ezzouar
 Babol
 Babruysk
-Bacäƒu
+Bacï¿½u
 Bacolod City
 Bacoor
 Badajoz
 Badalona
 Bafoussam
-Bagã©
+Bagï¿½
 Baghdad
 Bago City
 Bago
@@ -219,7 +220,7 @@ Baguio City
 Baharampur
 Bahawalnagar
 Bahawalpur
-Bahã­a Blanca
+Bahï¿½a Blanca
 Bahir Dar
 Bahraich
 Baia Mare
@@ -233,17 +234,17 @@ Baku
 Balakovo
 Balashikha
 Baleshwar
-Balä±kesir
+Balï¿½kesir
 Balikpapan
 Baliuag
 Bally
-Bäƒlå£i
+Bï¿½lï¿½i
 Baltimore
 Balurghat
 Bamako
 Bamenda
 Bandar-e-abbas
-Bandä±rma
+Bandï¿½rma
 Bandjarmasin
 Bandung
 Bangalore
@@ -301,7 +302,7 @@ Batumi
 Bauru
 Bayambang
 Bayamo
-Bayamã³n
+Bayamï¿½n
 Bayawan City
 Baybay
 Baynnur
@@ -318,7 +319,7 @@ Beijing
 Beipiao
 Beirut
 Bejaia
-Belã©m
+Belï¿½m
 Belfast
 Belford Roxo
 Belgaum
@@ -332,7 +333,7 @@ Bengfu
 Benghazi
 Benguela
 Beni Mellal
-Benito Juã¡rez
+Benito Juï¿½rez
 Benoni
 Benxi
 Beppu
@@ -345,7 +346,7 @@ Bergisch Gladbach
 Berkeley
 Berlin
 Berne
-Besanã§on
+Besanï¿½on
 Betim
 Bettiah
 Bhadravati
@@ -365,11 +366,11 @@ Bhopal
 Bhubaneswar
 Bhuj
 Bhusawal
-Biaå‚ystok
+Biaï¿½ystok
 Bid
 Bidar
 Bielefeld
-Bielsko-biaå‚a
+Bielsko-biaï¿½a
 Bihar Sharif
 Bijapur
 Bikaner
@@ -377,7 +378,7 @@ Bila Tserkva
 Bilaspur
 Bilbao
 Billings
-Biã±an
+Biï¿½an
 Binangonan
 Binzhou
 Biratnagar
@@ -418,7 +419,7 @@ Bordj El Kiffan
 Borujerd
 Bosaso
 Boston
-Botoåÿani
+Botoï¿½ï¿½ani
 Botou
 Botshabelo
 Bottrop
@@ -432,12 +433,12 @@ Bournemouth
 Bozhou
 Bradford
 Braga
-Braganã§a Paulista
+Braganï¿½a Paulista
 Brahmapur
-Bräƒila
+Brï¿½ila
 Brampton
-Brasã­lia
-Braåÿov
+Brasï¿½lia
+Braï¿½ï¿½ov
 Bratislava
 Bratsk
 Braunschweig
@@ -486,7 +487,7 @@ Bury
 Busan
 Bushehr
 Butuan City
-Buzäƒu
+Buzï¿½u
 Bydgoszcz
 Bytom
 Cabanatuan City
@@ -497,7 +498,7 @@ Cabuyao
 Cachoeirinha
 Cachoeiro De Itapemirim
 Cadiz City
-Cã¡diz
+Cï¿½diz
 Caen
 Cagayan De Oro City
 Cagliari
@@ -518,7 +519,7 @@ Calgary
 Cali
 Caloocan City
 Camacari
-Camagã¼ey
+Camagï¿½ey
 Camaragibe
 Cambridge
 Cambridge
@@ -537,9 +538,9 @@ Cantho
 Capas
 Cape Breton
 Cape Coral
-Cap-haã¯tien
+Cap-haï¿½tien
 Caracas
-Carapicuã­ba
+Carapicuï¿½ba
 Carcar
 Cardiff
 Cariacica
@@ -552,11 +553,11 @@ Cartagena
 Cartago
 Cartago
 Caruaru
-Carãºpano
+Carï¿½pano
 Casablanca
 Cascavel
 Castanhal
-Castellã³n De La Plana
+Castellï¿½n De La Plana
 Catanduva
 Catania
 Catia La Mar
@@ -586,7 +587,7 @@ Changzhou
 Chaohu
 Chaoyang
 Chaozhou
-Chapecã³
+Chapecï¿½
 Chapra
 Charikar
 Charleroi
@@ -611,7 +612,7 @@ Chernihiv
 Chernivtsi
 Cherthala
 Chesapeake
-Chã­a
+Chï¿½a
 Chiang Mai
 Chiayi
 Chiba
@@ -622,7 +623,7 @@ Chifeng
 Chigasaki
 Chihuahua
 Chikmagalur
-Chillã¡n
+Chillï¿½n
 Chilpancingo
 Chimalhuacan
 Chimbote
@@ -634,7 +635,7 @@ Chinju
 Chirala
 Chirchik
 Chishtian
-Chiåÿinäƒu
+Chiï¿½ï¿½inï¿½u
 Chita
 Chitradurga
 Chittagong
@@ -642,14 +643,14 @@ Chittoor
 Chitungwiza
 Chizhou
 Chlef
-Chå?fu
+Chï¿½?fu
 Choloma
 Choluteca
 Chon Buri
 Chonchu
 Chongjin
 Chongqing
-Chorzã³w
+Chorzï¿½w
 Christchurch
 Chula Vista
 Chuncheon
@@ -660,18 +661,18 @@ Cienfuegos
 Cincinnati
 Cirebon
 Ciudad Apodaca
-Ciudad Bolã­var
-Ciudad De Acuã±a
+Ciudad Bolï¿½var
+Ciudad De Acuï¿½a
 Ciudad De Colon
-Ciudad De Mã©xico
+Ciudad De Mï¿½xico
 Ciudad Del Este
 Ciudad Delgado
 Ciudad Guayana
-Ciudad Juã¡rez
-Ciudad Lã³pez Mateos
+Ciudad Juï¿½rez
+Ciudad Lï¿½pez Mateos
 Ciudad Losada
 Ciudad Madero
-Ciudad Obregã³n
+Ciudad Obregï¿½n
 Ciudad Santa Catarina
 Ciudad Victoria
 Cixi
@@ -691,7 +692,7 @@ Colima
 Cologne
 Colombo
 Colombo
-Colã³n
+Colï¿½n
 Colorado Springs
 Columbia
 Columbus
@@ -699,21 +700,21 @@ Columbus
 Comilla
 Comodoro Rivadavia
 Conakry
-Concepciã³n
+Concepciï¿½n
 Concepcion
 Concord
 Concordia
-Constanå£a
+Constanï¿½a
 Constantine
 Contagem
 Copenhagen
-Copiapã³
+Copiapï¿½
 Coquimbo
 Coquitlam
 Coral Springs
 Cordoba
-Cã³rdoba
-Cã³rdoba
+Cï¿½rdoba
+Cï¿½rdoba
 Cork
 Ã‡orlu
 Coro
@@ -730,31 +731,31 @@ Coventry
 Craiova
 Crato
 Crawley
-Criciãºma
+Criciï¿½ma
 Cuautla
-Cubatã£o
-Cãºcuta
+Cubatï¿½o
+Cï¿½cuta
 Cuddalore
 Cuddapah
 Cuenca
 Cuernavaca
-Cuiabã¡
-Culiacã¡n
-Cumanã¡
-Curicã³
+Cuiabï¿½
+Culiacï¿½n
+Cumanï¿½
+Curicï¿½
 Curitiba
 Cuzco
 Cuttack
-Czä™stochowa
+Czï¿½stochowa
 Da Nang
 Daan
 Dabgram
-Dä…browa Gã³rnicza
+Dï¿½browa Gï¿½rnicza
 Dadu
 Daegu
 Daejeon
 Dagupan City
-Daitå?
+Daitï¿½?
 Dakar
 Da Lat
 Dali
@@ -778,8 +779,8 @@ Darbhanga
 Darmstadt
 Darwin
 Daska
-Dasmariã±as
-Daåÿoguz
+Dasmariï¿½as
+Daï¿½ï¿½oguz
 Datong
 Datu Odin Sinsuat
 Daugavpils
@@ -823,9 +824,9 @@ Dindigul
 Dingzhou
 Dipolog City
 Dire Dawa
-Divinã³polis
+Divinï¿½polis
 Diwaniya
-Diyarbakä±r
+Diyarbakï¿½r
 Djelfa
 Djibouti
 Dniprodzerzhinsk
@@ -867,10 +868,10 @@ Durg
 Durgapur
 Durg-bhilai Nagar
 Durham
-Durrã«s
+Durrï¿½s
 Dushanbe
 Duyun
-Dã¼sseldorf
+Dï¿½sseldorf
 Dzerzhinsk
 Eastbourne
 Ebetsu
@@ -878,7 +879,7 @@ Ebina
 Ecatepec
 Ede
 Ede
-Edã©a
+Edï¿½a
 Edinburgh
 Edirne
 Edmonton
@@ -893,8 +894,8 @@ El Monte
 El Oued
 El Paso
 El Progreso
-Elazä±äÿ
-Elblä…g
+Elazï¿½ï¿½ï¿½
+Elblï¿½g
 Elche
 Eldoret
 Elektrostal
@@ -923,7 +924,7 @@ Erzurum
 Escondido
 Esenler
 Esfahan
-Eskiåÿehir
+Eskiï¿½ï¿½ehir
 Esmeraldas
 Espoo
 Essen
@@ -951,13 +952,13 @@ Firozabad
 Flint
 Florence
 Florencia
-Florianã³polis
+Florianï¿½polis
 Floridablanca
 Floridablanca
-Focåÿani
+Focï¿½ï¿½ani
 Foggia
 Fontana
-Forlã¬
+Forlï¿½
 Formosa
 Fort Collins
 Fort Lauderdale
@@ -966,7 +967,7 @@ Fort Worth
 Fortaleza
 Fort-de-france
 Foshan
-Foz Do Iguaã§u
+Foz Do Iguaï¿½u
 Franca
 Francisco Morato
 Francistown
@@ -999,11 +1000,11 @@ Fuxin
 Fuyang
 Fuzhou
 Fuzhou
-Fã¼rth
-Gabã¨s
+Fï¿½rth
+Gabï¿½s
 Gaborone
 Gadag-betgeri
-Galaå£i
+Galaï¿½i
 Gandhidham
 Gandhinagar
 Ganganagar
@@ -1020,7 +1021,7 @@ Gateshead
 Gatineau
 Gaya
 Gaziantep
-Gdaå„sk
+Gdaï¿½sk
 Gdynia
 Gebze
 Geelong
@@ -1042,7 +1043,7 @@ Ghaziabad
 Ghazni
 Ghent
 Gifu
-Gijã³n
+Gijï¿½n
 Gilbert
 Gingoog City
 Girardot
@@ -1057,21 +1058,21 @@ Gliwice
 Gloucester
 Godhra
 Godoy Cruz
-Goiã¢nia
+Goiï¿½nia
 Gojra
 Gold Coast
 Goma
-Gã³mez Palacio
+Gï¿½mez Palacio
 Gonbad-e-kavus
 Gondar
 Gondiya
 Gongzhuling
 Gorakhpur
 Gorgan
-Gorzã³w Wielkopolski
+Gorzï¿½w Wielkopolski
 Gothenburg
 Governador Valadares
-Gã¶ttingen
+Gï¿½ttingen
 Granada
 Granada
 Grand Prairie
@@ -1084,7 +1085,7 @@ Greensboro
 Grenoble
 Groningen
 Grozny
-Grudziä…dz
+Grudziï¿½dz
 Guadalajara
 Guadalupe
 Guagua
@@ -1093,11 +1094,11 @@ Guanghan
 Guangshui
 Guangyuan
 Guangzhou
-Guantã¡namo
+Guantï¿½namo
 Guarapuava
-Guaratinguetã¡
+Guaratinguetï¿½
 Guarenas
-Guarujã¡
+Guarujï¿½
 Guarulhos
 Guatemala
 Guayaquil
@@ -1127,14 +1128,14 @@ Gwalior
 Gwangjukwangchu
 Gweru
 Gyeongju
-Gyå‘r
+Gyï¿½r
 Gyumri
 Haarlem
 Haarlemmermeer
 Habikino
 Habra
 Hachinohe
-Hachiå?ji
+Hachiï¿½?ji
 Hadano
 Haeju
 Haerbin
@@ -1224,7 +1225,7 @@ Ho Chi Minh City
 Hobart
 Hodeidah
 Hofu
-Holguã­n
+Holguï¿½n
 Hollywood
 Holon
 Homs
@@ -1256,12 +1257,12 @@ Huanghua
 Huangshan
 Huangshi
 Huangyan
-Huã¡nuco
+Huï¿½nuco
 Huaraz
 Huaying
 Hubli-dharwad
 Huddersfield
-Huã©
+Huï¿½
 Huelva
 Huhehaote
 Huixian
@@ -1276,12 +1277,12 @@ Huzhou
 Hyderabad
 Hyderabad
 Hyesan
-Iaåÿi
+Iaï¿½ï¿½i
 Ibadan
-Ibaguã©
+Ibaguï¿½
 Ibaraki
 Ibarra
-Ibiritã©
+Ibiritï¿½
 Ica
 Ichalakaranji
 Ichihara
@@ -1296,7 +1297,7 @@ Ila
 Ilagan
 Ilam
 Ilesha
-Ilhã©us
+Ilhï¿½us
 Iligan City
 Iloilo City
 Ilopango
@@ -1311,7 +1312,7 @@ Indaiatuba
 Independence
 Indianapolis
 Indore
-Ä°negã¶l
+Ä°negï¿½l
 Inglewood
 Ingolstadt
 Innsbruck
@@ -1334,14 +1335,14 @@ Ishinomaki
 Ä°skenderun
 Islam Shahr
 Islamabad
-Ismaã¯lia
+Ismaï¿½lia
 Isparta
 Ä°stanbul
-Itaboraã­
+Itaboraï¿½
 Itabuna
-Itagã¼ã­
+Itagï¿½ï¿½
 Itaituba
-Itajaã­
+Itajaï¿½
 Itami
 Itapecerica Da Serra
 Itapetininga
@@ -1361,11 +1362,11 @@ Izhevsk
 Izumi
 Jabalpur
 Jaboatao Dos Guarapes
-Jacareã­
+Jacareï¿½
 Jackson
 Jacksonville
 Jacobabad
-Jaã©n
+Jaï¿½n
 Jaffna
 Jaipur
 Jakarta
@@ -1378,17 +1379,17 @@ Jamalpur
 Jambi
 Jamnagar
 Jamshedpur
-Jaraguã¡ Do Sul
+Jaraguï¿½ Do Sul
 Jaranwala
-Jastrzä™bie Zdrã³j
-Jaãº
+Jastrzï¿½bie Zdrï¿½j
+Jaï¿½
 Jaunpur
 Jeddah
 Jena
 Jeongju
 Jeonju
-Jequiã©
-Jã©rez De La Frontera
+Jequiï¿½
+Jï¿½rez De La Frontera
 Jersey City
 Jerusalem
 Jessore
@@ -1432,7 +1433,7 @@ Jiutai
 Jiutepec
 Jixi
 Jiyuan
-Joã£o Pessoa
+Joï¿½o Pessoa
 Jodhpur
 Joetsu
 Johannesburg
@@ -1441,16 +1442,16 @@ Joinville
 Joliet
 Jolo
 Jorhat
-Jã¶nkã¶ping
+Jï¿½nkï¿½ping
 Jos
-Juã zeiro Do Norte
+Juï¿½zeiro Do Norte
 Juazeiro
 Juba
 Juiz De Fora
 Juliaca
 Junagadh
-Jundiaã­
-Jyvã¤skylã¤
+Jundiaï¿½
+Jyvï¿½skylï¿½
 Kabankalan City
 Kabul
 Kabwe
@@ -1460,7 +1461,7 @@ Kaduna
 Kaesong
 Kafr Dawar
 Kagoshima
-Kahramanmaraåÿ
+Kahramanmaraï¿½ï¿½
 Kaifeng
 Kaili
 Kairouan
@@ -1536,7 +1537,7 @@ Kawanishi
 Kawasaki
 Kayseri
 Kazan
-Kecskemã©t
+Kecskemï¿½t
 Kediri
 Keelung
 Kelamayi
@@ -1572,8 +1573,8 @@ Khoramshahr
 Khouribga
 Khoy
 Khulna
-Kä±rä±kkale
-Kä±zä±ltepe
+Kï¿½rï¿½kkale
+Kï¿½zï¿½ltepe
 Kidapawan City
 Kiel
 Kielce
@@ -1600,13 +1601,13 @@ Kitakyushu
 Kitami
 Kitchener
 Kitwe
-Klaipä—da
+Klaipï¿½da
 Klang
 Knoxville
 Kobe
 Koblenz
 Kochi
-Kå?chi
+Kï¿½?chi
 Kodaira
 Kofu
 Koganei
@@ -1629,7 +1630,7 @@ Koriyama
 Korolyov
 Koronadal City
 Koshigaya
-Koå¡ice
+Koï¿½ice
 Kostanay
 Kosti
 Kostroma
@@ -1643,7 +1644,7 @@ Kottayam
 Kovrov
 Kozhikode
 Kragujevac
-Krakã³w
+Krakï¿½w
 Kraljevo
 Kramatorsk
 Krasnodar
@@ -1652,7 +1653,7 @@ Krasnyi Luch
 Krefeld
 Kremenchuk
 Krishnanagar
-Kruå¡evac
+Kruï¿½evac
 Kryvyi Rih
 Kuala Lumpur
 Kuala Terengganu
@@ -1683,7 +1684,7 @@ Kut
 Kutaisi
 Kuwait City
 Kuwana
-Kã¼tahya
+Kï¿½tahya
 Kwang Myong
 Kwangchu
 Kyongju
@@ -1691,7 +1692,7 @@ Kyoto
 Kyzyl
 Kyzylorda
 La Ceiba
-La Coruã±a
+La Coruï¿½a
 La Laguna
 Las Palmas De Gran Canaria
 La Paz
@@ -1716,7 +1717,7 @@ Lalitpur
 Lancaster
 Langfang
 Lansing
-Lanãºs
+Lanï¿½s
 Lanxi
 Lanzhou
 Laoag City
@@ -1737,7 +1738,7 @@ Laval
 Le Havre
 Le Mans
 Leeds
-Leganã©s
+Leganï¿½s
 Legazpi City
 Legnica
 Leicester
@@ -1749,9 +1750,9 @@ Lengshuijiang
 Lengshuitan
 Leninsk-kuznetsky
 Lens
-Leã³n
-Leã³n
-Leã³n
+Leï¿½n
+Leï¿½n
+Leï¿½n
 Leshan
 Leskovac
 Leverkusen
@@ -1764,7 +1765,7 @@ Liaoyuan
 Libreville
 Lichuan
 Lida
-Liã¨ge
+Liï¿½ge
 Ligao City
 Likasi
 Liling
@@ -1778,7 +1779,7 @@ Lincoln
 Linfen
 Linhai
 Linhares
-Linkã¶ping
+Linkï¿½ping
 Linqing
 Linxia
 Linyi
@@ -1796,10 +1797,10 @@ Livorno
 Ljubljana
 Lleida
 Lobito
-Logroã±o
+Logroï¿½o
 Loja
 Lomas De Zamora
-Lomã©
+Lomï¿½
 London
 London
 Londrina
@@ -1811,7 +1812,7 @@ Longxuyen
 Longyan
 Lorient
 Los Angeles
-Los Ã?ngeles
+Los ï¿½?ngeles
 Los Mochis
 Los Reyes La Paz
 Los Teques
@@ -1831,7 +1832,7 @@ Lucknow
 Ludhiana
 Ludwigshafen Am Rhein
 Luhansk
-Lujã¡n De Cuyo
+Lujï¿½n De Cuyo
 Luohe
 Luoyang
 Lusaka
@@ -1840,8 +1841,8 @@ Lutsk
 Luxembourg
 Luxor
 Luzhou
-Luziã¢nia
-Lã¼beck
+Luziï¿½nia
+Lï¿½beck
 Lviv
 Lyallpur
 Lyon
@@ -1852,8 +1853,8 @@ Maastricht
 Mabalacat
 Macae
 Macau
-Macapã¡
-Maceiã³
+Macapï¿½
+Maceiï¿½
 Machakos
 Machala
 Macheng
@@ -1867,7 +1868,7 @@ Madurai
 Maebashi
 Magadan
 Magdeburg
-Magã©
+Magï¿½
 Magelang
 Magnitogorsk
 Mahabad
@@ -1882,7 +1883,7 @@ Makati City
 Makhachkala
 Makiivka
 Malabo
-Mã¡laga
+Mï¿½laga
 Malang
 Malappuram
 Malasiqui
@@ -1891,7 +1892,7 @@ Malaybalay City
 Malayer
 Malegaon
 Malita
-Malmã¶
+Malmï¿½
 Malolos City
 Manado
 Managua
@@ -1927,8 +1928,8 @@ Mardan
 Margilan
 Maribor
 Marilao
-Marã­lia
-Maringã¡
+Marï¿½lia
+Maringï¿½
 Mariupol
 Mariveles
 Markham
@@ -1943,7 +1944,7 @@ Masjed Soleyman
 Matadi
 Matamoros
 Matanzas
-Matarã³
+Matarï¿½
 Mathura
 Mati
 Matsubara
@@ -1952,14 +1953,14 @@ Matsue
 Matsumoto
 Matsusaka
 Matsuyama
-Maturã­n
-Mauã¡
+Maturï¿½n
+Mauï¿½
 Maunath Bhanjan
 Mawlamyaing
-Mayagã¼ez
+Mayagï¿½ez
 Maykop
 Mazari Sharif
-Mazatlã¡n
+Mazatlï¿½n
 Mazyr
 Mbabane
 Mbandaka
@@ -1970,7 +1971,7 @@ Mcallen
 Mecca
 Medan
 Medea
-Medellã­n
+Medellï¿½n
 Medina
 Medinipur
 Meerut
@@ -1985,8 +1986,8 @@ Memphis
 Mendoza
 Merca
 Merca
-Mã©rida
-Mã©rida
+Mï¿½rida
+Mï¿½rida
 Mersin
 Mesa
 Mesquite
@@ -2010,7 +2011,7 @@ Milan
 Milton Keynes
 Miluo
 Milwaukee
-Minatitlã¡n
+Minatitlï¿½n
 Minglanilla
 Minneapolis
 Minoh
@@ -2037,12 +2038,12 @@ Mogadishu
 Mogilev
 Mogpo
 Mogi Das Cruzes
-Mogi Guaã§u
+Mogi Guaï¿½u
 Mombasa
 Monclova
 Moncton
 Monrovia
-Monterã­a
+Monterï¿½a
 Monterrey
 Montes Claros
 Montevideo
@@ -2062,12 +2063,12 @@ Morioka
 Morogoro
 Morvi
 Moscow
-Mossorã³
+Mossorï¿½
 Mostaganem
 Mostar
-Mã³stoles
+Mï¿½stoles
 Mosul
-Mã¶nchengladbach
+Mï¿½nchengladbach
 M'sila
 Mudanjiang
 Mufulira
@@ -2091,8 +2092,8 @@ Mutare
 Muzaffargharh
 Muzaffarnagar
 Muzaffarpur
-Mã¼lheim An Der Ruhr
-Mã¼nster
+Mï¿½lheim An Der Ruhr
+Mï¿½nster
 Mwanza
 Mykolaiv
 Mymensingh
@@ -2169,8 +2170,8 @@ Neijiang
 Neiva
 Nellore
 Netanya
-Netzahualcã³yotl
-Neuquã©n
+Netzahualcï¿½yotl
+Neuquï¿½n
 Neuss
 Nevinnomyssk
 New Bombay
@@ -2197,14 +2198,14 @@ Niihama
 Niiza
 Nijmegen
 Nikopol
-Nilã³polis
-Nã®mes
+Nilï¿½polis
+Nï¿½mes
 Ningbo
 Ningde
-Niå¡
+Niï¿½
 Nishinomiya
 Nishio
-Niterã³i
+Niterï¿½i
 Nizamabad
 Nizhenvartovsk
 Nizhnekamsk
@@ -2218,7 +2219,7 @@ Nonthaburi
 Norfolk
 Norilsk
 Norman
-Norrkã¶ping
+Norrkï¿½ping
 North Las Vegas
 Northampton
 Northshore
@@ -2229,10 +2230,10 @@ Nossa Senhora Do Socorro
 Nottingham
 Nouakchott
 Nova Friburgo
-Nova Iguaã§u
+Nova Iguaï¿½u
 Novara
 Novi Sad
-Nã´vo Hamburgo
+Nï¿½vo Hamburgo
 Novocheboksarsk
 Novocherkassk
 Novokuybyshevsk
@@ -2246,15 +2247,15 @@ Novy Urengoy
 Noyabrsk
 Nueva San Salvador
 Nuevo Laredo
-Nukuê»alofa
+Nukuï¿½alofa
 Nukus
 Numazu
 Nuremberg
 Nyala
-Nyã­regyhã¡za
+Nyï¿½regyhï¿½za
 Oakland
 Oakville
-Oaxaca De Juã¡rez
+Oaxaca De Juï¿½rez
 Oberhausen
 Obihiro
 Obninsk
@@ -2299,7 +2300,7 @@ Orekhovo-zuyevo
 Orenburg
 Orizaba
 Orlando
-Orlã©ans
+Orlï¿½ans
 Ormoc City
 Orsha
 Orsk
@@ -2314,7 +2315,7 @@ Oshogbo
 Osijek
 Oslo
 Osmaniye
-Osnabrã¼ck
+Osnabrï¿½ck
 Osorno
 Ostrava
 Ota
@@ -2356,8 +2357,8 @@ Palmira
 Pamplona
 Panabo City
 Panama
-Panä?evo
-Panevä—å¾ys
+Panï¿½?evo
+Panevï¿½ï¿½ys
 Panihati
 Panipat
 Panjin
@@ -2366,13 +2367,13 @@ Papeete
 Paradise
 Parakou
 Paramaribo
-Paranã¡
-Paranaguã¡
+Paranï¿½
+Paranaguï¿½
 Parang
 Parbhani
 Paris
 Parma
-Parnaã­ba
+Parnaï¿½ba
 Pasadena
 Pasadena
 Pasay City
@@ -2393,7 +2394,7 @@ Patratu
 Paulista
 Pavlodar
 Pavlohrad
-Pã©cs
+Pï¿½cs
 Pelotas
 Pematang Siantar
 Pembroke Pines
@@ -2416,7 +2417,7 @@ Peterborough
 Petrolina
 Petropavl
 Petropavlovsk-kamchatsky
-Petrã³polis
+Petrï¿½polis
 Petrozavodsk
 Pforzheim
 Philadelphia
@@ -2425,11 +2426,11 @@ Phnom Penh
 Phoenix
 Phusro
 Phyongsong
-Piatra Neamå£
+Piatra Neamï¿½
 Pietermaritzburg
 Pikine
 Pilibhit
-Pinar Del Rã­o
+Pinar Del Rï¿½o
 Pindamonhangaba
 Pingdingshan
 Pingdu
@@ -2440,17 +2441,17 @@ Pinsk
 Piracicaba
 Piraeus
 Pir Mahal
-Piteåÿti
+Piteï¿½ï¿½ti
 Pittsburgh
 Piura
 Plano
 Pleven
-På‚ock
-Ploieåÿti
+Pï¿½ock
+Ploieï¿½ï¿½ti
 Plovdiv
 Plymouth
-Plzeåˆ
-Poã§os De Caldas
+Plzeï¿½
+Poï¿½os De Caldas
 Podgorica
 Podolsk
 Pohang
@@ -2464,7 +2465,7 @@ Pondicherry
 Ponta Grossa
 Pontianak
 Poole
-Popayã¡n
+Popayï¿½n
 Porac
 Porbandar
 Port Elizabeth
@@ -2483,11 +2484,11 @@ Portoviejo
 Portsmouth
 Portsmouth
 Posadas
-Potosã­
+Potosï¿½
 Potsdam
 Pouso Alegre
 Poza Rica De Hidalgo
-Poznaå„
+Poznaï¿½
 Prague
 Praia Grande
 Praia
@@ -2496,7 +2497,7 @@ Presidente Prudente
 Preston
 Pretoria
 Prijedor
-Priå¡tina
+Priï¿½tina
 Probolinggo
 Proddatur
 Prokopyevsk
@@ -2545,14 +2546,14 @@ Qom
 Quanzhou
 Quebec City
 Queimados
-Querã©taro
+Querï¿½taro
 Quetta
 Quevedo
 Quezon City
 Qufu
 Qui Nhon
 Quilmes
-Quilpuã©
+Quilpuï¿½
 Quito
 Qujing
 Quzhou
@@ -2573,7 +2574,7 @@ Raleigh
 Ramadi
 Ramagundam
 Ramat Gan
-Rã¢mnicu Vã¢lcea
+Rï¿½mnicu Vï¿½lcea
 Rampur
 Ranaghat
 Rancagua
@@ -2604,11 +2605,11 @@ Resende
 Resistencia
 Reutlingen
 Rewa
-Reykjavã­k
+Reykjavï¿½k
 Reynosa
-Ribeirã£o Das Neves
-Ribeirã£o Pires
-Ribeirã£o Prãªto
+Ribeirï¿½o Das Neves
+Ribeirï¿½o Pires
+Ribeirï¿½o Prï¿½to
 Richmond Hill
 Richmond
 Richmond
@@ -2633,7 +2634,7 @@ Rockford
 Rodriguez
 Rohtak
 Rome
-Rondonã³polis
+Rondonï¿½polis
 Rongcheng
 Roodepoort
 Rosario
@@ -2645,7 +2646,7 @@ Rouen
 Rousse
 Roxas City
 Rubtsovsk
-Ruda Åšlä…ska
+Ruda Åšlï¿½ska
 Rudni
 Ruian
 Ruichang
@@ -2655,11 +2656,11 @@ Ruzhou
 Ryazan
 Rybinsk
 Rybnik
-Rzeszã³w
+Rzeszï¿½w
 Saanich
-Saarbrã¼cken
+Saarbrï¿½cken
 Sabadell
-Sabã¡ra
+Sabï¿½ra
 Sabzewar
 Sacramento
 Sadiqabad
@@ -2675,7 +2676,7 @@ Saida
 Saidpur
 Saint Petersburg
 Saint-denis
-Saint-ã‰tienne
+Saint-ï¿½tienne
 Saint John
 Saint Louis
 Saint-paul
@@ -2685,7 +2686,7 @@ Sakura
 Salamanca
 Salamanca
 Salavat
-Salã©
+Salï¿½
 Salem
 Salem
 Salerno
@@ -2709,15 +2710,15 @@ San Bernardo
 San Buenaventura
 San Carlos City
 San Carlos City
-San Cristã³bal
-San Cristã³bal De Las Casas
+San Cristï¿½bal
+San Cristï¿½bal De Las Casas
 San Diego
 San Fernando City
 San Fernando City
 San Fernando Del Valle De Catamarca
 San Francisco Coacalco
 San Francisco
-San Josã©
+San Josï¿½
 San Jose City
 San Jose Del Monte City
 San Jose
@@ -2726,16 +2727,16 @@ San Juan
 San Juan
 San Juan City
 San Lorenzo
-San Luis Potosã­
+San Luis Potosï¿½
 San Luis
 San Martin
 San Mateo
 San Miguel
-San Miguel De Tucumã¡n
+San Miguel De Tucumï¿½n
 San Miguel
 San Miguelito
-San Nicolã¡s
-San Nicolã¡s De Los Garzas
+San Nicolï¿½s
+San Nicolï¿½s De Los Garzas
 San Pablo City
 San Pedro De Macoris
 San Pedro Sula
@@ -2743,18 +2744,18 @@ San Pedro
 San Rafael
 San Salvador De Jujuy
 San Salvador
-San Sebastiã¡n
+San Sebastiï¿½n
 Sana'a
 Sanandaj
-Sancti Spã­ritus
+Sancti Spï¿½ritus
 Sanda
 Sandakan
 Sangli
-Åžanlä±urfa
+Åžanlï¿½urfa
 Sanmenxia
 Sanming
 Santa Ana
-Santa Bã¡rbara D'oeste
+Santa Bï¿½rbara D'oeste
 Santa Clara
 Santa Clara
 Santa Clarita
@@ -2763,7 +2764,7 @@ Santa Cruz De La Sierra
 Santa Cruz De Tenerife
 Santa Cruz Do Sul
 Santa Cruz
-Santa Fe De Bogotã¡
+Santa Fe De Bogotï¿½
 Santa Fe
 Santa Luzia
 Santa Maria
@@ -2773,33 +2774,33 @@ Santa Rita
 Santa Rosa
 Santa Rosa City
 Santander
-Santarã©m
+Santarï¿½m
 Santiago
 Santiago City
 Santiago De Cuba
 Santiago De Los Caballeros
 Santiago Del Estero
 Santipur
-Santo Andrã©
+Santo Andrï¿½
 Santo Domingo De Los Colorados
 Santo Domingo
 Santo Tomas
 Santos
 Sanya
-Sã£o Bernardo Do Campo
-Sã£o Caetano Do Sul
-Sã£o Carlos
-Sã£o Gonã§alo
-Sã£o Joã£o De Meriti
-Sã£o Josã© De Ribamar
-Sã£o Josã© Do Rio Preto
-Sã£o Josã© Dos Campos
-Sã£o Josã© Dos Pinhais
-Sã£o Josã©
-Sã£o Leopoldo
-Sã£o Luã­s
-Sã£o Paulo
-Sã£o Vicente
+Sï¿½o Bernardo Do Campo
+Sï¿½o Caetano Do Sul
+Sï¿½o Carlos
+Sï¿½o Gonï¿½alo
+Sï¿½o Joï¿½o De Meriti
+Sï¿½o Josï¿½ De Ribamar
+Sï¿½o Josï¿½ Do Rio Preto
+Sï¿½o Josï¿½ Dos Campos
+Sï¿½o Josï¿½ Dos Pinhais
+Sï¿½o Josï¿½
+Sï¿½o Leopoldo
+Sï¿½o Luï¿½s
+Sï¿½o Paulo
+Sï¿½o Vicente
 Sapporo
 Sapucaia Do Sul
 Saqez
@@ -2892,7 +2893,7 @@ Shivpuri
 Shiyan
 Shizuishan
 Shizuoka
-Shkodã«r
+Shkodï¿½r
 Shreveport
 Shuangcheng
 Shuangyashan
@@ -2902,7 +2903,7 @@ Sialkote
 Å iauliai
 Sibiu
 Sibu
-Sidi-bel-abbã¨s
+Sidi-bel-abbï¿½s
 Siegen
 Sieverodonetsk
 Siirt
@@ -2930,7 +2931,7 @@ Skopje
 Sliven
 Slough
 Sloviansk
-Så‚upsk
+Sï¿½upsk
 Smederevo
 Smolensk
 Soacha
@@ -2999,7 +3000,7 @@ Sulamaniya
 Sullana
 Sultanbeyli
 Sultan Kudarat
-Sumarã©
+Sumarï¿½
 Sumgait
 Sumy
 Suncheon
@@ -3032,10 +3033,10 @@ Syracuse
 Syzran
 Szczecin
 Szeged
-Szã©kesfehã©rvã¡r
+Szï¿½kesfehï¿½rvï¿½r
 Taâ€™if
 Tabaco City
-Taboã£o Da Serra
+Taboï¿½o Da Serra
 Tabriz
 Tacheng
 Tachikawa
@@ -3092,15 +3093,15 @@ Tapachula
 Taranto
 Tarapoto
 Taraz
-Tã¢rgu-mureåÿ
+Tï¿½rgu-mureï¿½ï¿½
 Tarija
 Tarlac City
-Tarnã³w
+Tarnï¿½w
 Tarragona
 Tarsus
 Tartu
 Tashkent
-Taubatã©
+Taubatï¿½
 Taunggyi
 Tauranga
 Taytay
@@ -3109,9 +3110,9 @@ Tebessa
 Tegal
 Tegucigalpa
 Tehran
-Tehuacã¡n
+Tehuacï¿½n
 Teixeira De Freitas
-Tekirdaäÿ
+Tekirdaï¿½ï¿½
 Tel Aviv
 Telford
 Tembisa
@@ -3120,22 +3121,22 @@ Tempe
 Temuco
 Tenali
 Tengzhou
-Teã³filo Otoni
+Teï¿½filo Otoni
 Tepic
 Teresina
-Teresã³polis
+Teresï¿½polis
 Termez
 Terni
 Ternopil
 Terrassa
-Tã©touan
+Tï¿½touan
 Thai Nguyen
 Thalassery
 Thane
 Thanjavur
 The Hague
 Thessaloniki
-Thiã¨s
+Thiï¿½s
 Thimphu
 Thiruvananthapuram
 Thousand Oaks
@@ -3149,7 +3150,7 @@ Tieli
 Tieling
 Tijuana
 Tilburg
-Timiåÿoara
+Timiï¿½ï¿½oara
 Timon
 Tirana
 Tiruchchirappalli
@@ -3190,8 +3191,8 @@ Toowoomba
 Topeka
 Toronto
 Torrance
-Torreã³n
-Toruå„
+Torreï¿½n
+Toruï¿½
 Tottori
 Touggourt
 Toulon
@@ -3208,7 +3209,7 @@ Trento
 Trieste
 Tripoli
 Tripoli
-Trois-riviã¨res
+Trois-riviï¿½res
 Trondheim
 Trujillo
 Tsu
@@ -3233,14 +3234,14 @@ Turkmenabat
 Turku
 Turmero
 Tuticorin
-Tuxtla Gutiã©rrez
+Tuxtla Gutiï¿½rrez
 Tuzla
 Tver
 Tychy
 Tyumen
 Ube
 Uberaba
-Uberlã¢ndia
+Uberlï¿½ndia
 Ubon Ratchathani
 Udaipur
 Udon Thani
@@ -3258,7 +3259,7 @@ Ulhasnagar
 Ulm
 Ulsan
 Ulyanovsk
-Umeã¥
+Umeï¿½
 Umlazi
 Unnao
 Uppsala
@@ -3270,7 +3271,7 @@ Urdaneta City
 Urgentch
 Uruapan
 Uruguaiana
-Uåÿak
+Uï¿½ï¿½ak
 Usolye-sibirskoye
 Ussuriysk
 Ust-ilimsk
@@ -3292,7 +3293,7 @@ Valle De Chalco
 Valledupar
 Vallejo
 Valparai
-Valparaã­so
+Valparaï¿½so
 Valsad
 Van
 Vanadzor
@@ -3304,7 +3305,7 @@ Varanasi
 Varginha
 Varna
 Varzea Grande
-Vã¤sterã¥s
+Vï¿½sterï¿½s
 Vaughan
 Velikiye Luki
 Veliky Novgorod
@@ -3313,8 +3314,8 @@ Venice
 Veracruz
 Vereeniging
 Verona
-Viamã£o
-Vicente Lã³pez
+Viamï¿½o
+Vicente Lï¿½pez
 Vicenza
 Las Tunas
 Victoria
@@ -3324,21 +3325,21 @@ Vigo
 Vijayawada
 Vila Nova De Gaia
 Vila Velha
-Villa Nicolã¡s Romero
+Villa Nicolï¿½s Romero
 Villahermosa
 Villavicencio
 Villeurbanne
 Vilnius
-Viã±a Del Mar
+Viï¿½a Del Mar
 Vinh
 Vinnytsia
-Viranåÿehir
+Viranï¿½ï¿½ehir
 Virginia Beach
 Visakhapatnam
 Vitebsk
-Vitã³ria Da Conquista
-Vitã³ria De Santo Antã£o
-Vitã³ria
+Vitï¿½ria Da Conquista
+Vitï¿½ria De Santo Antï¿½o
+Vitï¿½ria
 Vitoria-gasteiz
 Vizianagarm
 Vladikavkaz
@@ -3359,7 +3360,7 @@ Wadhwan
 Wafangdian
 Wah Cantonment
 Wakayama
-Waå‚brzych
+Waï¿½brzych
 Walsall
 Wanxian
 Warangal
@@ -3392,14 +3393,14 @@ Winnipeg
 Winston-salem
 Winterthur
 Witten
-Wå‚ocå‚awek
+Wï¿½ocï¿½awek
 Wolfsburg
 Greater Wollongong
 Wolverhampton
 Wonju
 Wonsan
 Worcester
-Wrocå‚aw
+Wrocï¿½aw
 Wu'an
 Wugang
 Wuhai
@@ -3414,7 +3415,7 @@ Wuxue
 Wuyishan
 Wuzhong
 Wuzhou
-Wã¼rzburg
+Wï¿½rzburg
 Xalapa
 Xiamen
 Xian
@@ -3463,7 +3464,7 @@ Yangzhou
 Yanji
 Yantai
 Yao
-Yaoundã©
+Yaoundï¿½
 Yaroslavl
 Yatsushiro
 Yavatmal
@@ -3526,7 +3527,7 @@ Zaozhuang
 Zapopan
 Zaporizhia
 Zaragoza
-Zã¡rate
+Zï¿½rate
 Zaria
 Zarqa
 Zelenodolsk
@@ -3558,7 +3559,7 @@ Zhuozhou
 Zhuzhou
 Zhytomyr
 Zibo
-Zielona Gã³ra
+Zielona Gï¿½ra
 Zigong
 Ziguinchor
 Zinder
@@ -3568,7 +3569,7 @@ Zoetermeer
 Zrenjanin
 Zunyi
 Zuwara
-Zã¼rich
+Zï¿½rich
 Zwickau
 Zwolle
 

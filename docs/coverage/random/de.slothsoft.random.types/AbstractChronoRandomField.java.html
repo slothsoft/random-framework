@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>AbstractChronoRandomField.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Charts Coverage</a> &gt; <a href="../index.html" class="el_bundle">random</a> &gt; <a href="index.source.html" class="el_package">de.slothsoft.random.types</a> &gt; <span class="el_source">AbstractChronoRandomField.java</span></div><h1>AbstractChronoRandomField.java</h1><pre class="source lang-java linenums">package de.slothsoft.random.types;
+
+import java.util.Objects;
+
+import de.slothsoft.random.RandomField;
+
+/**
+ * A {@link RandomField} representing a date, time, date time or anything time related.
+ *
+ * @author Stef Schulz
+ * @since 2.1.0
+ * @param &lt;C&gt; the date and / or time
+ */
+
+abstract class AbstractChronoRandomField&lt;C&gt; implements RandomField {
+
+	static final int YEAR = 0;
+	static final int MONTH = 1;
+	static final int DAY = 2;
+	static final int HOUR = 3;
+	static final int MINUTE = 4;
+	static final int SECOND = 5;
+	static final int ARRAY_LENGTH = 6;
+<span class="fc" id="L24">	static final int[] UNITS_MULTIPLIER = {12, 30, 24, 60, 60};</span>
+
+	private C startValue;
+	private C endValue;
+
+<span class="fc" id="L29">	public AbstractChronoRandomField() {</span>
+<span class="fc" id="L30">		this.startValue = fromLongValue(Long.MIN_VALUE);</span>
+<span class="fc" id="L31">		this.endValue = fromLongValue(Long.MAX_VALUE);</span>
+<span class="fc" id="L32">	}</span>
+
+	@Override
+	public C nextValue() {
+<span class="fc" id="L36">		final C start = this.startValue;</span>
+<span class="fc" id="L37">		final C end = this.endValue;</span>
+
+<span class="fc bfc" id="L39" title="All 2 branches covered.">		if (end.equals(start)) return start;</span>
+
+<span class="fc" id="L41">		final long startValueAsLong = toLongValue(start);</span>
+<span class="fc" id="L42">		final long endValueAsLong = toLongValue(end);</span>
+
+<span class="fc" id="L44">		final long result = startValueAsLong + (long) (RND.nextDouble() * (endValueAsLong - startValueAsLong));</span>
+<span class="fc" id="L45">		return fromLongValue(result);</span>
+	}
+
+	abstract long toLongValue(C value);
+
+	abstract C fromLongValue(long value);
+
+	boolean isBefore(C value1, C value2) {
+<span class="fc bfc" id="L53" title="All 2 branches covered.">		return toLongValue(value1) &lt; toLongValue(value2);</span>
+	}
+
+	boolean isEqual(C value1, C value2) {
+<span class="fc bfc" id="L57" title="All 2 branches covered.">		return toLongValue(value1) == toLongValue(value2);</span>
+	}
+
+	boolean isAfter(C value1, C value2) {
+<span class="fc bfc" id="L61" title="All 2 branches covered.">		return toLongValue(value1) &gt; toLongValue(value2);</span>
+	}
+
+	/**
+	 * Returns the highest possible value for this field.
+	 *
+	 * @return end value; never null
+	 */
+
+	public C getEndValue() {
+<span class="nc" id="L71">		return this.endValue;</span>
+	}
+
+	/**
+	 * Sets the highest possible value for this field.
+	 *
+	 * @param newEndValue end value; cannot be null
+	 * @return this instance; cannot be null
+	 */
+
+	public AbstractChronoRandomField&lt;C&gt; endValue(C newEndValue) {
+<span class="fc" id="L82">		setEndValue(newEndValue);</span>
+<span class="fc" id="L83">		return this;</span>
+	}
+
+	/**
+	 * Sets the highest possible value for this field.
+	 *
+	 * @param endValue end value; cannot be null
+	 */
+
+	public void setEndValue(C endValue) {
+<span class="fc" id="L93">		this.endValue = Objects.requireNonNull(endValue);</span>
+<span class="fc" id="L94">	}</span>
+
+	/**
+	 * Returns the lowest possible value for this field.
+	 *
+	 * @return start value; never null
+	 */
+
+	public C getStartValue() {
+<span class="nc" id="L103">		return this.startValue;</span>
+	}
+
+	/**
+	 * Sets the lowest possible value for this field.
+	 *
+	 * @param newStartValue start value
+	 * @return this instance; cannot be null
+	 */
+
+	public AbstractChronoRandomField&lt;C&gt; startValue(C newStartValue) {
+<span class="fc" id="L114">		setStartValue(newStartValue);</span>
+<span class="fc" id="L115">		return this;</span>
+	}
+
+	/**
+	 * Sets the lowest possible value for this field.
+	 *
+	 * @param startValue start value; cannot be null
+	 */
+
+	public void setStartValue(C startValue) {
+<span class="fc" id="L125">		this.startValue = Objects.requireNonNull(startValue);</span>
+<span class="fc" id="L126">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

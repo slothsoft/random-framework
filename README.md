@@ -6,6 +6,8 @@
 - **Repository:** <https://github.com/slothsoft/framework-random>
 - **Open Issues:** <https://github.com/slothsoft/framework-random/issues>
 - **Wiki:** none
+- **Developer Resources:** [JavaDoc](https://slothsoft.github.io/framework-random), [Executed Tests](https://slothsoft.github.io/framework-random/tests), [Code Coverage](https://slothsoft.github.io/framework-random/coverage)
+
 
 
 A framework for creating dummy data for [POJO](https://de.wikipedia.org/wiki/Plain_Old_Java_Object)s. It can fill a lot of fields with random data, and is even able to recognize some fields that need special values to look pretty.

@@ -52,7 +52,7 @@ public abstract class AbstractNumberRandomFieldTest<N extends Number> extends Ab
 			final Object createdPojo = randomFactory.createSingle();
 			final Number value = (Number) getPropertyValue(createdPojo);
 			Assert.assertNotNull(value);
-			Assert.assertTrue("Value is to small: " + value, value.doubleValue() >= this.ninetyTwo.doubleValue());
+			Assert.assertTrue("Value is too small: " + value, value.doubleValue() >= this.ninetyTwo.doubleValue());
 		}
 	}
 
@@ -63,7 +63,7 @@ public abstract class AbstractNumberRandomFieldTest<N extends Number> extends Ab
 		for (int i = 0; i < 100; i++) {
 			final N value = this.numberField.nextValue();
 			Assert.assertNotNull(value);
-			Assert.assertTrue("Value is to small: " + value, value.doubleValue() >= this.ninetyTwo.doubleValue());
+			Assert.assertTrue("Value is too small: " + value, value.doubleValue() >= this.ninetyTwo.doubleValue());
 		}
 	}
 
@@ -80,7 +80,7 @@ public abstract class AbstractNumberRandomFieldTest<N extends Number> extends Ab
 			final Object createdPojo = randomFactory.createSingle();
 			final Number value = (Number) getPropertyValue(createdPojo);
 			Assert.assertNotNull(value);
-			Assert.assertTrue("Value is to big: " + value, value.doubleValue() < this.ninetyTwo.doubleValue());
+			Assert.assertTrue("Value is too big: " + value, value.doubleValue() < this.ninetyTwo.doubleValue());
 		}
 	}
 
@@ -91,7 +91,7 @@ public abstract class AbstractNumberRandomFieldTest<N extends Number> extends Ab
 		for (int i = 0; i < 100; i++) {
 			final N value = this.numberField.nextValue();
 			Assert.assertNotNull(value);
-			Assert.assertTrue("Value is to big: " + value, value.doubleValue() < this.ninetyTwo.doubleValue());
+			Assert.assertTrue("Value is too big: " + value, value.doubleValue() < this.ninetyTwo.doubleValue());
 		}
 	}
 
@@ -108,8 +108,8 @@ public abstract class AbstractNumberRandomFieldTest<N extends Number> extends Ab
 		for (int i = 0; i < 100; i++) {
 			final Object createdPojo = randomFactory.createSingle();
 			final Number value = (Number) getPropertyValue(createdPojo);
-			Assert.assertTrue("Value is to small: " + value, value.doubleValue() >= this.seven.doubleValue());
-			Assert.assertTrue("Value is to big: " + value, value.doubleValue() < this.ninetyTwo.doubleValue());
+			Assert.assertTrue("Value is too small: " + value, value.doubleValue() >= this.seven.doubleValue());
+			Assert.assertTrue("Value is too big: " + value, value.doubleValue() < this.ninetyTwo.doubleValue());
 		}
 	}
 
@@ -121,8 +121,8 @@ public abstract class AbstractNumberRandomFieldTest<N extends Number> extends Ab
 		for (int i = 0; i < 100; i++) {
 			final N value = this.numberField.nextValue();
 			Assert.assertNotNull(value);
-			Assert.assertTrue("Value is to small: " + value, value.doubleValue() >= this.seven.doubleValue());
-			Assert.assertTrue("Value is to big: " + value, value.doubleValue() < this.ninetyTwo.doubleValue());
+			Assert.assertTrue("Value is too small: " + value, value.doubleValue() >= this.seven.doubleValue());
+			Assert.assertTrue("Value is too big: " + value, value.doubleValue() < this.ninetyTwo.doubleValue());
 		}
 	}
 
@@ -139,8 +139,8 @@ public abstract class AbstractNumberRandomFieldTest<N extends Number> extends Ab
 		for (int i = 0; i < 100; i++) {
 			final Object createdPojo = randomFactory.createSingle();
 			final Number value = (Number) getPropertyValue(createdPojo);
-			Assert.assertTrue("Value is to small: " + value, value.doubleValue() >= this.seven.doubleValue());
-			Assert.assertTrue("Value is to big: " + value, value.doubleValue() < this.ninetyTwo.doubleValue());
+			Assert.assertTrue("Value is too small: " + value, value.doubleValue() >= this.seven.doubleValue());
+			Assert.assertTrue("Value is too big: " + value, value.doubleValue() < this.ninetyTwo.doubleValue());
 		}
 	}
 
@@ -152,8 +152,8 @@ public abstract class AbstractNumberRandomFieldTest<N extends Number> extends Ab
 		for (int i = 0; i < 100; i++) {
 			final N value = this.numberField.nextValue();
 			Assert.assertNotNull(value);
-			Assert.assertTrue("Value is to small: " + value, value.doubleValue() >= this.seven.doubleValue());
-			Assert.assertTrue("Value is to big: " + value, value.doubleValue() < this.ninetyTwo.doubleValue());
+			Assert.assertTrue("Value is too small: " + value, value.doubleValue() >= this.seven.doubleValue());
+			Assert.assertTrue("Value is too big: " + value, value.doubleValue() < this.ninetyTwo.doubleValue());
 		}
 	}
 	@Test
