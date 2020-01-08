@@ -19,7 +19,7 @@ public class ElementFromListRandomField<E> implements RandomField {
 	/**
 	 * Some constructor.
 	 *
-	 * @param possibleElements - the elements that are possible here; never null
+	 * @param possibleElements the elements that are possible here; never null
 	 */
 
 	public ElementFromListRandomField(E[] possibleElements) {

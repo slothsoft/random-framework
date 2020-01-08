@@ -11,7 +11,7 @@ import java.util.Map.Entry;
  *
  * @author Stef Schulz
  * @since 1.0.0
- * @param <T> - the type to be created
+ * @param <T> the type to be created
  */
 
 public class RandomFactory<T> {
@@ -39,8 +39,8 @@ public class RandomFactory<T> {
 	 * Creates a {@link RandomFactory} with just one class and then tries to guess which
 	 * fields to fill. Might not be the best option for some cases.
 	 *
-	 * @param pojoClass - the class of the POJO to be created; the class must have a
-	 *            default constructor and be public
+	 * @param pojoClass the class of the POJO to be created; the class must have a default
+	 *            constructor and be public
 	 */
 
 	public static <U> RandomFactory<U> forClass(Class<U> pojoClass) {
@@ -57,7 +57,7 @@ public class RandomFactory<T> {
 	/**
 	 * Guesses the mapping from the actual name of the getter and setter.
 	 *
-	 * @param pojoClass - the class
+	 * @param pojoClass the class
 	 * @return a mapping
 	 */
 
@@ -83,7 +83,7 @@ public class RandomFactory<T> {
 	 * A constructor that takes one {@link Supplier}. The mapping of properties to the
 	 * factories filling them is guessed.
 	 *
-	 * @param pojoSupplier - the supplier for the POJO
+	 * @param pojoSupplier the supplier for the POJO
 	 */
 
 	public RandomFactory(Supplier<T> pojoSupplier) {
@@ -94,8 +94,8 @@ public class RandomFactory<T> {
 	 * A constructor that takes one class and the mapping of properties to the factories
 	 * filling them.
 	 *
-	 * @param pojoSupplier - the supplier for the POJO
-	 * @param fieldMapping - the initial mapping for the fields
+	 * @param pojoSupplier the supplier for the POJO
+	 * @param fieldMapping the initial mapping for the fields
 	 */
 
 	public RandomFactory(Supplier<T> pojoSupplier, Map<String, RandomField> fieldMapping) {
@@ -127,7 +127,7 @@ public class RandomFactory<T> {
 	/**
 	 * Creates some instances of the POJO this factory is for.
 	 *
-	 * @param count - number of instances to be created
+	 * @param count number of instances to be created
 	 * @return some POJO instances
 	 * @throws RandomException - if something went wrong
 	 */

@@ -42,8 +42,8 @@ public abstract class RandomFieldSupplier {
 	/**
 	 * Returns a {@link RandomFieldSupplier} for a property name and class.
 	 *
-	 * @param propertyName - the property's name
-	 * @param propertyClass - the property's class
+	 * @param propertyName the property's name
+	 * @param propertyClass the property's class
 	 * @return a {@link RandomFieldSupplier} or null
 	 */
 
@@ -130,8 +130,8 @@ public abstract class RandomFieldSupplier {
 	/**
 	 * Returns if this random field should be used to render the field name.
 	 *
-	 * @param fieldName - name of the field
-	 * @param fieldClass - class of the field
+	 * @param fieldName name of the field
+	 * @param fieldClass class of the field
 	 * @return a boolean - returns true if a {@link RandomField} can be supplied
 	 */
 

@@ -13,8 +13,8 @@ import java.util.Map;
  * <i>An industrial area has many factories.</i>
  *
  *
- * @author Stef
- *
+ * @author Stef Schulz
+ * @since 1.0.0
  */
 
 public class RandomIndustrialArea {
@@ -23,7 +23,7 @@ public class RandomIndustrialArea {
 	 * Creates a default <code>RandomFactory</code> for the class. This is a handy method
 	 * for creating an entire <code>RandomIndustrialArea</code> based on guess work.
 	 *
-	 * @param createdClasses - the classes to be guessed
+	 * @param createdClasses the classes to be guessed
 	 * @return the brand new object
 	 */
 
@@ -43,7 +43,7 @@ public class RandomIndustrialArea {
 	/**
 	 * Adds a <code>RandomFactory</code> to this industrial area.
 	 *
-	 * @param factory - a factory to add
+	 * @param factory a factory to add
 	 */
 
 	public void addFactory(RandomFactory<?> factory) {
@@ -53,7 +53,7 @@ public class RandomIndustrialArea {
 	/**
 	 * Removes a <code>RandomFactory</code> from this industrial area.
 	 *
-	 * @param factory - the factory to remove
+	 * @param factory the factory to remove
 	 */
 
 	public void removeFactory(RandomFactory<?> factory) {
@@ -63,8 +63,8 @@ public class RandomIndustrialArea {
 	/**
 	 * Returns the <code>RandomFactory</code> for the class.
 	 *
-	 * @param <T> - the type the factory is for
-	 * @param pojoClass - the class that should be created
+	 * @param <T> the type the factory is for
+	 * @param pojoClass the class that should be created
 	 * @return a random factory
 	 * @throws RandomException if none was found
 	 */
@@ -78,8 +78,8 @@ public class RandomIndustrialArea {
 	/**
 	 * Returns the <code>RandomFactory</code> for the class or null.
 	 *
-	 * @param <T> - the type the factory is for
-	 * @param pojoClass - the class that should be created
+	 * @param <T> the type the factory is for
+	 * @param pojoClass the class that should be created
 	 * @return a random factory or null
 	 */
 
@@ -91,8 +91,8 @@ public class RandomIndustrialArea {
 	/**
 	 * Returns if there is a <code>RandomFactory</code> for the class.
 	 *
-	 * @param <T> - the type the factory is for
-	 * @param pojoClass - the class that should be created
+	 * @param <T> the type the factory is for
+	 * @param pojoClass the class that should be created
 	 * @return true, if there is a random factory
 	 * @throws RandomException if none was fond
 	 */
@@ -111,7 +111,7 @@ public class RandomIndustrialArea {
 	 * factories of this area are asked, if they want to create it. If not, the normal
 	 * procedure is used.
 	 *
-	 * @param pojoClass - the class to be created
+	 * @param pojoClass the class to be created
 	 * @return a single dummy instance
 	 * @throws RandomException - if something went wrong
 	 */
@@ -148,7 +148,7 @@ public class RandomIndustrialArea {
 	 * class, the factories of this area are asked, if they want to create it. If not, the
 	 * normal procedure is used.
 	 *
-	 * @param count - number of instances to be created
+	 * @param count number of instances to be created
 	 * @return some dummy instance
 	 * @throws RandomException - if something went wrong
 	 */
@@ -174,7 +174,7 @@ public class RandomIndustrialArea {
 	/**
 	 * Returns the depth for the hierarchical POJOs that might be created.
 	 *
-	 * @param newCreationDepth - an integer &gt; 0
+	 * @param newCreationDepth an integer &gt; 0
 	 * @return this instance
 	 */
 
@@ -186,7 +186,7 @@ public class RandomIndustrialArea {
 	/**
 	 * Returns the depth for the hierarchical POJOs that might be created.
 	 *
-	 * @param creationDepth - an integer &gt; 0
+	 * @param creationDepth an integer &gt; 0
 	 */
 
 	public void setCreationDepth(int creationDepth) {

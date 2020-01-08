@@ -7,7 +7,7 @@ import de.slothsoft.random.RandomField;
  *
  * @author Stef Schulz
  * @since 1.0.0
- * @param <N> - a type of number
+ * @param <N> a type of number
  */
 
 public abstract class AbstractNumberRandomField<N extends Number> implements RandomField {
