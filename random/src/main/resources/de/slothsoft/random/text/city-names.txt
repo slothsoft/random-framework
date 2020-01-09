@@ -206,13 +206,13 @@ Aydın
 Bab Ezzouar
 Babol
 Babruysk
-Bac�u
+Baciu
 Bacolod City
 Bacoor
 Badajoz
 Badalona
 Bafoussam
-Bag�
+Baga
 Baghdad
 Bago City
 Bago
@@ -220,7 +220,7 @@ Baguio City
 Baharampur
 Bahawalnagar
 Bahawalpur
-Bah�a Blanca
+Bahía Blanca
 Bahir Dar
 Bahraich
 Baia Mare
@@ -234,17 +234,17 @@ Baku
 Balakovo
 Balashikha
 Baleshwar
-Bal�kesir
+Balıkesir
 Balikpapan
 Baliuag
 Bally
-B�l�i
+Bilii
 Baltimore
 Balurghat
 Bamako
 Bamenda
 Bandar-e-abbas
-Band�rma
+Bandırma
 Bandjarmasin
 Bandung
 Bangalore
@@ -302,7 +302,7 @@ Batumi
 Bauru
 Bayambang
 Bayamo
-Bayam�n
+Bayamon
 Bayawan City
 Baybay
 Baynnur
@@ -319,7 +319,7 @@ Beijing
 Beipiao
 Beirut
 Bejaia
-Bel�m
+Bel'M
 Belfast
 Belford Roxo
 Belgaum
@@ -333,7 +333,7 @@ Bengfu
 Benghazi
 Benguela
 Beni Mellal
-Benito Ju�rez
+Benito Juárez
 Benoni
 Benxi
 Beppu
@@ -346,7 +346,7 @@ Bergisch Gladbach
 Berkeley
 Berlin
 Berne
-Besan�on
+besançon
 Betim
 Bettiah
 Bhadravati
@@ -366,11 +366,11 @@ Bhopal
 Bhubaneswar
 Bhuj
 Bhusawal
-Bia�ystok
+Białystok
 Bid
 Bidar
 Bielefeld
-Bielsko-bia�a
+Bielsko-biała
 Bihar Sharif
 Bijapur
 Bikaner
@@ -378,7 +378,7 @@ Bila Tserkva
 Bilaspur
 Bilbao
 Billings
-Bi�an
+Bi'an
 Binangonan
 Binzhou
 Biratnagar
@@ -419,7 +419,7 @@ Bordj El Kiffan
 Borujerd
 Bosaso
 Boston
-Boto��ani
+Botoșani
 Botou
 Botshabelo
 Bottrop
@@ -433,12 +433,12 @@ Bournemouth
 Bozhou
 Bradford
 Braga
-Bragan�a Paulista
+Bragança Paulista
 Brahmapur
-Br�ila
+Brăila
 Brampton
-Bras�lia
-Bra��ov
+Brasília
+Brașov
 Bratislava
 Bratsk
 Braunschweig
@@ -487,7 +487,7 @@ Bury
 Busan
 Bushehr
 Butuan City
-Buz�u
+Buzău
 Bydgoszcz
 Bytom
 Cabanatuan City
@@ -498,7 +498,7 @@ Cabuyao
 Cachoeirinha
 Cachoeiro De Itapemirim
 Cadiz City
-C�diz
+Cádiz
 Caen
 Cagayan De Oro City
 Cagliari
@@ -519,7 +519,7 @@ Calgary
 Cali
 Caloocan City
 Camacari
-Camag�ey
+Camagüey
 Camaragibe
 Cambridge
 Cambridge
@@ -538,9 +538,9 @@ Cantho
 Capas
 Cape Breton
 Cape Coral
-Cap-ha�tien
+Cap-Haïtien
 Caracas
-Carapicu�ba
+Carapicuiba
 Carcar
 Cardiff
 Cariacica
@@ -553,11 +553,11 @@ Cartagena
 Cartago
 Cartago
 Caruaru
-Car�pano
+Carpano
 Casablanca
 Cascavel
 Castanhal
-Castell�n De La Plana
+Castellón de la Plana
 Catanduva
 Catania
 Catia La Mar
@@ -587,7 +587,7 @@ Changzhou
 Chaohu
 Chaoyang
 Chaozhou
-Chapec�
+Chapecó
 Chapra
 Charikar
 Charleroi
@@ -612,7 +612,7 @@ Chernihiv
 Chernivtsi
 Cherthala
 Chesapeake
-Ch�a
+Choa
 Chiang Mai
 Chiayi
 Chiba
@@ -623,7 +623,7 @@ Chifeng
 Chigasaki
 Chihuahua
 Chikmagalur
-Chill�n
+Chillán
 Chilpancingo
 Chimalhuacan
 Chimbote
@@ -635,7 +635,6 @@ Chinju
 Chirala
 Chirchik
 Chishtian
-Chi��in�u
 Chita
 Chitradurga
 Chittagong
@@ -643,14 +642,13 @@ Chittoor
 Chitungwiza
 Chizhou
 Chlef
-Ch�?fu
 Choloma
 Choluteca
 Chon Buri
 Chonchu
 Chongjin
 Chongqing
-Chorz�w
+Chorzów
 Christchurch
 Chula Vista
 Chuncheon
@@ -661,18 +659,18 @@ Cienfuegos
 Cincinnati
 Cirebon
 Ciudad Apodaca
-Ciudad Bol�var
-Ciudad De Acu�a
+Ciudad Bolívar
+Ciudad De Acuña
 Ciudad De Colon
-Ciudad De M�xico
+Ciudad De México
 Ciudad Del Este
 Ciudad Delgado
 Ciudad Guayana
-Ciudad Ju�rez
-Ciudad L�pez Mateos
+Ciudad Juárez
+Ciudad López Mateos
 Ciudad Losada
 Ciudad Madero
-Ciudad Obreg�n
+Ciudad Obregon
 Ciudad Santa Catarina
 Ciudad Victoria
 Cixi
@@ -692,7 +690,7 @@ Colima
 Cologne
 Colombo
 Colombo
-Col�n
+Colón
 Colorado Springs
 Columbia
 Columbus
@@ -700,21 +698,20 @@ Columbus
 Comilla
 Comodoro Rivadavia
 Conakry
-Concepci�n
+Concepción
 Concepcion
 Concord
 Concordia
-Constan�a
+Constanța
 Constantine
 Contagem
 Copenhagen
-Copiap�
+Copiapó
 Coquimbo
 Coquitlam
 Coral Springs
 Cordoba
-C�rdoba
-C�rdoba
+Córdoba
 Cork
 Çorlu
 Coro
@@ -731,31 +728,31 @@ Coventry
 Craiova
 Crato
 Crawley
-Crici�ma
+Criciuma
 Cuautla
-Cubat�o
-C�cuta
+Cubatão
+Cúcuta
 Cuddalore
 Cuddapah
 Cuenca
 Cuernavaca
-Cuiab�
-Culiac�n
-Cuman�
-Curic�
+Cuiabá
+Culiacán
+Cumana
+Curicó
 Curitiba
 Cuzco
 Cuttack
-Cz�stochowa
+Częstochowa
 Da Nang
 Daan
 Dabgram
-D�browa G�rnicza
+Dąbrowa Górnicza
 Dadu
 Daegu
 Daejeon
 Dagupan City
-Dait�?
+Daitoa
 Dakar
 Da Lat
 Dali
@@ -779,8 +776,7 @@ Darbhanga
 Darmstadt
 Darwin
 Daska
-Dasmari�as
-Da��oguz
+Dasmariñas
 Datong
 Datu Odin Sinsuat
 Daugavpils
@@ -3315,7 +3311,7 @@ Veracruz
 Vereeniging
 Verona
 Viam�o
-Vicente L�pez
+Vicente López
 Vicenza
 Las Tunas
 Victoria
