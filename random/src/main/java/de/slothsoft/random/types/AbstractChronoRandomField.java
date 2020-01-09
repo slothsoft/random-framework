@@ -14,29 +14,17 @@ import de.slothsoft.random.RandomField;
 
 abstract class AbstractChronoRandomField<C> implements RandomField {
 
-	static final int YEAR = 0;
-	static final int MONTH = 1;
-	static final int DAY = 2;
-	static final int HOUR = 3;
-	static final int MINUTE = 4;
-	static final int SECOND = 5;
-	static final int ARRAY_LENGTH = 6;
-	static final int[] UNITS_MULTIPLIER = {12, 30, 24, 60, 60};
-
 	private C startValue;
 	private C endValue;
 
-	public AbstractChronoRandomField() {
-		this.startValue = fromLongValue(Long.MIN_VALUE);
-		this.endValue = fromLongValue(Long.MAX_VALUE);
-	}
-
 	@Override
 	public C nextValue() {
-		final C start = this.startValue;
-		final C end = this.endValue;
+		final C start = this.startValue == null ? createDefaultStartValue() : this.startValue;
+		final C end = this.endValue == null ? createDefaultEndValue() : this.endValue;
 
-		if (end.equals(start)) return start;
+		if (end.equals(start)) {
+			return start;
+		}
 
 		final long startValueAsLong = toLongValue(start);
 		final long endValueAsLong = toLongValue(end);
@@ -48,6 +36,10 @@ abstract class AbstractChronoRandomField<C> implements RandomField {
 	abstract long toLongValue(C value);
 
 	abstract C fromLongValue(long value);
+
+	abstract C createDefaultStartValue();
+
+	abstract C createDefaultEndValue();
 
 	boolean isBefore(C value1, C value2) {
 		return toLongValue(value1) < toLongValue(value2);
@@ -64,7 +56,7 @@ abstract class AbstractChronoRandomField<C> implements RandomField {
 	/**
 	 * Returns the highest possible value for this field.
 	 *
-	 * @return end value; never null
+	 * @return end value
 	 */
 
 	public C getEndValue() {
@@ -74,8 +66,8 @@ abstract class AbstractChronoRandomField<C> implements RandomField {
 	/**
 	 * Sets the highest possible value for this field.
 	 *
-	 * @param newEndValue end value; cannot be null
-	 * @return this instance; cannot be null
+	 * @param newEndValue end value
+	 * @return this instance
 	 */
 
 	public AbstractChronoRandomField<C> endValue(C newEndValue) {
@@ -86,7 +78,7 @@ abstract class AbstractChronoRandomField<C> implements RandomField {
 	/**
 	 * Sets the highest possible value for this field.
 	 *
-	 * @param endValue end value; cannot be null
+	 * @param endValue end value
 	 */
 
 	public void setEndValue(C endValue) {
@@ -96,7 +88,7 @@ abstract class AbstractChronoRandomField<C> implements RandomField {
 	/**
 	 * Returns the lowest possible value for this field.
 	 *
-	 * @return start value; never null
+	 * @return start value
 	 */
 
 	public C getStartValue() {
@@ -107,7 +99,7 @@ abstract class AbstractChronoRandomField<C> implements RandomField {
 	 * Sets the lowest possible value for this field.
 	 *
 	 * @param newStartValue start value
-	 * @return this instance; cannot be null
+	 * @return this instance
 	 */
 
 	public AbstractChronoRandomField<C> startValue(C newStartValue) {
@@ -118,7 +110,7 @@ abstract class AbstractChronoRandomField<C> implements RandomField {
 	/**
 	 * Sets the lowest possible value for this field.
 	 *
-	 * @param startValue start value; cannot be null
+	 * @param startValue start value
 	 */
 
 	public void setStartValue(C startValue) {

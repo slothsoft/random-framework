@@ -3,8 +3,13 @@ package de.slothsoft.random;
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 
 import org.junit.Assert;
@@ -26,41 +31,53 @@ public class RandomFactoryTest {
 	public static Collection<Object[]> data() throws Exception {
 		return Arrays.asList(new Object[][]{
 
-				data("bigDecimal", BigDecimal.class),
+			data("bigDecimal", BigDecimal.class),
 
-				data("bool", Boolean.class),
+			data("bigInt", BigInteger.class),
 
-				data("smallBool", boolean.class),
+			data("bool", Boolean.class),
 
-				data("doubleTrouble", Double.class),
+			data("smallBool", boolean.class),
 
-				data("smallTrouble", double.class),
+			data("calendar", Calendar.class),
 
-				data("floating", Float.class),
+			data("birthday", Date.class),
 
-				data("smallFloating", float.class),
+			data("city", String.class),
 
-				data("bigInt", BigInteger.class),
+			data("someDate", Date.class),
 
-				data("integer", Integer.class),
+			data("doubleTrouble", Double.class),
 
-				data("smallInt", int.class),
+			data("smallTrouble", double.class),
 
-				data("longJohns", Long.class),
+			data("firstName", String.class),
 
-				data("smallJohns", long.class),
+			data("floating", Float.class),
 
-				data("shorty", Short.class),
+			data("smallFloating", float.class),
 
-				data("smallShorty", short.class),
+			data("integer", Integer.class),
 
-				data("city", String.class),
+			data("smallInt", int.class),
 
-				data("firstName", String.class),
+			data("lastName", String.class),
 
-				data("lastName", String.class),
+			data("someDate", LocalDate.class),
 
-				data("street", String.class),
+			data("someDateTime", LocalDateTime.class),
+
+			data("someTime", LocalTime.class),
+
+			data("longJohns", Long.class),
+
+			data("smallJohns", long.class),
+
+			data("shorty", Short.class),
+
+			data("smallShorty", short.class),
+
+			data("street", String.class),
 
 		});
 	}
@@ -84,12 +101,11 @@ public class RandomFactoryTest {
 		final Object pojo = factory.createSingle();
 		final Object propertyValue = getPropertyValue(pojo);
 
-		Assert.assertNotNull("Property " + this.propertyName + " was not filled correctly for " + this.pojoClass,
-				propertyValue);
+		Assert.assertNotNull("Property " + this.propertyName + " was not filled correctly for " + this.pojoClass, propertyValue);
 
 		if (propertyValue instanceof Number) {
-			Assert.assertNotEquals("Value should be over zero on default: " + propertyValue,
-					((Number) propertyValue).doubleValue(), 0.0, 0.0);
+			Assert.assertNotEquals("Value should be over zero on default: " + propertyValue, ((Number) propertyValue).doubleValue(), 0.0,
+					0.0);
 		}
 	}
 
@@ -106,19 +122,20 @@ public class RandomFactoryTest {
 		for (final Object pojo : factory.create(5)) {
 			final Object propertyValue = getPropertyValue(pojo);
 
-			Assert.assertNotNull("Property " + this.propertyName + " was not filled correctly for " + this.pojoClass,
-					propertyValue);
+			Assert.assertNotNull("Property " + this.propertyName + " was not filled correctly for " + this.pojoClass, propertyValue);
 
 			if (propertyValue instanceof Number) {
-				Assert.assertNotEquals("Value should be over zero on default: " + propertyValue,
-						((Number) propertyValue).doubleValue(), 0.0, 0.0);
+				Assert.assertNotEquals("Value should be over zero on default: " + propertyValue, ((Number) propertyValue).doubleValue(),
+						0.0, 0.0);
 			}
 		}
 	}
 
 	@Test
 	public void testConstructorEmptyHashMap() throws Exception {
-		if (this.propertyName.startsWith("small")) return; // it's a primitive property
+		if (this.propertyName.startsWith("small")) {
+			return; // it's a primitive property
+		}
 
 		final RandomFactory<?> factory = new RandomFactory<>(this::createPojo, new HashMap<>());
 
@@ -145,12 +162,11 @@ public class RandomFactoryTest {
 		final Object pojo = factory.createSingle();
 		final Object propertyValue = getPropertyValue(pojo);
 
-		Assert.assertNotNull("Property " + this.propertyName + " was not filled correctly for " + this.pojoClass,
-				propertyValue);
+		Assert.assertNotNull("Property " + this.propertyName + " was not filled correctly for " + this.pojoClass, propertyValue);
 
 		if (propertyValue instanceof Number) {
-			Assert.assertNotEquals("Value should be over zero on default: " + propertyValue,
-					((Number) propertyValue).doubleValue(), 0.0, 0.0);
+			Assert.assertNotEquals("Value should be over zero on default: " + propertyValue, ((Number) propertyValue).doubleValue(), 0.0,
+					0.0);
 		}
 	}
 
@@ -161,12 +177,11 @@ public class RandomFactoryTest {
 		for (final Object pojo : factory.create(5)) {
 			final Object propertyValue = getPropertyValue(pojo);
 
-			Assert.assertNotNull("Property " + this.propertyName + " was not filled correctly for " + this.pojoClass,
-					propertyValue);
+			Assert.assertNotNull("Property " + this.propertyName + " was not filled correctly for " + this.pojoClass, propertyValue);
 
 			if (propertyValue instanceof Number) {
-				Assert.assertNotEquals("Value should be over zero on default: " + propertyValue,
-						((Number) propertyValue).doubleValue(), 0.0, 0.0);
+				Assert.assertNotEquals("Value should be over zero on default: " + propertyValue, ((Number) propertyValue).doubleValue(),
+						0.0, 0.0);
 			}
 		}
 	}

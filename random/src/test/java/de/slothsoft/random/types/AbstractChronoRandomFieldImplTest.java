@@ -8,6 +8,16 @@ public class AbstractChronoRandomFieldImplTest extends AbstractChronoRandomField
 	public static class ChronoRandomField extends AbstractChronoRandomField<Long> {
 
 		@Override
+		Long createDefaultStartValue() {
+			return Long.MIN_VALUE;
+		}
+
+		@Override
+		Long createDefaultEndValue() {
+			return Long.MAX_VALUE;
+		}
+
+		@Override
 		Long fromLongValue(long value) {
 			return Long.valueOf(value);
 		}

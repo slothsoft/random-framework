@@ -5,8 +5,7 @@ import java.util.Calendar;
 import de.slothsoft.random.RandomField;
 
 /**
- * A {@link RandomField} representing a {@link Calendar} between 10 years ago and 10 years
- * in the future.
+ * A {@link RandomField} representing a {@link Calendar} between 10 years ago and 10 years in the future.
  *
  * @author Stef Schulz
  * @since 2.1.0
@@ -14,19 +13,20 @@ import de.slothsoft.random.RandomField;
 
 public class CalendarRandomField extends AbstractChronoRandomField<Calendar> {
 
-	/**
-	 * Default constructor.
-	 */
-
-	public CalendarRandomField() {
+	@Override
+	Calendar createDefaultStartValue() {
 		final Calendar now = Calendar.getInstance();
 		final int currentYear = now.get(Calendar.YEAR);
-
 		now.set(Calendar.YEAR, currentYear - 10);
-		setStartValue((Calendar) now.clone());
+		return now;
+	}
 
+	@Override
+	Calendar createDefaultEndValue() {
+		final Calendar now = Calendar.getInstance();
+		final int currentYear = now.get(Calendar.YEAR);
 		now.set(Calendar.YEAR, currentYear + 10);
-		setEndValue((Calendar) now.clone());
+		return now;
 	}
 
 	@Override

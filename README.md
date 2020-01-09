@@ -133,6 +133,9 @@ The following classes and semantic fields are supported.
 - `Double` and `double`
 - `Float` and `float`
 - `Integer` and `int`
+- `LocalDateTime`
+- `LocalDate`
+- `LocalTime`
 - `Long` and `long`
 - `Short` and `short`
 - some special `Strings`

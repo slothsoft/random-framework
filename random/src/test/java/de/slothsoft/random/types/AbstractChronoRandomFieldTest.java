@@ -1,6 +1,5 @@
 package de.slothsoft.random.types;
 
-import java.util.Date;
 import java.util.HashMap;
 
 import org.junit.Assert;
@@ -38,52 +37,42 @@ public abstract class AbstractChronoRandomFieldTest<C> extends AbstractRandomFie
 	public void testConstructorEmptyMap() throws Exception {
 		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
 
-		Assert.assertEquals(null, randomFactory.getRandomField(PROPERTY));
+		Assert.assertEquals(null, randomFactory.getRandomField(property));
 	}
 
 	@Test
 	public void testIsBefore() throws Exception {
-		Assert.assertTrue(this.lowValue + " < " + this.highValue,
-				this.chronoField.isBefore(this.lowValue, this.highValue));
-		Assert.assertFalse(this.highValue + " < " + this.lowValue,
-				this.chronoField.isBefore(this.highValue, this.lowValue));
+		Assert.assertTrue(this.lowValue + " < " + this.highValue, this.chronoField.isBefore(this.lowValue, this.highValue));
+		Assert.assertFalse(this.highValue + " < " + this.lowValue, this.chronoField.isBefore(this.highValue, this.lowValue));
 	}
 
 	@Test
 	public void testIsAfter() throws Exception {
-		Assert.assertFalse(this.lowValue + " > " + this.highValue,
-				this.chronoField.isAfter(this.lowValue, this.highValue));
-		Assert.assertTrue(this.highValue + " > " + this.lowValue,
-				this.chronoField.isAfter(this.highValue, this.lowValue));
+		Assert.assertFalse(this.lowValue + " > " + this.highValue, this.chronoField.isAfter(this.lowValue, this.highValue));
+		Assert.assertTrue(this.highValue + " > " + this.lowValue, this.chronoField.isAfter(this.highValue, this.lowValue));
 	}
 
 	@Test
 	public void testIsEqual() throws Exception {
-		Assert.assertFalse(this.lowValue + " = " + this.highValue,
-				this.chronoField.isEqual(this.lowValue, this.highValue));
-		Assert.assertFalse(this.lowValue + " = " + this.highValue,
-				this.chronoField.isEqual(this.highValue, this.lowValue));
+		Assert.assertFalse(this.lowValue + " = " + this.highValue, this.chronoField.isEqual(this.lowValue, this.highValue));
+		Assert.assertFalse(this.lowValue + " = " + this.highValue, this.chronoField.isEqual(this.highValue, this.lowValue));
 
-		Assert.assertTrue(this.highValue + " = " + this.highValue,
-				this.chronoField.isEqual(this.highValue, this.highValue));
-		Assert.assertTrue(this.lowValue + " = " + this.lowValue,
-				this.chronoField.isEqual(this.lowValue, this.lowValue));
+		Assert.assertTrue(this.highValue + " = " + this.highValue, this.chronoField.isEqual(this.highValue, this.highValue));
+		Assert.assertTrue(this.lowValue + " = " + this.lowValue, this.chronoField.isEqual(this.lowValue, this.lowValue));
 	}
 
 	@Test
 	public void testHighValueBeforeLowValue() throws Exception {
-		Assert.assertTrue(this.highValue + " > " + this.lowValue,
-				this.chronoField.isAfter(this.highValue, this.lowValue));
-		Assert.assertFalse(this.lowValue + " > " + this.highValue,
-				this.chronoField.isAfter(this.lowValue, this.highValue));
+		Assert.assertTrue(this.highValue + " > " + this.lowValue, this.chronoField.isAfter(this.highValue, this.lowValue));
+		Assert.assertFalse(this.lowValue + " > " + this.highValue, this.chronoField.isAfter(this.lowValue, this.highValue));
 	}
 
 	@Test
 	public void testRandomFactoryStartValue() throws Exception {
 		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
-		randomFactory.addRandomField(PROPERTY, this.chronoField);
+		randomFactory.addRandomField(property, this.chronoField);
 
-		Assert.assertSame(this.chronoField, randomFactory.getRandomField(PROPERTY));
+		Assert.assertSame(this.chronoField, randomFactory.getRandomField(property));
 
 		this.chronoField.setStartValue(this.highValue);
 
@@ -111,9 +100,9 @@ public abstract class AbstractChronoRandomFieldTest<C> extends AbstractRandomFie
 	@Test
 	public void testRandomFactoryEndValue() throws Exception {
 		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
-		randomFactory.addRandomField(PROPERTY, this.chronoField);
+		randomFactory.addRandomField(property, this.chronoField);
 
-		Assert.assertSame(this.chronoField, randomFactory.getRandomField(PROPERTY));
+		Assert.assertSame(this.chronoField, randomFactory.getRandomField(property));
 
 		this.chronoField.setEndValue(this.highValue);
 
@@ -141,9 +130,9 @@ public abstract class AbstractChronoRandomFieldTest<C> extends AbstractRandomFie
 	@Test
 	public void testRandomFactoryStartValueAndEndValue() throws Exception {
 		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
-		randomFactory.addRandomField(PROPERTY, this.chronoField);
+		randomFactory.addRandomField(property, this.chronoField);
 
-		Assert.assertSame(this.chronoField, randomFactory.getRandomField(PROPERTY));
+		Assert.assertSame(this.chronoField, randomFactory.getRandomField(property));
 
 		this.chronoField.setStartValue(this.lowValue);
 		this.chronoField.setEndValue(this.highValue);
@@ -176,9 +165,9 @@ public abstract class AbstractChronoRandomFieldTest<C> extends AbstractRandomFie
 	@Test
 	public void testRandomFactoryStartValueAndEndValueSwitched() throws Exception {
 		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
-		randomFactory.addRandomField(PROPERTY, this.chronoField);
+		randomFactory.addRandomField(property, this.chronoField);
 
-		Assert.assertSame(this.chronoField, randomFactory.getRandomField(PROPERTY));
+		Assert.assertSame(this.chronoField, randomFactory.getRandomField(property));
 
 		this.chronoField.setStartValue(this.highValue);
 		this.chronoField.setEndValue(this.lowValue);
@@ -210,9 +199,9 @@ public abstract class AbstractChronoRandomFieldTest<C> extends AbstractRandomFie
 	@Test
 	public void testRandomFactoryStartValueEqualsEndValue() throws Exception {
 		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
-		randomFactory.addRandomField(PROPERTY, this.chronoField);
+		randomFactory.addRandomField(property, this.chronoField);
 
-		Assert.assertSame(this.chronoField, randomFactory.getRandomField(PROPERTY));
+		Assert.assertSame(this.chronoField, randomFactory.getRandomField(property));
 
 		this.chronoField.setStartValue(this.highValue);
 		this.chronoField.setEndValue(this.highValue);
@@ -246,11 +235,28 @@ public abstract class AbstractChronoRandomFieldTest<C> extends AbstractRandomFie
 
 	@Test
 	public void testFromAndToLong() throws Exception {
-		final long initialLong = new Date().getTime();
+		final long initialLong = this.chronoField.toLongValue(this.highValue);
 		final C value = this.chronoField.fromLongValue(initialLong);
 		final long copyOfLong = this.chronoField.toLongValue(value);
 
 		Assert.assertEquals(initialLong, copyOfLong);
 	}
 
+	@Test
+	public void testSetEndValue() throws Exception {
+		this.chronoField.setEndValue(this.highValue);
+		Assert.assertEquals(this.highValue, this.chronoField.getEndValue());
+
+		this.chronoField.endValue(this.lowValue);
+		Assert.assertEquals(this.lowValue, this.chronoField.getEndValue());
+	}
+
+	@Test
+	public void testSetStartValue() throws Exception {
+		this.chronoField.setStartValue(this.highValue);
+		Assert.assertEquals(this.highValue, this.chronoField.getStartValue());
+
+		this.chronoField.startValue(this.lowValue);
+		Assert.assertEquals(this.lowValue, this.chronoField.getStartValue());
+	}
 }

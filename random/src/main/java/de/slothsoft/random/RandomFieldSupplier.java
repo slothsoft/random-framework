@@ -5,6 +5,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -24,6 +27,9 @@ import de.slothsoft.random.types.FirstNameRandomField;
 import de.slothsoft.random.types.FloatRandomField;
 import de.slothsoft.random.types.IntegerRandomField;
 import de.slothsoft.random.types.LastNameRandomField;
+import de.slothsoft.random.types.LocalDateRandomField;
+import de.slothsoft.random.types.LocalDateTimeRandomField;
+import de.slothsoft.random.types.LocalTimeRandomField;
 import de.slothsoft.random.types.LongRandomField;
 import de.slothsoft.random.types.ShortRandomField;
 import de.slothsoft.random.types.StreetRandomField;
@@ -50,7 +56,9 @@ public abstract class RandomFieldSupplier {
 	public static RandomFieldSupplier findSupplierByField(String propertyName, Class<?> propertyClass) {
 		final String name = propertyName.toLowerCase();
 		for (final RandomFieldSupplier supplier : getAllSuppliers()) {
-			if (supplier.canSupply(name, propertyClass)) return supplier;
+			if (supplier.canSupply(name, propertyClass)) {
+				return supplier;
+			}
 		}
 		return null;
 	}
@@ -65,8 +73,7 @@ public abstract class RandomFieldSupplier {
 		if (suppliers == null) {
 			suppliers = new ArrayList<>();
 
-			final String[] streets = readFile(RandomFieldSupplier.class.getResourceAsStream("text/street-names.txt"));
-			suppliers.add(forSynonymeList("synonyms/street-names.txt", () -> new StreetRandomField(streets)));
+			suppliers.add(forSynonymeList("synonyms/street-names.txt", () -> new StreetRandomField()));
 
 			suppliers.add(forSynonymeList("synonyms/last-names.txt", LastNameRandomField::new));
 			suppliers.add(forSynonymeList("synonyms/city-names.txt", CityRandomField::new));
@@ -75,6 +82,9 @@ public abstract class RandomFieldSupplier {
 
 			suppliers.add(forFieldClass(Date.class, DateRandomField::new));
 			suppliers.add(forFieldClass(Calendar.class, CalendarRandomField::new));
+			suppliers.add(forFieldClass(LocalDateTime.class, LocalDateTimeRandomField::new));
+			suppliers.add(forFieldClass(LocalTime.class, LocalTimeRandomField::new));
+			suppliers.add(forFieldClass(LocalDate.class, LocalDateRandomField::new));
 
 			suppliers.add(forFieldClass(Short.class, ShortRandomField::new));
 			suppliers.add(forFieldClass(short.class, () -> new ShortRandomField()));

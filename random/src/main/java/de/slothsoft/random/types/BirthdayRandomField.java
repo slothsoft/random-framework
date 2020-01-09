@@ -15,15 +15,20 @@ import de.slothsoft.random.RandomField;
 
 public class BirthdayRandomField extends DateRandomField {
 
-	public BirthdayRandomField() {
+	@Override
+	Date createDefaultStartValue() {
 		final Calendar now = Calendar.getInstance();
 		final int currentYear = now.get(Calendar.YEAR);
-
 		now.set(Calendar.YEAR, currentYear - 100);
-		setStartValue(now.getTime());
+		return now.getTime();
+	}
 
+	@Override
+	Date createDefaultEndValue() {
+		final Calendar now = Calendar.getInstance();
+		final int currentYear = now.get(Calendar.YEAR);
 		now.set(Calendar.YEAR, currentYear - 1);
-		setEndValue(now.getTime());
+		return now.getTime();
 	}
 
 	@Override
