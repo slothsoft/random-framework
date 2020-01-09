@@ -8,14 +8,14 @@ import java.util.TimeZone;
 import de.slothsoft.random.RandomField;
 
 /**
- * A {@link RandomField} representing a {@link LocalDate} between 10 years ago and 10 years in the future.
+ * A {@link RandomField} representing a {@link LocalDate} between 10 years ago and 10
+ * years in the future.
  *
  * @author Stef Schulz
  * @since 2.1.0
  */
 
 public class LocalDateRandomField extends AbstractChronoRandomField<LocalDate> {
-
 
 	@Override
 	LocalDate createDefaultStartValue() {
@@ -34,7 +34,7 @@ public class LocalDateRandomField extends AbstractChronoRandomField<LocalDate> {
 
 	@Override
 	LocalDate fromLongValue(long date) {
-		return LocalDate.ofInstant(Instant.ofEpochMilli(date), TimeZone.getDefault().toZoneId());
+		return Instant.ofEpochMilli(date).atZone(TimeZone.getDefault().toZoneId()).toLocalDate();
 	}
 
 	@Override
