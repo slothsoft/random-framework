@@ -11,6 +11,18 @@
 
 A framework for creating dummy data for [POJO](https://de.wikipedia.org/wiki/Plain_Old_Java_Object)s. It can fill a lot of fields with random data, and is even able to recognize some fields that need special values to look pretty.
 
+**Content:**
+
+- [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Installing](#installing)
+    - [Using the Framework](#using-the-framework)
+- [Versions](#versions)
+- [Features](#features)
+- [Developer Manual](#developer-manual)
+- [License](#license)
+
+
 ## Getting Started
 
 ### Prerequisites
@@ -41,7 +53,7 @@ class MyPerson {
     private String firstName;
     private Date birthdate;
     
-    // add getter and setter!
+    // add getters and setters!
 }
 
 RandomFactory<MyPerson> factory = RandomFactory.forClass(MyPerson.class);
@@ -60,14 +72,14 @@ If you want to have more control over the generated values, you cann add your ow
 
 
 ```java
-class MyPojo { 
+class MyPerson { 
     private String firstName;
-    private Date birthdate;
+    private Date burzeltag;
     
-    // add getter and setter!
+    // add getters and setters!
 }
 
-RandomFactory<MyPojo> factory = RandomFactory.forClass(MyPojo.class);
+RandomFactory<MyPojo> factory = RandomFactory.forClass(MyPerson.class);
 factory.addRandomField("firstName", new FirstNameRandomField().gender(Gender.MALE));
 factory.addRandomField("burzeltag", new BirthdayRandomField());
 
@@ -94,7 +106,7 @@ for (final MyPerson person : factory.create(MyPerson.class, 5)) {
 }
 ```
 
-Even more examples are located [here](https://github.com/slothsoft/framework-random/tree/master/random-example/src/main/java/de/slothsoft/random/example). To see all types have a look at [the package "types"](https://github.com/slothsoft/framework-random/tree/master/random/src/main/java/de/slothsoft/random/types).
+Even more examples are located [here](https://github.com/slothsoft/framework-random/tree/master/random-example/src/main/java/). To see all types have a look at [the package "types"](https://github.com/slothsoft/framework-random/tree/master/random/src/main/java/de/slothsoft/random/types) or the [JavaDoc](http://slothsoft.github.io/framework-random/de/slothsoft/random/types/package-summary.html).
 
 
 ##  Versions
@@ -102,6 +114,7 @@ Even more examples are located [here](https://github.com/slothsoft/framework-ran
 
 | Version       | Changes       |
 | ------------- | ------------- |
+| [2.1.0](https://github.com/slothsoft/framework-random/milestone/2?closed=1) | new fields |
 | [2.0.2](https://github.com/slothsoft/framework-random/milestone/3?closed=1) | fixed file access |
 | 2.0.1         | Made _pom.xml_ pretty |
 | [2.0.0](https://github.com/slothsoft/framework-random/milestone/1?closed=1) | streamlined the API and documentation; moved to Maven Central |
@@ -110,10 +123,12 @@ Even more examples are located [here](https://github.com/slothsoft/framework-ran
 
 ##  Features
 
-The following classes and sematic fields are supported.
+The following classes and semantic fields are supported.
 
 - `BigDecimal`
 - `BigInteger`
+- `Boolean`
+- `Calendar`
 - `Date` (and "birthdays", which have another range)
 - `Double` and `double`
 - `Float` and `float`
@@ -127,8 +142,25 @@ The following classes and sematic fields are supported.
     * streets (with house number)
     
 If something is missing, request it via [a new issue](https://github.com/slothsoft/framework-random/issues/new).
-    
+
+
+
+# Developer Manual
+
+### How to Release?
+
+The release process is basically [as defined in this guide](https://github.com/slothsoft/charts/wiki/How-To-Release).
+
+### How to Create a New Random Field?
+
+Create new implementation of `RandomField` in `de.slothsoft.random.types`. To test this implementation, you can (should) use:
+
+- `RandomFactoryTest` - to test that the basic setup of setting a property of a POJO works
+- `AbstractRandomFieldTest` - to test that the interface is correctly implemented
+
+
+
 
 ## License
 
-This project is licensed under the MIT License - see the [MIT license](https://opensource.org/licenses/MIT) for details.
+This project is licensed under the MIT License - see the [MIT license](LICENSE) for details.
