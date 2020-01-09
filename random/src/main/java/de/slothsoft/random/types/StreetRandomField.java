@@ -12,6 +12,21 @@ import de.slothsoft.random.RandomField;
 
 public class StreetRandomField extends ElementFromListRandomField<String> {
 
+	static final String[] streets;
+
+	static {
+		streets = FirstNameRandomField.readFile("street-names.txt");
+	}
+
+	/**
+	 * @since 2.1.0
+	 */
+
+	public StreetRandomField() {
+		this(streets);
+	}
+
+	@Deprecated
 	public StreetRandomField(String[] fields) {
 		super(fields);
 	}

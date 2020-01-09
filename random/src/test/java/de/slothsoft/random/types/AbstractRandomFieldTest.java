@@ -12,7 +12,7 @@ import de.slothsoft.random.RandomField;
 
 public abstract class AbstractRandomFieldTest {
 
-	protected static final String PROPERTY = "value";
+	protected String property = "value";
 
 	protected final Object pojo;
 	protected RandomField randomField;
@@ -36,8 +36,8 @@ public abstract class AbstractRandomFieldTest {
 		Assert.assertNotNull(getPropertyValue(createdPojo));
 	}
 
-	static Object getPropertyValue(Object pojo) throws Exception {
-		final Field field = pojo.getClass().getDeclaredField(PROPERTY.toLowerCase());
+	Object getPropertyValue(Object pojo) throws Exception {
+		final Field field = pojo.getClass().getDeclaredField(this.property);
 		field.setAccessible(true);
 		return field.get(pojo);
 	}
@@ -54,7 +54,7 @@ public abstract class AbstractRandomFieldTest {
 	public void testConstructorEmptyMap() throws Exception {
 		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
 
-		Assert.assertEquals(null, randomFactory.getRandomField(PROPERTY));
+		Assert.assertEquals(null, randomFactory.getRandomField(this.property));
 
 		final Object createdPojo = randomFactory.createSingle();
 		Assert.assertNull(getPropertyValue(createdPojo));
@@ -63,9 +63,9 @@ public abstract class AbstractRandomFieldTest {
 	@Test
 	public void testConstructorManual() throws Exception {
 		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
-		randomFactory.addRandomField(PROPERTY, this.randomField);
+		randomFactory.addRandomField(this.property, this.randomField);
 
-		Assert.assertSame(this.randomField, randomFactory.getRandomField(PROPERTY));
+		Assert.assertSame(this.randomField, randomFactory.getRandomField(this.property));
 
 		final Object createdPojo = randomFactory.createSingle();
 		Assert.assertNotNull(getPropertyValue(createdPojo));

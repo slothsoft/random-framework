@@ -2,7 +2,7 @@ package de.slothsoft.random.types;
 
 import java.math.BigDecimal;
 
-public class BigDecimalTest extends AbstractNumberRandomFieldTest<BigDecimal> {
+public class BigDecimalRandomFieldTest extends AbstractNumberRandomFieldTest<BigDecimal> {
 
 	public static class Pojo {
 
@@ -18,8 +18,8 @@ public class BigDecimalTest extends AbstractNumberRandomFieldTest<BigDecimal> {
 
 	}
 
-	public BigDecimalTest() {
-		super(new BigDecimalTest.Pojo(), BigDecimal.valueOf(7), BigDecimal.valueOf(92));
+	public BigDecimalRandomFieldTest() {
+		super(new BigDecimalRandomFieldTest.Pojo(), BigDecimal.valueOf(7), BigDecimal.valueOf(92));
 	}
 
 	@Override

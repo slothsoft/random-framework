@@ -1,6 +1,6 @@
 package de.slothsoft.random.types;
 
-public class DoublePrimitiveTest extends AbstractNumberRandomFieldTest<Double> {
+public class DoubleRandomFieldPrimitiveTest extends AbstractNumberRandomFieldTest<Double> {
 
 	public static class Pojo {
 
@@ -16,8 +16,8 @@ public class DoublePrimitiveTest extends AbstractNumberRandomFieldTest<Double> {
 
 	}
 
-	public DoublePrimitiveTest() {
-		super(new DoublePrimitiveTest.Pojo(), Double.valueOf(7), Double.valueOf(92));
+	public DoubleRandomFieldPrimitiveTest() {
+		super(new DoubleRandomFieldPrimitiveTest.Pojo(), Double.valueOf(7), Double.valueOf(92));
 	}
 
 	@Override

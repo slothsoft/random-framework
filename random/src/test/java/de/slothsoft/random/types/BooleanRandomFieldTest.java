@@ -8,7 +8,7 @@ import org.junit.Test;
 import de.slothsoft.random.RandomFactory;
 import de.slothsoft.random.RandomField;
 
-public class BooleanTest extends AbstractRandomFieldTest {
+public class BooleanRandomFieldTest extends AbstractRandomFieldTest {
 
 	public static class Pojo {
 
@@ -24,7 +24,7 @@ public class BooleanTest extends AbstractRandomFieldTest {
 
 	}
 
-	public BooleanTest() {
+	public BooleanRandomFieldTest() {
 		super(new Pojo());
 	}
 
@@ -36,9 +36,9 @@ public class BooleanTest extends AbstractRandomFieldTest {
 	@Test
 	public void testRandomFactoryValue() throws Exception {
 		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
-		randomFactory.addRandomField(PROPERTY, this.randomField);
+		randomFactory.addRandomField(property, this.randomField);
 
-		Assert.assertSame(this.randomField, randomFactory.getRandomField(PROPERTY));
+		Assert.assertSame(this.randomField, randomFactory.getRandomField(property));
 
 		for (int i = 0; i < 100; i++) {
 			final Object createdPojo = randomFactory.createSingle();

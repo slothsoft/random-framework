@@ -33,15 +33,15 @@ public class StringFromListRandomFieldTest extends AbstractRandomFieldTest {
 
 	@Override
 	protected RandomField createRandomField() {
-		return new ElementFromListRandomField(VALUES);
+		return new ElementFromListRandomField<>(VALUES);
 	}
 
 	@Test
 	public void testRandomFactoryValue() throws Exception {
 		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
-		randomFactory.addRandomField(PROPERTY, this.randomField);
+		randomFactory.addRandomField(property, this.randomField);
 
-		Assert.assertSame(this.randomField, randomFactory.getRandomField(PROPERTY));
+		Assert.assertSame(this.randomField, randomFactory.getRandomField(property));
 
 		final List<String> allValues = Arrays.asList(VALUES);
 

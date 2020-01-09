@@ -1,6 +1,6 @@
 package de.slothsoft.random.types;
 
-public class FloatTest extends AbstractNumberRandomFieldTest<Float> {
+public class FloatRandomFieldTest extends AbstractNumberRandomFieldTest<Float> {
 
 	public static class Pojo {
 
@@ -16,8 +16,8 @@ public class FloatTest extends AbstractNumberRandomFieldTest<Float> {
 
 	}
 
-	public FloatTest() {
-		super(new FloatTest.Pojo(), Float.valueOf(7), Float.valueOf(92));
+	public FloatRandomFieldTest() {
+		super(new FloatRandomFieldTest.Pojo(), Float.valueOf(7), Float.valueOf(92));
 	}
 
 	@Override
