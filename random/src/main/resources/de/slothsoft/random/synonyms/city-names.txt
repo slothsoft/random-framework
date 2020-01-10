@@ -8,7 +8,6 @@ village
 dorp
 thorp
 smalltown
-city
 metropolis
 bigcity
 largecity

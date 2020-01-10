@@ -6,15 +6,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.TreeSet;
 
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-@Ignore
 @RunWith(Parameterized.class)
 public class TextFileEncodingTest {
 
@@ -61,12 +60,12 @@ public class TextFileEncodingTest {
 			}
 		}
 
-		Assert.assertEquals(Collections.emptyList(), brokenLines);
+		Assert.assertEquals("Found " + brokenLines.size() + " broken lines!", Collections.emptyList(), brokenLines);
 	}
 
 	private static boolean isBroken(String input) {
 		for (final char c : input.toCharArray()) {
-			if (" '-//.`,&".contains(String.valueOf(c))) {
+			if (" '-//.`,&’".contains(String.valueOf(c))) {
 				continue;
 			}
 			if (Character.isAlphabetic(c)) {
@@ -78,5 +77,28 @@ public class TextFileEncodingTest {
 			return true;
 		}
 		return false;
+	}
+
+	@Test
+	public void testDuplicates() throws Exception {
+		final List<String> lines = Files.readAllLines(this.textFile.toPath());
+
+		if (lines.size() > 10_000) {
+			// then counting duplicates is way to slow
+			Assert.assertEquals("Some lines are present multiple times!", new TreeSet<>(lines).size(), lines.size());
+		} else {
+			for (final String line : new TreeSet<>(lines)) {
+				Assert.assertEquals(line + " is present multiple times!", lines.lastIndexOf(line), lines.indexOf(line));
+			}
+		}
+	}
+
+	@Test
+	public void testTrimmed() throws Exception {
+		final List<String> lines = Files.readAllLines(this.textFile.toPath());
+
+		for (final String line : new TreeSet<>(lines)) {
+			Assert.assertEquals(line + " is not trimmed!", line.trim(), line);
+		}
 	}
 }
