@@ -22,7 +22,6 @@ public class LocalDateRandomFieldTest extends AbstractChronoRandomFieldTest<Loca
 		super(new Pojo(), LocalDate.of(2018, 3, 7), LocalDate.of(2020, 1, 5));
 	}
 
-
 	@Override
 	protected LocalDateRandomField createRandomField() {
 		return new LocalDateRandomField().startValue(LocalDate.of(2010, 2, 1)).endValue(LocalDate.of(2030, 1, 1));

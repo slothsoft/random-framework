@@ -22,7 +22,6 @@ public class LocalTimeRandomFieldTest extends AbstractChronoRandomFieldTest<Loca
 		super(new Pojo(), LocalTime.of(1, 5), LocalTime.of(15, 50));
 	}
 
-
 	@Override
 	protected LocalTimeRandomField createRandomField() {
 		return new LocalTimeRandomField();

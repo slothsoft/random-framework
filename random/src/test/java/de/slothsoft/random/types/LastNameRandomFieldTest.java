@@ -22,7 +22,6 @@ public class LastNameRandomFieldTest extends AbstractRandomFieldTest {
 		this.property = "lastName";
 	}
 
-
 	@Override
 	protected RandomField createRandomField() {
 		return new LastNameRandomField();

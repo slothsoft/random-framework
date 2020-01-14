@@ -65,7 +65,7 @@ public class TextFileEncodingTest {
 
 	private static boolean isBroken(String input) {
 		for (final char c : input.toCharArray()) {
-			if (" '-//.`,&’".contains(String.valueOf(c))) {
+			if (" '-//.`,&’=#:\\".contains(String.valueOf(c))) {
 				continue;
 			}
 			if (Character.isAlphabetic(c)) {

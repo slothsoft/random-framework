@@ -22,7 +22,6 @@ public class StreetRandomFieldTest extends AbstractRandomFieldTest {
 		this.property = "street";
 	}
 
-
 	@Override
 	protected RandomField createRandomField() {
 		return new StreetRandomField();
