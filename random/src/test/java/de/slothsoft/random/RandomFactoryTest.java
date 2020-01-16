@@ -41,6 +41,10 @@ public class RandomFactoryTest {
 
 			data("calendar", Calendar.class),
 
+			data("character", Character.class),
+
+			data("smallCharacter", char.class),
+
 			data("birthday", Date.class),
 
 			data("city", String.class),

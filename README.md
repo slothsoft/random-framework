@@ -129,6 +129,7 @@ The following classes and semantic fields are supported.
 - `BigInteger`
 - `Boolean`
 - `Calendar`
+- `Character` and `char`
 - `Date` (and "birthdays", which have another range)
 - `Double` and `double`
 - `Float` and `float`

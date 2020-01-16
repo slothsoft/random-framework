@@ -20,6 +20,7 @@ import de.slothsoft.random.types.BigIntegerRandomField;
 import de.slothsoft.random.types.BirthdayRandomField;
 import de.slothsoft.random.types.BooleanRandomField;
 import de.slothsoft.random.types.CalendarRandomField;
+import de.slothsoft.random.types.CharacterRandomField;
 import de.slothsoft.random.types.CityRandomField;
 import de.slothsoft.random.types.DateRandomField;
 import de.slothsoft.random.types.DoubleRandomField;
@@ -90,8 +91,10 @@ public abstract class RandomFieldSupplier {
 			suppliers.add(forFieldClass(LocalTime.class, LocalTimeRandomField::new));
 			suppliers.add(forFieldClass(LocalDate.class, LocalDateRandomField::new));
 
-			suppliers.add(forFieldClass(Short.class, ShortRandomField::new));
-			suppliers.add(forFieldClass(short.class, () -> new ShortRandomField()));
+			suppliers.add(forFieldClass(Boolean.class, BooleanRandomField::new));
+			suppliers.add(forFieldClass(boolean.class, () -> new BooleanRandomField()));
+			suppliers.add(forFieldClass(Character.class, CharacterRandomField::new));
+			suppliers.add(forFieldClass(char.class, CharacterRandomField::new));
 			suppliers.add(forFieldClass(Integer.class, IntegerRandomField::new));
 			suppliers.add(forFieldClass(int.class, () -> new IntegerRandomField()));
 			suppliers.add(forFieldClass(Long.class, LongRandomField::new));
@@ -102,8 +105,8 @@ public abstract class RandomFieldSupplier {
 			suppliers.add(forFieldClass(float.class, () -> new FloatRandomField()));
 			suppliers.add(forFieldClass(BigInteger.class, BigIntegerRandomField::new));
 			suppliers.add(forFieldClass(BigDecimal.class, BigDecimalRandomField::new));
-			suppliers.add(forFieldClass(Boolean.class, BooleanRandomField::new));
-			suppliers.add(forFieldClass(boolean.class, () -> new BooleanRandomField()));
+			suppliers.add(forFieldClass(short.class, () -> new ShortRandomField()));
+			suppliers.add(forFieldClass(Short.class, () -> new ShortRandomField()));
 		}
 		return suppliers;
 	}
