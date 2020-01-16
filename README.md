@@ -143,7 +143,8 @@ The following classes and semantic fields are supported.
     * first names
     * last names
     * streets (with house number)
-    * words (random letters)
+    * word (random letters)
+    * words (random letters with spaces, dots and paragraphs between them)
     
 If something is missing, request it via [a new issue](https://github.com/slothsoft/framework-random/issues/new).
 

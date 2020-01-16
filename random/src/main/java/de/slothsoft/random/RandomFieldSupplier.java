@@ -34,6 +34,7 @@ import de.slothsoft.random.types.LongRandomField;
 import de.slothsoft.random.types.ShortRandomField;
 import de.slothsoft.random.types.StreetRandomField;
 import de.slothsoft.random.types.WordRandomField;
+import de.slothsoft.random.types.WordsRandomField;
 
 /**
  * Util class for storing managing all the random field this module brings along.
@@ -57,7 +58,9 @@ public abstract class RandomFieldSupplier {
 	public static RandomFieldSupplier findSupplierByField(String propertyName, Class<?> propertyClass) {
 		final String name = propertyName.toLowerCase();
 		for (final RandomFieldSupplier supplier : getAllSuppliers()) {
-			if (supplier.canSupply(name, propertyClass)) return supplier;
+			if (supplier.canSupply(name, propertyClass)) {
+				return supplier;
+			}
 		}
 		return null;
 	}
@@ -79,6 +82,7 @@ public abstract class RandomFieldSupplier {
 			suppliers.add(forSynonymeList("synonyms/first-names.txt", FirstNameRandomField::new));
 			suppliers.add(forSynonymeList("synonyms/birthdays.txt", BirthdayRandomField::new));
 			suppliers.add(forSynonymeList("synonyms/word.txt", WordRandomField::new));
+			suppliers.add(forSynonymeList("synonyms/words.txt", WordsRandomField::new));
 
 			suppliers.add(forFieldClass(Date.class, DateRandomField::new));
 			suppliers.add(forFieldClass(Calendar.class, CalendarRandomField::new));

@@ -22,7 +22,7 @@ public class WordRandomFieldTest extends AbstractRandomFieldTest {
 		}
 	}
 
-	private WordRandomField wordRandomField = new WordRandomField();
+	private WordRandomField wordRandomField;
 
 	public WordRandomFieldTest() {
 		super(new Pojo());
@@ -75,8 +75,7 @@ public class WordRandomFieldTest extends AbstractRandomFieldTest {
 
 	@Test
 	public void testSetConfigWithProbability() throws Exception {
-		this.wordRandomField
-				.setConfig(new DefaultWordGeneratorConfig().letters(new Letter('o'), new Letter('l').probability(0)));
+		this.wordRandomField.setConfig(new DefaultWordGeneratorConfig().letters(new Letter('o'), new Letter('l').probability(0)));
 
 		for (int i = 0; i < 100; i++) {
 			final String word = this.wordRandomField.nextValue();

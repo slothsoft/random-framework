@@ -16,7 +16,7 @@ import de.slothsoft.random.types.wordgen.WordGeneratorConfig;
 
 public class WordRandomField implements RandomField {
 
-	private static final Random RND = new Random();
+	static final Random RND = new Random();
 
 	private WordGeneratorConfig config;
 
@@ -55,7 +55,9 @@ public class WordRandomField implements RandomField {
 		final double letterProbability = RND.nextDouble()
 				* this.configCharactersProbabilities[this.configCharactersProbabilities.length - 1];
 		for (int i = 0; i < this.configCharacters.length; i++) {
-			if (this.configCharactersProbabilities[i + 1] > letterProbability) return this.configCharacters[i];
+			if (this.configCharactersProbabilities[i + 1] > letterProbability) {
+				return this.configCharacters[i];
+			}
 		}
 		// should not happen
 		return '!';
@@ -63,8 +65,9 @@ public class WordRandomField implements RandomField {
 
 	private void updateFieldsFromConfig() {
 		this.configCharacters = Objects.requireNonNull(this.config.getSupportedCharacters());
-		if (this.configCharacters.length == 0)
+		if (this.configCharacters.length == 0) {
 			throw new IllegalArgumentException("At least one character must be supported by config: " + this.config);
+		}
 		this.configCharactersProbabilities = new double[this.configCharacters.length + 1];
 		for (int i = 0; i < this.configCharacters.length; i++) {
 			this.configCharactersProbabilities[i + 1] = this.configCharactersProbabilities[i]
