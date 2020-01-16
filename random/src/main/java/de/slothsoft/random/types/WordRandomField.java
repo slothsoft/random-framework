@@ -8,7 +8,7 @@ import de.slothsoft.random.types.wordgen.StandardWordGeneratorConfig;
 import de.slothsoft.random.types.wordgen.WordGeneratorConfig;
 
 /**
- * Generates word after a defined config stored in {@link WordGeneratorConfig}.
+ * Generates a word after a defined config stored in {@link WordGeneratorConfig}.
  *
  * @author Stef Schulz
  * @since 2.1.0
