@@ -6,7 +6,8 @@ import de.slothsoft.random.RandomField;
 import de.slothsoft.random.types.wordgen.WordGeneratorConfig;
 
 /**
- * Generates words in sentences and paragraphs after a defined config stored in {@link WordGeneratorConfig}.
+ * Generates words in sentences and paragraphs after a defined config stored in
+ * {@link WordGeneratorConfig}.
  *
  * @author Stef Schulz
  * @since 2.1.0
@@ -35,7 +36,7 @@ public class WordsRandomField implements RandomField {
 
 			final int sentencesPerParagraph = 3;
 			for (int s = 0; s < sentencesPerParagraph; s++) {
-				if (p > 0 || s > 0) {
+				if (s > 0) {
 					sb.append(' ');
 				}
 
@@ -91,7 +92,7 @@ public class WordsRandomField implements RandomField {
 
 	/**
 	 * Returns the number of paragraphs.
-	 * 
+	 *
 	 * @return paragraph count
 	 */
 
@@ -101,7 +102,7 @@ public class WordsRandomField implements RandomField {
 
 	/**
 	 * Sets the number of paragraphs.
-	 * 
+	 *
 	 * @param newParagraphCount paragraph count
 	 * @return this instance
 	 */
@@ -113,7 +114,7 @@ public class WordsRandomField implements RandomField {
 
 	/**
 	 * Sets the number of paragraphs.
-	 * 
+	 *
 	 * @param paragraphCount paragraph count
 	 */
 

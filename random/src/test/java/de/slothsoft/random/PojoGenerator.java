@@ -10,7 +10,7 @@ import javassist.CtField;
 import javassist.CtMethod;
 import javassist.NotFoundException;
 
-public class PojoGenerator {
+public final class PojoGenerator {
 
 	public static Class<?> generate(String className, String propertyName, Class<?> propertyClass)
 			throws NotFoundException, CannotCompileException {
@@ -54,5 +54,9 @@ public class PojoGenerator {
 	private static CtClass resolveCtClass(Class<?> clazz) throws NotFoundException {
 		final ClassPool pool = ClassPool.getDefault();
 		return pool.get(clazz.getName());
+	}
+
+	private PojoGenerator() {
+		// hide me
 	}
 }

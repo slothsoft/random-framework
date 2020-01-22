@@ -69,7 +69,7 @@ public class RandomFactory<T> {
 			final RandomFieldSupplier field = RandomFieldSupplier.findSupplierByField(fieldEntry.getKey(),
 					fieldEntry.getValue());
 			if (field != null) {
-				result.put(fieldEntry.getKey(), field.createRandomField());
+				result.put(fieldEntry.getKey(), field.createRandomField(fieldEntry.getKey(), fieldEntry.getValue()));
 			}
 		}
 		return result;

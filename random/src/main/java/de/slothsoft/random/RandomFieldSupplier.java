@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.function.BiFunction;
 import java.util.function.Supplier;
 
 import de.slothsoft.random.types.BigDecimalRandomField;
@@ -24,6 +25,7 @@ import de.slothsoft.random.types.CharacterRandomField;
 import de.slothsoft.random.types.CityRandomField;
 import de.slothsoft.random.types.DateRandomField;
 import de.slothsoft.random.types.DoubleRandomField;
+import de.slothsoft.random.types.EnumRandomField;
 import de.slothsoft.random.types.FirstNameRandomField;
 import de.slothsoft.random.types.FloatRandomField;
 import de.slothsoft.random.types.IntegerRandomField;
@@ -59,9 +61,7 @@ public abstract class RandomFieldSupplier {
 	public static RandomFieldSupplier findSupplierByField(String propertyName, Class<?> propertyClass) {
 		final String name = propertyName.toLowerCase();
 		for (final RandomFieldSupplier supplier : getAllSuppliers()) {
-			if (supplier.canSupply(name, propertyClass)) {
-				return supplier;
-			}
+			if (supplier.canSupply(name, propertyClass)) return supplier;
 		}
 		return null;
 	}
@@ -91,20 +91,21 @@ public abstract class RandomFieldSupplier {
 			suppliers.add(forFieldClass(LocalTime.class, LocalTimeRandomField::new));
 			suppliers.add(forFieldClass(LocalDate.class, LocalDateRandomField::new));
 
+			suppliers.add(forFieldClass(BigInteger.class, BigIntegerRandomField::new));
+			suppliers.add(forFieldClass(BigDecimal.class, BigDecimalRandomField::new));
 			suppliers.add(forFieldClass(Boolean.class, BooleanRandomField::new));
 			suppliers.add(forFieldClass(boolean.class, () -> new BooleanRandomField()));
 			suppliers.add(forFieldClass(Character.class, CharacterRandomField::new));
 			suppliers.add(forFieldClass(char.class, CharacterRandomField::new));
-			suppliers.add(forFieldClass(Integer.class, IntegerRandomField::new));
-			suppliers.add(forFieldClass(int.class, () -> new IntegerRandomField()));
-			suppliers.add(forFieldClass(Long.class, LongRandomField::new));
-			suppliers.add(forFieldClass(long.class, () -> new LongRandomField()));
 			suppliers.add(forFieldClass(Double.class, DoubleRandomField::new));
 			suppliers.add(forFieldClass(double.class, () -> new DoubleRandomField()));
 			suppliers.add(forFieldClass(Float.class, FloatRandomField::new));
 			suppliers.add(forFieldClass(float.class, () -> new FloatRandomField()));
-			suppliers.add(forFieldClass(BigInteger.class, BigIntegerRandomField::new));
-			suppliers.add(forFieldClass(BigDecimal.class, BigDecimalRandomField::new));
+			suppliers.add(new EnumRandomFieldSupplier());
+			suppliers.add(forFieldClass(Integer.class, IntegerRandomField::new));
+			suppliers.add(forFieldClass(int.class, () -> new IntegerRandomField()));
+			suppliers.add(forFieldClass(Long.class, LongRandomField::new));
+			suppliers.add(forFieldClass(long.class, () -> new LongRandomField()));
 			suppliers.add(forFieldClass(short.class, () -> new ShortRandomField()));
 			suppliers.add(forFieldClass(Short.class, () -> new ShortRandomField()));
 		}
@@ -138,10 +139,35 @@ public abstract class RandomFieldSupplier {
 		return new BufferedReader(new InputStreamReader(inputStream)).lines().parallel().toArray(String[]::new);
 	}
 
+	static class EnumRandomFieldSupplier extends RandomFieldSupplier {
+
+		@SuppressWarnings({"rawtypes", "unchecked"})
+		protected EnumRandomFieldSupplier() {
+			super((n, c) -> new EnumRandomField<>((Class<Enum>) c));
+		}
+
+		@Override
+		public boolean canSupply(String fieldName, Class<?> fieldClass) {
+			return Enum.class.isAssignableFrom(fieldClass);
+		}
+
+	}
+
 	private final Supplier<RandomField> supplier;
+	private final BiFunction<String, Class<?>, RandomField> supplierWithArguments;
 
 	protected RandomFieldSupplier(Supplier<RandomField> supplier) {
+		this(supplier, null);
+	}
+
+	protected RandomFieldSupplier(BiFunction<String, Class<?>, RandomField> supplierWithArguments) {
+		this(null, supplierWithArguments);
+	}
+
+	private RandomFieldSupplier(Supplier<RandomField> supplier,
+			BiFunction<String, Class<?>, RandomField> supplierWithArguments) {
 		this.supplier = supplier;
+		this.supplierWithArguments = supplierWithArguments;
 	}
 
 	/**
@@ -159,10 +185,16 @@ public abstract class RandomFieldSupplier {
 	 * {@link RandomFactory}.
 	 *
 	 * @return a new instance
+	 * @deprecated use {@link #createRandomField(String, Class)} instead
 	 */
 
+	@Deprecated
 	public RandomField createRandomField() {
-		return this.supplier.get();
+		return createRandomField(null, null);
 	}
 
+	public RandomField createRandomField(String fieldName, Class<?> fieldClass) {
+		if (this.supplier != null) return this.supplier.get();
+		return this.supplierWithArguments.apply(fieldName, fieldClass);
+	}
 }

@@ -132,6 +132,7 @@ The following classes and semantic fields are supported.
 - `Character` and `char`
 - `Date` (and "birthdays", which have another range)
 - `Double` and `double`
+- `Enum`
 - `Float` and `float`
 - `Integer` and `int`
 - `LocalDateTime`
