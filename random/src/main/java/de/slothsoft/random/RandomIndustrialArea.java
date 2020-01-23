@@ -39,8 +39,6 @@ public class RandomIndustrialArea {
 	private final Map<Class<?>, RandomFactory<?>> randomFactories = new HashMap<>();
 	private int creationDepth = 5;
 
-	// TODO: test these methods
-
 	/**
 	 * Adds a <code>RandomFactory</code> to this industrial area.
 	 *

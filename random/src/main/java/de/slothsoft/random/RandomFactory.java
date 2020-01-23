@@ -142,8 +142,6 @@ public class RandomFactory<T> {
 		return result;
 	}
 
-	// TODO: test these methods
-
 	/**
 	 * Returns the {@link RandomField} used to fill the property.
 	 *
