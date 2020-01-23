@@ -42,7 +42,8 @@ public class WordsRandomFieldTest extends AbstractRandomFieldTest {
 			final String error = "Word #" + (i + 1) + " was not okay. ";
 			Assert.assertNotNull(error, words);
 			Assert.assertFalse(error, words.isEmpty());
-			Assert.assertTrue(error + "It should start with upper case: " + words, Character.isUpperCase(words.charAt(0)));
+			Assert.assertTrue(error + "It should start with upper case: " + words,
+					Character.isUpperCase(words.charAt(0)));
 			Assert.assertEquals(error + "It should end with dot: " + words, '.', words.charAt(words.length() - 1));
 		}
 	}
@@ -67,5 +68,14 @@ public class WordsRandomFieldTest extends AbstractRandomFieldTest {
 			}
 		};
 		this.wordsRandomField.setConfig(config);
+	}
+
+	@Test
+	public void testSetParagraphCount() throws Exception {
+		this.wordsRandomField.setParagraphCount(2);
+		Assert.assertEquals(2, this.wordsRandomField.getParagraphCount());
+
+		this.wordsRandomField.paragraphCount(3);
+		Assert.assertEquals(3, this.wordsRandomField.getParagraphCount());
 	}
 }
