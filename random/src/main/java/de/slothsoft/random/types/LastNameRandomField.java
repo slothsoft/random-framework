@@ -17,6 +17,10 @@ public class LastNameRandomField extends ElementFromListRandomField<String> {
 		lastNames = FirstNameRandomField.readFile("last-names.txt");
 	}
 
+	/**
+	 * Default constructor.
+	 */
+
 	public LastNameRandomField() {
 		super(lastNames);
 	}

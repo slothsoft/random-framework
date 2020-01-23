@@ -17,6 +17,10 @@ public class CityRandomField extends ElementFromListRandomField<String> {
 		cities = FirstNameRandomField.readFile("city-names.txt");
 	}
 
+	/**
+	 * Default constructor.
+	 */
+
 	public CityRandomField() {
 		super(cities);
 	}

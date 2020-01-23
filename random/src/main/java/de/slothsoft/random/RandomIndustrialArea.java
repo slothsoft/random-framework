@@ -38,7 +38,7 @@ public class RandomIndustrialArea {
 	private final Map<Class<?>, RandomFactory<?>> randomFactories = new HashMap<>();
 	private int creationDepth = 5;
 
-	// TODO: comment and test these methods
+	// TODO: test these methods
 
 	/**
 	 * Adds a <code>RandomFactory</code> to this industrial area.
@@ -70,8 +70,9 @@ public class RandomIndustrialArea {
 	 */
 
 	public <T> RandomFactory<T> getRandomFactory(Class<T> pojoClass) throws RandomException {
-		if (!containsRandomFactoryFor(pojoClass))
+		if (!containsRandomFactoryFor(pojoClass)) {
 			throw new RandomException("Could not find RandomFactory for class " + pojoClass);
+		}
 		return findRandomFactory(pojoClass);
 	}
 
@@ -107,10 +108,10 @@ public class RandomIndustrialArea {
 	}
 
 	/**
-	 * Creates a single instance of the class. For all the fields of this class, the
-	 * factories of this area are asked, if they want to create it. If not, the normal
-	 * procedure is used.
+	 * Creates a single instance of the class. For all the fields of this class, the factories of this area are asked, if they want to create it. If
+	 * not, the normal procedure is used.
 	 *
+	 * @param <T> the type the factory is for
 	 * @param pojoClass the class to be created
 	 * @return a single dummy instance
 	 * @throws RandomException - if something went wrong
@@ -144,10 +145,11 @@ public class RandomIndustrialArea {
 	}
 
 	/**
-	 * Creates some instances of the class this factory is for. For all the fields of this
-	 * class, the factories of this area are asked, if they want to create it. If not, the
-	 * normal procedure is used.
+	 * Creates some instances of the class this factory is for. For all the fields of this class, the factories of this area are asked, if they want
+	 * to create it. If not, the normal procedure is used.
 	 *
+	 * @param <T> the type the factory is for
+	 * @param createdClass the class to be created
 	 * @param count number of instances to be created
 	 * @return some dummy instance
 	 * @throws RandomException - if something went wrong

@@ -62,6 +62,10 @@ public class FirstNameRandomField implements RandomField {
 	private Gender gender;
 	private List<String> supportedNames;
 
+	/**
+	 * Default constructor.
+	 */
+
 	public FirstNameRandomField() {
 		setGender(Gender.BOTH);
 	}
@@ -71,14 +75,33 @@ public class FirstNameRandomField implements RandomField {
 		return this.supportedNames.get(RND.nextInt(this.supportedNames.size()));
 	}
 
+	/**
+	 * Returns the gender of the generated first names.
+	 *
+	 * @return the gender; never null
+	 */
+
 	public Gender getGender() {
 		return this.gender;
 	}
+
+	/**
+	 * Sets the gender of the generated first names.
+	 *
+	 * @param newGender the gender; cannot be null
+	 * @return this instance
+	 */
 
 	public FirstNameRandomField gender(Gender newGender) {
 		setGender(newGender);
 		return this;
 	}
+
+	/**
+	 * Sets the gender of the generated first names.
+	 *
+	 * @param gender the gender; cannot be null
+	 */
 
 	public void setGender(Gender gender) {
 		this.gender = Objects.requireNonNull(gender);

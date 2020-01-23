@@ -61,7 +61,9 @@ public abstract class RandomFieldSupplier {
 	public static RandomFieldSupplier findSupplierByField(String propertyName, Class<?> propertyClass) {
 		final String name = propertyName.toLowerCase();
 		for (final RandomFieldSupplier supplier : getAllSuppliers()) {
-			if (supplier.canSupply(name, propertyClass)) return supplier;
+			if (supplier.canSupply(name, propertyClass)) {
+				return supplier;
+			}
 		}
 		return null;
 	}
@@ -193,8 +195,18 @@ public abstract class RandomFieldSupplier {
 		return createRandomField(null, null);
 	}
 
+	/**
+	 * Creates a <b>new instance</b> of {@link RandomField} to use for a {@link RandomFactory}.
+	 *
+	 * @param fieldName the name of the field to be filled
+	 * @param fieldClass the class of the field to be filled
+	 * @return a new instance
+	 */
+
 	public RandomField createRandomField(String fieldName, Class<?> fieldClass) {
-		if (this.supplier != null) return this.supplier.get();
+		if (this.supplier != null) {
+			return this.supplier.get();
+		}
 		return this.supplierWithArguments.apply(fieldName, fieldClass);
 	}
 }

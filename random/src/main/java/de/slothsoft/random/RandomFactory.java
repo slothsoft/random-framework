@@ -36,11 +36,11 @@ public class RandomFactory<T> {
 	}
 
 	/**
-	 * Creates a {@link RandomFactory} with just one class and then tries to guess which
-	 * fields to fill. Might not be the best option for some cases.
+	 * Creates a {@link RandomFactory} with just one class and then tries to guess which fields to fill. Might not be the best option for some cases.
 	 *
-	 * @param pojoClass the class of the POJO to be created; the class must have a default
-	 *            constructor and be public
+	 * @param pojoClass the class of the POJO to be created; the class must have a default constructor and be public
+	 * @param <U> the class that should be generated
+	 * @return a {@link RandomFactory} with guessed mapping
 	 */
 
 	public static <U> RandomFactory<U> forClass(Class<U> pojoClass) {
@@ -48,8 +48,9 @@ public class RandomFactory<T> {
 			try {
 				return pojoClass.getConstructor().newInstance();
 			} catch (final Exception e) {
-				throw new RandomException("Could not create instance of class " + pojoClass
-						+ ". Class must have default constructor and be public visible!", e);
+				throw new RandomException(
+						"Could not create instance of class " + pojoClass + ". Class must have default constructor and be public visible!",
+						e);
 			}
 		}, guessMapping(pojoClass));
 	}
@@ -66,8 +67,7 @@ public class RandomFactory<T> {
 		final Map<String, RandomField> result = new HashMap<>();
 
 		for (final Entry<String, Class<?>> fieldEntry : fields.entrySet()) {
-			final RandomFieldSupplier field = RandomFieldSupplier.findSupplierByField(fieldEntry.getKey(),
-					fieldEntry.getValue());
+			final RandomFieldSupplier field = RandomFieldSupplier.findSupplierByField(fieldEntry.getKey(), fieldEntry.getValue());
 			if (field != null) {
 				result.put(fieldEntry.getKey(), field.createRandomField(fieldEntry.getKey(), fieldEntry.getValue()));
 			}
@@ -80,8 +80,7 @@ public class RandomFactory<T> {
 	private final Class<?> pojoClass;
 
 	/**
-	 * A constructor that takes one {@link Supplier}. The mapping of properties to the
-	 * factories filling them is guessed.
+	 * A constructor that takes one {@link Supplier}. The mapping of properties to the factories filling them is guessed.
 	 *
 	 * @param pojoSupplier the supplier for the POJO
 	 */
@@ -91,8 +90,7 @@ public class RandomFactory<T> {
 	}
 
 	/**
-	 * A constructor that takes one class and the mapping of properties to the factories
-	 * filling them.
+	 * A constructor that takes one class and the mapping of properties to the factories filling them.
 	 *
 	 * @param pojoSupplier the supplier for the POJO
 	 * @param fieldMapping the initial mapping for the fields
@@ -140,11 +138,25 @@ public class RandomFactory<T> {
 		return result;
 	}
 
-	// TODO: comment and test these methods
+	// TODO: test these methods
+
+	/**
+	 * Returns the {@link RandomField} used to fill the property.
+	 *
+	 * @param property the property
+	 * @return the random field to fill this property; can be null
+	 */
 
 	public RandomField getRandomField(String property) {
 		return this.fieldMapping.get(property);
 	}
+
+	/**
+	 * Adds a {@link RandomField} to fill some property.
+	 *
+	 * @param property the property
+	 * @param randomField the random field to fill this property; can be null
+	 */
 
 	public void addRandomField(String property, RandomField randomField) {
 		this.fieldMapping.put(property, randomField);

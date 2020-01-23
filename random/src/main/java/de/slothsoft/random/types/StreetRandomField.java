@@ -19,12 +19,22 @@ public class StreetRandomField extends ElementFromListRandomField<String> {
 	}
 
 	/**
+	 * Default constructor.
+	 *
 	 * @since 2.1.0
 	 */
 
 	public StreetRandomField() {
 		this(streets);
 	}
+
+	/**
+	 * Old constructor.
+	 *
+	 * @param fields the street names
+	 * @deprecated use {@link StreetRandomField#StreetRandomField()} or {@link ElementFromListRandomField#ElementFromListRandomField(Object[])}
+	 *             directly
+	 */
 
 	@Deprecated
 	public StreetRandomField(String[] fields) {
