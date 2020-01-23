@@ -1,5 +1,4 @@
 
-
 import java.text.DateFormat;
 import java.util.Date;
 
@@ -49,6 +48,7 @@ public class BasicExample {
 		private String lastName;
 		private String street;
 		private Date birthdate;
+		private String postalCode;
 		private String city;
 		private int age;
 		private Integer integer;
@@ -101,6 +101,14 @@ public class BasicExample {
 			this.birthdate = birthdate;
 		}
 
+		public String getPostalCode() {
+			return this.postalCode;
+		}
+
+		public void setPostalCode(String postalCode) {
+			this.postalCode = postalCode;
+		}
+
 		public String getCity() {
 			return this.city;
 		}
@@ -112,7 +120,8 @@ public class BasicExample {
 		@Override
 		public String toString() {
 			return this.firstName + " " + this.lastName + "   " + this.street + "   *" + FORMAT.format(this.birthdate)
-					+ "   " + this.city + "\n\tage: " + this.age + "   integer: " + this.integer;
+					+ "   " + this.postalCode + " " + this.city + "\n\tage: " + this.age + "   integer: "
+					+ this.integer;
 		}
 	}
 

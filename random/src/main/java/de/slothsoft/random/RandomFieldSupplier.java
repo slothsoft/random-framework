@@ -34,6 +34,7 @@ import de.slothsoft.random.types.LocalDateRandomField;
 import de.slothsoft.random.types.LocalDateTimeRandomField;
 import de.slothsoft.random.types.LocalTimeRandomField;
 import de.slothsoft.random.types.LongRandomField;
+import de.slothsoft.random.types.PostalCodeRandomField;
 import de.slothsoft.random.types.ShortRandomField;
 import de.slothsoft.random.types.StreetRandomField;
 import de.slothsoft.random.types.WordRandomField;
@@ -78,12 +79,12 @@ public abstract class RandomFieldSupplier {
 		if (suppliers == null) {
 			suppliers = new ArrayList<>();
 
-			suppliers.add(forSynonymeList("synonyms/street-names.txt", () -> new StreetRandomField()));
-
-			suppliers.add(forSynonymeList("synonyms/last-names.txt", LastNameRandomField::new));
-			suppliers.add(forSynonymeList("synonyms/city-names.txt", CityRandomField::new));
-			suppliers.add(forSynonymeList("synonyms/first-names.txt", FirstNameRandomField::new));
 			suppliers.add(forSynonymeList("synonyms/birthdays.txt", BirthdayRandomField::new));
+			suppliers.add(forSynonymeList("synonyms/city-names.txt", CityRandomField::new));
+			suppliers.add(forSynonymeList("synonyms/last-names.txt", LastNameRandomField::new));
+			suppliers.add(forSynonymeList("synonyms/first-names.txt", FirstNameRandomField::new));
+			suppliers.add(forSynonymeList("synonyms/postal-code.txt", PostalCodeRandomField::new));
+			suppliers.add(forSynonymeList("synonyms/street-names.txt", StreetRandomField::new));
 			suppliers.add(forSynonymeList("synonyms/word.txt", WordRandomField::new));
 			suppliers.add(forSynonymeList("synonyms/words.txt", WordsRandomField::new));
 
@@ -196,7 +197,8 @@ public abstract class RandomFieldSupplier {
 	}
 
 	/**
-	 * Creates a <b>new instance</b> of {@link RandomField} to use for a {@link RandomFactory}.
+	 * Creates a <b>new instance</b> of {@link RandomField} to use for a
+	 * {@link RandomFactory}.
 	 *
 	 * @param fieldName the name of the field to be filled
 	 * @param fieldClass the class of the field to be filled

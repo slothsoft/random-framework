@@ -36,9 +36,10 @@ final class PropertyUtil {
 			for (final PropertyDescriptor descriptor : descriptors) {
 				if (descriptor.getName().equals(propertyName)) {
 					final Method setter = descriptor.getWriteMethod();
-					if (setter == null)
+					if (setter == null) {
 						throw new RandomException(
 								"Could not find setter for " + propertyName + " on " + pojoClass + "!");
+					}
 					return setter;
 				}
 			}
@@ -70,5 +71,9 @@ final class PropertyUtil {
 		} catch (final IntrospectionException e) {
 			throw new RandomException("Could not introspect " + clazz, e);
 		}
+	}
+
+	private PropertyUtil() {
+		// hide me
 	}
 }
