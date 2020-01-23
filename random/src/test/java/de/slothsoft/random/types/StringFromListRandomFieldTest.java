@@ -41,7 +41,7 @@ public class StringFromListRandomFieldTest extends AbstractRandomFieldTest {
 		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
 		randomFactory.addRandomField(property, this.randomField);
 
-		Assert.assertSame(this.randomField, randomFactory.getRandomField(property));
+		Assert.assertSame(this.randomField, randomFactory.findRandomField(property));
 
 		final List<String> allValues = Arrays.asList(VALUES);
 

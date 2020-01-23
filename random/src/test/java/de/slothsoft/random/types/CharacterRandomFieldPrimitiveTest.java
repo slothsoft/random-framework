@@ -42,7 +42,7 @@ public class CharacterRandomFieldPrimitiveTest extends AbstractRandomFieldTest {
 	public void testConstructorEmptyMap() throws Exception {
 		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
 
-		Assert.assertEquals(null, randomFactory.getRandomField(this.property));
+		Assert.assertEquals(null, randomFactory.findRandomField(this.property));
 	}
 
 	@Test

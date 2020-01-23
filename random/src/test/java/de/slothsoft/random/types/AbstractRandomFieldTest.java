@@ -54,7 +54,7 @@ public abstract class AbstractRandomFieldTest {
 	public void testConstructorEmptyMap() throws Exception {
 		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
 
-		Assert.assertEquals(null, randomFactory.getRandomField(this.property));
+		Assert.assertEquals(null, randomFactory.findRandomField(this.property));
 
 		final Object createdPojo = randomFactory.createSingle();
 		Assert.assertNull(getPropertyValue(createdPojo));
@@ -65,7 +65,7 @@ public abstract class AbstractRandomFieldTest {
 		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
 		randomFactory.addRandomField(this.property, this.randomField);
 
-		Assert.assertSame(this.randomField, randomFactory.getRandomField(this.property));
+		Assert.assertSame(this.randomField, randomFactory.findRandomField(this.property));
 
 		final Object createdPojo = randomFactory.createSingle();
 		Assert.assertNotNull(getPropertyValue(createdPojo));

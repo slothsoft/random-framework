@@ -38,7 +38,7 @@ public class BooleanRandomFieldTest extends AbstractRandomFieldTest {
 		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
 		randomFactory.addRandomField(property, this.randomField);
 
-		Assert.assertSame(this.randomField, randomFactory.getRandomField(property));
+		Assert.assertSame(this.randomField, randomFactory.findRandomField(property));
 
 		for (int i = 0; i < 100; i++) {
 			final Object createdPojo = randomFactory.createSingle();

@@ -10,12 +10,12 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-/*
+/**
  * This class test that some fields are not filled on default.
  */
 
 @RunWith(Parameterized.class)
-public class RandomFactoryNullTest {
+public class RandomFactoryFieldNullTest {
 
 	private static int classCounter;
 
@@ -35,7 +35,7 @@ public class RandomFactoryNullTest {
 	private final Class<?> pojoClass;
 	private final String propertyName;
 
-	public RandomFactoryNullTest(Class<?> pojoClass, String propertyName) {
+	public RandomFactoryFieldNullTest(Class<?> pojoClass, String propertyName) {
 		this.pojoClass = pojoClass;
 		this.propertyName = propertyName;
 	}

@@ -36,7 +36,7 @@ public abstract class AbstractNumberRandomFieldTest<N extends Number> extends Ab
 	public void testConstructorEmptyMap() throws Exception {
 		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
 
-		Assert.assertEquals(null, randomFactory.getRandomField(property));
+		Assert.assertEquals(null, randomFactory.findRandomField(property));
 	}
 
 	@Test
@@ -44,7 +44,7 @@ public abstract class AbstractNumberRandomFieldTest<N extends Number> extends Ab
 		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
 		randomFactory.addRandomField(property, this.numberField);
 
-		Assert.assertSame(this.numberField, randomFactory.getRandomField(property));
+		Assert.assertSame(this.numberField, randomFactory.findRandomField(property));
 
 		this.numberField.setStartValue(this.ninetyTwo);
 
@@ -72,7 +72,7 @@ public abstract class AbstractNumberRandomFieldTest<N extends Number> extends Ab
 		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
 		randomFactory.addRandomField(property, this.numberField);
 
-		Assert.assertSame(this.numberField, randomFactory.getRandomField(property));
+		Assert.assertSame(this.numberField, randomFactory.findRandomField(property));
 
 		this.numberField.setEndValue(this.ninetyTwo);
 
@@ -100,7 +100,7 @@ public abstract class AbstractNumberRandomFieldTest<N extends Number> extends Ab
 		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
 		randomFactory.addRandomField(property, this.numberField);
 
-		Assert.assertSame(this.numberField, randomFactory.getRandomField(property));
+		Assert.assertSame(this.numberField, randomFactory.findRandomField(property));
 
 		this.numberField.setStartValue(this.seven);
 		this.numberField.setEndValue(this.ninetyTwo);
@@ -131,7 +131,7 @@ public abstract class AbstractNumberRandomFieldTest<N extends Number> extends Ab
 		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
 		randomFactory.addRandomField(property, this.numberField);
 
-		Assert.assertSame(this.numberField, randomFactory.getRandomField(property));
+		Assert.assertSame(this.numberField, randomFactory.findRandomField(property));
 
 		this.numberField.setStartValue(this.ninetyTwo);
 		this.numberField.setEndValue(this.seven);
@@ -161,7 +161,7 @@ public abstract class AbstractNumberRandomFieldTest<N extends Number> extends Ab
 		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
 		randomFactory.addRandomField(property, this.numberField);
 
-		Assert.assertSame(this.numberField, randomFactory.getRandomField(property));
+		Assert.assertSame(this.numberField, randomFactory.findRandomField(property));
 
 		this.numberField.setStartValue(this.ninetyTwo);
 		this.numberField.setEndValue(this.ninetyTwo);

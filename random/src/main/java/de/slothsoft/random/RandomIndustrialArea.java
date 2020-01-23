@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * A wrapper for many <code>RandomFactory</code>s and possible some self made random
@@ -43,21 +44,33 @@ public class RandomIndustrialArea {
 	/**
 	 * Adds a <code>RandomFactory</code> to this industrial area.
 	 *
-	 * @param factory a factory to add
+	 * @param factory a factory to add; cannot be null
 	 */
 
 	public void addFactory(RandomFactory<?> factory) {
+		Objects.requireNonNull(factory);
 		this.randomFactories.put(factory.getPojoClass(), factory);
 	}
 
 	/**
 	 * Removes a <code>RandomFactory</code> from this industrial area.
 	 *
-	 * @param factory the factory to remove
+	 * @param factory the factory to remove; cannot be null
 	 */
 
 	public void removeFactory(RandomFactory<?> factory) {
+		Objects.requireNonNull(factory);
 		this.randomFactories.remove(factory.getPojoClass());
+	}
+
+	/**
+	 * Removes a <code>RandomFactory</code> from this industrial area.
+	 *
+	 * @param pojoClass the POJO's class to remove
+	 */
+
+	public void removeFactory(Class<?> pojoClass) {
+		this.randomFactories.remove(pojoClass);
 	}
 
 	/**
@@ -66,7 +79,7 @@ public class RandomIndustrialArea {
 	 * @param <T> the type the factory is for
 	 * @param pojoClass the class that should be created
 	 * @return a random factory
-	 * @throws RandomException if none was found
+	 * @throws RandomException if no {@link RandomFactory} was found
 	 */
 
 	public <T> RandomFactory<T> getRandomFactory(Class<T> pojoClass) throws RandomException {
@@ -108,8 +121,9 @@ public class RandomIndustrialArea {
 	}
 
 	/**
-	 * Creates a single instance of the class. For all the fields of this class, the factories of this area are asked, if they want to create it. If
-	 * not, the normal procedure is used.
+	 * Creates a single instance of the class. For all the fields of this class, the
+	 * factories of this area are asked, if they want to create it. If not, the normal
+	 * procedure is used.
 	 *
 	 * @param <T> the type the factory is for
 	 * @param pojoClass the class to be created
@@ -145,8 +159,9 @@ public class RandomIndustrialArea {
 	}
 
 	/**
-	 * Creates some instances of the class this factory is for. For all the fields of this class, the factories of this area are asked, if they want
-	 * to create it. If not, the normal procedure is used.
+	 * Creates some instances of the class this factory is for. For all the fields of this
+	 * class, the factories of this area are asked, if they want to create it. If not, the
+	 * normal procedure is used.
 	 *
 	 * @param <T> the type the factory is for
 	 * @param createdClass the class to be created

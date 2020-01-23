@@ -37,7 +37,7 @@ public abstract class AbstractChronoRandomFieldTest<C> extends AbstractRandomFie
 	public void testConstructorEmptyMap() throws Exception {
 		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
 
-		Assert.assertEquals(null, randomFactory.getRandomField(property));
+		Assert.assertEquals(null, randomFactory.findRandomField(property));
 	}
 
 	@Test
@@ -72,7 +72,7 @@ public abstract class AbstractChronoRandomFieldTest<C> extends AbstractRandomFie
 		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
 		randomFactory.addRandomField(property, this.chronoField);
 
-		Assert.assertSame(this.chronoField, randomFactory.getRandomField(property));
+		Assert.assertSame(this.chronoField, randomFactory.findRandomField(property));
 
 		this.chronoField.setStartValue(this.highValue);
 
@@ -102,7 +102,7 @@ public abstract class AbstractChronoRandomFieldTest<C> extends AbstractRandomFie
 		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
 		randomFactory.addRandomField(property, this.chronoField);
 
-		Assert.assertSame(this.chronoField, randomFactory.getRandomField(property));
+		Assert.assertSame(this.chronoField, randomFactory.findRandomField(property));
 
 		this.chronoField.setEndValue(this.highValue);
 
@@ -132,7 +132,7 @@ public abstract class AbstractChronoRandomFieldTest<C> extends AbstractRandomFie
 		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
 		randomFactory.addRandomField(property, this.chronoField);
 
-		Assert.assertSame(this.chronoField, randomFactory.getRandomField(property));
+		Assert.assertSame(this.chronoField, randomFactory.findRandomField(property));
 
 		this.chronoField.setStartValue(this.lowValue);
 		this.chronoField.setEndValue(this.highValue);
@@ -167,7 +167,7 @@ public abstract class AbstractChronoRandomFieldTest<C> extends AbstractRandomFie
 		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
 		randomFactory.addRandomField(property, this.chronoField);
 
-		Assert.assertSame(this.chronoField, randomFactory.getRandomField(property));
+		Assert.assertSame(this.chronoField, randomFactory.findRandomField(property));
 
 		this.chronoField.setStartValue(this.highValue);
 		this.chronoField.setEndValue(this.lowValue);
@@ -201,7 +201,7 @@ public abstract class AbstractChronoRandomFieldTest<C> extends AbstractRandomFie
 		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
 		randomFactory.addRandomField(property, this.chronoField);
 
-		Assert.assertSame(this.chronoField, randomFactory.getRandomField(property));
+		Assert.assertSame(this.chronoField, randomFactory.findRandomField(property));
 
 		this.chronoField.setStartValue(this.highValue);
 		this.chronoField.setEndValue(this.highValue);
