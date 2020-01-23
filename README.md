@@ -165,7 +165,7 @@ Create new implementation of `RandomField` in `de.slothsoft.random.types`. To te
 - `RandomFactoryTest` - to test that the basic setup of setting a property of a POJO works
 - `AbstractRandomFieldTest` - to test that the interface is correctly implemented
 
-Also it should be added to the [Features][#features] section of this README.
+Also it should be added to the [Features](#features) section of this README.
 
 
 
