@@ -22,6 +22,7 @@ public class CharacterRandomField implements RandomField {
 
 	private char[] configCharacters;
 	private double[] configCharactersProbabilities;
+	private double nullProbability;
 
 	/**
 	 * Default constructor.
@@ -39,6 +40,9 @@ public class CharacterRandomField implements RandomField {
 
 	@Override
 	public Character nextValue() {
+		if (RND.nextDouble() < this.nullProbability) {
+			return null;
+		}
 		final double letterProbability = RND.nextDouble()
 				* this.configCharactersProbabilities[this.configCharactersProbabilities.length - 1];
 		for (int i = 0; i < this.configCharacters.length; i++) {
@@ -95,4 +99,41 @@ public class CharacterRandomField implements RandomField {
 		updateFieldsFromConfig();
 	}
 
+	/**
+	 * Returns the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @return the probability between 0 and 1
+	 */
+
+	public double getNullProbability() {
+		return this.nullProbability;
+	}
+
+	/**
+	 * Sets the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @param newNullProbability the probability between 0 and 1
+	 * @return this instance
+	 */
+
+	public CharacterRandomField nullProbability(double newNullProbability) {
+		setNullProbability(newNullProbability);
+		return this;
+	}
+
+	/**
+	 * Sets the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @param nullProbability the probability between 0 and 1
+	 */
+
+	public void setNullProbability(double nullProbability) {
+		if (nullProbability < 0 || nullProbability > 1) {
+			throw new IllegalArgumentException("Null probability must be between 0 and 1!");
+		}
+		this.nullProbability = nullProbability;
+	}
 }

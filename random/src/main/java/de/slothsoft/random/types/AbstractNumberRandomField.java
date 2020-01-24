@@ -14,9 +14,14 @@ public abstract class AbstractNumberRandomField<N extends Number> implements Ran
 
 	private N startValue;
 	private N endValue;
+	private double nullProbability;
 
 	@Override
 	public N nextValue() {
+		if (RND.nextDouble() < this.nullProbability) {
+			return null;
+		}
+
 		N start = this.startValue == null ? getDefaultRangeStart() : this.startValue;
 		N end = this.endValue == null ? getDefaultRangeEnd() : this.endValue;
 
@@ -39,7 +44,8 @@ public abstract class AbstractNumberRandomField<N extends Number> implements Ran
 	abstract N getDefaultRangeEnd();
 
 	/**
-	 * Returns the start value, i.e. {@link #nextValue} will always be greater than this value.
+	 * Returns the start value, i.e. {@link #nextValue} will always be greater than this
+	 * value.
 	 *
 	 * @return the start value
 	 */
@@ -49,7 +55,8 @@ public abstract class AbstractNumberRandomField<N extends Number> implements Ran
 	}
 
 	/**
-	 * Sets the start value, i.e. {@link #nextValue} will always be greater than this value.
+	 * Sets the start value, i.e. {@link #nextValue} will always be greater than this
+	 * value.
 	 *
 	 * @param newStartValue the start value
 	 * @return this instance
@@ -61,7 +68,8 @@ public abstract class AbstractNumberRandomField<N extends Number> implements Ran
 	}
 
 	/**
-	 * Sets the start value, i.e. {@link #nextValue} will always be greater than this value.
+	 * Sets the start value, i.e. {@link #nextValue} will always be greater than this
+	 * value.
 	 *
 	 * @param startValue the start value
 	 */
@@ -100,6 +108,44 @@ public abstract class AbstractNumberRandomField<N extends Number> implements Ran
 
 	public void setEndValue(N endValue) {
 		this.endValue = endValue;
+	}
+
+	/**
+	 * Returns the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @return the probability between 0 and 1
+	 */
+
+	public double getNullProbability() {
+		return this.nullProbability;
+	}
+
+	/**
+	 * Sets the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @param newNullProbability the probability between 0 and 1
+	 * @return this instance
+	 */
+
+	public AbstractNumberRandomField<N> nullProbability(double newNullProbability) {
+		setNullProbability(newNullProbability);
+		return this;
+	}
+
+	/**
+	 * Sets the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @param nullProbability the probability between 0 and 1
+	 */
+
+	public void setNullProbability(double nullProbability) {
+		if (nullProbability < 0 || nullProbability > 1) {
+			throw new IllegalArgumentException("Null probability must be between 0 and 1!");
+		}
+		this.nullProbability = nullProbability;
 	}
 
 }

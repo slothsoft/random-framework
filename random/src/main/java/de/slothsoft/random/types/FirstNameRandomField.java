@@ -61,6 +61,7 @@ public class FirstNameRandomField implements RandomField {
 
 	private Gender gender;
 	private List<String> supportedNames;
+	private double nullProbability;
 
 	/**
 	 * Default constructor.
@@ -72,6 +73,9 @@ public class FirstNameRandomField implements RandomField {
 
 	@Override
 	public String nextValue() {
+		if (RND.nextDouble() < this.nullProbability) {
+			return null;
+		}
 		return this.supportedNames.get(RND.nextInt(this.supportedNames.size()));
 	}
 
@@ -117,6 +121,44 @@ public class FirstNameRandomField implements RandomField {
 			this.supportedNames.addAll(Arrays.asList(femaleNames));
 		}
 		this.supportedNames.addAll(Arrays.asList(unisexNames));
+	}
+
+	/**
+	 * Returns the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @return the probability between 0 and 1
+	 */
+
+	public double getNullProbability() {
+		return this.nullProbability;
+	}
+
+	/**
+	 * Sets the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @param newNullProbability the probability between 0 and 1
+	 * @return this instance
+	 */
+
+	public FirstNameRandomField nullProbability(double newNullProbability) {
+		setNullProbability(newNullProbability);
+		return this;
+	}
+
+	/**
+	 * Sets the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @param nullProbability the probability between 0 and 1
+	 */
+
+	public void setNullProbability(double nullProbability) {
+		if (nullProbability < 0 || nullProbability > 1) {
+			throw new IllegalArgumentException("Null probability must be between 0 and 1!");
+		}
+		this.nullProbability = nullProbability;
 	}
 
 }

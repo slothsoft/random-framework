@@ -36,15 +36,15 @@ public abstract class AbstractNumberRandomFieldTest<N extends Number> extends Ab
 	public void testConstructorEmptyMap() throws Exception {
 		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
 
-		Assert.assertEquals(null, randomFactory.findRandomField(property));
+		Assert.assertEquals(null, randomFactory.findRandomField(this.property));
 	}
 
 	@Test
 	public void testRandomFactoryStartValue() throws Exception {
 		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
-		randomFactory.addRandomField(property, this.numberField);
+		randomFactory.addRandomField(this.property, this.numberField);
 
-		Assert.assertSame(this.numberField, randomFactory.findRandomField(property));
+		Assert.assertSame(this.numberField, randomFactory.findRandomField(this.property));
 
 		this.numberField.setStartValue(this.ninetyTwo);
 
@@ -70,9 +70,9 @@ public abstract class AbstractNumberRandomFieldTest<N extends Number> extends Ab
 	@Test
 	public void testRandomFactoryEndValue() throws Exception {
 		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
-		randomFactory.addRandomField(property, this.numberField);
+		randomFactory.addRandomField(this.property, this.numberField);
 
-		Assert.assertSame(this.numberField, randomFactory.findRandomField(property));
+		Assert.assertSame(this.numberField, randomFactory.findRandomField(this.property));
 
 		this.numberField.setEndValue(this.ninetyTwo);
 
@@ -98,9 +98,9 @@ public abstract class AbstractNumberRandomFieldTest<N extends Number> extends Ab
 	@Test
 	public void testRandomFactoryStartValueAndEndValue() throws Exception {
 		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
-		randomFactory.addRandomField(property, this.numberField);
+		randomFactory.addRandomField(this.property, this.numberField);
 
-		Assert.assertSame(this.numberField, randomFactory.findRandomField(property));
+		Assert.assertSame(this.numberField, randomFactory.findRandomField(this.property));
 
 		this.numberField.setStartValue(this.seven);
 		this.numberField.setEndValue(this.ninetyTwo);
@@ -129,9 +129,9 @@ public abstract class AbstractNumberRandomFieldTest<N extends Number> extends Ab
 	@Test
 	public void testRandomFactoryStartValueAndEndValueSwitched() throws Exception {
 		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
-		randomFactory.addRandomField(property, this.numberField);
+		randomFactory.addRandomField(this.property, this.numberField);
 
-		Assert.assertSame(this.numberField, randomFactory.findRandomField(property));
+		Assert.assertSame(this.numberField, randomFactory.findRandomField(this.property));
 
 		this.numberField.setStartValue(this.ninetyTwo);
 		this.numberField.setEndValue(this.seven);
@@ -159,9 +159,9 @@ public abstract class AbstractNumberRandomFieldTest<N extends Number> extends Ab
 	@Test
 	public void testRandomFactoryStartValueEqualsEndValue() throws Exception {
 		final RandomFactory<?> randomFactory = new RandomFactory<>(() -> this.pojo, new HashMap<>());
-		randomFactory.addRandomField(property, this.numberField);
+		randomFactory.addRandomField(this.property, this.numberField);
 
-		Assert.assertSame(this.numberField, randomFactory.findRandomField(property));
+		Assert.assertSame(this.numberField, randomFactory.findRandomField(this.property));
 
 		this.numberField.setStartValue(this.ninetyTwo);
 		this.numberField.setEndValue(this.ninetyTwo);

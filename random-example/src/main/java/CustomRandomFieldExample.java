@@ -1,5 +1,4 @@
 
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,14 +17,10 @@ public class CustomRandomFieldExample {
 	public static void main(String[] args) {
 
 		final Map<String, RandomField> mapping = new HashMap<>();
-		mapping.put("number", new RandomField() {
-
-			@Override
-			public Object nextValue() {
-				// chosen by fair dice roll.
-				// guaranteed to be random.
-				return Integer.valueOf(4);
-			}
+		mapping.put("number", () -> {
+			// chosen by fair dice roll.
+			// guaranteed to be random.
+			return Integer.valueOf(4);
 		});
 
 		final RandomFactory<DiceRoll> factory = new RandomFactory<>(DiceRoll::new, mapping);

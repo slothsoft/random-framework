@@ -22,6 +22,7 @@ public class WordRandomField implements RandomField {
 
 	private char[] configCharacters;
 	private double[] configCharactersProbabilities;
+	private double nullProbability;
 
 	/**
 	 * Default constructor.
@@ -39,6 +40,10 @@ public class WordRandomField implements RandomField {
 
 	@Override
 	public String nextValue() {
+		if (RND.nextDouble() < this.nullProbability) {
+			return null;
+		}
+
 		final int wordLength = (int) Math.max(1, (1 + RND.nextGaussian()) * this.config.getStandardWordLength());
 		final StringBuilder sb = new StringBuilder();
 		char lastLetter = 0;
@@ -106,6 +111,44 @@ public class WordRandomField implements RandomField {
 	public void setConfig(WordGeneratorConfig config) {
 		this.config = Objects.requireNonNull(config);
 		updateFieldsFromConfig();
+	}
+
+	/**
+	 * Returns the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @return the probability between 0 and 1
+	 */
+
+	public double getNullProbability() {
+		return this.nullProbability;
+	}
+
+	/**
+	 * Sets the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @param newNullProbability the probability between 0 and 1
+	 * @return this instance
+	 */
+
+	public WordRandomField nullProbability(double newNullProbability) {
+		setNullProbability(newNullProbability);
+		return this;
+	}
+
+	/**
+	 * Sets the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @param nullProbability the probability between 0 and 1
+	 */
+
+	public void setNullProbability(double nullProbability) {
+		if (nullProbability < 0 || nullProbability > 1) {
+			throw new IllegalArgumentException("Null probability must be between 0 and 1!");
+		}
+		this.nullProbability = nullProbability;
 	}
 
 }

@@ -60,6 +60,9 @@ public class StreetRandomField extends ElementFromListRandomField<String> {
 
 	@Override
 	public String nextValue() {
+		if (RND.nextDouble() < this.nullProbability) {
+			return null;
+		}
 		return this.patternField.nextValue();
 	}
 
@@ -111,7 +114,8 @@ public class StreetRandomField extends ElementFromListRandomField<String> {
 	}
 
 	/**
-	 * Returns the start value for house numbers, i.e. the house number {@link #nextValue} will always be greater than this value.
+	 * Returns the start value for house numbers, i.e. the house number {@link #nextValue}
+	 * will always be greater than this value.
 	 *
 	 * @return the start value
 	 */
@@ -121,7 +125,8 @@ public class StreetRandomField extends ElementFromListRandomField<String> {
 	}
 
 	/**
-	 * Sets the start value for house numbers, i.e. the house number {@link #nextValue} will always be greater than this value.
+	 * Sets the start value for house numbers, i.e. the house number {@link #nextValue}
+	 * will always be greater than this value.
 	 *
 	 * @param newStartValue the start value
 	 * @return this instance
@@ -133,7 +138,8 @@ public class StreetRandomField extends ElementFromListRandomField<String> {
 	}
 
 	/**
-	 * Sets the start value for house numbers, i.e. the house number {@link #nextValue} will always be greater than this value.
+	 * Sets the start value for house numbers, i.e. the house number {@link #nextValue}
+	 * will always be greater than this value.
 	 *
 	 * @param startValue the start value
 	 */
@@ -153,7 +159,8 @@ public class StreetRandomField extends ElementFromListRandomField<String> {
 	}
 
 	/**
-	 * Sets the end value for house numbers, i.e. the house number of {@link #nextValue} will always be less than this value.
+	 * Sets the end value for house numbers, i.e. the house number of {@link #nextValue}
+	 * will always be less than this value.
 	 *
 	 * @param newEndValue the end value
 	 * @return this instance
@@ -165,7 +172,8 @@ public class StreetRandomField extends ElementFromListRandomField<String> {
 	}
 
 	/**
-	 * Sets the end value for house numbers, i.e. the house number of {@link #nextValue} will always be less than this value.
+	 * Sets the end value for house numbers, i.e. the house number of {@link #nextValue}
+	 * will always be less than this value.
 	 *
 	 * @param endValue the end value
 	 */
