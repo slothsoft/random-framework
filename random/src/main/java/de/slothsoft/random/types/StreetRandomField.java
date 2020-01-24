@@ -29,6 +29,7 @@ public class StreetRandomField extends ElementFromListRandomField<String> {
 	}
 
 	private final PatternRandomField patternField = new PatternRandomField(PATTERN_HOUSE_NUMBER_FIRST);
+	private final IntegerRandomField houseNumberField = new IntegerRandomField();
 
 	/**
 	 * Default constructor.
@@ -52,7 +53,8 @@ public class StreetRandomField extends ElementFromListRandomField<String> {
 	@Deprecated
 	public StreetRandomField(String[] fields) {
 		super(fields);
-		this.patternField.addComponent(KEY_HOUSE_NUMBER, () -> String.valueOf(RND.nextInt(100) + 1));
+		this.houseNumberField.startValue(Integer.valueOf(1)).endValue(Integer.valueOf(100));
+		this.patternField.addComponent(KEY_HOUSE_NUMBER, () -> String.valueOf(this.houseNumberField.nextValue()));
 		this.patternField.addComponent(KEY_STREET, () -> super.nextValue());
 	}
 
@@ -106,5 +108,69 @@ public class StreetRandomField extends ElementFromListRandomField<String> {
 
 	public void setPattern(String pattern) {
 		this.patternField.setPattern(pattern);
+	}
+
+	/**
+	 * Returns the start value for house numbers, i.e. the house number {@link #nextValue} will always be greater than this value.
+	 *
+	 * @return the start value
+	 */
+
+	public int getHouseNumberStartValue() {
+		return this.houseNumberField.getStartValue().intValue();
+	}
+
+	/**
+	 * Sets the start value for house numbers, i.e. the house number {@link #nextValue} will always be greater than this value.
+	 *
+	 * @param newStartValue the start value
+	 * @return this instance
+	 */
+
+	public StreetRandomField houseNumberStartValue(int newStartValue) {
+		setHouseNumberStartValue(newStartValue);
+		return this;
+	}
+
+	/**
+	 * Sets the start value for house numbers, i.e. the house number {@link #nextValue} will always be greater than this value.
+	 *
+	 * @param startValue the start value
+	 */
+
+	public void setHouseNumberStartValue(int startValue) {
+		this.houseNumberField.setStartValue(Integer.valueOf(startValue));
+	}
+
+	/**
+	 * Returns the end value, i.e. {@link #nextValue} will always be less than this value.
+	 *
+	 * @return the end value
+	 */
+
+	public int getHouseNumberEndValue() {
+		return this.houseNumberField.getEndValue().intValue();
+	}
+
+	/**
+	 * Sets the end value for house numbers, i.e. the house number of {@link #nextValue} will always be less than this value.
+	 *
+	 * @param newEndValue the end value
+	 * @return this instance
+	 */
+
+	public StreetRandomField houseNumberEndValue(int newEndValue) {
+		setHouseNumberEndValue(newEndValue);
+		return this;
+	}
+
+	/**
+	 * Sets the end value for house numbers, i.e. the house number of {@link #nextValue} will always be less than this value.
+	 *
+	 * @param endValue the end value
+	 */
+
+	public void setHouseNumberEndValue(int endValue) {
+		this.houseNumberField.setEndValue(Integer.valueOf(endValue));
 	}
 }

@@ -58,4 +58,22 @@ public class StreetRandomFieldTest extends AbstractRandomFieldTest {
 		}
 	}
 
+	@Test
+	public void testHouseNumberSetEndValue() throws Exception {
+		this.field.setHouseNumberEndValue(1);
+		Assert.assertEquals(1, this.field.getHouseNumberEndValue());
+
+		this.field.houseNumberEndValue(2);
+		Assert.assertEquals(2, this.field.getHouseNumberEndValue());
+	}
+
+	@Test
+	public void testHouseNumberSetStartValue() throws Exception {
+		this.field.setHouseNumberStartValue(1);
+		Assert.assertEquals(1, this.field.getHouseNumberStartValue());
+
+		this.field.houseNumberStartValue(2);
+		Assert.assertEquals(2, this.field.getHouseNumberStartValue());
+	}
+
 }

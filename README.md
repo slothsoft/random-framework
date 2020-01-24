@@ -144,6 +144,8 @@ The following classes and semantic fields are supported.
     * cities
     * first names
     * last names
+    * patterns (i.e. combination of all other fields)
+    * postal codes
     * streets (with house number)
     * word (random letters)
     * words (random letters with spaces, dots and paragraphs between them)
