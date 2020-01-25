@@ -75,6 +75,7 @@ public class StreetRandomField extends ElementFromListRandomField<String> {
 	 * </ul>
 	 *
 	 * @return the pattern
+	 * @since 2.1.0
 	 */
 
 	public String getPattern() {
@@ -91,6 +92,7 @@ public class StreetRandomField extends ElementFromListRandomField<String> {
 	 *
 	 * @param newPattern the pattern
 	 * @return this instance
+	 * @since 2.1.0
 	 */
 
 	public StreetRandomField pattern(String newPattern) {
@@ -107,6 +109,7 @@ public class StreetRandomField extends ElementFromListRandomField<String> {
 	 * </ul>
 	 *
 	 * @param pattern the pattern
+	 * @since 2.1.0
 	 */
 
 	public void setPattern(String pattern) {
@@ -118,6 +121,7 @@ public class StreetRandomField extends ElementFromListRandomField<String> {
 	 * will always be greater than this value.
 	 *
 	 * @return the start value
+	 * @since 2.1.0
 	 */
 
 	public int getHouseNumberStartValue() {
@@ -130,6 +134,7 @@ public class StreetRandomField extends ElementFromListRandomField<String> {
 	 *
 	 * @param newStartValue the start value
 	 * @return this instance
+	 * @since 2.1.0
 	 */
 
 	public StreetRandomField houseNumberStartValue(int newStartValue) {
@@ -142,6 +147,7 @@ public class StreetRandomField extends ElementFromListRandomField<String> {
 	 * will always be greater than this value.
 	 *
 	 * @param startValue the start value
+	 * @since 2.1.0
 	 */
 
 	public void setHouseNumberStartValue(int startValue) {
@@ -152,6 +158,7 @@ public class StreetRandomField extends ElementFromListRandomField<String> {
 	 * Returns the end value, i.e. {@link #nextValue} will always be less than this value.
 	 *
 	 * @return the end value
+	 * @since 2.1.0
 	 */
 
 	public int getHouseNumberEndValue() {
@@ -164,6 +171,7 @@ public class StreetRandomField extends ElementFromListRandomField<String> {
 	 *
 	 * @param newEndValue the end value
 	 * @return this instance
+	 * @since 2.1.0
 	 */
 
 	public StreetRandomField houseNumberEndValue(int newEndValue) {
@@ -176,6 +184,7 @@ public class StreetRandomField extends ElementFromListRandomField<String> {
 	 * will always be less than this value.
 	 *
 	 * @param endValue the end value
+	 * @since 2.1.0
 	 */
 
 	public void setHouseNumberEndValue(int endValue) {

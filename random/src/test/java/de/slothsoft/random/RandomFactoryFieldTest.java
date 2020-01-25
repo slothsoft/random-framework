@@ -12,6 +12,8 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -80,6 +82,8 @@ public class RandomFactoryFieldTest {
 
 				data("smallJohns", long.class),
 
+				data("postalCode", String.class),
+
 				data("shorty", Short.class),
 
 				data("smallShorty", short.class),
@@ -94,15 +98,22 @@ public class RandomFactoryFieldTest {
 	}
 
 	private static Object[] data(String propertyName, Class<?> propertyClass) throws Exception {
-		return new Object[]{PojoGenerator.generate("Pojo" + classCounter++, propertyName, propertyClass), propertyName};
+		return new Object[]{PojoGenerator.generate(generateNextPojoName(propertyName), propertyName, propertyClass),
+				propertyName, propertyClass};
+	}
+
+	private static String generateNextPojoName(String propertyName) {
+		return propertyName.substring(0, 1).toUpperCase() + propertyName.substring(1) + "Pojo" + classCounter++;
 	}
 
 	private final Class<?> pojoClass;
-	private final String propertyName;
+	final String propertyName;
+	private final Class<?> propertyClass;
 
-	public RandomFactoryFieldTest(Class<?> pojoClass, String propertyName) {
+	public RandomFactoryFieldTest(Class<?> pojoClass, String propertyName, Class<?> propertyClass) {
 		this.pojoClass = pojoClass;
 		this.propertyName = propertyName;
+		this.propertyClass = propertyClass;
 	}
 
 	@Test
@@ -159,8 +170,12 @@ public class RandomFactoryFieldTest {
 	}
 
 	private Object createPojo() {
+		return createPojo(this.pojoClass);
+	}
+
+	private static Object createPojo(Class<?> pojoClass) {
 		try {
-			return this.pojoClass.getConstructor().newInstance();
+			return pojoClass.getConstructor().newInstance();
 		} catch (final Exception e) {
 			e.printStackTrace();
 			Assert.fail(e.getMessage());
@@ -199,6 +214,45 @@ public class RandomFactoryFieldTest {
 						((Number) propertyValue).doubleValue(), 0.0, 0.0);
 			}
 		}
+	}
+
+	@Test
+	public void testInit() throws Exception {
+		final String readerPropertyName = "reader";
+
+		final Map<String, Class<?>> properties = new LinkedHashMap<>();
+		properties.put(this.propertyName, this.propertyClass);
+		properties.put(readerPropertyName, String.class);
+		final Class<?> readerPojoClass = PojoGenerator.generate(generateNextPojoName(this.propertyName), properties);
+
+		// because the order is important!
+		final Map<String, RandomField> fieldMapping = new LinkedHashMap<>();
+		fieldMapping.put(this.propertyName,
+				RandomFieldSupplier.createRandomFieldByField(this.propertyName, this.propertyClass));
+		final boolean[] called = {false};
+		final Object[] expectedValue = {null};
+		fieldMapping.put(readerPropertyName, new RandomField() {
+
+			@Override
+			public void init(Map<String, Object> context) {
+				Assert.assertNotNull(context);
+				expectedValue[0] = context.get(RandomFactoryFieldTest.this.propertyName);
+				Assert.assertNotNull(expectedValue[0]);
+				called[0] = true;
+			}
+
+			@Override
+			public Object nextValue() {
+				return null;
+			}
+		});
+
+		final RandomFactory<?> factory = new RandomFactory<>(() -> createPojo(readerPojoClass), fieldMapping);
+		final Object pojo = factory.nextValue();
+
+		Assert.assertTrue("init() should have been called!", called[0]);
+		Assert.assertNotNull(pojo);
+		Assert.assertEquals(expectedValue[0], getPropertyValue(pojo));
 	}
 
 }

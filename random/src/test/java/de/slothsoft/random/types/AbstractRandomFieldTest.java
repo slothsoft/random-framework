@@ -101,7 +101,7 @@ public abstract class AbstractRandomFieldTest {
 		Class<?> checkedClass = object.getClass();
 		while (checkedClass != null) {
 			try {
-				final Method method = object.getClass().getMethod(setterName, valueClass);
+				final Method method = checkedClass.getMethod(setterName, valueClass);
 				method.invoke(object, value);
 				return;
 			} catch (IllegalAccessException | NoSuchMethodException | SecurityException e) {
@@ -118,7 +118,7 @@ public abstract class AbstractRandomFieldTest {
 		Class<?> checkedClass = object.getClass();
 		while (checkedClass != null) {
 			try {
-				final Method method = object.getClass().getMethod(getterName);
+				final Method method = checkedClass.getMethod(getterName);
 				return method.invoke(object);
 			} catch (IllegalAccessException | NoSuchMethodException | SecurityException e) {
 				// ignore

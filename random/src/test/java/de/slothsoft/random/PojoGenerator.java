@@ -21,15 +21,20 @@ public final class PojoGenerator {
 			throws NotFoundException, CannotCompileException {
 
 		final ClassPool pool = ClassPool.getDefault();
-		final CtClass cc = pool.makeClass(className);
+		final CtClass newClass = pool.makeClass(className);
 
 		for (final Entry<String, Class<?>> entry : properties.entrySet()) {
-			cc.addField(new CtField(resolveCtClass(entry.getValue()), entry.getKey(), cc));
-			cc.addMethod(generateGetter(cc, entry.getKey(), entry.getValue()));
-			cc.addMethod(generateSetter(cc, entry.getKey(), entry.getValue()));
+			addProperty(newClass, entry.getKey(), entry.getValue());
 		}
 
-		return cc.toClass();
+		return newClass.toClass();
+	}
+
+	private static void addProperty(final CtClass newClass, String propertyName, Class<?> propertyClass)
+			throws CannotCompileException, NotFoundException {
+		newClass.addField(new CtField(resolveCtClass(propertyClass), propertyName, newClass));
+		newClass.addMethod(generateGetter(newClass, propertyName, propertyClass));
+		newClass.addMethod(generateSetter(newClass, propertyName, propertyClass));
 	}
 
 	private static CtMethod generateGetter(CtClass declaringClass, String fieldName, Class<?> fieldClass)

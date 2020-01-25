@@ -70,7 +70,8 @@ public class CharacterRandomFieldTest extends AbstractRandomFieldTest {
 
 	@Test
 	public void testSetConfigWithProbability() throws Exception {
-		this.characterRandomField.setConfig(new DefaultWordGeneratorConfig().letters(new Letter('o'), new Letter('l').probability(0)));
+		this.characterRandomField
+				.setConfig(new DefaultWordGeneratorConfig().letters(new Letter('o'), new Letter('l').probability(0)));
 
 		for (int i = 0; i < 100; i++) {
 			final Character letter = this.characterRandomField.nextValue();
@@ -90,5 +91,59 @@ public class CharacterRandomFieldTest extends AbstractRandomFieldTest {
 			}
 		};
 		this.characterRandomField.setConfig(config);
+	}
+
+	@Test
+	public void testSetCapitalProbability() throws Throwable {
+		this.characterRandomField.setCapitalProbability(0.3);
+		Assert.assertEquals(0.3, this.characterRandomField.getCapitalProbability(), DELTA);
+	}
+
+	@Test
+	public void testCapitalProbability() throws Throwable {
+		this.characterRandomField.capitalProbability(0.7);
+		Assert.assertEquals(0.7, this.characterRandomField.getCapitalProbability(), DELTA);
+	}
+
+	@Test
+	public void testSetCapitalProbability0Percent() throws Throwable {
+		this.characterRandomField.capitalProbability(0);
+		for (int i = 0; i < 100; i++) {
+			final Character value = this.characterRandomField.nextValue();
+			final String error = "Value #" + i + " was broken!";
+			Assert.assertNotNull(error, value);
+			Assert.assertEquals(error, String.valueOf(value).toLowerCase(), String.valueOf(value));
+		}
+	}
+
+	@Test
+	public void testSetCapitalProbability100Percent() throws Throwable {
+		this.characterRandomField.setCapitalProbability(1);
+		for (int i = 0; i < 100; i++) {
+			final Character value = this.characterRandomField.nextValue();
+			final String error = "Value #" + i + " was broken!";
+			Assert.assertNotNull(error, value);
+			Assert.assertEquals(error, String.valueOf(value).toUpperCase(), String.valueOf(value));
+		}
+	}
+
+	@Test
+	public void testSetCapitalProbabilityLessThan0Percent() throws Throwable {
+		try {
+			this.characterRandomField.setCapitalProbability(-0.001);
+			Assert.fail("There should have been an exception!");
+		} catch (final IllegalArgumentException e) {
+			Assert.assertNotNull(e);
+		}
+	}
+
+	@Test
+	public void testSetCapitalProbabilityGreaterThan100Percent() throws Throwable {
+		try {
+			this.characterRandomField.setCapitalProbability(1.001);
+			Assert.fail("There should have been an exception!");
+		} catch (final IllegalArgumentException e) {
+			Assert.assertNotNull(e);
+		}
 	}
 }

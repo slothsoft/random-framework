@@ -2,6 +2,7 @@ package de.slothsoft.random;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -14,7 +15,7 @@ import java.util.Map.Entry;
  * @param <T> the type to be created
  */
 
-public class RandomFactory<T> {
+public class RandomFactory<T> implements RandomField {
 
 	/**
 	 * Represents a supplier of results.
@@ -65,13 +66,13 @@ public class RandomFactory<T> {
 
 	static Map<String, RandomField> guessMapping(Class<?> pojoClass) {
 		final Map<String, Class<?>> fields = PropertyUtil.getProperties(pojoClass);
-		final Map<String, RandomField> result = new HashMap<>();
+		final Map<String, RandomField> result = new LinkedHashMap<>();
 
 		for (final Entry<String, Class<?>> fieldEntry : fields.entrySet()) {
-			final RandomFieldSupplier field = RandomFieldSupplier.findSupplierByField(fieldEntry.getKey(),
+			final RandomField randomField = RandomFieldSupplier.createRandomFieldByField(fieldEntry.getKey(),
 					fieldEntry.getValue());
-			if (field != null) {
-				result.put(fieldEntry.getKey(), field.createRandomField(fieldEntry.getKey(), fieldEntry.getValue()));
+			if (randomField != null) {
+				result.put(fieldEntry.getKey(), randomField);
 			}
 		}
 		return result;
@@ -106,6 +107,11 @@ public class RandomFactory<T> {
 		this.pojoClass = pojoSupplier.get().getClass();
 	}
 
+	@Override
+	public T nextValue() {
+		return createSingle();
+	}
+
 	/**
 	 * Creates a single instance of the class this factory is for.
 	 *
@@ -120,9 +126,14 @@ public class RandomFactory<T> {
 	}
 
 	void fillFields(T value) throws RandomException {
+		final Map<String, Object> context = new HashMap<>();
+
 		for (final Entry<String, RandomField> fieldEntry : this.fieldMapping.entrySet()) {
 			final RandomField randomField = fieldEntry.getValue();
-			PropertyUtil.setProperty(value, fieldEntry.getKey(), randomField.nextValue());
+			randomField.init(context);
+			final Object randomValue = randomField.nextValue();
+			PropertyUtil.setProperty(value, fieldEntry.getKey(), randomValue);
+			context.put(fieldEntry.getKey(), randomValue);
 		}
 	}
 

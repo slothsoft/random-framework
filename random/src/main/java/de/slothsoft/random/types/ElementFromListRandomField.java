@@ -40,6 +40,7 @@ public class ElementFromListRandomField<E> implements RandomField {
 	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
 	 *
 	 * @return the probability between 0 and 1
+	 * @since 2.1.0
 	 */
 
 	public double getNullProbability() {
@@ -52,6 +53,7 @@ public class ElementFromListRandomField<E> implements RandomField {
 	 *
 	 * @param newNullProbability the probability between 0 and 1
 	 * @return this instance
+	 * @since 2.1.0
 	 */
 
 	public ElementFromListRandomField<E> nullProbability(double newNullProbability) {
@@ -64,6 +66,7 @@ public class ElementFromListRandomField<E> implements RandomField {
 	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
 	 *
 	 * @param nullProbability the probability between 0 and 1
+	 * @since 2.1.0
 	 */
 
 	public void setNullProbability(double nullProbability) {

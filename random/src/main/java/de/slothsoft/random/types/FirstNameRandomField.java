@@ -26,7 +26,17 @@ public class FirstNameRandomField implements RandomField {
 	 */
 
 	public enum Gender {
-		MALE(true, false), FEMALE(false, true), NEITHER(false, false), BOTH(true, true);
+		/** Value to use male and unisex names. */
+		MALE(true, false),
+
+		/** Value to use female and unisex names. */
+		FEMALE(false, true),
+
+		/** Value to use unisex names only. */
+		NEITHER(false, false),
+
+		/** Value to use all kinds of names. */
+		BOTH(true, true);
 
 		boolean allowsMale;
 		boolean allowsFemale;
@@ -128,6 +138,7 @@ public class FirstNameRandomField implements RandomField {
 	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
 	 *
 	 * @return the probability between 0 and 1
+	 * @since 2.1.0
 	 */
 
 	public double getNullProbability() {
@@ -140,6 +151,7 @@ public class FirstNameRandomField implements RandomField {
 	 *
 	 * @param newNullProbability the probability between 0 and 1
 	 * @return this instance
+	 * @since 2.1.0
 	 */
 
 	public FirstNameRandomField nullProbability(double newNullProbability) {
@@ -152,6 +164,7 @@ public class FirstNameRandomField implements RandomField {
 	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
 	 *
 	 * @param nullProbability the probability between 0 and 1
+	 * @since 2.1.0
 	 */
 
 	public void setNullProbability(double nullProbability) {

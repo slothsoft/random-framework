@@ -115,6 +115,7 @@ public abstract class AbstractNumberRandomField<N extends Number> implements Ran
 	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
 	 *
 	 * @return the probability between 0 and 1
+	 * @since 2.1.0
 	 */
 
 	public double getNullProbability() {
@@ -127,6 +128,7 @@ public abstract class AbstractNumberRandomField<N extends Number> implements Ran
 	 *
 	 * @param newNullProbability the probability between 0 and 1
 	 * @return this instance
+	 * @since 2.1.0
 	 */
 
 	public AbstractNumberRandomField<N> nullProbability(double newNullProbability) {
@@ -139,6 +141,7 @@ public abstract class AbstractNumberRandomField<N extends Number> implements Ran
 	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
 	 *
 	 * @param nullProbability the probability between 0 and 1
+	 * @since 2.1.0
 	 */
 
 	public void setNullProbability(double nullProbability) {

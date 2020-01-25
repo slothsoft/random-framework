@@ -52,6 +52,23 @@ public abstract class RandomFieldSupplier {
 	private static List<RandomFieldSupplier> suppliers;
 
 	/**
+	 * Creates a {@link RandomField} for a property name and class.
+	 *
+	 * @param propertyName the property's name
+	 * @param propertyClass the property's class
+	 * @return a {@link RandomField} or null
+	 * @since 2.1.0
+	 */
+
+	public static RandomField createRandomFieldByField(String propertyName, Class<?> propertyClass) {
+		final RandomFieldSupplier supplier = findSupplierByField(propertyName, propertyClass);
+		if (supplier != null) {
+			return supplier.createRandomField(propertyName, propertyClass);
+		}
+		return null;
+	}
+
+	/**
 	 * Returns a {@link RandomFieldSupplier} for a property name and class.
 	 *
 	 * @param propertyName the property's name

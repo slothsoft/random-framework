@@ -23,6 +23,7 @@ public class CharacterRandomField implements RandomField {
 	private char[] configCharacters;
 	private double[] configCharactersProbabilities;
 	private double nullProbability;
+	private double capitalProbability;
 
 	/**
 	 * Default constructor.
@@ -47,7 +48,13 @@ public class CharacterRandomField implements RandomField {
 				* this.configCharactersProbabilities[this.configCharactersProbabilities.length - 1];
 		for (int i = 0; i < this.configCharacters.length; i++) {
 			if (this.configCharactersProbabilities[i + 1] > letterProbability) {
-				return Character.valueOf(this.configCharacters[i]);
+				char result = this.configCharacters[i];
+				if (RND.nextDouble() < this.capitalProbability) {
+					result = Character.toUpperCase(result);
+				} else {
+					result = Character.toLowerCase(result);
+				}
+				return Character.valueOf(result);
 			}
 		}
 		// should not happen
@@ -135,5 +142,46 @@ public class CharacterRandomField implements RandomField {
 			throw new IllegalArgumentException("Null probability must be between 0 and 1!");
 		}
 		this.nullProbability = nullProbability;
+	}
+
+	/**
+	 * Returns the probability for this field returning capital. If the value is 0 then no
+	 * {@link #nextValue()} is a capital letter, if it is 1 then every
+	 * {@link #nextValue()} is a capital letter.
+	 *
+	 * @return the probability between 0 and 1
+	 */
+
+	public double getCapitalProbability() {
+		return this.capitalProbability;
+	}
+
+	/**
+	 * Sets the probability for this field returning capital. If the value is 0 then no
+	 * {@link #nextValue()} is a capital letter, if it is 1 then every
+	 * {@link #nextValue()} is a capital letter.
+	 *
+	 * @param newCapitalProbability the probability between 0 and 1
+	 * @return this instance
+	 */
+
+	public CharacterRandomField capitalProbability(double newCapitalProbability) {
+		setCapitalProbability(newCapitalProbability);
+		return this;
+	}
+
+	/**
+	 * Sets the probability for this field returning capital. If the value is 0 then no
+	 * {@link #nextValue()} is a capital letter, if it is 1 then every
+	 * {@link #nextValue()} is a capital letter.
+	 *
+	 * @param capitalProbability the probability between 0 and 1
+	 */
+
+	public void setCapitalProbability(double capitalProbability) {
+		if (capitalProbability < 0 || capitalProbability > 1) {
+			throw new IllegalArgumentException("Capital probability must be between 0 and 1!");
+		}
+		this.capitalProbability = capitalProbability;
 	}
 }
