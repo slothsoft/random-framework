@@ -12,13 +12,14 @@ import de.slothsoft.random.RandomField;
 public class BooleanRandomField implements RandomField {
 
 	private double nullProbability;
+	private double trueProbability;
 
 	@Override
 	public Boolean nextValue() {
 		if (RND.nextDouble() < this.nullProbability) {
 			return null;
 		}
-		return Boolean.valueOf(RND.nextBoolean());
+		return Boolean.valueOf(RND.nextDouble() < this.trueProbability);
 	}
 
 	/**
@@ -59,4 +60,41 @@ public class BooleanRandomField implements RandomField {
 		this.nullProbability = nullProbability;
 	}
 
+	/**
+	 * Returns the probability for this field returning true. If the value is 0 then no
+	 * {@link #nextValue()} is true, if it is 1 then every {@link #nextValue()} is true.
+	 *
+	 * @return the probability between 0 and 1
+	 */
+
+	public double getTrueProbability() {
+		return this.trueProbability;
+	}
+
+	/**
+	 * Sets the probability for this field returning true. If the value is 0 then no
+	 * {@link #nextValue()} is true, if it is 1 then every {@link #nextValue()} is true.
+	 *
+	 * @param newTrueProbability the probability between 0 and 1
+	 * @return this instance
+	 */
+
+	public BooleanRandomField trueProbability(double newTrueProbability) {
+		setTrueProbability(newTrueProbability);
+		return this;
+	}
+
+	/**
+	 * Sets the probability for this field returning true. If the value is 0 then no
+	 * {@link #nextValue()} is true, if it is 1 then every {@link #nextValue()} is true.
+	 *
+	 * @param trueProbability the probability between 0 and 1
+	 */
+
+	public void setTrueProbability(double trueProbability) {
+		if (trueProbability < 0 || trueProbability > 1) {
+			throw new IllegalArgumentException("True probability must be between 0 and 1!");
+		}
+		this.trueProbability = trueProbability;
+	}
 }
