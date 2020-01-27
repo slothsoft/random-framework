@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -50,7 +50,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../de/slothsoft/random/types/ShortRandomField.html" title="class in de.slothsoft.random.types"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li>Next&nbsp;Class</li>
+<li><a href="../../../../de/slothsoft/random/types/WordRandomField.html" title="class in de.slothsoft.random.types"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?de/slothsoft/random/types/StreetRandomField.html" target="_top">Frames</a></li>
@@ -75,13 +75,13 @@ var activeTableTab = "activeTableTab";
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
@@ -140,6 +140,37 @@ extends <a href="../../../../de/slothsoft/random/types/ElementFromListRandomFiel
 <!--   -->
 </a>
 <h3>Field Summary</h3>
+<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Field Summary table, listing fields, and an explanation">
+<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Field and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/StreetRandomField.html#KEY_HOUSE_NUMBER">KEY_HOUSE_NUMBER</a></span></code>
+<div class="block">Key that can be used by the pattern to display the house number.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/StreetRandomField.html#KEY_STREET">KEY_STREET</a></span></code>
+<div class="block">Key that can be used by the pattern to display the street name.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/StreetRandomField.html#PATTERN_HOUSE_NUMBER_FIRST">PATTERN_HOUSE_NUMBER_FIRST</a></span></code>
+<div class="block">Pattern used in English speaking countries, e.g.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/StreetRandomField.html#PATTERN_STREET_FIRST">PATTERN_STREET_FIRST</a></span></code>
+<div class="block">Pattern used in Europe, e.g.</div>
+</td>
+</tr>
+</table>
 <ul class="blockList">
 <li class="blockList"><a name="fields.inherited.from.class.de.slothsoft.random.RandomField">
 <!--   -->
@@ -161,7 +192,18 @@ extends <a href="../../../../de/slothsoft/random/types/ElementFromListRandomFiel
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/StreetRandomField.html#StreetRandomField-java.lang.String:A-">StreetRandomField</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]&nbsp;fields)</code>&nbsp;</td>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/StreetRandomField.html#StreetRandomField--">StreetRandomField</a></span>()</code>
+<div class="block">Default constructor.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/StreetRandomField.html#StreetRandomField-java.lang.String:A-">StreetRandomField</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]&nbsp;fields)</code>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
+<div class="block"><span class="deprecationComment">use <a href="../../../../de/slothsoft/random/types/StreetRandomField.html#StreetRandomField--"><code>StreetRandomField()</code></a> or
+             <a href="../../../../de/slothsoft/random/types/ElementFromListRandomField.html#ElementFromListRandomField-E:A-"><code>ElementFromListRandomField.ElementFromListRandomField(Object[])</code></a>
+             directly</span></div>
+</div>
+</td>
 </tr>
 </table>
 </li>
@@ -179,18 +221,86 @@ extends <a href="../../../../de/slothsoft/random/types/ElementFromListRandomFiel
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/StreetRandomField.html#getHouseNumberEndValue--">getHouseNumberEndValue</a></span>()</code>
+<div class="block">Returns the end value, i.e.</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/StreetRandomField.html#getHouseNumberStartValue--">getHouseNumberStartValue</a></span>()</code>
+<div class="block">Returns the start value for house numbers, i.e.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/StreetRandomField.html#getPattern--">getPattern</a></span>()</code>
+<div class="block">Returns the pattern with keys that get replaced during <a href="../../../../de/slothsoft/random/types/StreetRandomField.html#nextValue--"><code>nextValue()</code></a>.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code><a href="../../../../de/slothsoft/random/types/StreetRandomField.html" title="class in de.slothsoft.random.types">StreetRandomField</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/StreetRandomField.html#houseNumberEndValue-int-">houseNumberEndValue</a></span>(int&nbsp;newEndValue)</code>
+<div class="block">Sets the end value for house numbers, i.e.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code><a href="../../../../de/slothsoft/random/types/StreetRandomField.html" title="class in de.slothsoft.random.types">StreetRandomField</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/StreetRandomField.html#houseNumberStartValue-int-">houseNumberStartValue</a></span>(int&nbsp;newStartValue)</code>
+<div class="block">Sets the start value for house numbers, i.e.</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/StreetRandomField.html#nextValue--">nextValue</a></span>()</code>
 <div class="block">Returns a random value.</div>
 </td>
 </tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code><a href="../../../../de/slothsoft/random/types/StreetRandomField.html" title="class in de.slothsoft.random.types">StreetRandomField</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/StreetRandomField.html#pattern-java.lang.String-">pattern</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;newPattern)</code>
+<div class="block">Sets the pattern with keys that get replaced during <a href="../../../../de/slothsoft/random/types/StreetRandomField.html#nextValue--"><code>nextValue()</code></a>.</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/StreetRandomField.html#setHouseNumberEndValue-int-">setHouseNumberEndValue</a></span>(int&nbsp;endValue)</code>
+<div class="block">Sets the end value for house numbers, i.e.</div>
+</td>
+</tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/StreetRandomField.html#setHouseNumberStartValue-int-">setHouseNumberStartValue</a></span>(int&nbsp;startValue)</code>
+<div class="block">Sets the start value for house numbers, i.e.</div>
+</td>
+</tr>
+<tr id="i9" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/StreetRandomField.html#setPattern-java.lang.String-">setPattern</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;pattern)</code>
+<div class="block">Sets the pattern with keys that get replaced during <a href="../../../../de/slothsoft/random/types/StreetRandomField.html#nextValue--"><code>nextValue()</code></a>.</div>
+</td>
+</tr>
 </table>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.de.slothsoft.random.types.ElementFromListRandomField">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;de.slothsoft.random.types.<a href="../../../../de/slothsoft/random/types/ElementFromListRandomField.html" title="class in de.slothsoft.random.types">ElementFromListRandomField</a></h3>
+<code><a href="../../../../de/slothsoft/random/types/ElementFromListRandomField.html#getNullProbability--">getNullProbability</a>, <a href="../../../../de/slothsoft/random/types/ElementFromListRandomField.html#nullProbability-double-">nullProbability</a>, <a href="../../../../de/slothsoft/random/types/ElementFromListRandomField.html#setNullProbability-double-">setNullProbability</a></code></li>
+</ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
 <code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#getClass--" title="class or interface in java.lang">getClass</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notify--" title="class or interface in java.lang">notify</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notifyAll--" title="class or interface in java.lang">notifyAll</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait--" title="class or interface in java.lang">wait</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-" title="class or interface in java.lang">wait</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-int-" title="class or interface in java.lang">wait</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.de.slothsoft.random.RandomField">
+<!--   -->
+</a>
+<h3>Methods inherited from interface&nbsp;de.slothsoft.random.<a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random">RandomField</a></h3>
+<code><a href="../../../../de/slothsoft/random/RandomField.html#init-java.util.Map-">init</a></code></li>
 </ul>
 </li>
 </ul>
@@ -200,19 +310,106 @@ extends <a href="../../../../de/slothsoft/random/types/ElementFromListRandomFiel
 <div class="details">
 <ul class="blockList">
 <li class="blockList">
+<!-- ============ FIELD DETAIL =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field.detail">
+<!--   -->
+</a>
+<h3>Field Detail</h3>
+<a name="KEY_STREET">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>KEY_STREET</h4>
+<pre>public static final&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a> KEY_STREET</pre>
+<div class="block">Key that can be used by the pattern to display the street name.</div>
+<dl>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../../../constant-values.html#de.slothsoft.random.types.StreetRandomField.KEY_STREET">Constant Field Values</a></dd>
+</dl>
+</li>
+</ul>
+<a name="KEY_HOUSE_NUMBER">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>KEY_HOUSE_NUMBER</h4>
+<pre>public static final&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a> KEY_HOUSE_NUMBER</pre>
+<div class="block">Key that can be used by the pattern to display the house number.</div>
+<dl>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../../../constant-values.html#de.slothsoft.random.types.StreetRandomField.KEY_HOUSE_NUMBER">Constant Field Values</a></dd>
+</dl>
+</li>
+</ul>
+<a name="PATTERN_STREET_FIRST">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>PATTERN_STREET_FIRST</h4>
+<pre>public static final&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a> PATTERN_STREET_FIRST</pre>
+<div class="block">Pattern used in Europe, e.g. "Hauptstraße 3".</div>
+<dl>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../../../constant-values.html#de.slothsoft.random.types.StreetRandomField.PATTERN_STREET_FIRST">Constant Field Values</a></dd>
+</dl>
+</li>
+</ul>
+<a name="PATTERN_HOUSE_NUMBER_FIRST">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>PATTERN_HOUSE_NUMBER_FIRST</h4>
+<pre>public static final&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a> PATTERN_HOUSE_NUMBER_FIRST</pre>
+<div class="block">Pattern used in English speaking countries, e.g. "201 High Street".</div>
+<dl>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../../../constant-values.html#de.slothsoft.random.types.StreetRandomField.PATTERN_HOUSE_NUMBER_FIRST">Constant Field Values</a></dd>
+</dl>
+</li>
+</ul>
+</li>
+</ul>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 <ul class="blockList">
 <li class="blockList"><a name="constructor.detail">
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
+<a name="StreetRandomField--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>StreetRandomField</h4>
+<pre>public&nbsp;StreetRandomField()</pre>
+<div class="block">Default constructor.</div>
+<dl>
+<dt><span class="simpleTagLabel">Since:</span></dt>
+<dd>2.1.0</dd>
+</dl>
+</li>
+</ul>
 <a name="StreetRandomField-java.lang.String:A-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>StreetRandomField</h4>
-<pre>public&nbsp;StreetRandomField(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]&nbsp;fields)</pre>
+<pre><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Deprecated.html?is-external=true" title="class or interface in java.lang">@Deprecated</a>
+public&nbsp;StreetRandomField(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]&nbsp;fields)</pre>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;<span class="deprecationComment">use <a href="../../../../de/slothsoft/random/types/StreetRandomField.html#StreetRandomField--"><code>StreetRandomField()</code></a> or
+             <a href="../../../../de/slothsoft/random/types/ElementFromListRandomField.html#ElementFromListRandomField-E:A-"><code>ElementFromListRandomField.ElementFromListRandomField(Object[])</code></a>
+             directly</span></div>
+<div class="block">Old constructor.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>fields</code> - the street names</dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -226,7 +423,7 @@ extends <a href="../../../../de/slothsoft/random/types/ElementFromListRandomFiel
 <a name="nextValue--">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>nextValue</h4>
 <pre>public&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;nextValue()</pre>
@@ -239,6 +436,176 @@ extends <a href="../../../../de/slothsoft/random/types/ElementFromListRandomFiel
 <dd><code><a href="../../../../de/slothsoft/random/types/ElementFromListRandomField.html#nextValue--">nextValue</a></code>&nbsp;in class&nbsp;<code><a href="../../../../de/slothsoft/random/types/ElementFromListRandomField.html" title="class in de.slothsoft.random.types">ElementFromListRandomField</a>&lt;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a random value</dd>
+</dl>
+</li>
+</ul>
+<a name="getPattern--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getPattern</h4>
+<pre>public&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;getPattern()</pre>
+<div class="block">Returns the pattern with keys that get replaced during <a href="../../../../de/slothsoft/random/types/StreetRandomField.html#nextValue--"><code>nextValue()</code></a>. Known
+ keys are:
+ <ul>
+ <li><a href="../../../../de/slothsoft/random/types/StreetRandomField.html#KEY_HOUSE_NUMBER"><code>KEY_HOUSE_NUMBER</code></a></li>
+ <li><a href="../../../../de/slothsoft/random/types/StreetRandomField.html#KEY_STREET"><code>KEY_STREET</code></a></li>
+ </ul></div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the pattern</dd>
+<dt><span class="simpleTagLabel">Since:</span></dt>
+<dd>2.1.0</dd>
+</dl>
+</li>
+</ul>
+<a name="pattern-java.lang.String-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>pattern</h4>
+<pre>public&nbsp;<a href="../../../../de/slothsoft/random/types/StreetRandomField.html" title="class in de.slothsoft.random.types">StreetRandomField</a>&nbsp;pattern(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;newPattern)</pre>
+<div class="block">Sets the pattern with keys that get replaced during <a href="../../../../de/slothsoft/random/types/StreetRandomField.html#nextValue--"><code>nextValue()</code></a>. Known
+ keys are:
+ <ul>
+ <li><a href="../../../../de/slothsoft/random/types/StreetRandomField.html#KEY_HOUSE_NUMBER"><code>KEY_HOUSE_NUMBER</code></a></li>
+ <li><a href="../../../../de/slothsoft/random/types/StreetRandomField.html#KEY_STREET"><code>KEY_STREET</code></a></li>
+ </ul></div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>newPattern</code> - the pattern</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>this instance</dd>
+<dt><span class="simpleTagLabel">Since:</span></dt>
+<dd>2.1.0</dd>
+</dl>
+</li>
+</ul>
+<a name="setPattern-java.lang.String-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setPattern</h4>
+<pre>public&nbsp;void&nbsp;setPattern(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;pattern)</pre>
+<div class="block">Sets the pattern with keys that get replaced during <a href="../../../../de/slothsoft/random/types/StreetRandomField.html#nextValue--"><code>nextValue()</code></a>. Known
+ keys are:
+ <ul>
+ <li><a href="../../../../de/slothsoft/random/types/StreetRandomField.html#KEY_HOUSE_NUMBER"><code>KEY_HOUSE_NUMBER</code></a></li>
+ <li><a href="../../../../de/slothsoft/random/types/StreetRandomField.html#KEY_STREET"><code>KEY_STREET</code></a></li>
+ </ul></div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>pattern</code> - the pattern</dd>
+<dt><span class="simpleTagLabel">Since:</span></dt>
+<dd>2.1.0</dd>
+</dl>
+</li>
+</ul>
+<a name="getHouseNumberStartValue--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getHouseNumberStartValue</h4>
+<pre>public&nbsp;int&nbsp;getHouseNumberStartValue()</pre>
+<div class="block">Returns the start value for house numbers, i.e. the house number <a href="../../../../de/slothsoft/random/types/StreetRandomField.html#nextValue--"><code>nextValue()</code></a>
+ will always be greater than this value.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the start value</dd>
+<dt><span class="simpleTagLabel">Since:</span></dt>
+<dd>2.1.0</dd>
+</dl>
+</li>
+</ul>
+<a name="houseNumberStartValue-int-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>houseNumberStartValue</h4>
+<pre>public&nbsp;<a href="../../../../de/slothsoft/random/types/StreetRandomField.html" title="class in de.slothsoft.random.types">StreetRandomField</a>&nbsp;houseNumberStartValue(int&nbsp;newStartValue)</pre>
+<div class="block">Sets the start value for house numbers, i.e. the house number <a href="../../../../de/slothsoft/random/types/StreetRandomField.html#nextValue--"><code>nextValue()</code></a>
+ will always be greater than this value.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>newStartValue</code> - the start value</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>this instance</dd>
+<dt><span class="simpleTagLabel">Since:</span></dt>
+<dd>2.1.0</dd>
+</dl>
+</li>
+</ul>
+<a name="setHouseNumberStartValue-int-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setHouseNumberStartValue</h4>
+<pre>public&nbsp;void&nbsp;setHouseNumberStartValue(int&nbsp;startValue)</pre>
+<div class="block">Sets the start value for house numbers, i.e. the house number <a href="../../../../de/slothsoft/random/types/StreetRandomField.html#nextValue--"><code>nextValue()</code></a>
+ will always be greater than this value.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>startValue</code> - the start value</dd>
+<dt><span class="simpleTagLabel">Since:</span></dt>
+<dd>2.1.0</dd>
+</dl>
+</li>
+</ul>
+<a name="getHouseNumberEndValue--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getHouseNumberEndValue</h4>
+<pre>public&nbsp;int&nbsp;getHouseNumberEndValue()</pre>
+<div class="block">Returns the end value, i.e. <a href="../../../../de/slothsoft/random/types/StreetRandomField.html#nextValue--"><code>nextValue()</code></a> will always be less than this value.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the end value</dd>
+<dt><span class="simpleTagLabel">Since:</span></dt>
+<dd>2.1.0</dd>
+</dl>
+</li>
+</ul>
+<a name="houseNumberEndValue-int-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>houseNumberEndValue</h4>
+<pre>public&nbsp;<a href="../../../../de/slothsoft/random/types/StreetRandomField.html" title="class in de.slothsoft.random.types">StreetRandomField</a>&nbsp;houseNumberEndValue(int&nbsp;newEndValue)</pre>
+<div class="block">Sets the end value for house numbers, i.e. the house number of <a href="../../../../de/slothsoft/random/types/StreetRandomField.html#nextValue--"><code>nextValue()</code></a>
+ will always be less than this value.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>newEndValue</code> - the end value</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>this instance</dd>
+<dt><span class="simpleTagLabel">Since:</span></dt>
+<dd>2.1.0</dd>
+</dl>
+</li>
+</ul>
+<a name="setHouseNumberEndValue-int-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>setHouseNumberEndValue</h4>
+<pre>public&nbsp;void&nbsp;setHouseNumberEndValue(int&nbsp;endValue)</pre>
+<div class="block">Sets the end value for house numbers, i.e. the house number of <a href="../../../../de/slothsoft/random/types/StreetRandomField.html#nextValue--"><code>nextValue()</code></a>
+ will always be less than this value.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>endValue</code> - the end value</dd>
+<dt><span class="simpleTagLabel">Since:</span></dt>
+<dd>2.1.0</dd>
 </dl>
 </li>
 </ul>
@@ -271,7 +638,7 @@ extends <a href="../../../../de/slothsoft/random/types/ElementFromListRandomFiel
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../de/slothsoft/random/types/ShortRandomField.html" title="class in de.slothsoft.random.types"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li>Next&nbsp;Class</li>
+<li><a href="../../../../de/slothsoft/random/types/WordRandomField.html" title="class in de.slothsoft.random.types"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?de/slothsoft/random/types/StreetRandomField.html" target="_top">Frames</a></li>
@@ -296,13 +663,13 @@ extends <a href="../../../../de/slothsoft/random/types/ElementFromListRandomFiel
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>

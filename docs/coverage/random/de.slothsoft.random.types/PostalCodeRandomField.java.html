@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>PostalCodeRandomField.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Charts Coverage</a> &gt; <a href="../index.html" class="el_bundle">random</a> &gt; <a href="index.source.html" class="el_package">de.slothsoft.random.types</a> &gt; <span class="el_source">PostalCodeRandomField.java</span></div><h1>PostalCodeRandomField.java</h1><pre class="source lang-java linenums">package de.slothsoft.random.types;
+
+import de.slothsoft.random.RandomField;
+
+/**
+ * A {@link RandomField} representing a {@link String} that should look like a postal
+ * code. See &lt;a href=&quot;https://en.wikipedia.org/wiki/List_of_postal_codes&quot;&gt;list of postal
+ * codes&lt;/a&gt;.
+ *
+ * @author Stef Schulz
+ * @since 2.1.0
+ */
+
+public class PostalCodeRandomField implements RandomField {
+
+	/** Key that can be used by the pattern to display a single digit. */
+	public static final String KEY_DIGIT = &quot;{digit}&quot;;
+	/** Key that can be used by the pattern to display a single letter. */
+	public static final String KEY_LETTER = &quot;{letter}&quot;;
+
+	/** Pattern used in Germany, e.g. &quot;01109&quot;. */
+	public static final String PATTERN_GERMANY = KEY_DIGIT + KEY_DIGIT + KEY_DIGIT + KEY_DIGIT + KEY_DIGIT;
+	/** Pattern used in the US, e.g. &quot;12345-6789&quot;. */
+	public static final String PATTERN_US = KEY_DIGIT + KEY_DIGIT + KEY_DIGIT + KEY_DIGIT + KEY_DIGIT + '-' + KEY_DIGIT
+			+ KEY_DIGIT + KEY_DIGIT + KEY_DIGIT;
+	/** Pattern used in Canada, e.g. &quot;A0B 1C2&quot;. */
+	public static final String PATTERN_CANADA = KEY_LETTER + KEY_DIGIT + KEY_LETTER + ' ' + KEY_DIGIT + KEY_LETTER
+			+ KEY_DIGIT;
+
+<span class="fc" id="L30">	private final PatternRandomField patternField = new PatternRandomField(PATTERN_US);</span>
+	private double nullProbability;
+
+	/**
+	 * Default constructor.
+	 */
+
+<span class="fc" id="L37">	public PostalCodeRandomField() {</span>
+<span class="fc" id="L38">		final IntegerRandomField integerRandomField = new IntegerRandomField();</span>
+<span class="fc" id="L39">		integerRandomField.startValue(Integer.valueOf(0)).endValue(Integer.valueOf(10));</span>
+<span class="fc" id="L40">		this.patternField.addComponent(KEY_DIGIT, integerRandomField);</span>
+
+<span class="fc" id="L42">		final CharacterRandomField characterRandomField = new CharacterRandomField();</span>
+<span class="fc" id="L43">		this.patternField.addComponent(KEY_LETTER,</span>
+<span class="fc" id="L44">				() -&gt; String.valueOf(characterRandomField.nextValue()).toUpperCase());</span>
+<span class="fc" id="L45">	}</span>
+
+	@Override
+	public String nextValue() {
+<span class="fc bfc" id="L49" title="All 2 branches covered.">		if (RND.nextDouble() &lt; this.nullProbability) {</span>
+<span class="fc" id="L50">			return null;</span>
+		}
+<span class="fc" id="L52">		return this.patternField.nextValue();</span>
+	}
+
+	/**
+	 * Returns the pattern with keys that get replaced during {@link #nextValue()}. Known
+	 * keys are:
+	 * &lt;ul&gt;
+	 * &lt;li&gt;{@link #KEY_DIGIT}&lt;/li&gt;
+	 * &lt;li&gt;{@link #KEY_LETTER}&lt;/li&gt;
+	 * &lt;/ul&gt;
+	 *
+	 * @return the pattern
+	 */
+
+	public String getPattern() {
+<span class="fc" id="L67">		return this.patternField.getPattern();</span>
+	}
+
+	/**
+	 * Sets the pattern with keys that get replaced during {@link #nextValue()}. Known
+	 * keys are:
+	 * &lt;ul&gt;
+	 * &lt;li&gt;{@link #KEY_DIGIT}&lt;/li&gt;
+	 * &lt;li&gt;{@link #KEY_LETTER}&lt;/li&gt;
+	 * &lt;/ul&gt;
+	 *
+	 * @param newPattern the pattern
+	 * @return this instance
+	 */
+
+	public PostalCodeRandomField pattern(String newPattern) {
+<span class="fc" id="L83">		setPattern(newPattern);</span>
+<span class="fc" id="L84">		return this;</span>
+	}
+
+	/**
+	 * Sets the pattern with keys that get replaced during {@link #nextValue()}. Known
+	 * keys are:
+	 * &lt;ul&gt;
+	 * &lt;li&gt;{@link #KEY_DIGIT}&lt;/li&gt;
+	 * &lt;li&gt;{@link #KEY_LETTER}&lt;/li&gt;
+	 * &lt;/ul&gt;
+	 *
+	 * @param pattern the pattern
+	 */
+
+	public void setPattern(String pattern) {
+<span class="fc" id="L99">		this.patternField.setPattern(pattern);</span>
+<span class="fc" id="L100">	}</span>
+
+	/**
+	 * Returns the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @return the probability between 0 and 1
+	 */
+
+	public double getNullProbability() {
+<span class="fc" id="L110">		return this.nullProbability;</span>
+	}
+
+	/**
+	 * Sets the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @param newNullProbability the probability between 0 and 1
+	 * @return this instance
+	 */
+
+	public PostalCodeRandomField nullProbability(double newNullProbability) {
+<span class="fc" id="L122">		setNullProbability(newNullProbability);</span>
+<span class="fc" id="L123">		return this;</span>
+	}
+
+	/**
+	 * Sets the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @param nullProbability the probability between 0 and 1
+	 */
+
+	public void setNullProbability(double nullProbability) {
+<span class="fc bfc" id="L134" title="All 4 branches covered.">		if (nullProbability &lt; 0 || nullProbability &gt; 1) {</span>
+<span class="fc" id="L135">			throw new IllegalArgumentException(&quot;Null probability must be between 0 and 1!&quot;);</span>
+		}
+<span class="fc" id="L137">		this.nullProbability = nullProbability;</span>
+<span class="fc" id="L138">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>DefaultWordGeneratorConfig.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Charts Coverage</a> &gt; <a href="../index.html" class="el_bundle">random</a> &gt; <a href="index.source.html" class="el_package">de.slothsoft.random.types.wordgen</a> &gt; <span class="el_source">DefaultWordGeneratorConfig.java</span></div><h1>DefaultWordGeneratorConfig.java</h1><pre class="source lang-java linenums">package de.slothsoft.random.types.wordgen;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
+/**
+ * Default implementation for the {@link WordGeneratorConfig} that you can fill using
+ * {@link #addLetters(Letter...)} and {@link #removeLetters(Letter...)}.
+ *
+ * @author Stef Schulz
+ * @since 2.1.0
+ */
+
+<span class="fc" id="L17">public class DefaultWordGeneratorConfig implements WordGeneratorConfig {</span>
+
+	static final String DEFAULT_SUPPORTED_CHARACTERS = &quot;abcdefghijklmnopqrstuvwxyz&quot;;
+	static final int DEFAULT_STANDARD_WORD_LENGTH = 5;
+<span class="fc" id="L21">	static final Letter DEFAULT_LETTER = new Letter((char) 0);</span>
+
+<span class="fc" id="L23">	List&lt;Letter&gt; letters = new ArrayList&lt;&gt;(</span>
+<span class="fc" id="L24">			DEFAULT_SUPPORTED_CHARACTERS.chars().mapToObj(c -&gt; new Letter((char) c)).collect(Collectors.toList()));</span>
+<span class="fc" id="L25">	double standardWordLength = DEFAULT_STANDARD_WORD_LENGTH;</span>
+
+	@Override
+	public double getProbability(char c) {
+<span class="fc bfc" id="L29" title="All 2 branches covered.">		return this.letters.stream().filter(l -&gt; l.character == c).findAny().orElse(DEFAULT_LETTER).probability;</span>
+	}
+
+	@Override
+	public char[] getSupportedCharacters() {
+<span class="fc" id="L34">		final char[] result = new char[this.letters.size()];</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">		for (int i = 0; i &lt; result.length; i++) {</span>
+<span class="fc" id="L36">			result[i] = this.letters.get(i).getCharacter();</span>
+		}
+<span class="fc" id="L38">		return result;</span>
+	}
+
+	/**
+	 * Adds some letters that will be returned via {@link #getSupportedCharacters()} and
+	 * {@link #getProbability(char)}.
+	 *
+	 * @param addedLetters supported letters
+	 */
+
+	public void addLetters(Letter... addedLetters) {
+<span class="fc" id="L49">		this.letters.addAll(Arrays.asList(addedLetters));</span>
+<span class="fc" id="L50">	}</span>
+
+	/**
+	 * Removes some letters that will not be returned via
+	 * {@link #getSupportedCharacters()} and {@link #getProbability(char)} any longer.
+	 *
+	 * @param removedLetters supported letters
+	 */
+
+	public void removeLetters(Letter... removedLetters) {
+<span class="fc" id="L60">		this.letters.removeAll(Arrays.asList(removedLetters));</span>
+<span class="fc" id="L61">	}</span>
+
+	/**
+	 * Returns the letters that will be returned via {@link #getSupportedCharacters()} and
+	 * {@link #getProbability(char)}.
+	 *
+	 * @return supported letters
+	 */
+
+	public Letter[] getLetters() {
+<span class="fc" id="L71">		return this.letters.toArray(new Letter[this.letters.size()]);</span>
+	}
+
+	/**
+	 * Sets the letters that will be returned via {@link #getSupportedCharacters()} and
+	 * {@link #getProbability(char)}.
+	 *
+	 * @param newSupportedLetters supported letters
+	 * @return this instance
+	 */
+
+	public DefaultWordGeneratorConfig letters(Letter... newSupportedLetters) {
+<span class="fc" id="L83">		setSupportedLetters(newSupportedLetters);</span>
+<span class="fc" id="L84">		return this;</span>
+	}
+
+	/**
+	 * Sets the letters that will be returned via {@link #getSupportedCharacters()} and
+	 * {@link #getProbability(char)}.
+	 *
+	 * @param supportedLetters supported letters
+	 */
+
+	public void setSupportedLetters(Letter... supportedLetters) {
+<span class="fc" id="L95">		Objects.requireNonNull(supportedLetters);</span>
+<span class="fc bfc" id="L96" title="All 2 branches covered.">		if (supportedLetters.length == 0)</span>
+<span class="fc" id="L97">			throw new IllegalArgumentException(&quot;At least one letter must be supported by config: &quot; + supportedLetters);</span>
+<span class="fc" id="L98">		this.letters = new ArrayList&lt;&gt;(Arrays.asList(supportedLetters));</span>
+<span class="fc" id="L99">	}</span>
+
+	@Override
+	public double getStandardWordLength() {
+<span class="fc" id="L103">		return this.standardWordLength;</span>
+	}
+
+	/**
+	 * Sets the standard word length.
+	 *
+	 * @param newStandardWordLength the word length
+	 * @return this instance
+	 */
+
+	public DefaultWordGeneratorConfig standardWordLength(double newStandardWordLength) {
+<span class="fc" id="L114">		setStandardWordLength(newStandardWordLength);</span>
+<span class="fc" id="L115">		return this;</span>
+	}
+
+	/**
+	 * Sets the standard word length.
+	 *
+	 * @param standardWordLength the word length
+	 */
+
+	public void setStandardWordLength(double standardWordLength) {
+<span class="fc" id="L125">		this.standardWordLength = standardWordLength;</span>
+<span class="fc" id="L126">	}</span>
+
+	@Override
+	public String toString() {
+<span class="fc" id="L130">		return &quot;DefaultWordGeneratorConfig [supportedCharacters=&quot;</span>
+<span class="fc" id="L131">				+ this.letters.stream().map(l -&gt; String.valueOf(l.getCharacter())).collect(Collectors.joining(&quot;&quot;))</span>
+				+ &quot;, standardWordLength=&quot; + this.standardWordLength + &quot;]&quot;;
+	}
+
+	@Override
+	public int hashCode() {
+<span class="fc" id="L137">		return WordGeneratorConfigUtil.generateHashCode(this);</span>
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+<span class="fc bfc" id="L142" title="All 2 branches covered.">		if (this == obj) return true;</span>
+<span class="fc bfc" id="L143" title="All 2 branches covered.">		if (obj == null) return false;</span>
+<span class="fc bfc" id="L144" title="All 2 branches covered.">		if (getClass() != obj.getClass()) return false;</span>
+<span class="fc" id="L145">		final DefaultWordGeneratorConfig that = (DefaultWordGeneratorConfig) obj;</span>
+<span class="fc bfc" id="L146" title="All 2 branches covered.">		if (Double.doubleToLongBits(this.standardWordLength) != Double.doubleToLongBits(that.standardWordLength))</span>
+<span class="fc" id="L147">			return false;</span>
+<span class="fc bfc" id="L148" title="All 2 branches covered.">		if (!this.letters.equals(that.letters)) return false;</span>
+<span class="fc" id="L149">		return true;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

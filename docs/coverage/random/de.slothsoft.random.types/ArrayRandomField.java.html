@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>ArrayRandomField.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Charts Coverage</a> &gt; <a href="../index.html" class="el_bundle">random</a> &gt; <a href="index.source.html" class="el_package">de.slothsoft.random.types</a> &gt; <span class="el_source">ArrayRandomField.java</span></div><h1>ArrayRandomField.java</h1><pre class="source lang-java linenums">package de.slothsoft.random.types;
+
+import java.lang.reflect.Array;
+import java.util.Objects;
+
+import de.slothsoft.random.RandomField;
+
+/**
+ * A {@link RandomField} representing an array.
+ *
+ * @author Stef Schulz
+ * @since 2.1.0
+ */
+
+public class ArrayRandomField implements RandomField {
+
+	private final Class&lt;?&gt; elementClass;
+	private final RandomField elementRandomField;
+
+	private double nullProbability;
+<span class="fc" id="L21">	private int arrayLength = 3;</span>
+
+	/**
+	 * Constructor.
+	 * 
+	 * @param elementClass the element's class
+	 * @param elementRandomField a generator for the elements
+	 */
+
+<span class="fc" id="L30">	public ArrayRandomField(Class&lt;?&gt; elementClass, RandomField elementRandomField) {</span>
+<span class="fc" id="L31">		this.elementClass = Objects.requireNonNull(elementClass);</span>
+<span class="fc" id="L32">		this.elementRandomField = Objects.requireNonNull(elementRandomField);</span>
+<span class="fc" id="L33">	}</span>
+
+	@Override
+	public Object nextValue() {
+<span class="fc bfc" id="L37" title="All 2 branches covered.">		if (RND.nextDouble() &lt; this.nullProbability) {</span>
+<span class="fc" id="L38">			return null;</span>
+		}
+<span class="fc" id="L40">		final int actualArrayLength = (int) Math.max(1, (1 + RND.nextGaussian()) * this.arrayLength);</span>
+<span class="fc" id="L41">		final Object result = Array.newInstance(this.elementClass, actualArrayLength);</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">		for (int i = 0; i &lt; actualArrayLength; i++) {</span>
+<span class="fc" id="L43">			Array.set(result, i, this.elementRandomField.nextValue());</span>
+		}
+<span class="fc" id="L45">		return result;</span>
+	}
+
+	/**
+	 * Returns the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @return the probability between 0 and 1
+	 */
+
+	public double getNullProbability() {
+<span class="fc" id="L56">		return this.nullProbability;</span>
+	}
+
+	/**
+	 * Sets the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @param newNullProbability the probability between 0 and 1
+	 * @return this instance
+	 */
+
+	public ArrayRandomField nullProbability(double newNullProbability) {
+<span class="fc" id="L68">		setNullProbability(newNullProbability);</span>
+<span class="fc" id="L69">		return this;</span>
+	}
+
+	/**
+	 * Sets the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @param nullProbability the probability between 0 and 1
+	 */
+
+	public void setNullProbability(double nullProbability) {
+<span class="fc bfc" id="L80" title="All 4 branches covered.">		if (nullProbability &lt; 0 || nullProbability &gt; 1) {</span>
+<span class="fc" id="L81">			throw new IllegalArgumentException(&quot;Null probability must be between 0 and 1!&quot;);</span>
+		}
+<span class="fc" id="L83">		this.nullProbability = nullProbability;</span>
+<span class="fc" id="L84">	}</span>
+
+	/**
+	 * Returns the standard array length. A Gaussian function is used to scatter the
+	 * actual array length around this value.
+	 *
+	 * @return array length
+	 */
+
+	public int getArrayLength() {
+<span class="fc" id="L94">		return this.arrayLength;</span>
+	}
+
+	/**
+	 * Sets the standard array length. A Gaussian function is used to scatter the actual
+	 * array length around this value.
+	 *
+	 * @param newArrayLength array length
+	 * @return this instance
+	 */
+
+	public ArrayRandomField arrayLength(int newArrayLength) {
+<span class="fc" id="L106">		setArrayLength(newArrayLength);</span>
+<span class="fc" id="L107">		return this;</span>
+	}
+
+	/**
+	 * Sets the standard array length. A Gaussian function is used to scatter the actual
+	 * array length around this value.
+	 *
+	 * @param arrayLength array length
+	 */
+
+	public void setArrayLength(int arrayLength) {
+<span class="fc" id="L118">		this.arrayLength = arrayLength;</span>
+<span class="fc" id="L119">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

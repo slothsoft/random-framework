@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -50,7 +50,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li>Prev&nbsp;Class</li>
-<li><a href="../../../../de/slothsoft/random/types/BigDecimalRandomField.html" title="class in de.slothsoft.random.types"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../de/slothsoft/random/types/ArrayRandomField.html" title="class in de.slothsoft.random.types"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?de/slothsoft/random/types/AbstractNumberRandomField.html" target="_top">Frames</a></li>
@@ -109,7 +109,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
-<dd><code>N</code> - - a type of number</dd>
+<dd><code>N</code> - a type of number</dd>
 </dl>
 <dl>
 <dt>All Implemented Interfaces:</dt>
@@ -183,33 +183,63 @@ implements <a href="../../../../de/slothsoft/random/RandomField.html" title="int
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html" title="class in de.slothsoft.random.types">AbstractNumberRandomField</a>&lt;<a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html" title="type parameter in AbstractNumberRandomField">N</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html#endValue-N-">endValue</a></span>(<a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html" title="type parameter in AbstractNumberRandomField">N</a>&nbsp;newEndValue)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html#endValue-N-">endValue</a></span>(<a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html" title="type parameter in AbstractNumberRandomField">N</a>&nbsp;newEndValue)</code>
+<div class="block">Sets the end value, i.e.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html" title="type parameter in AbstractNumberRandomField">N</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html#getEndValue--">getEndValue</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html#getEndValue--">getEndValue</a></span>()</code>
+<div class="block">Returns the end value, i.e.</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code><a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html" title="type parameter in AbstractNumberRandomField">N</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html#getStartValue--">getStartValue</a></span>()</code>&nbsp;</td>
+<td class="colFirst"><code>double</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html#getNullProbability--">getNullProbability</a></span>()</code>
+<div class="block">Returns the probability for this field returning null.</div>
+</td>
 </tr>
 <tr id="i3" class="rowColor">
+<td class="colFirst"><code><a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html" title="type parameter in AbstractNumberRandomField">N</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html#getStartValue--">getStartValue</a></span>()</code>
+<div class="block">Returns the start value, i.e.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html" title="type parameter in AbstractNumberRandomField">N</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html#nextValue--">nextValue</a></span>()</code>
 <div class="block">Returns a random value.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html#setEndValue-N-">setEndValue</a></span>(<a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html" title="type parameter in AbstractNumberRandomField">N</a>&nbsp;endValue)</code>&nbsp;</td>
-</tr>
 <tr id="i5" class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html#setStartValue-N-">setStartValue</a></span>(<a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html" title="type parameter in AbstractNumberRandomField">N</a>&nbsp;startValue)</code>&nbsp;</td>
+<td class="colFirst"><code><a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html" title="class in de.slothsoft.random.types">AbstractNumberRandomField</a>&lt;<a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html" title="type parameter in AbstractNumberRandomField">N</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html#nullProbability-double-">nullProbability</a></span>(double&nbsp;newNullProbability)</code>
+<div class="block">Sets the probability for this field returning null.</div>
+</td>
 </tr>
 <tr id="i6" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html#setEndValue-N-">setEndValue</a></span>(<a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html" title="type parameter in AbstractNumberRandomField">N</a>&nbsp;endValue)</code>
+<div class="block">Sets the end value, i.e.</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html#setNullProbability-double-">setNullProbability</a></span>(double&nbsp;nullProbability)</code>
+<div class="block">Sets the probability for this field returning null.</div>
+</td>
+</tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html#setStartValue-N-">setStartValue</a></span>(<a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html" title="type parameter in AbstractNumberRandomField">N</a>&nbsp;startValue)</code>
+<div class="block">Sets the start value, i.e.</div>
+</td>
+</tr>
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code><a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html" title="class in de.slothsoft.random.types">AbstractNumberRandomField</a>&lt;<a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html" title="type parameter in AbstractNumberRandomField">N</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html#startValue-N-">startValue</a></span>(<a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html" title="type parameter in AbstractNumberRandomField">N</a>&nbsp;newStartValue)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html#startValue-N-">startValue</a></span>(<a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html" title="type parameter in AbstractNumberRandomField">N</a>&nbsp;newStartValue)</code>
+<div class="block">Sets the start value, i.e.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -218,6 +248,13 @@ implements <a href="../../../../de/slothsoft/random/RandomField.html" title="int
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
 <code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#getClass--" title="class or interface in java.lang">getClass</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notify--" title="class or interface in java.lang">notify</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notifyAll--" title="class or interface in java.lang">notifyAll</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait--" title="class or interface in java.lang">wait</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-" title="class or interface in java.lang">wait</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-int-" title="class or interface in java.lang">wait</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.de.slothsoft.random.RandomField">
+<!--   -->
+</a>
+<h3>Methods inherited from interface&nbsp;de.slothsoft.random.<a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random">RandomField</a></h3>
+<code><a href="../../../../de/slothsoft/random/RandomField.html#init-java.util.Map-">init</a></code></li>
 </ul>
 </li>
 </ul>
@@ -274,6 +311,12 @@ implements <a href="../../../../de/slothsoft/random/RandomField.html" title="int
 <li class="blockList">
 <h4>getStartValue</h4>
 <pre>public&nbsp;<a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html" title="type parameter in AbstractNumberRandomField">N</a>&nbsp;getStartValue()</pre>
+<div class="block">Returns the start value, i.e. <a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html#nextValue--"><code>nextValue()</code></a> will always be greater than this
+ value.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the start value</dd>
+</dl>
 </li>
 </ul>
 <a name="startValue-java.lang.Number-">
@@ -285,6 +328,14 @@ implements <a href="../../../../de/slothsoft/random/RandomField.html" title="int
 <li class="blockList">
 <h4>startValue</h4>
 <pre>public&nbsp;<a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html" title="class in de.slothsoft.random.types">AbstractNumberRandomField</a>&lt;<a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html" title="type parameter in AbstractNumberRandomField">N</a>&gt;&nbsp;startValue(<a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html" title="type parameter in AbstractNumberRandomField">N</a>&nbsp;newStartValue)</pre>
+<div class="block">Sets the start value, i.e. <a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html#nextValue--"><code>nextValue()</code></a> will always be greater than this
+ value.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>newStartValue</code> - the start value</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>this instance</dd>
+</dl>
 </li>
 </ul>
 <a name="setStartValue-java.lang.Number-">
@@ -296,6 +347,12 @@ implements <a href="../../../../de/slothsoft/random/RandomField.html" title="int
 <li class="blockList">
 <h4>setStartValue</h4>
 <pre>public&nbsp;void&nbsp;setStartValue(<a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html" title="type parameter in AbstractNumberRandomField">N</a>&nbsp;startValue)</pre>
+<div class="block">Sets the start value, i.e. <a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html#nextValue--"><code>nextValue()</code></a> will always be greater than this
+ value.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>startValue</code> - the start value</dd>
+</dl>
 </li>
 </ul>
 <a name="getEndValue--">
@@ -305,6 +362,11 @@ implements <a href="../../../../de/slothsoft/random/RandomField.html" title="int
 <li class="blockList">
 <h4>getEndValue</h4>
 <pre>public&nbsp;<a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html" title="type parameter in AbstractNumberRandomField">N</a>&nbsp;getEndValue()</pre>
+<div class="block">Returns the end value, i.e. <a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html#nextValue--"><code>nextValue()</code></a> will always be less than this value.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the end value</dd>
+</dl>
 </li>
 </ul>
 <a name="endValue-java.lang.Number-">
@@ -316,6 +378,13 @@ implements <a href="../../../../de/slothsoft/random/RandomField.html" title="int
 <li class="blockList">
 <h4>endValue</h4>
 <pre>public&nbsp;<a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html" title="class in de.slothsoft.random.types">AbstractNumberRandomField</a>&lt;<a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html" title="type parameter in AbstractNumberRandomField">N</a>&gt;&nbsp;endValue(<a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html" title="type parameter in AbstractNumberRandomField">N</a>&nbsp;newEndValue)</pre>
+<div class="block">Sets the end value, i.e. <a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html#nextValue--"><code>nextValue()</code></a> will always be less than this value.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>newEndValue</code> - the end value</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>this instance</dd>
+</dl>
 </li>
 </ul>
 <a name="setEndValue-java.lang.Number-">
@@ -323,10 +392,68 @@ implements <a href="../../../../de/slothsoft/random/RandomField.html" title="int
 </a><a name="setEndValue-N-">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>setEndValue</h4>
 <pre>public&nbsp;void&nbsp;setEndValue(<a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html" title="type parameter in AbstractNumberRandomField">N</a>&nbsp;endValue)</pre>
+<div class="block">Sets the end value, i.e. <a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html#nextValue--"><code>nextValue()</code></a> will always be less than this value.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>endValue</code> - the end value</dd>
+</dl>
+</li>
+</ul>
+<a name="getNullProbability--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getNullProbability</h4>
+<pre>public&nbsp;double&nbsp;getNullProbability()</pre>
+<div class="block">Returns the probability for this field returning null. If the value is 0 then no
+ <a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html#nextValue--"><code>nextValue()</code></a> is null, if it is 1 then every <a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html#nextValue--"><code>nextValue()</code></a> is null.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the probability between 0 and 1</dd>
+<dt><span class="simpleTagLabel">Since:</span></dt>
+<dd>2.1.0</dd>
+</dl>
+</li>
+</ul>
+<a name="nullProbability-double-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>nullProbability</h4>
+<pre>public&nbsp;<a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html" title="class in de.slothsoft.random.types">AbstractNumberRandomField</a>&lt;<a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html" title="type parameter in AbstractNumberRandomField">N</a>&gt;&nbsp;nullProbability(double&nbsp;newNullProbability)</pre>
+<div class="block">Sets the probability for this field returning null. If the value is 0 then no
+ <a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html#nextValue--"><code>nextValue()</code></a> is null, if it is 1 then every <a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html#nextValue--"><code>nextValue()</code></a> is null.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>newNullProbability</code> - the probability between 0 and 1</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>this instance</dd>
+<dt><span class="simpleTagLabel">Since:</span></dt>
+<dd>2.1.0</dd>
+</dl>
+</li>
+</ul>
+<a name="setNullProbability-double-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>setNullProbability</h4>
+<pre>public&nbsp;void&nbsp;setNullProbability(double&nbsp;nullProbability)</pre>
+<div class="block">Sets the probability for this field returning null. If the value is 0 then no
+ <a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html#nextValue--"><code>nextValue()</code></a> is null, if it is 1 then every <a href="../../../../de/slothsoft/random/types/AbstractNumberRandomField.html#nextValue--"><code>nextValue()</code></a> is null.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>nullProbability</code> - the probability between 0 and 1</dd>
+<dt><span class="simpleTagLabel">Since:</span></dt>
+<dd>2.1.0</dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -358,7 +485,7 @@ implements <a href="../../../../de/slothsoft/random/RandomField.html" title="int
 <div class="subNav">
 <ul class="navList">
 <li>Prev&nbsp;Class</li>
-<li><a href="../../../../de/slothsoft/random/types/BigDecimalRandomField.html" title="class in de.slothsoft.random.types"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../de/slothsoft/random/types/ArrayRandomField.html" title="class in de.slothsoft.random.types"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?de/slothsoft/random/types/AbstractNumberRandomField.html" target="_top">Frames</a></li>

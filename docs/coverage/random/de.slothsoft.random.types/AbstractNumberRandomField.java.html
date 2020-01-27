@@ -7,27 +7,34 @@ import de.slothsoft.random.RandomField;
  *
  * @author Stef Schulz
  * @since 1.0.0
- * @param &lt;N&gt; - a type of number
+ * @param &lt;N&gt; a type of number
  */
 
 <span class="fc" id="L13">public abstract class AbstractNumberRandomField&lt;N extends Number&gt; implements RandomField {</span>
 
 	private N startValue;
 	private N endValue;
+	private double nullProbability;
 
 	@Override
 	public N nextValue() {
-<span class="fc bfc" id="L20" title="All 2 branches covered.">		N start = this.startValue == null ? getDefaultRangeStart() : this.startValue;</span>
-<span class="fc bfc" id="L21" title="All 2 branches covered.">		N end = this.endValue == null ? getDefaultRangeEnd() : this.endValue;</span>
-
-<span class="fc bfc" id="L23" title="All 2 branches covered.">		if (end.equals(start)) return start;</span>
-
-<span class="fc bfc" id="L25" title="All 2 branches covered.">		if (end.doubleValue() &lt; start.doubleValue()) {</span>
-<span class="fc" id="L26">			final N dummy = start;</span>
-<span class="fc" id="L27">			start = end;</span>
-<span class="fc" id="L28">			end = dummy;</span>
+<span class="fc bfc" id="L21" title="All 2 branches covered.">		if (RND.nextDouble() &lt; this.nullProbability) {</span>
+<span class="fc" id="L22">			return null;</span>
 		}
-<span class="fc" id="L30">		return getRandomNumber(start, end);</span>
+
+<span class="fc bfc" id="L25" title="All 2 branches covered.">		N start = this.startValue == null ? getDefaultRangeStart() : this.startValue;</span>
+<span class="fc bfc" id="L26" title="All 2 branches covered.">		N end = this.endValue == null ? getDefaultRangeEnd() : this.endValue;</span>
+
+<span class="fc bfc" id="L28" title="All 2 branches covered.">		if (end.equals(start)) {</span>
+<span class="fc" id="L29">			return start;</span>
+		}
+
+<span class="fc bfc" id="L32" title="All 2 branches covered.">		if (end.doubleValue() &lt; start.doubleValue()) {</span>
+<span class="fc" id="L33">			final N dummy = start;</span>
+<span class="fc" id="L34">			start = end;</span>
+<span class="fc" id="L35">			end = dummy;</span>
+		}
+<span class="fc" id="L37">		return getRandomNumber(start, end);</span>
 	}
 
 	protected abstract N getRandomNumber(N numberRangeStart, N numberRangeEnd);
@@ -36,31 +43,113 @@ import de.slothsoft.random.RandomField;
 
 	abstract N getDefaultRangeEnd();
 
+	/**
+	 * Returns the start value, i.e. {@link #nextValue} will always be greater than this
+	 * value.
+	 *
+	 * @return the start value
+	 */
+
 	public N getStartValue() {
-<span class="nc" id="L40">		return this.startValue;</span>
+<span class="fc" id="L54">		return this.startValue;</span>
 	}
+
+	/**
+	 * Sets the start value, i.e. {@link #nextValue} will always be greater than this
+	 * value.
+	 *
+	 * @param newStartValue the start value
+	 * @return this instance
+	 */
 
 	public AbstractNumberRandomField&lt;N&gt; startValue(N newStartValue) {
-<span class="nc" id="L44">		setStartValue(newStartValue);</span>
-<span class="nc" id="L45">		return this;</span>
+<span class="fc" id="L66">		setStartValue(newStartValue);</span>
+<span class="fc" id="L67">		return this;</span>
 	}
+
+	/**
+	 * Sets the start value, i.e. {@link #nextValue} will always be greater than this
+	 * value.
+	 *
+	 * @param startValue the start value
+	 */
 
 	public void setStartValue(N startValue) {
-<span class="fc" id="L49">		this.startValue = startValue;</span>
-<span class="fc" id="L50">	}</span>
+<span class="fc" id="L78">		this.startValue = startValue;</span>
+<span class="fc" id="L79">	}</span>
+
+	/**
+	 * Returns the end value, i.e. {@link #nextValue} will always be less than this value.
+	 *
+	 * @return the end value
+	 */
 
 	public N getEndValue() {
-<span class="nc" id="L53">		return this.endValue;</span>
+<span class="fc" id="L88">		return this.endValue;</span>
 	}
+
+	/**
+	 * Sets the end value, i.e. {@link #nextValue} will always be less than this value.
+	 *
+	 * @param newEndValue the end value
+	 * @return this instance
+	 */
 
 	public AbstractNumberRandomField&lt;N&gt; endValue(N newEndValue) {
-<span class="nc" id="L57">		setEndValue(newEndValue);</span>
-<span class="nc" id="L58">		return this;</span>
+<span class="fc" id="L99">		setEndValue(newEndValue);</span>
+<span class="fc" id="L100">		return this;</span>
 	}
 
+	/**
+	 * Sets the end value, i.e. {@link #nextValue} will always be less than this value.
+	 *
+	 * @param endValue the end value
+	 */
+
 	public void setEndValue(N endValue) {
-<span class="fc" id="L62">		this.endValue = endValue;</span>
-<span class="fc" id="L63">	}</span>
+<span class="fc" id="L110">		this.endValue = endValue;</span>
+<span class="fc" id="L111">	}</span>
+
+	/**
+	 * Returns the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @return the probability between 0 and 1
+	 * @since 2.1.0
+	 */
+
+	public double getNullProbability() {
+<span class="fc" id="L122">		return this.nullProbability;</span>
+	}
+
+	/**
+	 * Sets the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @param newNullProbability the probability between 0 and 1
+	 * @return this instance
+	 * @since 2.1.0
+	 */
+
+	public AbstractNumberRandomField&lt;N&gt; nullProbability(double newNullProbability) {
+<span class="fc" id="L135">		setNullProbability(newNullProbability);</span>
+<span class="fc" id="L136">		return this;</span>
+	}
+
+	/**
+	 * Sets the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @param nullProbability the probability between 0 and 1
+	 * @since 2.1.0
+	 */
+
+	public void setNullProbability(double nullProbability) {
+<span class="fc bfc" id="L148" title="All 4 branches covered.">		if (nullProbability &lt; 0 || nullProbability &gt; 1) {</span>
+<span class="fc" id="L149">			throw new IllegalArgumentException(&quot;Null probability must be between 0 and 1!&quot;);</span>
+		}
+<span class="fc" id="L151">		this.nullProbability = nullProbability;</span>
+<span class="fc" id="L152">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -99,6 +99,21 @@
 <!--   -->
 </a>
 <h3>Uses of <a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random">RandomField</a> in <a href="../../../../de/slothsoft/random/package-summary.html">de.slothsoft.random</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../../de/slothsoft/random/package-summary.html">de.slothsoft.random</a> that implement <a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random">RandomField</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/RandomFactory.html" title="class in de.slothsoft.random">RandomFactory</a>&lt;T&gt;</span></code>
+<div class="block">The main class for creating random data inside a defined POJO.</div>
+</td>
+</tr>
+</tbody>
+</table>
 <table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
 <caption><span>Methods in <a href="../../../../de/slothsoft/random/package-summary.html">de.slothsoft.random</a> that return <a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random">RandomField</a></span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
@@ -109,13 +124,37 @@
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random">RandomField</a></code></td>
 <td class="colLast"><span class="typeNameLabel">RandomFieldSupplier.</span><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/RandomFieldSupplier.html#createRandomField--">createRandomField</a></span>()</code>
-<div class="block">Creates a <b>new instance</b> of <a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random"><code>RandomField</code></a> to use for a
- <a href="../../../../de/slothsoft/random/RandomFactory.html" title="class in de.slothsoft.random"><code>RandomFactory</code></a>.</div>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
+<div class="block"><span class="deprecationComment">use <a href="../../../../de/slothsoft/random/RandomFieldSupplier.html#createRandomField-java.lang.String-java.lang.Class-"><code>RandomFieldSupplier.createRandomField(String, Class)</code></a> instead</span></div>
+</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random">RandomField</a></code></td>
-<td class="colLast"><span class="typeNameLabel">RandomFactory.</span><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/RandomFactory.html#getRandomField-java.lang.String-">getRandomField</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;property)</code>&nbsp;</td>
+<td class="colLast"><span class="typeNameLabel">RandomFieldSupplier.</span><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/RandomFieldSupplier.html#createRandomField-java.lang.String-java.lang.Class-">createRandomField</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;fieldName,
+                 <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;?&gt;&nbsp;fieldClass)</code>
+<div class="block">Creates a <b>new instance</b> of <a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random"><code>RandomField</code></a> to use for a
+ <a href="../../../../de/slothsoft/random/RandomFactory.html" title="class in de.slothsoft.random"><code>RandomFactory</code></a>.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static <a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random">RandomField</a></code></td>
+<td class="colLast"><span class="typeNameLabel">RandomFieldSupplier.</span><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/RandomFieldSupplier.html#createRandomFieldByField-java.lang.String-java.lang.Class-">createRandomFieldByField</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;propertyName,
+                        <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;?&gt;&nbsp;propertyClass)</code>
+<div class="block">Creates a <a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random"><code>RandomField</code></a> for a property name and class.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random">RandomField</a></code></td>
+<td class="colLast"><span class="typeNameLabel">RandomFactory.</span><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/RandomFactory.html#findRandomField-java.lang.String-">findRandomField</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;property)</code>
+<div class="block">Returns the <a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random"><code>RandomField</code></a> used to fill the property.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random">RandomField</a></code></td>
+<td class="colLast"><span class="typeNameLabel">RandomFactory.</span><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/RandomFactory.html#getRandomField-java.lang.String-">getRandomField</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;property)</code>
+<div class="block">Returns the <a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random"><code>RandomField</code></a> used to fill the property.</div>
+</td>
 </tr>
 </tbody>
 </table>
@@ -129,7 +168,9 @@
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">RandomFactory.</span><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/RandomFactory.html#addRandomField-java.lang.String-de.slothsoft.random.RandomField-">addRandomField</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;property,
-              <a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random">RandomField</a>&nbsp;randomField)</code>&nbsp;</td>
+              <a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random">RandomField</a>&nbsp;randomField)</code>
+<div class="block">Adds a <a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random"><code>RandomField</code></a> to fill some property.</div>
+</td>
 </tr>
 </tbody>
 </table>
@@ -168,32 +209,56 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/ArrayRandomField.html" title="class in de.slothsoft.random.types">ArrayRandomField</a></span></code>
+<div class="block">A <a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random"><code>RandomField</code></a> representing an array.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/BigDecimalRandomField.html" title="class in de.slothsoft.random.types">BigDecimalRandomField</a></span></code>
 <div class="block">A <a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random"><code>RandomField</code></a> representing a <a href="https://docs.oracle.com/javase/8/docs/api/java/math/BigDecimal.html?is-external=true" title="class or interface in java.math"><code>BigDecimal</code></a>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/BigIntegerRandomField.html" title="class in de.slothsoft.random.types">BigIntegerRandomField</a></span></code>
 <div class="block">A <a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random"><code>RandomField</code></a> representing a <a href="https://docs.oracle.com/javase/8/docs/api/java/math/BigInteger.html?is-external=true" title="class or interface in java.math"><code>BigInteger</code></a>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/BirthdayRandomField.html" title="class in de.slothsoft.random.types">BirthdayRandomField</a></span></code>
 <div class="block">A <a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random"><code>RandomField</code></a> representing a birthday, i.e.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/BooleanRandomField.html" title="class in de.slothsoft.random.types">BooleanRandomField</a></span></code>
 <div class="block">A <a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random"><code>RandomField</code></a> representing a <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang"><code>Boolean</code></a> or it's primitive counterpart.</div>
 </td>
 </tr>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/CalendarRandomField.html" title="class in de.slothsoft.random.types">CalendarRandomField</a></span></code>
+<div class="block">A <a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random"><code>RandomField</code></a> representing a <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Calendar.html?is-external=true" title="class or interface in java.util"><code>Calendar</code></a> between 10 years ago and 10 years in the future.</div>
+</td>
+</tr>
 <tr class="rowColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/CharacterRandomField.html" title="class in de.slothsoft.random.types">CharacterRandomField</a></span></code>
+<div class="block">Generates letters after a defined config stored in <a href="../../../../de/slothsoft/random/types/wordgen/WordGeneratorConfig.html" title="interface in de.slothsoft.random.types.wordgen"><code>WordGeneratorConfig</code></a>.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/CityRandomField.html" title="class in de.slothsoft.random.types">CityRandomField</a></span></code>
 <div class="block">A <a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random"><code>RandomField</code></a> representing a <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang"><code>String</code></a> that should look like a city.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/CollectionRandomField.html" title="class in de.slothsoft.random.types">CollectionRandomField</a></span></code>
+<div class="block">A <a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random"><code>RandomField</code></a> representing an <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util"><code>Collection</code></a>.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -218,32 +283,72 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/EnumRandomField.html" title="class in de.slothsoft.random.types">EnumRandomField</a>&lt;E extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is-external=true" title="class or interface in java.lang">Enum</a>&lt;E&gt;&gt;</span></code>
+<div class="block">A <a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random"><code>RandomField</code></a> representing an object that is filled with a random
+ <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is-external=true" title="class or interface in java.lang"><code>Enum</code></a>'s list element.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/FirstNameRandomField.html" title="class in de.slothsoft.random.types">FirstNameRandomField</a></span></code>
 <div class="block">A <a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random"><code>RandomField</code></a> representing a <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang"><code>String</code></a> that should look like a first name.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/FloatRandomField.html" title="class in de.slothsoft.random.types">FloatRandomField</a></span></code>
 <div class="block">A <a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random"><code>RandomField</code></a> representing a <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Float.html?is-external=true" title="class or interface in java.lang"><code>Float</code></a> or its primitive counterpart.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/IntegerRandomField.html" title="class in de.slothsoft.random.types">IntegerRandomField</a></span></code>
 <div class="block">A <a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random"><code>RandomField</code></a> representing a <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang"><code>Integer</code></a> or its primitive counterpart.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/LastNameRandomField.html" title="class in de.slothsoft.random.types">LastNameRandomField</a></span></code>
 <div class="block">A <a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random"><code>RandomField</code></a> representing a <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang"><code>String</code></a> that should look like a last name.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/LocalDateRandomField.html" title="class in de.slothsoft.random.types">LocalDateRandomField</a></span></code>
+<div class="block">A <a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random"><code>RandomField</code></a> representing a <a href="https://docs.oracle.com/javase/8/docs/api/java/time/LocalDate.html?is-external=true" title="class or interface in java.time"><code>LocalDate</code></a> between 10 years ago and 10
+ years in the future.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/LocalDateTimeRandomField.html" title="class in de.slothsoft.random.types">LocalDateTimeRandomField</a></span></code>
+<div class="block">A <a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random"><code>RandomField</code></a> representing a <a href="https://docs.oracle.com/javase/8/docs/api/java/time/LocalDateTime.html?is-external=true" title="class or interface in java.time"><code>LocalDateTime</code></a> between 10 years ago and 10 years in the future.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/LocalTimeRandomField.html" title="class in de.slothsoft.random.types">LocalTimeRandomField</a></span></code>
+<div class="block">A <a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random"><code>RandomField</code></a> representing a <a href="https://docs.oracle.com/javase/8/docs/api/java/time/LocalTime.html?is-external=true" title="class or interface in java.time"><code>LocalTime</code></a> between 0:00 and 24:00 o'clock.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/LongRandomField.html" title="class in de.slothsoft.random.types">LongRandomField</a></span></code>
 <div class="block">A <a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random"><code>RandomField</code></a> representing a <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Long.html?is-external=true" title="class or interface in java.lang"><code>Long</code></a> or its primitive counterpart.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/PatternRandomField.html" title="class in de.slothsoft.random.types">PatternRandomField</a></span></code>
+<div class="block">A field where you define a pattern and have a couple of random field to fill the
+ pattern with.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/PostalCodeRandomField.html" title="class in de.slothsoft.random.types">PostalCodeRandomField</a></span></code>
+<div class="block">A <a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random"><code>RandomField</code></a> representing a <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang"><code>String</code></a> that should look like a postal
+ code.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -257,6 +362,70 @@
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/StreetRandomField.html" title="class in de.slothsoft.random.types">StreetRandomField</a></span></code>
 <div class="block">A <a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random"><code>RandomField</code></a> representing a <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang"><code>String</code></a> that should look like a street
  (i.e.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/WordRandomField.html" title="class in de.slothsoft.random.types">WordRandomField</a></span></code>
+<div class="block">Generates a word after a defined config stored in <a href="../../../../de/slothsoft/random/types/wordgen/WordGeneratorConfig.html" title="interface in de.slothsoft.random.types.wordgen"><code>WordGeneratorConfig</code></a>.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/WordsRandomField.html" title="class in de.slothsoft.random.types">WordsRandomField</a></span></code>
+<div class="block">Generates words in sentences and paragraphs after a defined config stored in
+ <a href="../../../../de/slothsoft/random/types/wordgen/WordGeneratorConfig.html" title="interface in de.slothsoft.random.types.wordgen"><code>WordGeneratorConfig</code></a>.</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../de/slothsoft/random/types/package-summary.html">de.slothsoft.random.types</a> with parameters of type <a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random">RandomField</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="typeNameLabel">PatternRandomField.</span><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/PatternRandomField.html#addComponent-java.lang.String-de.slothsoft.random.RandomField-">addComponent</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+            <a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random">RandomField</a>&nbsp;randomField)</code>
+<div class="block">Adds a component that can be accessed by <a href="../../../../de/slothsoft/random/types/PatternRandomField.html#nextValue--"><code>PatternRandomField.nextValue()</code></a>.</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Method parameters in <a href="../../../../de/slothsoft/random/types/package-summary.html">de.slothsoft.random.types</a> with type arguments of type <a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random">RandomField</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="typeNameLabel">PatternRandomField.</span><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/PatternRandomField.html#addComponents-java.util.Map-">addComponents</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random">RandomField</a>&gt;&nbsp;addedComponents)</code>
+<div class="block">Adds components that can be accessed by <a href="../../../../de/slothsoft/random/types/PatternRandomField.html#nextValue--"><code>PatternRandomField.nextValue()</code></a>.</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing constructors, and an explanation">
+<caption><span>Constructors in <a href="../../../../de/slothsoft/random/types/package-summary.html">de.slothsoft.random.types</a> with parameters of type <a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random">RandomField</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Constructor and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/ArrayRandomField.html#ArrayRandomField-java.lang.Class-de.slothsoft.random.RandomField-">ArrayRandomField</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;?&gt;&nbsp;elementClass,
+                <a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random">RandomField</a>&nbsp;elementRandomField)</code>
+<div class="block">Constructor.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../de/slothsoft/random/types/CollectionRandomField.html#CollectionRandomField-java.util.function.Supplier-de.slothsoft.random.RandomField-">CollectionRandomField</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/Supplier.html?is-external=true" title="class or interface in java.util.function">Supplier</a>&lt;<a href="https://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;?&gt;&gt;&nbsp;collectionConstructor,
+                     <a href="../../../../de/slothsoft/random/RandomField.html" title="interface in de.slothsoft.random">RandomField</a>&nbsp;elementRandomField)</code>
+<div class="block">Constructor.</div>
 </td>
 </tr>
 </tbody>

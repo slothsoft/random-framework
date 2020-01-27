@@ -15,21 +15,66 @@ import de.slothsoft.random.RandomField;
 public class ElementFromListRandomField&lt;E&gt; implements RandomField {
 
 	private final E[] possibleElements;
+	double nullProbability;
 
 	/**
 	 * Some constructor.
 	 *
-	 * @param possibleElements - the elements that are possible here; never null
+	 * @param possibleElements the elements that are possible here; never null
 	 */
 
-<span class="fc" id="L25">	public ElementFromListRandomField(E[] possibleElements) {</span>
-<span class="fc" id="L26">		this.possibleElements = Objects.requireNonNull(possibleElements);</span>
-<span class="fc" id="L27">	}</span>
+<span class="fc" id="L26">	public ElementFromListRandomField(E[] possibleElements) {</span>
+<span class="fc" id="L27">		this.possibleElements = Objects.requireNonNull(possibleElements);</span>
+<span class="fc" id="L28">	}</span>
 
 	@Override
 	public E nextValue() {
-<span class="fc" id="L31">		return this.possibleElements[RND.nextInt(this.possibleElements.length)];</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">		if (RND.nextDouble() &lt; this.nullProbability) {</span>
+<span class="fc" id="L33">			return null;</span>
+		}
+<span class="fc" id="L35">		return this.possibleElements[RND.nextInt(this.possibleElements.length)];</span>
 	}
+
+	/**
+	 * Returns the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @return the probability between 0 and 1
+	 * @since 2.1.0
+	 */
+
+	public double getNullProbability() {
+<span class="fc" id="L47">		return this.nullProbability;</span>
+	}
+
+	/**
+	 * Sets the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @param newNullProbability the probability between 0 and 1
+	 * @return this instance
+	 * @since 2.1.0
+	 */
+
+	public ElementFromListRandomField&lt;E&gt; nullProbability(double newNullProbability) {
+<span class="fc" id="L60">		setNullProbability(newNullProbability);</span>
+<span class="fc" id="L61">		return this;</span>
+	}
+
+	/**
+	 * Sets the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @param nullProbability the probability between 0 and 1
+	 * @since 2.1.0
+	 */
+
+	public void setNullProbability(double nullProbability) {
+<span class="fc bfc" id="L73" title="All 4 branches covered.">		if (nullProbability &lt; 0 || nullProbability &gt; 1) {</span>
+<span class="fc" id="L74">			throw new IllegalArgumentException(&quot;Null probability must be between 0 and 1!&quot;);</span>
+		}
+<span class="fc" id="L76">		this.nullProbability = nullProbability;</span>
+<span class="fc" id="L77">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

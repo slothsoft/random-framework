@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>PatternRandomField.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Charts Coverage</a> &gt; <a href="../index.html" class="el_bundle">random</a> &gt; <a href="index.source.html" class="el_package">de.slothsoft.random.types</a> &gt; <span class="el_source">PatternRandomField.java</span></div><h1>PatternRandomField.java</h1><pre class="source lang-java linenums">package de.slothsoft.random.types;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Objects;
+import java.util.Set;
+
+import de.slothsoft.random.RandomField;
+
+/**
+ * A field where you define a pattern and have a couple of random field to fill the
+ * pattern with.
+ *
+ * @author Stef Schulz
+ * @since 2.1.0
+ */
+
+public class PatternRandomField implements RandomField {
+
+<span class="fc" id="L21">	private final Map&lt;String, RandomField&gt; components = new HashMap&lt;&gt;();</span>
+	private String pattern;
+	private double nullProbability;
+
+	/**
+	 * Default constructor.
+	 *
+	 * @param pattern the pattern to fill
+	 * @see #addComponent(String, RandomField)
+	 */
+
+<span class="fc" id="L32">	public PatternRandomField(String pattern) {</span>
+<span class="fc" id="L33">		this.pattern = Objects.requireNonNull(pattern);</span>
+<span class="fc" id="L34">	}</span>
+
+	@Override
+	public String nextValue() {
+<span class="fc bfc" id="L38" title="All 2 branches covered.">		if (RND.nextDouble() &lt; this.nullProbability) {</span>
+<span class="fc" id="L39">			return null;</span>
+		}
+<span class="fc" id="L41">		String result = this.pattern;</span>
+
+<span class="fc bfc" id="L43" title="All 2 branches covered.">		for (final Entry&lt;String, RandomField&gt; component : this.components.entrySet()) {</span>
+
+<span class="fc" id="L45">			final String key = component.getKey();</span>
+<span class="fc" id="L46">			int index = result.indexOf(key);</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">			while (index &gt;= 0) {</span>
+<span class="fc" id="L48">				final Object value = component.getValue().nextValue();</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">				final String valueAsString = value == null ? &quot;&quot; : value.toString();</span>
+
+<span class="fc" id="L51">				result = result.substring(0, index) + valueAsString + result.substring(index + key.length());</span>
+<span class="fc" id="L52">				index = result.indexOf(key);</span>
+<span class="fc" id="L53">			}</span>
+<span class="fc" id="L54">		}</span>
+<span class="fc" id="L55">		return result;</span>
+	}
+
+	/**
+	 * Adds a component that can be accessed by {@link #nextValue()}.
+	 *
+	 * @param key the key that is replaced &quot;as is&quot;
+	 * @param randomField the random field to replace this key with
+	 */
+
+	public void addComponent(String key, RandomField randomField) {
+<span class="fc" id="L66">		this.components.put(key, randomField);</span>
+<span class="fc" id="L67">	}</span>
+
+	/**
+	 * Adds components that can be accessed by {@link #nextValue()}.
+	 *
+	 * @param addedComponents with keys and random fields
+	 * @see #addComponent(String, RandomField)
+	 */
+
+	public void addComponents(Map&lt;String, RandomField&gt; addedComponents) {
+<span class="fc" id="L77">		this.components.putAll(addedComponents);</span>
+<span class="fc" id="L78">	}</span>
+
+	/**
+	 * Removes a component that can be accessed by {@link #nextValue()}.
+	 *
+	 * @param key the key that is replaced &quot;as is&quot;
+	 */
+
+	public void removeComponent(String key) {
+<span class="fc" id="L87">		this.components.remove(key);</span>
+<span class="fc" id="L88">	}</span>
+
+	/**
+	 * Removes components that can be accessed by {@link #nextValue()}.
+	 *
+	 * @param keys the keys
+	 * @see #removeComponent(String)
+	 */
+
+	public void removeComponents(Set&lt;String&gt; keys) {
+<span class="fc" id="L98">		keys.forEach(this::removeComponent);</span>
+<span class="fc" id="L99">	}</span>
+
+	/**
+	 * Returns the pattern with keys that get replaced during {@link #nextValue()}.
+	 *
+	 * @return the pattern
+	 */
+
+	public String getPattern() {
+<span class="fc" id="L108">		return this.pattern;</span>
+	}
+
+	/**
+	 * Sets the pattern with keys that get replaced during {@link #nextValue()}.
+	 *
+	 * @param newPattern the pattern
+	 * @return this instance
+	 */
+
+	public PatternRandomField pattern(String newPattern) {
+<span class="fc" id="L119">		setPattern(newPattern);</span>
+<span class="fc" id="L120">		return this;</span>
+	}
+
+	/**
+	 * Sets the pattern with keys that get replaced during {@link #nextValue()}.
+	 *
+	 * @param pattern the pattern
+	 */
+
+	public void setPattern(String pattern) {
+<span class="fc" id="L130">		this.pattern = Objects.requireNonNull(pattern);</span>
+<span class="fc" id="L131">	}</span>
+
+	/**
+	 * Returns the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @return the probability between 0 and 1
+	 */
+
+	public double getNullProbability() {
+<span class="fc" id="L141">		return this.nullProbability;</span>
+	}
+
+	/**
+	 * Sets the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @param newNullProbability the probability between 0 and 1
+	 * @return this instance
+	 */
+
+	public PatternRandomField nullProbability(double newNullProbability) {
+<span class="fc" id="L153">		setNullProbability(newNullProbability);</span>
+<span class="fc" id="L154">		return this;</span>
+	}
+
+	/**
+	 * Sets the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @param nullProbability the probability between 0 and 1
+	 */
+
+	public void setNullProbability(double nullProbability) {
+<span class="fc bfc" id="L165" title="All 4 branches covered.">		if (nullProbability &lt; 0 || nullProbability &gt; 1) {</span>
+<span class="fc" id="L166">			throw new IllegalArgumentException(&quot;Null probability must be between 0 and 1!&quot;);</span>
+		}
+<span class="fc" id="L168">		this.nullProbability = nullProbability;</span>
+<span class="fc" id="L169">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

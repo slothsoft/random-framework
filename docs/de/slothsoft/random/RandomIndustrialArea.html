@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":9,"i7":10,"i8":10,"i9":10,"i10":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":9,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -116,8 +116,10 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
  <br>
  <i>An industrial area has many factories.</i></div>
 <dl>
+<dt><span class="simpleTagLabel">Since:</span></dt>
+<dd>1.0.0</dd>
 <dt><span class="simpleTagLabel">Author:</span></dt>
-<dd>Stef</dd>
+<dd>Stef Schulz</dd>
 </dl>
 </li>
 </ul>
@@ -211,11 +213,17 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 </tr>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/random/RandomIndustrialArea.html#removeFactory-de.slothsoft.random.RandomFactory-">removeFactory</a></span>(<a href="../../../de/slothsoft/random/RandomFactory.html" title="class in de.slothsoft.random">RandomFactory</a>&lt;?&gt;&nbsp;factory)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/random/RandomIndustrialArea.html#removeFactory-java.lang.Class-">removeFactory</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;?&gt;&nbsp;pojoClass)</code>
 <div class="block">Removes a <code>RandomFactory</code> from this industrial area.</div>
 </td>
 </tr>
 <tr id="i10" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/random/RandomIndustrialArea.html#removeFactory-de.slothsoft.random.RandomFactory-">removeFactory</a></span>(<a href="../../../de/slothsoft/random/RandomFactory.html" title="class in de.slothsoft.random">RandomFactory</a>&lt;?&gt;&nbsp;factory)</code>
+<div class="block">Removes a <code>RandomFactory</code> from this industrial area.</div>
+</td>
+</tr>
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../de/slothsoft/random/RandomIndustrialArea.html#setCreationDepth-int-">setCreationDepth</a></span>(int&nbsp;creationDepth)</code>
 <div class="block">Returns the depth for the hierarchical POJOs that might be created.</div>
@@ -271,7 +279,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
  for creating an entire <code>RandomIndustrialArea</code> based on guess work.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>createdClasses</code> - - the classes to be guessed</dd>
+<dd><code>createdClasses</code> - the classes to be guessed</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the brand new object</dd>
 </dl>
@@ -287,7 +295,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <div class="block">Adds a <code>RandomFactory</code> to this industrial area.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>factory</code> - - a factory to add</dd>
+<dd><code>factory</code> - a factory to add; cannot be null</dd>
 </dl>
 </li>
 </ul>
@@ -301,7 +309,21 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <div class="block">Removes a <code>RandomFactory</code> from this industrial area.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>factory</code> - - the factory to remove</dd>
+<dd><code>factory</code> - the factory to remove; cannot be null</dd>
+</dl>
+</li>
+</ul>
+<a name="removeFactory-java.lang.Class-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>removeFactory</h4>
+<pre>public&nbsp;void&nbsp;removeFactory(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;?&gt;&nbsp;pojoClass)</pre>
+<div class="block">Removes a <code>RandomFactory</code> from this industrial area.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>pojoClass</code> - the POJO's class to remove</dd>
 </dl>
 </li>
 </ul>
@@ -316,13 +338,13 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <div class="block">Returns the <code>RandomFactory</code> for the class.</div>
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
-<dd><code>T</code> - - the type the factory is for</dd>
+<dd><code>T</code> - the type the factory is for</dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>pojoClass</code> - - the class that should be created</dd>
+<dd><code>pojoClass</code> - the class that should be created</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a random factory</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../../../de/slothsoft/random/RandomException.html" title="class in de.slothsoft.random">RandomException</a></code> - if none was found</dd>
+<dd><code><a href="../../../de/slothsoft/random/RandomException.html" title="class in de.slothsoft.random">RandomException</a></code> - if no <a href="../../../de/slothsoft/random/RandomFactory.html" title="class in de.slothsoft.random"><code>RandomFactory</code></a> was found</dd>
 </dl>
 </li>
 </ul>
@@ -336,9 +358,9 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <div class="block">Returns the <code>RandomFactory</code> for the class or null.</div>
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
-<dd><code>T</code> - - the type the factory is for</dd>
+<dd><code>T</code> - the type the factory is for</dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>pojoClass</code> - - the class that should be created</dd>
+<dd><code>pojoClass</code> - the class that should be created</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a random factory or null</dd>
 </dl>
@@ -354,9 +376,9 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <div class="block">Returns if there is a <code>RandomFactory</code> for the class.</div>
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
-<dd><code>T</code> - - the type the factory is for</dd>
+<dd><code>T</code> - the type the factory is for</dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>pojoClass</code> - - the class that should be created</dd>
+<dd><code>pojoClass</code> - the class that should be created</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>true, if there is a random factory</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
@@ -376,8 +398,10 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
  factories of this area are asked, if they want to create it. If not, the normal
  procedure is used.</div>
 <dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - the type the factory is for</dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>pojoClass</code> - - the class to be created</dd>
+<dd><code>pojoClass</code> - the class to be created</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a single dummy instance</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
@@ -398,8 +422,11 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
  class, the factories of this area are asked, if they want to create it. If not, the
  normal procedure is used.</div>
 <dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - the type the factory is for</dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>count</code> - - number of instances to be created</dd>
+<dd><code>createdClass</code> - the class to be created</dd>
+<dd><code>count</code> - number of instances to be created</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>some dummy instance</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
@@ -431,7 +458,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <div class="block">Returns the depth for the hierarchical POJOs that might be created.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>newCreationDepth</code> - - an integer &gt; 0</dd>
+<dd><code>newCreationDepth</code> - an integer &gt; 0</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>this instance</dd>
 </dl>
@@ -447,7 +474,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <div class="block">Returns the depth for the hierarchical POJOs that might be created.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>creationDepth</code> - - an integer &gt; 0</dd>
+<dd><code>creationDepth</code> - an integer &gt; 0</dd>
 </dl>
 </li>
 </ul>

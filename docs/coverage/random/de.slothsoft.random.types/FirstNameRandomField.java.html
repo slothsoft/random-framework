@@ -26,15 +26,25 @@ public class FirstNameRandomField implements RandomField {
 	 */
 
 <span class="fc" id="L28">	public enum Gender {</span>
-<span class="fc" id="L29">		MALE(true, false), FEMALE(false, true), NEITHER(false, false), BOTH(true, true);</span>
+		/** Value to use male and unisex names. */
+<span class="fc" id="L30">		MALE(true, false),</span>
+
+		/** Value to use female and unisex names. */
+<span class="fc" id="L33">		FEMALE(false, true),</span>
+
+		/** Value to use unisex names only. */
+<span class="fc" id="L36">		NEITHER(false, false),</span>
+
+		/** Value to use all kinds of names. */
+<span class="fc" id="L39">		BOTH(true, true);</span>
 
 		boolean allowsMale;
 		boolean allowsFemale;
 
-<span class="fc" id="L34">		private Gender(boolean allowsMale, boolean allowsFemale) {</span>
-<span class="fc" id="L35">			this.allowsMale = allowsMale;</span>
-<span class="fc" id="L36">			this.allowsFemale = allowsFemale;</span>
-<span class="fc" id="L37">		}</span>
+<span class="fc" id="L44">		private Gender(boolean allowsMale, boolean allowsFemale) {</span>
+<span class="fc" id="L45">			this.allowsMale = allowsMale;</span>
+<span class="fc" id="L46">			this.allowsFemale = allowsFemale;</span>
+<span class="fc" id="L47">		}</span>
 
 	}
 
@@ -43,58 +53,126 @@ public class FirstNameRandomField implements RandomField {
 	static final String[] unisexNames;
 
 	static {
-<span class="fc" id="L46">		maleNames = readFile(&quot;male-names.txt&quot;);</span>
-<span class="fc" id="L47">		femaleNames = readFile(&quot;female-names.txt&quot;);</span>
-<span class="fc" id="L48">		unisexNames = readFile(&quot;unisex-names.txt&quot;);</span>
-<span class="fc" id="L49">	}</span>
+<span class="fc" id="L56">		maleNames = readFile(&quot;male-names.txt&quot;);</span>
+<span class="fc" id="L57">		femaleNames = readFile(&quot;female-names.txt&quot;);</span>
+<span class="fc" id="L58">		unisexNames = readFile(&quot;unisex-names.txt&quot;);</span>
+<span class="fc" id="L59">	}</span>
 
 	static String[] readFile(String fileName) {
-<span class="fc" id="L52">		final String fileNameWithPath = &quot;/de/slothsoft/random/text/&quot; + fileName;</span>
-<span class="fc" id="L53">		try (InputStream inputStream = FirstNameRandomField.class.getResourceAsStream(fileNameWithPath);</span>
-<span class="fc" id="L54">				InputStreamReader streamReader = new InputStreamReader(inputStream);</span>
-<span class="fc" id="L55">				BufferedReader bufferedReader = new BufferedReader(streamReader)) {</span>
-<span class="fc" id="L56">			return bufferedReader.lines().parallel().toArray(String[]::new);</span>
-<span class="nc" id="L57">		} catch (final IOException e) {</span>
-<span class="nc" id="L58">			throw new RuntimeException(&quot;Could not open: &quot; + fileName);</span>
+<span class="fc" id="L62">		final String fileNameWithPath = &quot;/de/slothsoft/random/text/&quot; + fileName;</span>
+<span class="fc" id="L63">		try (InputStream inputStream = FirstNameRandomField.class.getResourceAsStream(fileNameWithPath);</span>
+<span class="fc" id="L64">				InputStreamReader streamReader = new InputStreamReader(inputStream);</span>
+<span class="fc" id="L65">				BufferedReader bufferedReader = new BufferedReader(streamReader)) {</span>
+<span class="fc" id="L66">			return bufferedReader.lines().parallel().toArray(String[]::new);</span>
+<span class="fc" id="L67">		} catch (final IOException | NullPointerException e) {</span>
+<span class="fc" id="L68">			throw new IllegalArgumentException(&quot;Could not open: &quot; + fileName);</span>
 		}
 	}
 
 	private Gender gender;
 	private List&lt;String&gt; supportedNames;
+	private double nullProbability;
 
-<span class="fc" id="L65">	public FirstNameRandomField() {</span>
-<span class="fc" id="L66">		setGender(Gender.BOTH);</span>
-<span class="fc" id="L67">	}</span>
+	/**
+	 * Default constructor.
+	 */
+
+<span class="fc" id="L80">	public FirstNameRandomField() {</span>
+<span class="fc" id="L81">		setGender(Gender.BOTH);</span>
+<span class="fc" id="L82">	}</span>
 
 	@Override
 	public String nextValue() {
-<span class="fc" id="L71">		return this.supportedNames.get(RND.nextInt(this.supportedNames.size()));</span>
+<span class="fc bfc" id="L86" title="All 2 branches covered.">		if (RND.nextDouble() &lt; this.nullProbability) {</span>
+<span class="fc" id="L87">			return null;</span>
+		}
+<span class="fc" id="L89">		return this.supportedNames.get(RND.nextInt(this.supportedNames.size()));</span>
 	}
+
+	/**
+	 * Returns the gender of the generated first names.
+	 *
+	 * @return the gender; never null
+	 */
 
 	public Gender getGender() {
-<span class="nc" id="L75">		return this.gender;</span>
+<span class="fc" id="L99">		return this.gender;</span>
 	}
+
+	/**
+	 * Sets the gender of the generated first names.
+	 *
+	 * @param newGender the gender; cannot be null
+	 * @return this instance
+	 */
 
 	public FirstNameRandomField gender(Gender newGender) {
-<span class="nc" id="L79">		setGender(newGender);</span>
-<span class="nc" id="L80">		return this;</span>
+<span class="fc" id="L110">		setGender(newGender);</span>
+<span class="fc" id="L111">		return this;</span>
 	}
 
+	/**
+	 * Sets the gender of the generated first names.
+	 *
+	 * @param gender the gender; cannot be null
+	 */
+
 	public void setGender(Gender gender) {
-<span class="fc" id="L84">		this.gender = Objects.requireNonNull(gender);</span>
-<span class="fc" id="L85">		updateSupportedNames();</span>
-<span class="fc" id="L86">	}</span>
+<span class="fc" id="L121">		this.gender = Objects.requireNonNull(gender);</span>
+<span class="fc" id="L122">		updateSupportedNames();</span>
+<span class="fc" id="L123">	}</span>
 
 	private void updateSupportedNames() {
-<span class="fc" id="L89">		this.supportedNames = new ArrayList&lt;&gt;();</span>
-<span class="pc bpc" id="L90" title="1 of 2 branches missed.">		if (this.gender.allowsMale) {</span>
-<span class="fc" id="L91">			this.supportedNames.addAll(Arrays.asList(maleNames));</span>
+<span class="fc" id="L126">		this.supportedNames = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L127" title="All 2 branches covered.">		if (this.gender.allowsMale) {</span>
+<span class="fc" id="L128">			this.supportedNames.addAll(Arrays.asList(maleNames));</span>
 		}
-<span class="pc bpc" id="L93" title="1 of 2 branches missed.">		if (this.gender.allowsFemale) {</span>
-<span class="fc" id="L94">			this.supportedNames.addAll(Arrays.asList(femaleNames));</span>
+<span class="fc bfc" id="L130" title="All 2 branches covered.">		if (this.gender.allowsFemale) {</span>
+<span class="fc" id="L131">			this.supportedNames.addAll(Arrays.asList(femaleNames));</span>
 		}
-<span class="fc" id="L96">		this.supportedNames.addAll(Arrays.asList(unisexNames));</span>
-<span class="fc" id="L97">	}</span>
+<span class="fc" id="L133">		this.supportedNames.addAll(Arrays.asList(unisexNames));</span>
+<span class="fc" id="L134">	}</span>
+
+	/**
+	 * Returns the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @return the probability between 0 and 1
+	 * @since 2.1.0
+	 */
+
+	public double getNullProbability() {
+<span class="fc" id="L145">		return this.nullProbability;</span>
+	}
+
+	/**
+	 * Sets the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @param newNullProbability the probability between 0 and 1
+	 * @return this instance
+	 * @since 2.1.0
+	 */
+
+	public FirstNameRandomField nullProbability(double newNullProbability) {
+<span class="fc" id="L158">		setNullProbability(newNullProbability);</span>
+<span class="fc" id="L159">		return this;</span>
+	}
+
+	/**
+	 * Sets the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @param nullProbability the probability between 0 and 1
+	 * @since 2.1.0
+	 */
+
+	public void setNullProbability(double nullProbability) {
+<span class="fc bfc" id="L171" title="All 4 branches covered.">		if (nullProbability &lt; 0 || nullProbability &gt; 1) {</span>
+<span class="fc" id="L172">			throw new IllegalArgumentException(&quot;Null probability must be between 0 and 1!&quot;);</span>
+		}
+<span class="fc" id="L174">		this.nullProbability = nullProbability;</span>
+<span class="fc" id="L175">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -5,27 +5,42 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+import java.util.function.BiFunction;
 import java.util.function.Supplier;
 
+import de.slothsoft.random.types.ArrayRandomField;
 import de.slothsoft.random.types.BigDecimalRandomField;
 import de.slothsoft.random.types.BigIntegerRandomField;
 import de.slothsoft.random.types.BirthdayRandomField;
 import de.slothsoft.random.types.BooleanRandomField;
+import de.slothsoft.random.types.CalendarRandomField;
+import de.slothsoft.random.types.CharacterRandomField;
 import de.slothsoft.random.types.CityRandomField;
 import de.slothsoft.random.types.DateRandomField;
 import de.slothsoft.random.types.DoubleRandomField;
-import de.slothsoft.random.types.ElementFromListRandomField;
+import de.slothsoft.random.types.EnumRandomField;
 import de.slothsoft.random.types.FirstNameRandomField;
 import de.slothsoft.random.types.FloatRandomField;
 import de.slothsoft.random.types.IntegerRandomField;
 import de.slothsoft.random.types.LastNameRandomField;
+import de.slothsoft.random.types.LocalDateRandomField;
+import de.slothsoft.random.types.LocalDateTimeRandomField;
+import de.slothsoft.random.types.LocalTimeRandomField;
 import de.slothsoft.random.types.LongRandomField;
+import de.slothsoft.random.types.PostalCodeRandomField;
 import de.slothsoft.random.types.ShortRandomField;
 import de.slothsoft.random.types.StreetRandomField;
+import de.slothsoft.random.types.WordRandomField;
+import de.slothsoft.random.types.WordsRandomField;
 
 /**
  * Util class for storing managing all the random field this module brings along.
@@ -39,19 +54,38 @@ public abstract class RandomFieldSupplier {
 	private static List&lt;RandomFieldSupplier&gt; suppliers;
 
 	/**
+	 * Creates a {@link RandomField} for a property name and class.
+	 *
+	 * @param propertyName the property's name
+	 * @param propertyClass the property's class
+	 * @return a {@link RandomField} or null
+	 * @since 2.1.0
+	 */
+
+	public static RandomField createRandomFieldByField(String propertyName, Class&lt;?&gt; propertyClass) {
+<span class="fc" id="L66">		final RandomFieldSupplier supplier = findSupplierByField(propertyName, propertyClass);</span>
+<span class="fc bfc" id="L67" title="All 2 branches covered.">		if (supplier != null) {</span>
+<span class="fc" id="L68">			return supplier.createRandomField(propertyName, propertyClass);</span>
+		}
+<span class="fc" id="L70">		return null;</span>
+	}
+
+	/**
 	 * Returns a {@link RandomFieldSupplier} for a property name and class.
 	 *
-	 * @param propertyName - the property's name
-	 * @param propertyClass - the property's class
+	 * @param propertyName the property's name
+	 * @param propertyClass the property's class
 	 * @return a {@link RandomFieldSupplier} or null
 	 */
 
 	public static RandomFieldSupplier findSupplierByField(String propertyName, Class&lt;?&gt; propertyClass) {
-<span class="fc" id="L50">		final String name = propertyName.toLowerCase();</span>
-<span class="fc bfc" id="L51" title="All 2 branches covered.">		for (final RandomFieldSupplier supplier : getAllSuppliers()) {</span>
-<span class="fc bfc" id="L52" title="All 2 branches covered.">			if (supplier.canSupply(name, propertyClass)) return supplier;</span>
-<span class="fc" id="L53">		}</span>
-<span class="fc" id="L54">		return null;</span>
+<span class="fc" id="L82">		final String name = propertyName.toLowerCase();</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">		for (final RandomFieldSupplier supplier : getAllSuppliers()) {</span>
+<span class="fc bfc" id="L84" title="All 2 branches covered.">			if (supplier.canSupply(name, propertyClass)) {</span>
+<span class="fc" id="L85">				return supplier;</span>
+			}
+<span class="fc" id="L87">		}</span>
+<span class="fc" id="L88">		return null;</span>
 	}
 
 	/**
@@ -61,80 +95,126 @@ public abstract class RandomFieldSupplier {
 	 */
 
 	public static List&lt;RandomFieldSupplier&gt; getAllSuppliers() {
-<span class="fc bfc" id="L64" title="All 2 branches covered.">		if (suppliers == null) {</span>
-<span class="fc" id="L65">			suppliers = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L98" title="All 2 branches covered.">		if (suppliers == null) {</span>
+<span class="fc" id="L99">			suppliers = new ArrayList&lt;&gt;();</span>
 
-<span class="fc" id="L67">			final String[] streets = readFile(RandomFieldSupplier.class.getResourceAsStream(&quot;text/street-names.txt&quot;));</span>
-<span class="fc" id="L68">			suppliers.add(forSynonymeList(&quot;synonyms/street-names.txt&quot;, () -&gt; new StreetRandomField(streets)));</span>
+<span class="fc" id="L101">			suppliers.add(forSynonymeList(&quot;synonyms/birthdays.txt&quot;, BirthdayRandomField::new));</span>
+<span class="fc" id="L102">			suppliers.add(forSynonymeList(&quot;synonyms/city-names.txt&quot;, CityRandomField::new));</span>
+<span class="fc" id="L103">			suppliers.add(forSynonymeList(&quot;synonyms/last-names.txt&quot;, LastNameRandomField::new));</span>
+<span class="fc" id="L104">			suppliers.add(forSynonymeList(&quot;synonyms/first-names.txt&quot;, FirstNameRandomField::new));</span>
+<span class="fc" id="L105">			suppliers.add(forSynonymeList(&quot;synonyms/postal-code.txt&quot;, PostalCodeRandomField::new));</span>
+<span class="fc" id="L106">			suppliers.add(forSynonymeList(&quot;synonyms/street-names.txt&quot;, StreetRandomField::new));</span>
+<span class="fc" id="L107">			suppliers.add(forSynonymeList(&quot;synonyms/word.txt&quot;, WordRandomField::new));</span>
+<span class="fc" id="L108">			suppliers.add(forSynonymeList(&quot;synonyms/words.txt&quot;, WordsRandomField::new));</span>
 
-<span class="fc" id="L70">			suppliers.add(forSynonymeList(&quot;synonyms/last-names.txt&quot;, LastNameRandomField::new));</span>
-<span class="fc" id="L71">			suppliers.add(forSynonymeList(&quot;synonyms/city-names.txt&quot;, CityRandomField::new));</span>
-<span class="fc" id="L72">			suppliers.add(forSynonymeList(&quot;synonyms/first-names.txt&quot;, FirstNameRandomField::new));</span>
-<span class="fc" id="L73">			suppliers.add(forSynonymeList(&quot;synonyms/birthdays.txt&quot;, BirthdayRandomField::new));</span>
+<span class="fc" id="L110">			suppliers.add(forFieldClass(Date.class, DateRandomField::new));</span>
+<span class="fc" id="L111">			suppliers.add(forFieldClass(Calendar.class, CalendarRandomField::new));</span>
+<span class="fc" id="L112">			suppliers.add(forFieldClass(LocalDateTime.class, LocalDateTimeRandomField::new));</span>
+<span class="fc" id="L113">			suppliers.add(forFieldClass(LocalTime.class, LocalTimeRandomField::new));</span>
+<span class="fc" id="L114">			suppliers.add(forFieldClass(LocalDate.class, LocalDateRandomField::new));</span>
 
-<span class="fc" id="L75">			suppliers.add(forFieldClass(Date.class, DateRandomField::new));</span>
-
-<span class="fc" id="L77">			suppliers.add(forFieldClass(Short.class, ShortRandomField::new));</span>
-<span class="fc" id="L78">			suppliers.add(forFieldClass(short.class, () -&gt; new ShortRandomField()));</span>
-<span class="fc" id="L79">			suppliers.add(forFieldClass(Integer.class, IntegerRandomField::new));</span>
-<span class="fc" id="L80">			suppliers.add(forFieldClass(int.class, () -&gt; new IntegerRandomField()));</span>
-<span class="fc" id="L81">			suppliers.add(forFieldClass(Long.class, LongRandomField::new));</span>
-<span class="fc" id="L82">			suppliers.add(forFieldClass(long.class, () -&gt; new LongRandomField()));</span>
-<span class="fc" id="L83">			suppliers.add(forFieldClass(Double.class, DoubleRandomField::new));</span>
-<span class="fc" id="L84">			suppliers.add(forFieldClass(double.class, () -&gt; new DoubleRandomField()));</span>
-<span class="fc" id="L85">			suppliers.add(forFieldClass(Float.class, FloatRandomField::new));</span>
-<span class="fc" id="L86">			suppliers.add(forFieldClass(float.class, () -&gt; new FloatRandomField()));</span>
-<span class="fc" id="L87">			suppliers.add(forFieldClass(BigInteger.class, BigIntegerRandomField::new));</span>
-<span class="fc" id="L88">			suppliers.add(forFieldClass(BigDecimal.class, BigDecimalRandomField::new));</span>
-<span class="fc" id="L89">			suppliers.add(forFieldClass(Boolean.class, BooleanRandomField::new));</span>
-<span class="fc" id="L90">			suppliers.add(forFieldClass(boolean.class, () -&gt; new BooleanRandomField()));</span>
+<span class="fc" id="L116">			suppliers.add(new ArrayRandomFieldSupplier());</span>
+<span class="fc" id="L117">			suppliers.add(forFieldClass(BigInteger.class, BigIntegerRandomField::new));</span>
+<span class="fc" id="L118">			suppliers.add(forFieldClass(BigDecimal.class, BigDecimalRandomField::new));</span>
+<span class="fc" id="L119">			suppliers.add(forFieldClass(Boolean.class, BooleanRandomField::new));</span>
+<span class="fc" id="L120">			suppliers.add(forFieldClass(boolean.class, () -&gt; new BooleanRandomField()));</span>
+<span class="fc" id="L121">			suppliers.add(forFieldClass(Character.class, CharacterRandomField::new));</span>
+<span class="fc" id="L122">			suppliers.add(forFieldClass(char.class, CharacterRandomField::new));</span>
+<span class="fc" id="L123">			suppliers.add(forFieldClass(Double.class, DoubleRandomField::new));</span>
+<span class="fc" id="L124">			suppliers.add(forFieldClass(double.class, () -&gt; new DoubleRandomField()));</span>
+<span class="fc" id="L125">			suppliers.add(forFieldClass(Float.class, FloatRandomField::new));</span>
+<span class="fc" id="L126">			suppliers.add(forFieldClass(float.class, () -&gt; new FloatRandomField()));</span>
+<span class="fc" id="L127">			suppliers.add(new EnumRandomFieldSupplier());</span>
+<span class="fc" id="L128">			suppliers.add(forFieldClass(Integer.class, IntegerRandomField::new));</span>
+<span class="fc" id="L129">			suppliers.add(forFieldClass(int.class, () -&gt; new IntegerRandomField()));</span>
+<span class="fc" id="L130">			suppliers.add(forFieldClass(Long.class, LongRandomField::new));</span>
+<span class="fc" id="L131">			suppliers.add(forFieldClass(long.class, () -&gt; new LongRandomField()));</span>
+<span class="fc" id="L132">			suppliers.add(forFieldClass(short.class, () -&gt; new ShortRandomField()));</span>
+<span class="fc" id="L133">			suppliers.add(forFieldClass(Short.class, () -&gt; new ShortRandomField()));</span>
 		}
-<span class="fc" id="L92">		return suppliers;</span>
+<span class="fc" id="L135">		return suppliers;</span>
 	}
 
 	// these constructors are not that great, but are a problem for future Stef now
 
 	static RandomFieldSupplier forFieldClass(Class&lt;?&gt; wantedFieldClass, Supplier&lt;RandomField&gt; supplier) {
-<span class="fc" id="L98">		return new RandomFieldSupplier(supplier) {</span>
+<span class="fc" id="L141">		return new RandomFieldSupplier(supplier) {</span>
 
 			@Override
 			public boolean canSupply(String fieldName, Class&lt;?&gt; fieldClass) {
-<span class="fc bfc" id="L102" title="All 2 branches covered.">				return wantedFieldClass == fieldClass;</span>
+<span class="fc bfc" id="L145" title="All 2 branches covered.">				return wantedFieldClass == fieldClass;</span>
 			}
 		};
 	}
 
 	static RandomFieldSupplier forSynonymeList(String fileName, Supplier&lt;RandomField&gt; supplier) {
-<span class="fc" id="L108">		final List&lt;String&gt; synonyms = Arrays.asList(readFile(RandomFieldSupplier.class.getResourceAsStream(fileName)));</span>
-<span class="fc" id="L109">		return new RandomFieldSupplier(supplier) {</span>
+<span class="fc" id="L151">		final List&lt;String&gt; synonyms = Arrays.asList(readFile(RandomFieldSupplier.class.getResourceAsStream(fileName)));</span>
+<span class="fc" id="L152">		return new RandomFieldSupplier(supplier) {</span>
 
 			@Override
 			public boolean canSupply(String fieldName, Class&lt;?&gt; fieldClass) {
-<span class="fc" id="L113">				return synonyms.contains(fieldName.toLowerCase());</span>
+<span class="fc" id="L156">				return synonyms.contains(fieldName.toLowerCase());</span>
 			}
 		};
 	}
 
-	private static Supplier&lt;RandomField&gt; createStringListSupplier(String fileName) {
-<span class="nc" id="L119">		final String[] strings = readFile(RandomFieldSupplier.class.getResourceAsStream(fileName));</span>
-<span class="nc" id="L120">		return () -&gt; new ElementFromListRandomField(strings);</span>
+	static String[] readFile(InputStream inputStream) {
+<span class="fc" id="L162">		return new BufferedReader(new InputStreamReader(inputStream)).lines().parallel().toArray(String[]::new);</span>
 	}
 
-	static String[] readFile(InputStream inputStream) {
-<span class="fc" id="L124">		return new BufferedReader(new InputStreamReader(inputStream)).lines().parallel().toArray(String[]::new);</span>
+	static class EnumRandomFieldSupplier extends RandomFieldSupplier {
+
+		@SuppressWarnings({&quot;rawtypes&quot;, &quot;unchecked&quot;})
+		protected EnumRandomFieldSupplier() {
+<span class="fc" id="L169">			super((n, c) -&gt; new EnumRandomField&lt;&gt;((Class&lt;Enum&gt;) c));</span>
+<span class="fc" id="L170">		}</span>
+
+		@Override
+		public boolean canSupply(String fieldName, Class&lt;?&gt; fieldClass) {
+<span class="fc" id="L174">			return Enum.class.isAssignableFrom(fieldClass);</span>
+		}
+
+	}
+
+	static class ArrayRandomFieldSupplier extends RandomFieldSupplier {
+
+		protected ArrayRandomFieldSupplier() {
+<span class="fc" id="L182">			super((n, c) -&gt; {</span>
+<span class="fc" id="L183">				final Class&lt;?&gt; elementClass = c.getComponentType();</span>
+<span class="fc" id="L184">				final RandomField elementRandomField = createRandomFieldByField(n, elementClass);</span>
+<span class="fc" id="L185">				Objects.requireNonNull(elementRandomField, &quot;Cannot find random field for &quot; + n + &quot; (&quot; + c + &quot;)&quot;);</span>
+<span class="fc" id="L186">				return new ArrayRandomField(elementClass, elementRandomField);</span>
+			});
+<span class="fc" id="L188">		}</span>
+
+		@Override
+		public boolean canSupply(String fieldName, Class&lt;?&gt; fieldClass) {
+<span class="pc bpc" id="L192" title="1 of 4 branches missed.">			return fieldClass.isArray() &amp;&amp; (findSupplierByField(fieldName, fieldClass.getComponentType()) != null);</span>
+		}
 	}
 
 	private final Supplier&lt;RandomField&gt; supplier;
+	private final BiFunction&lt;String, Class&lt;?&gt;, RandomField&gt; supplierWithArguments;
 
-<span class="fc" id="L129">	protected RandomFieldSupplier(Supplier&lt;RandomField&gt; supplier) {</span>
-<span class="fc" id="L130">		this.supplier = supplier;</span>
-<span class="fc" id="L131">	}</span>
+	protected RandomFieldSupplier(Supplier&lt;RandomField&gt; supplier) {
+<span class="fc" id="L200">		this(supplier, null);</span>
+<span class="fc" id="L201">	}</span>
+
+	protected RandomFieldSupplier(BiFunction&lt;String, Class&lt;?&gt;, RandomField&gt; supplierWithArguments) {
+<span class="fc" id="L204">		this(null, supplierWithArguments);</span>
+<span class="fc" id="L205">	}</span>
+
+	private RandomFieldSupplier(Supplier&lt;RandomField&gt; supplier,
+<span class="fc" id="L208">			BiFunction&lt;String, Class&lt;?&gt;, RandomField&gt; supplierWithArguments) {</span>
+<span class="fc" id="L209">		this.supplier = supplier;</span>
+<span class="fc" id="L210">		this.supplierWithArguments = supplierWithArguments;</span>
+<span class="fc" id="L211">	}</span>
 
 	/**
 	 * Returns if this random field should be used to render the field name.
 	 *
-	 * @param fieldName - name of the field
-	 * @param fieldClass - class of the field
+	 * @param fieldName name of the field
+	 * @param fieldClass class of the field
 	 * @return a boolean - returns true if a {@link RandomField} can be supplied
 	 */
 
@@ -145,11 +225,28 @@ public abstract class RandomFieldSupplier {
 	 * {@link RandomFactory}.
 	 *
 	 * @return a new instance
+	 * @deprecated use {@link #createRandomField(String, Class)} instead
 	 */
 
+	@Deprecated
 	public RandomField createRandomField() {
-<span class="fc" id="L151">		return this.supplier.get();</span>
+<span class="nc" id="L233">		return createRandomField(null, null);</span>
 	}
 
+	/**
+	 * Creates a &lt;b&gt;new instance&lt;/b&gt; of {@link RandomField} to use for a
+	 * {@link RandomFactory}.
+	 *
+	 * @param fieldName the name of the field to be filled
+	 * @param fieldClass the class of the field to be filled
+	 * @return a new instance
+	 */
+
+	public RandomField createRandomField(String fieldName, Class&lt;?&gt; fieldClass) {
+<span class="fc bfc" id="L246" title="All 2 branches covered.">		if (this.supplier != null) {</span>
+<span class="fc" id="L247">			return this.supplier.get();</span>
+		}
+<span class="fc" id="L249">		return this.supplierWithArguments.apply(fieldName, fieldClass);</span>
+	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

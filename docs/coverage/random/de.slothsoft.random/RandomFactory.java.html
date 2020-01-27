@@ -2,6 +2,7 @@
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -11,10 +12,10 @@ import java.util.Map.Entry;
  *
  * @author Stef Schulz
  * @since 1.0.0
- * @param &lt;T&gt; - the type to be created
+ * @param &lt;T&gt; the type to be created
  */
 
-public class RandomFactory&lt;T&gt; {
+public class RandomFactory&lt;T&gt; implements RandomField {
 
 	/**
 	 * Represents a supplier of results.
@@ -39,40 +40,42 @@ public class RandomFactory&lt;T&gt; {
 	 * Creates a {@link RandomFactory} with just one class and then tries to guess which
 	 * fields to fill. Might not be the best option for some cases.
 	 *
-	 * @param pojoClass - the class of the POJO to be created; the class must have a
-	 *            default constructor and be public
+	 * @param pojoClass the class of the POJO to be created; the class must have a default
+	 *            constructor and be public
+	 * @param &lt;U&gt; the class that should be generated
+	 * @return a {@link RandomFactory} with guessed mapping
 	 */
 
 	public static &lt;U&gt; RandomFactory&lt;U&gt; forClass(Class&lt;U&gt; pojoClass) {
-<span class="fc" id="L47">		return new RandomFactory&lt;&gt;(() -&gt; {</span>
+<span class="fc" id="L50">		return new RandomFactory&lt;&gt;(() -&gt; {</span>
 			try {
-<span class="fc" id="L49">				return pojoClass.getConstructor().newInstance();</span>
-<span class="nc" id="L50">			} catch (final Exception e) {</span>
-<span class="nc" id="L51">				throw new RandomException(&quot;Could not create instance of class &quot; + pojoClass</span>
+<span class="fc" id="L52">				return pojoClass.getConstructor().newInstance();</span>
+<span class="fc" id="L53">			} catch (final Exception e) {</span>
+<span class="fc" id="L54">				throw new RandomException(&quot;Could not create instance of class &quot; + pojoClass</span>
 						+ &quot;. Class must have default constructor and be public visible!&quot;, e);
 			}
-<span class="fc" id="L54">		}, guessMapping(pojoClass));</span>
+<span class="fc" id="L57">		}, guessMapping(pojoClass));</span>
 	}
 
 	/**
 	 * Guesses the mapping from the actual name of the getter and setter.
 	 *
-	 * @param pojoClass - the class
+	 * @param pojoClass the class
 	 * @return a mapping
 	 */
 
 	static Map&lt;String, RandomField&gt; guessMapping(Class&lt;?&gt; pojoClass) {
-<span class="fc" id="L65">		final Map&lt;String, Class&lt;?&gt;&gt; fields = PropertyUtil.getProperties(pojoClass);</span>
-<span class="fc" id="L66">		final Map&lt;String, RandomField&gt; result = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L68">		final Map&lt;String, Class&lt;?&gt;&gt; fields = PropertyUtil.getProperties(pojoClass);</span>
+<span class="fc" id="L69">		final Map&lt;String, RandomField&gt; result = new LinkedHashMap&lt;&gt;();</span>
 
-<span class="fc bfc" id="L68" title="All 2 branches covered.">		for (final Entry&lt;String, Class&lt;?&gt;&gt; fieldEntry : fields.entrySet()) {</span>
-<span class="fc" id="L69">			final RandomFieldSupplier field = RandomFieldSupplier.findSupplierByField(fieldEntry.getKey(),</span>
-<span class="fc" id="L70">					fieldEntry.getValue());</span>
-<span class="fc bfc" id="L71" title="All 2 branches covered.">			if (field != null) {</span>
-<span class="fc" id="L72">				result.put(fieldEntry.getKey(), field.createRandomField());</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">		for (final Entry&lt;String, Class&lt;?&gt;&gt; fieldEntry : fields.entrySet()) {</span>
+<span class="fc" id="L72">			final RandomField randomField = RandomFieldSupplier.createRandomFieldByField(fieldEntry.getKey(),</span>
+<span class="fc" id="L73">					fieldEntry.getValue());</span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">			if (randomField != null) {</span>
+<span class="fc" id="L75">				result.put(fieldEntry.getKey(), randomField);</span>
 			}
-<span class="fc" id="L74">		}</span>
-<span class="fc" id="L75">		return result;</span>
+<span class="fc" id="L77">		}</span>
+<span class="fc" id="L78">		return result;</span>
 	}
 
 	private final Supplier&lt;T&gt; pojoSupplier;
@@ -83,26 +86,31 @@ public class RandomFactory&lt;T&gt; {
 	 * A constructor that takes one {@link Supplier}. The mapping of properties to the
 	 * factories filling them is guessed.
 	 *
-	 * @param pojoSupplier - the supplier for the POJO
+	 * @param pojoSupplier the supplier for the POJO
 	 */
 
 	public RandomFactory(Supplier&lt;T&gt; pojoSupplier) {
-<span class="fc" id="L90">		this(pojoSupplier, guessMapping(pojoSupplier.get().getClass()));</span>
-<span class="fc" id="L91">	}</span>
+<span class="fc" id="L93">		this(pojoSupplier, guessMapping(pojoSupplier.get().getClass()));</span>
+<span class="fc" id="L94">	}</span>
 
 	/**
 	 * A constructor that takes one class and the mapping of properties to the factories
 	 * filling them.
 	 *
-	 * @param pojoSupplier - the supplier for the POJO
-	 * @param fieldMapping - the initial mapping for the fields
+	 * @param pojoSupplier the supplier for the POJO
+	 * @param fieldMapping the initial mapping for the fields
 	 */
 
-<span class="fc" id="L101">	public RandomFactory(Supplier&lt;T&gt; pojoSupplier, Map&lt;String, RandomField&gt; fieldMapping) {</span>
-<span class="fc" id="L102">		this.pojoSupplier = pojoSupplier;</span>
-<span class="fc" id="L103">		this.fieldMapping = fieldMapping;</span>
-<span class="fc" id="L104">		this.pojoClass = pojoSupplier.get().getClass();</span>
-<span class="fc" id="L105">	}</span>
+<span class="fc" id="L104">	public RandomFactory(Supplier&lt;T&gt; pojoSupplier, Map&lt;String, RandomField&gt; fieldMapping) {</span>
+<span class="fc" id="L105">		this.pojoSupplier = pojoSupplier;</span>
+<span class="fc" id="L106">		this.fieldMapping = fieldMapping;</span>
+<span class="fc" id="L107">		this.pojoClass = pojoSupplier.get().getClass();</span>
+<span class="fc" id="L108">	}</span>
+
+	@Override
+	public T nextValue() {
+<span class="fc" id="L112">		return createSingle();</span>
+	}
 
 	/**
 	 * Creates a single instance of the class this factory is for.
@@ -112,46 +120,89 @@ public class RandomFactory&lt;T&gt; {
 	 */
 
 	public T createSingle() throws RandomException {
-<span class="fc" id="L115">		final T result = this.pojoSupplier.get();</span>
-<span class="fc" id="L116">		fillFields(result);</span>
-<span class="fc" id="L117">		return result;</span>
+<span class="fc" id="L123">		final T result = this.pojoSupplier.get();</span>
+<span class="fc" id="L124">		fillFields(result);</span>
+<span class="fc" id="L125">		return result;</span>
 	}
 
 	void fillFields(T value) throws RandomException {
-<span class="fc bfc" id="L121" title="All 2 branches covered.">		for (final Entry&lt;String, RandomField&gt; fieldEntry : this.fieldMapping.entrySet()) {</span>
-<span class="fc" id="L122">			final RandomField randomField = fieldEntry.getValue();</span>
-<span class="fc" id="L123">			PropertyUtil.setProperty(value, fieldEntry.getKey(), randomField.nextValue());</span>
-<span class="fc" id="L124">		}</span>
-<span class="fc" id="L125">	}</span>
+<span class="fc" id="L129">		final Map&lt;String, Object&gt; context = new HashMap&lt;&gt;();</span>
+
+<span class="fc bfc" id="L131" title="All 2 branches covered.">		for (final Entry&lt;String, RandomField&gt; fieldEntry : this.fieldMapping.entrySet()) {</span>
+<span class="fc" id="L132">			final RandomField randomField = fieldEntry.getValue();</span>
+<span class="fc" id="L133">			randomField.init(context);</span>
+<span class="fc" id="L134">			final Object randomValue = randomField.nextValue();</span>
+<span class="fc" id="L135">			PropertyUtil.setProperty(value, fieldEntry.getKey(), randomValue);</span>
+<span class="fc" id="L136">			context.put(fieldEntry.getKey(), randomValue);</span>
+<span class="fc" id="L137">		}</span>
+<span class="fc" id="L138">	}</span>
 
 	/**
 	 * Creates some instances of the POJO this factory is for.
 	 *
-	 * @param count - number of instances to be created
+	 * @param count number of instances to be created
 	 * @return some POJO instances
 	 * @throws RandomException - if something went wrong
 	 */
 
 	public List&lt;T&gt; create(int count) {
-<span class="fc" id="L136">		final List&lt;T&gt; result = new ArrayList&lt;&gt;();</span>
-<span class="fc bfc" id="L137" title="All 2 branches covered.">		for (int i = 0; i &lt; count; i++) {</span>
-<span class="fc" id="L138">			result.add(createSingle());</span>
+<span class="fc" id="L149">		final List&lt;T&gt; result = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L150" title="All 2 branches covered.">		for (int i = 0; i &lt; count; i++) {</span>
+<span class="fc" id="L151">			result.add(createSingle());</span>
 		}
-<span class="fc" id="L140">		return result;</span>
+<span class="fc" id="L153">		return result;</span>
 	}
 
-	// TODO: comment and test these methods
+	/**
+	 * Returns the {@link RandomField} used to fill the property.
+	 *
+	 * @param property the property
+	 * @return the random field to fill this property; never null
+	 * @throws RandomException if no {@link RandomField} was found
+	 */
 
 	public RandomField getRandomField(String property) {
-<span class="fc" id="L146">		return this.fieldMapping.get(property);</span>
+<span class="fc" id="L165">		final RandomField result = findRandomField(property);</span>
+<span class="fc bfc" id="L166" title="All 2 branches covered.">		if (result == null) {</span>
+<span class="fc" id="L167">			throw new RandomException(&quot;Could not find RandomField for property &quot; + property);</span>
+		}
+<span class="fc" id="L169">		return result;</span>
 	}
 
+	/**
+	 * Returns the {@link RandomField} used to fill the property.
+	 *
+	 * @param property the property
+	 * @return the random field to fill this property; can be null
+	 */
+
+	public RandomField findRandomField(String property) {
+<span class="fc" id="L180">		return this.fieldMapping.get(property);</span>
+	}
+
+	/**
+	 * Adds a {@link RandomField} to fill some property.
+	 *
+	 * @param property the property
+	 * @param randomField the random field to fill this property; can be null
+	 */
+
 	public void addRandomField(String property, RandomField randomField) {
-<span class="fc" id="L150">		this.fieldMapping.put(property, randomField);</span>
-<span class="fc" id="L151">	}</span>
+<span class="fc" id="L191">		this.fieldMapping.put(property, randomField);</span>
+<span class="fc" id="L192">	}</span>
+
+	/**
+	 * Removes a {@link RandomField}.
+	 *
+	 * @param property the property
+	 */
+
+	public void removeRandomField(String property) {
+<span class="fc" id="L201">		this.fieldMapping.remove(property);</span>
+<span class="fc" id="L202">	}</span>
 
 	Class&lt;?&gt; getPojoClass() {
-<span class="fc" id="L154">		return this.pojoClass;</span>
+<span class="fc" id="L205">		return this.pojoClass;</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>WordGeneratorConfigUtil.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Charts Coverage</a> &gt; <a href="../index.html" class="el_bundle">random</a> &gt; <a href="index.source.html" class="el_package">de.slothsoft.random.types.wordgen</a> &gt; <span class="el_source">WordGeneratorConfigUtil.java</span></div><h1>WordGeneratorConfigUtil.java</h1><pre class="source lang-java linenums">package de.slothsoft.random.types.wordgen;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.CharBuffer;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Set;
+import java.util.TreeSet;
+
+/**
+ * A util class for handy methods surrounding the {@link WordGeneratorConfig}.
+ *
+ * @author Stef Schulz
+ * @since 2.1.0
+ */
+
+public final class WordGeneratorConfigUtil {
+
+<span class="fc" id="L26">	static class ConfigProperties extends Properties {</span>
+
+		private static final long serialVersionUID = 210296994033180536L;
+
+		@Override
+		public Set&lt;Object&gt; keySet() {
+<span class="fc" id="L32">			return Collections.unmodifiableSet(new TreeSet&lt;&gt;(super.keySet()));</span>
+		}
+
+		@Override
+		public Set&lt;Map.Entry&lt;Object, Object&gt;&gt; entrySet() {
+<span class="fc" id="L37">			final Set&lt;Map.Entry&lt;Object, Object&gt;&gt; set1 = super.entrySet();</span>
+<span class="fc" id="L38">			final Set&lt;Map.Entry&lt;Object, Object&gt;&gt; set2 = new LinkedHashSet&lt;&gt;(set1.size());</span>
+
+<span class="fc" id="L40">			final Iterator&lt;Map.Entry&lt;Object, Object&gt;&gt; iterator = set1.stream()</span>
+<span class="fc" id="L41">					.sorted((o1, o2) -&gt; o1.getKey().toString().compareTo(o2.getKey().toString())).iterator();</span>
+
+<span class="fc bfc" id="L43" title="All 2 branches covered.">			while (iterator.hasNext()) {</span>
+<span class="fc" id="L44">				set2.add(iterator.next());</span>
+			}
+<span class="fc" id="L46">			return set2;</span>
+		}
+
+		@Override
+		public synchronized Enumeration&lt;Object&gt; keys() {
+<span class="fc" id="L51">			return Collections.enumeration(new TreeSet&lt;&gt;(super.keySet()));</span>
+		}
+	}
+
+	private static final String PROP_SUPPORTED_CHARACTERS = &quot;supportedCharacters&quot;;
+	private static final String PROP_STANDARD_WORD_LENGTH = &quot;standardWordLength&quot;;
+	private static final String PREFIX_LETTER_ = &quot;letter.&quot;;
+	private static final String SUFFIX_PROBABILITY = &quot;.probability&quot;;
+
+	/**
+	 * Loads the config from an input stream.
+	 *
+	 * @param stream a stream
+	 * @return read config
+	 * @throws IOException for all kinds of exceptions
+	 */
+
+	public static WordGeneratorConfig loadConfig(InputStream stream) throws IOException {
+<span class="fc" id="L69">		final Properties props = new Properties();</span>
+<span class="fc" id="L70">		props.load(stream);</span>
+
+<span class="fc" id="L72">		final char[] supportedCharacters = ((String) props.getOrDefault(PROP_SUPPORTED_CHARACTERS,</span>
+<span class="fc" id="L73">				DefaultWordGeneratorConfig.DEFAULT_SUPPORTED_CHARACTERS)).toCharArray();</span>
+<span class="fc" id="L74">		final Letter[] supportedLetters = CharBuffer.wrap(supportedCharacters).chars()</span>
+<span class="fc" id="L75">				.mapToObj(c -&gt; createLetter(props, (char) c)).toArray(Letter[]::new);</span>
+
+<span class="fc" id="L77">		final DefaultWordGeneratorConfig result = new DefaultWordGeneratorConfig();</span>
+<span class="fc" id="L78">		result.setSupportedLetters(supportedLetters);</span>
+<span class="fc" id="L79">		result.setStandardWordLength(Double.parseDouble((String) props.getOrDefault(PROP_STANDARD_WORD_LENGTH,</span>
+<span class="fc" id="L80">				String.valueOf(DefaultWordGeneratorConfig.DEFAULT_STANDARD_WORD_LENGTH))));</span>
+<span class="fc" id="L81">		return result;</span>
+	}
+
+	private static Letter createLetter(Properties props, char c) {
+<span class="fc" id="L85">		final double probability = Double.parseDouble((String) props</span>
+<span class="fc" id="L86">				.getOrDefault(PREFIX_LETTER_ + c + SUFFIX_PROBABILITY, String.valueOf(Letter.DEFAULT_PROBABILITY)));</span>
+<span class="fc" id="L87">		return new Letter(c).probability(probability);</span>
+	}
+
+	/**
+	 * Stores the config to an output stream.
+	 *
+	 * @param stream a stream
+	 * @param config to be stored
+	 * @throws IOException for all kinds of exceptions
+	 */
+
+	public static void storeConfig(OutputStream stream, WordGeneratorConfig config) throws IOException {
+<span class="fc" id="L99">		final char[] supportedCharacters = config.getSupportedCharacters();</span>
+
+<span class="fc" id="L101">		final ConfigProperties props = new ConfigProperties();</span>
+<span class="fc" id="L102">		props.setProperty(PROP_SUPPORTED_CHARACTERS, new String(supportedCharacters));</span>
+<span class="fc bfc" id="L103" title="All 2 branches covered.">		for (final char c : supportedCharacters) {</span>
+<span class="fc" id="L104">			props.setProperty(PREFIX_LETTER_ + c + SUFFIX_PROBABILITY, String.valueOf(config.getProbability(c)));</span>
+		}
+<span class="fc" id="L106">		props.setProperty(PROP_STANDARD_WORD_LENGTH, String.valueOf(config.getStandardWordLength()));</span>
+
+<span class="fc" id="L108">		props.store(stream, null);</span>
+<span class="fc" id="L109">	}</span>
+
+	/**
+	 * Helper method for implementing {@link #hashCode()}.
+	 *
+	 * @param thisObject a config
+	 * @return a hashcode
+	 */
+
+	static int generateHashCode(WordGeneratorConfig thisObject) {
+<span class="fc" id="L119">		final long temp = Double.doubleToLongBits(thisObject.getStandardWordLength());</span>
+<span class="fc" id="L120">		return 31 * (int) (temp ^ (temp &gt;&gt;&gt; 32)) + Arrays.hashCode(thisObject.getSupportedCharacters());</span>
+	}
+
+	/**
+	 * Helper method for implementing {@link #equals(Object)}.
+	 *
+	 * @param thisObject a config
+	 * @param obj another config
+	 * @return true if equal
+	 */
+
+	static boolean areEqual(WordGeneratorConfig thisObject, Object obj) {
+<span class="fc bfc" id="L132" title="All 2 branches covered.">		if (thisObject == obj) return true;</span>
+<span class="fc bfc" id="L133" title="All 2 branches covered.">		if (obj == null) return false;</span>
+<span class="fc bfc" id="L134" title="All 2 branches covered.">		if (thisObject.getClass() != obj.getClass()) return false;</span>
+<span class="fc" id="L135">		final WordGeneratorConfig that = (DefaultWordGeneratorConfig) obj;</span>
+<span class="fc" id="L136">		if (Double.doubleToLongBits(thisObject.getStandardWordLength()) != Double</span>
+<span class="fc bfc" id="L137" title="All 2 branches covered.">				.doubleToLongBits(that.getStandardWordLength()))</span>
+<span class="fc" id="L138">			return false;</span>
+<span class="fc bfc" id="L139" title="All 2 branches covered.">		if (!Arrays.equals(thisObject.getSupportedCharacters(), that.getSupportedCharacters())) return false;</span>
+<span class="fc" id="L140">		return true;</span>
+	}
+
+	private WordGeneratorConfigUtil() {
+		// hide me
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

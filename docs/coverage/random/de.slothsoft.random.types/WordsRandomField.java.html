@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>WordsRandomField.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Charts Coverage</a> &gt; <a href="../index.html" class="el_bundle">random</a> &gt; <a href="index.source.html" class="el_package">de.slothsoft.random.types</a> &gt; <span class="el_source">WordsRandomField.java</span></div><h1>WordsRandomField.java</h1><pre class="source lang-java linenums">package de.slothsoft.random.types;
+
+import java.util.Objects;
+
+import de.slothsoft.random.RandomField;
+import de.slothsoft.random.types.wordgen.WordGeneratorConfig;
+
+/**
+ * Generates words in sentences and paragraphs after a defined config stored in
+ * {@link WordGeneratorConfig}.
+ *
+ * @author Stef Schulz
+ * @since 2.1.0
+ */
+
+<span class="fc" id="L16">public class WordsRandomField implements RandomField {</span>
+
+<span class="fc" id="L18">	private final WordRandomField word = new WordRandomField();</span>
+
+<span class="fc" id="L20">	private int paragraphCount = 2;</span>
+	private double nullProbability;
+
+	/**
+	 * Generates a brand new word.
+	 *
+	 * @return a word
+	 */
+
+	@Override
+	public String nextValue() {
+<span class="fc bfc" id="L31" title="All 2 branches covered.">		if (RND.nextDouble() &lt; this.nullProbability) {</span>
+<span class="fc" id="L32">			return null;</span>
+		}
+
+<span class="fc" id="L35">		final int paragraphLength = (int) Math.max(1, (1 + RND.nextGaussian()) * this.paragraphCount);</span>
+<span class="fc" id="L36">		final StringBuilder sb = new StringBuilder();</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">		for (int p = 0; p &lt; paragraphLength; p++) {</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">			if (sb.length() &gt; 0) {</span>
+<span class="fc" id="L39">				sb.append('\n').append('\n');</span>
+			}
+
+<span class="fc" id="L42">			final int sentencesPerParagraph = 3;</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">			for (int s = 0; s &lt; sentencesPerParagraph; s++) {</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">				if (s &gt; 0) {</span>
+<span class="fc" id="L45">					sb.append(' ');</span>
+				}
+
+<span class="fc" id="L48">				final int wordsPerSentence = 5;</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">				for (int w = 0; w &lt; wordsPerSentence; w++) {</span>
+<span class="fc" id="L50">					String nextWord = this.word.nextValue();</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">					if (w == 0) {</span>
+<span class="fc" id="L52">						nextWord = nextWord.substring(0, 1).toUpperCase() + nextWord.substring(1);</span>
+					}
+<span class="fc" id="L54">					sb.append(nextWord);</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">					if (w &lt; wordsPerSentence - 1) {</span>
+<span class="fc" id="L56">						sb.append(' ');</span>
+					} else {
+<span class="fc" id="L58">						sb.append(&quot;.&quot;);</span>
+					}
+				}
+			}
+		}
+<span class="fc" id="L63">		return sb.toString();</span>
+	}
+
+	/**
+	 * Returns the used config.
+	 *
+	 * @return a config
+	 */
+
+	public WordGeneratorConfig getConfig() {
+<span class="fc" id="L73">		return this.word.getConfig();</span>
+	}
+
+	/**
+	 * Sets the used config.
+	 *
+	 * @param newConfig a config
+	 * @return this instance
+	 */
+
+	public WordsRandomField config(WordGeneratorConfig newConfig) {
+<span class="fc" id="L84">		setConfig(newConfig);</span>
+<span class="fc" id="L85">		return this;</span>
+	}
+
+	/**
+	 * Sets the used config.
+	 *
+	 * @param config a config
+	 */
+
+	public void setConfig(WordGeneratorConfig config) {
+<span class="fc" id="L95">		this.word.setConfig(Objects.requireNonNull(config));</span>
+<span class="fc" id="L96">	}</span>
+
+	/**
+	 * Returns the number of paragraphs. A Gaussian function is used to scatter the actual
+	 * paragraph length around this value.
+	 *
+	 * @return paragraph count
+	 */
+
+	public int getParagraphCount() {
+<span class="fc" id="L106">		return this.paragraphCount;</span>
+	}
+
+	/**
+	 * Sets the standard number of paragraphs. A Gaussian function is used to scatter the
+	 * actual paragraph length around this value.
+	 *
+	 * @param newParagraphCount paragraph count
+	 * @return this instance
+	 */
+
+	public WordsRandomField paragraphCount(int newParagraphCount) {
+<span class="fc" id="L118">		setParagraphCount(newParagraphCount);</span>
+<span class="fc" id="L119">		return this;</span>
+	}
+
+	/**
+	 * Sets the standard number of paragraphs. A Gaussian function is used to scatter the
+	 * actual paragraph length around this value.
+	 *
+	 * @param paragraphCount paragraph count
+	 */
+
+	public void setParagraphCount(int paragraphCount) {
+<span class="fc" id="L130">		this.paragraphCount = paragraphCount;</span>
+<span class="fc" id="L131">	}</span>
+
+	/**
+	 * Returns the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @return the probability between 0 and 1
+	 */
+
+	public double getNullProbability() {
+<span class="fc" id="L141">		return this.nullProbability;</span>
+	}
+
+	/**
+	 * Sets the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @param newNullProbability the probability between 0 and 1
+	 * @return this instance
+	 */
+
+	public WordsRandomField nullProbability(double newNullProbability) {
+<span class="fc" id="L153">		setNullProbability(newNullProbability);</span>
+<span class="fc" id="L154">		return this;</span>
+	}
+
+	/**
+	 * Sets the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @param nullProbability the probability between 0 and 1
+	 */
+
+	public void setNullProbability(double nullProbability) {
+<span class="fc bfc" id="L165" title="All 4 branches covered.">		if (nullProbability &lt; 0 || nullProbability &gt; 1) {</span>
+<span class="fc" id="L166">			throw new IllegalArgumentException(&quot;Null probability must be between 0 and 1!&quot;);</span>
+		}
+<span class="fc" id="L168">		this.nullProbability = nullProbability;</span>
+<span class="fc" id="L169">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

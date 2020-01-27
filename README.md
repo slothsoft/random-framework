@@ -37,7 +37,7 @@ This library is in Maven Central, so you can easily add it like this:
 <dependency>
     <groupId>de.slothsoft.random</groupId>
     <artifactId>random</artifactId>
-    <version>2.0.2</version>
+    <version>2.1.0</version>
 </dependency>
 ```
 

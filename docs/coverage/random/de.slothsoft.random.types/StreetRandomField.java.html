@@ -12,13 +12,183 @@ import de.slothsoft.random.RandomField;
 
 public class StreetRandomField extends ElementFromListRandomField&lt;String&gt; {
 
+	/** Key that can be used by the pattern to display the street name. */
+	public static final String KEY_STREET = &quot;{street}&quot;;
+	/** Key that can be used by the pattern to display the house number. */
+	public static final String KEY_HOUSE_NUMBER = &quot;{number}&quot;;
+
+	/** Pattern used in Europe, e.g. &quot;Hauptstraße 3&quot;. */
+	public static final String PATTERN_STREET_FIRST = KEY_STREET + ' ' + KEY_HOUSE_NUMBER;
+	/** Pattern used in English speaking countries, e.g. &quot;201 High Street&quot;. */
+	public static final String PATTERN_HOUSE_NUMBER_FIRST = KEY_HOUSE_NUMBER + ' ' + KEY_STREET;
+
+	static final String[] streets;
+
+	static {
+<span class="fc" id="L28">		streets = FirstNameRandomField.readFile(&quot;street-names.txt&quot;);</span>
+<span class="fc" id="L29">	}</span>
+
+<span class="fc" id="L31">	private final PatternRandomField patternField = new PatternRandomField(PATTERN_HOUSE_NUMBER_FIRST);</span>
+<span class="fc" id="L32">	private final IntegerRandomField houseNumberField = new IntegerRandomField();</span>
+
+	/**
+	 * Default constructor.
+	 *
+	 * @since 2.1.0
+	 */
+
+	public StreetRandomField() {
+<span class="fc" id="L41">		this(streets);</span>
+<span class="fc" id="L42">	}</span>
+
+	/**
+	 * Old constructor.
+	 *
+	 * @param fields the street names
+	 * @deprecated use {@link StreetRandomField#StreetRandomField()} or
+	 *             {@link ElementFromListRandomField#ElementFromListRandomField(Object[])}
+	 *             directly
+	 */
+
+	@Deprecated
 	public StreetRandomField(String[] fields) {
-<span class="fc" id="L16">		super(fields);</span>
-<span class="fc" id="L17">	}</span>
+<span class="fc" id="L55">		super(fields);</span>
+<span class="fc" id="L56">		this.houseNumberField.startValue(Integer.valueOf(1)).endValue(Integer.valueOf(100));</span>
+<span class="fc" id="L57">		this.patternField.addComponent(KEY_HOUSE_NUMBER, () -&gt; String.valueOf(this.houseNumberField.nextValue()));</span>
+<span class="fc" id="L58">		this.patternField.addComponent(KEY_STREET, () -&gt; super.nextValue());</span>
+<span class="fc" id="L59">	}</span>
 
 	@Override
 	public String nextValue() {
-<span class="fc" id="L21">		return super.nextValue() + &quot; &quot; + (RND.nextInt(100) + 1);</span>
+<span class="fc bfc" id="L63" title="All 2 branches covered.">		if (RND.nextDouble() &lt; this.nullProbability) {</span>
+<span class="fc" id="L64">			return null;</span>
+		}
+<span class="fc" id="L66">		return this.patternField.nextValue();</span>
 	}
+
+	/**
+	 * Returns the pattern with keys that get replaced during {@link #nextValue()}. Known
+	 * keys are:
+	 * &lt;ul&gt;
+	 * &lt;li&gt;{@link #KEY_HOUSE_NUMBER}&lt;/li&gt;
+	 * &lt;li&gt;{@link #KEY_STREET}&lt;/li&gt;
+	 * &lt;/ul&gt;
+	 *
+	 * @return the pattern
+	 * @since 2.1.0
+	 */
+
+	public String getPattern() {
+<span class="fc" id="L82">		return this.patternField.getPattern();</span>
+	}
+
+	/**
+	 * Sets the pattern with keys that get replaced during {@link #nextValue()}. Known
+	 * keys are:
+	 * &lt;ul&gt;
+	 * &lt;li&gt;{@link #KEY_HOUSE_NUMBER}&lt;/li&gt;
+	 * &lt;li&gt;{@link #KEY_STREET}&lt;/li&gt;
+	 * &lt;/ul&gt;
+	 *
+	 * @param newPattern the pattern
+	 * @return this instance
+	 * @since 2.1.0
+	 */
+
+	public StreetRandomField pattern(String newPattern) {
+<span class="fc" id="L99">		setPattern(newPattern);</span>
+<span class="fc" id="L100">		return this;</span>
+	}
+
+	/**
+	 * Sets the pattern with keys that get replaced during {@link #nextValue()}. Known
+	 * keys are:
+	 * &lt;ul&gt;
+	 * &lt;li&gt;{@link #KEY_HOUSE_NUMBER}&lt;/li&gt;
+	 * &lt;li&gt;{@link #KEY_STREET}&lt;/li&gt;
+	 * &lt;/ul&gt;
+	 *
+	 * @param pattern the pattern
+	 * @since 2.1.0
+	 */
+
+	public void setPattern(String pattern) {
+<span class="fc" id="L116">		this.patternField.setPattern(pattern);</span>
+<span class="fc" id="L117">	}</span>
+
+	/**
+	 * Returns the start value for house numbers, i.e. the house number {@link #nextValue}
+	 * will always be greater than this value.
+	 *
+	 * @return the start value
+	 * @since 2.1.0
+	 */
+
+	public int getHouseNumberStartValue() {
+<span class="fc" id="L128">		return this.houseNumberField.getStartValue().intValue();</span>
+	}
+
+	/**
+	 * Sets the start value for house numbers, i.e. the house number {@link #nextValue}
+	 * will always be greater than this value.
+	 *
+	 * @param newStartValue the start value
+	 * @return this instance
+	 * @since 2.1.0
+	 */
+
+	public StreetRandomField houseNumberStartValue(int newStartValue) {
+<span class="fc" id="L141">		setHouseNumberStartValue(newStartValue);</span>
+<span class="fc" id="L142">		return this;</span>
+	}
+
+	/**
+	 * Sets the start value for house numbers, i.e. the house number {@link #nextValue}
+	 * will always be greater than this value.
+	 *
+	 * @param startValue the start value
+	 * @since 2.1.0
+	 */
+
+	public void setHouseNumberStartValue(int startValue) {
+<span class="fc" id="L154">		this.houseNumberField.setStartValue(Integer.valueOf(startValue));</span>
+<span class="fc" id="L155">	}</span>
+
+	/**
+	 * Returns the end value, i.e. {@link #nextValue} will always be less than this value.
+	 *
+	 * @return the end value
+	 * @since 2.1.0
+	 */
+
+	public int getHouseNumberEndValue() {
+<span class="fc" id="L165">		return this.houseNumberField.getEndValue().intValue();</span>
+	}
+
+	/**
+	 * Sets the end value for house numbers, i.e. the house number of {@link #nextValue}
+	 * will always be less than this value.
+	 *
+	 * @param newEndValue the end value
+	 * @return this instance
+	 * @since 2.1.0
+	 */
+
+	public StreetRandomField houseNumberEndValue(int newEndValue) {
+<span class="fc" id="L178">		setHouseNumberEndValue(newEndValue);</span>
+<span class="fc" id="L179">		return this;</span>
+	}
+
+	/**
+	 * Sets the end value for house numbers, i.e. the house number of {@link #nextValue}
+	 * will always be less than this value.
+	 *
+	 * @param endValue the end value
+	 * @since 2.1.0
+	 */
+
+	public void setHouseNumberEndValue(int endValue) {
+<span class="fc" id="L191">		this.houseNumberField.setEndValue(Integer.valueOf(endValue));</span>
+<span class="fc" id="L192">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

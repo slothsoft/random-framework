@@ -12,118 +12,153 @@ import de.slothsoft.random.RandomField;
  * @param &lt;C&gt; the date and / or time
  */
 
-abstract class AbstractChronoRandomField&lt;C&gt; implements RandomField {
-
-	static final int YEAR = 0;
-	static final int MONTH = 1;
-	static final int DAY = 2;
-	static final int HOUR = 3;
-	static final int MINUTE = 4;
-	static final int SECOND = 5;
-	static final int ARRAY_LENGTH = 6;
-<span class="fc" id="L24">	static final int[] UNITS_MULTIPLIER = {12, 30, 24, 60, 60};</span>
+<span class="fc" id="L15">abstract class AbstractChronoRandomField&lt;C&gt; implements RandomField {</span>
 
 	private C startValue;
 	private C endValue;
-
-<span class="fc" id="L29">	public AbstractChronoRandomField() {</span>
-<span class="fc" id="L30">		this.startValue = fromLongValue(Long.MIN_VALUE);</span>
-<span class="fc" id="L31">		this.endValue = fromLongValue(Long.MAX_VALUE);</span>
-<span class="fc" id="L32">	}</span>
+	private double nullProbability;
 
 	@Override
 	public C nextValue() {
-<span class="fc" id="L36">		final C start = this.startValue;</span>
-<span class="fc" id="L37">		final C end = this.endValue;</span>
+<span class="fc bfc" id="L23" title="All 2 branches covered.">		if (RND.nextDouble() &lt; this.nullProbability) {</span>
+<span class="fc" id="L24">			return null;</span>
+		}
 
-<span class="fc bfc" id="L39" title="All 2 branches covered.">		if (end.equals(start)) return start;</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">		final C start = this.startValue == null ? createDefaultStartValue() : this.startValue;</span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">		final C end = this.endValue == null ? createDefaultEndValue() : this.endValue;</span>
 
-<span class="fc" id="L41">		final long startValueAsLong = toLongValue(start);</span>
-<span class="fc" id="L42">		final long endValueAsLong = toLongValue(end);</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">		if (end.equals(start)) {</span>
+<span class="fc" id="L31">			return start;</span>
+		}
 
-<span class="fc" id="L44">		final long result = startValueAsLong + (long) (RND.nextDouble() * (endValueAsLong - startValueAsLong));</span>
-<span class="fc" id="L45">		return fromLongValue(result);</span>
+<span class="fc" id="L34">		final long startValueAsLong = toLongValue(start);</span>
+<span class="fc" id="L35">		final long endValueAsLong = toLongValue(end);</span>
+
+<span class="fc" id="L37">		final long result = startValueAsLong + (long) (RND.nextDouble() * (endValueAsLong - startValueAsLong));</span>
+<span class="fc" id="L38">		return fromLongValue(result);</span>
 	}
 
 	abstract long toLongValue(C value);
 
 	abstract C fromLongValue(long value);
 
+	abstract C createDefaultStartValue();
+
+	abstract C createDefaultEndValue();
+
 	boolean isBefore(C value1, C value2) {
-<span class="fc bfc" id="L53" title="All 2 branches covered.">		return toLongValue(value1) &lt; toLongValue(value2);</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">		return toLongValue(value1) &lt; toLongValue(value2);</span>
 	}
 
 	boolean isEqual(C value1, C value2) {
-<span class="fc bfc" id="L57" title="All 2 branches covered.">		return toLongValue(value1) == toLongValue(value2);</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">		return toLongValue(value1) == toLongValue(value2);</span>
 	}
 
 	boolean isAfter(C value1, C value2) {
-<span class="fc bfc" id="L61" title="All 2 branches covered.">		return toLongValue(value1) &gt; toLongValue(value2);</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">		return toLongValue(value1) &gt; toLongValue(value2);</span>
 	}
 
 	/**
 	 * Returns the highest possible value for this field.
 	 *
-	 * @return end value; never null
+	 * @return end value
 	 */
 
 	public C getEndValue() {
-<span class="nc" id="L71">		return this.endValue;</span>
+<span class="fc" id="L68">		return this.endValue;</span>
 	}
 
 	/**
 	 * Sets the highest possible value for this field.
 	 *
-	 * @param newEndValue end value; cannot be null
-	 * @return this instance; cannot be null
+	 * @param newEndValue end value
+	 * @return this instance
 	 */
 
 	public AbstractChronoRandomField&lt;C&gt; endValue(C newEndValue) {
-<span class="fc" id="L82">		setEndValue(newEndValue);</span>
-<span class="fc" id="L83">		return this;</span>
+<span class="fc" id="L79">		setEndValue(newEndValue);</span>
+<span class="fc" id="L80">		return this;</span>
 	}
 
 	/**
 	 * Sets the highest possible value for this field.
 	 *
-	 * @param endValue end value; cannot be null
+	 * @param endValue end value
 	 */
 
 	public void setEndValue(C endValue) {
-<span class="fc" id="L93">		this.endValue = Objects.requireNonNull(endValue);</span>
-<span class="fc" id="L94">	}</span>
+<span class="fc" id="L90">		this.endValue = Objects.requireNonNull(endValue);</span>
+<span class="fc" id="L91">	}</span>
 
 	/**
 	 * Returns the lowest possible value for this field.
 	 *
-	 * @return start value; never null
+	 * @return start value
 	 */
 
 	public C getStartValue() {
-<span class="nc" id="L103">		return this.startValue;</span>
+<span class="fc" id="L100">		return this.startValue;</span>
 	}
 
 	/**
 	 * Sets the lowest possible value for this field.
 	 *
 	 * @param newStartValue start value
-	 * @return this instance; cannot be null
+	 * @return this instance
 	 */
 
 	public AbstractChronoRandomField&lt;C&gt; startValue(C newStartValue) {
-<span class="fc" id="L114">		setStartValue(newStartValue);</span>
-<span class="fc" id="L115">		return this;</span>
+<span class="fc" id="L111">		setStartValue(newStartValue);</span>
+<span class="fc" id="L112">		return this;</span>
 	}
 
 	/**
 	 * Sets the lowest possible value for this field.
 	 *
-	 * @param startValue start value; cannot be null
+	 * @param startValue start value
 	 */
 
 	public void setStartValue(C startValue) {
-<span class="fc" id="L125">		this.startValue = Objects.requireNonNull(startValue);</span>
-<span class="fc" id="L126">	}</span>
+<span class="fc" id="L122">		this.startValue = Objects.requireNonNull(startValue);</span>
+<span class="fc" id="L123">	}</span>
+
+	/**
+	 * Returns the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @return the probability between 0 and 1
+	 */
+
+	public double getNullProbability() {
+<span class="fc" id="L133">		return this.nullProbability;</span>
+	}
+
+	/**
+	 * Sets the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @param newNullProbability the probability between 0 and 1
+	 * @return this instance
+	 */
+
+	public AbstractChronoRandomField&lt;C&gt; nullProbability(double newNullProbability) {
+<span class="fc" id="L145">		setNullProbability(newNullProbability);</span>
+<span class="fc" id="L146">		return this;</span>
+	}
+
+	/**
+	 * Sets the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @param nullProbability the probability between 0 and 1
+	 */
+
+	public void setNullProbability(double nullProbability) {
+<span class="fc bfc" id="L157" title="All 4 branches covered.">		if (nullProbability &lt; 0 || nullProbability &gt; 1) {</span>
+<span class="fc" id="L158">			throw new IllegalArgumentException(&quot;Null probability must be between 0 and 1!&quot;);</span>
+		}
+<span class="fc" id="L160">		this.nullProbability = nullProbability;</span>
+<span class="fc" id="L161">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

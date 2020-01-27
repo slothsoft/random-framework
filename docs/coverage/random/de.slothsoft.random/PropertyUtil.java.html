@@ -17,14 +17,14 @@ import java.util.Map;
  * @since 2.0.0
  */
 
-<span class="nc" id="L20">final class PropertyUtil {</span>
+final class PropertyUtil {
 
 	static void setProperty(Object pojo, String propertyName, Object value) {
 		try {
 <span class="fc" id="L24">			final Method setter = getSetter(pojo.getClass(), propertyName);</span>
 <span class="fc" id="L25">			setter.invoke(pojo, value);</span>
-<span class="nc" id="L26">		} catch (final IllegalAccessException | InvocationTargetException e) {</span>
-<span class="nc" id="L27">			throw new RandomException(&quot;Could not call setter &quot; + propertyName + &quot; on &quot; + pojo, e);</span>
+<span class="nc" id="L26">		} catch (final IllegalAccessException | InvocationTargetException | IllegalArgumentException e) {</span>
+<span class="nc" id="L27">			throw new RandomException(&quot;Could not call setter &quot; + propertyName + &quot; on &quot; + pojo + &quot; for &quot; + value, e);</span>
 <span class="fc" id="L28">		}</span>
 <span class="fc" id="L29">	}</span>
 
@@ -36,16 +36,17 @@ import java.util.Map;
 <span class="fc bfc" id="L36" title="All 2 branches covered.">			for (final PropertyDescriptor descriptor : descriptors) {</span>
 <span class="fc bfc" id="L37" title="All 2 branches covered.">				if (descriptor.getName().equals(propertyName)) {</span>
 <span class="fc" id="L38">					final Method setter = descriptor.getWriteMethod();</span>
-<span class="pc bpc" id="L39" title="1 of 2 branches missed.">					if (setter == null)</span>
+<span class="pc bpc" id="L39" title="1 of 2 branches missed.">					if (setter == null) {</span>
 <span class="nc" id="L40">						throw new RandomException(</span>
 								&quot;Could not find setter for &quot; + propertyName + &quot; on &quot; + pojoClass + &quot;!&quot;);
-<span class="fc" id="L42">					return setter;</span>
+					}
+<span class="fc" id="L43">					return setter;</span>
 				}
 			}
-<span class="fc" id="L45">			throw new RandomException(&quot;Could not find property &quot; + propertyName + &quot; on &quot; + pojoClass + &quot;!&quot;);</span>
+<span class="fc" id="L46">			throw new RandomException(&quot;Could not find property &quot; + propertyName + &quot; on &quot; + pojoClass + &quot;!&quot;);</span>
 
-<span class="nc" id="L47">		} catch (final IntrospectionException e) {</span>
-<span class="nc" id="L48">			throw new RandomException(&quot;Could not introspect &quot; + pojoClass, e);</span>
+<span class="nc" id="L48">		} catch (final IntrospectionException e) {</span>
+<span class="nc" id="L49">			throw new RandomException(&quot;Could not introspect &quot; + pojoClass, e);</span>
 		}
 	}
 
@@ -56,20 +57,24 @@ import java.util.Map;
 
 	static Map&lt;String, Class&lt;?&gt;&gt; getProperties(Class&lt;?&gt; clazz) {
 		try {
-<span class="fc" id="L59">			final Map&lt;String, Class&lt;?&gt;&gt; setters = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L60">			final Map&lt;String, Class&lt;?&gt;&gt; setters = new HashMap&lt;&gt;();</span>
 
-<span class="fc" id="L61">			final BeanInfo beaninfo = Introspector.getBeanInfo(clazz);</span>
-<span class="fc" id="L62">			final PropertyDescriptor descriptors[] = beaninfo.getPropertyDescriptors();</span>
+<span class="fc" id="L62">			final BeanInfo beaninfo = Introspector.getBeanInfo(clazz);</span>
+<span class="fc" id="L63">			final PropertyDescriptor descriptors[] = beaninfo.getPropertyDescriptors();</span>
 
-<span class="fc bfc" id="L64" title="All 2 branches covered.">			for (final PropertyDescriptor descriptor : descriptors) {</span>
-<span class="fc bfc" id="L65" title="All 2 branches covered.">				if (!descriptor.getName().equals(&quot;class&quot;)) {</span>
-<span class="fc" id="L66">					setters.put(descriptor.getName(), descriptor.getPropertyType());</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">			for (final PropertyDescriptor descriptor : descriptors) {</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">				if (!descriptor.getName().equals(&quot;class&quot;)) {</span>
+<span class="fc" id="L67">					setters.put(descriptor.getName(), descriptor.getPropertyType());</span>
 				}
 			}
-<span class="fc" id="L69">			return setters;</span>
-<span class="nc" id="L70">		} catch (final IntrospectionException e) {</span>
-<span class="nc" id="L71">			throw new RandomException(&quot;Could not introspect &quot; + clazz, e);</span>
+<span class="fc" id="L70">			return setters;</span>
+<span class="nc" id="L71">		} catch (final IntrospectionException e) {</span>
+<span class="nc" id="L72">			throw new RandomException(&quot;Could not introspect &quot; + clazz, e);</span>
 		}
+	}
+
+	private PropertyUtil() {
+		// hide me
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

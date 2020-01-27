@@ -151,17 +151,26 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/RuntimeExce
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../de/slothsoft/random/RandomException.html#RandomException--">RandomException</a></span>()</code>&nbsp;</td>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../de/slothsoft/random/RandomException.html#RandomException--">RandomException</a></span>()</code>
+<div class="block">Constructs a new runtime exception with <code>null</code> as its detail message.</div>
+</td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../de/slothsoft/random/RandomException.html#RandomException-java.lang.String-">RandomException</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;message)</code>&nbsp;</td>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../de/slothsoft/random/RandomException.html#RandomException-java.lang.String-">RandomException</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;message)</code>
+<div class="block">Constructs a new runtime exception with the specified detail message.</div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../de/slothsoft/random/RandomException.html#RandomException-java.lang.String-java.lang.Throwable-">RandomException</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;message,
-               <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang">Throwable</a>&nbsp;cause)</code>&nbsp;</td>
+               <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang">Throwable</a>&nbsp;cause)</code>
+<div class="block">Constructs a new runtime exception with the specified detail message and cause.</div>
+</td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../de/slothsoft/random/RandomException.html#RandomException-java.lang.Throwable-">RandomException</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang">Throwable</a>&nbsp;cause)</code>&nbsp;</td>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../de/slothsoft/random/RandomException.html#RandomException-java.lang.Throwable-">RandomException</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang">Throwable</a>&nbsp;cause)</code>
+<div class="block">Constructs a new runtime exception with the specified cause and a detail message of <code>(cause==null ? null : cause.toString())</code> (which
+ typically contains the class and detail message of <code>cause</code>).</div>
+</td>
 </tr>
 </table>
 </li>
@@ -207,6 +216,8 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/RuntimeExce
 <li class="blockList">
 <h4>RandomException</h4>
 <pre>public&nbsp;RandomException()</pre>
+<div class="block">Constructs a new runtime exception with <code>null</code> as its detail message. The cause is not initialized, and may subsequently be initialized
+ by a call to <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html?is-external=true#initCause-java.lang.Throwable-" title="class or interface in java.lang"><code>Throwable.initCause(java.lang.Throwable)</code></a>.</div>
 </li>
 </ul>
 <a name="RandomException-java.lang.String-">
@@ -216,6 +227,12 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/RuntimeExce
 <li class="blockList">
 <h4>RandomException</h4>
 <pre>public&nbsp;RandomException(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;message)</pre>
+<div class="block">Constructs a new runtime exception with the specified detail message. The cause is not initialized, and may subsequently be initialized by a
+ call to <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html?is-external=true#initCause-java.lang.Throwable-" title="class or interface in java.lang"><code>Throwable.initCause(java.lang.Throwable)</code></a>.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>message</code> - the detail message. The detail message is saved for later retrieval by the <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html?is-external=true#getMessage--" title="class or interface in java.lang"><code>Throwable.getMessage()</code></a> method.</dd>
+</dl>
 </li>
 </ul>
 <a name="RandomException-java.lang.Throwable-">
@@ -225,6 +242,14 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/RuntimeExce
 <li class="blockList">
 <h4>RandomException</h4>
 <pre>public&nbsp;RandomException(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang">Throwable</a>&nbsp;cause)</pre>
+<div class="block">Constructs a new runtime exception with the specified cause and a detail message of <code>(cause==null ? null : cause.toString())</code> (which
+ typically contains the class and detail message of <code>cause</code>). This constructor is useful for runtime exceptions that are little more than
+ wrappers for other throwables.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>cause</code> - the cause (which is saved for later retrieval by the <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html?is-external=true#getCause--" title="class or interface in java.lang"><code>Throwable.getCause()</code></a> method). (A <code>null</code> value is permitted, and
+            indicates that the cause is nonexistent or unknown.)</dd>
+</dl>
 </li>
 </ul>
 <a name="RandomException-java.lang.String-java.lang.Throwable-">
@@ -235,6 +260,15 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/RuntimeExce
 <h4>RandomException</h4>
 <pre>public&nbsp;RandomException(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;message,
                        <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang">Throwable</a>&nbsp;cause)</pre>
+<div class="block">Constructs a new runtime exception with the specified detail message and cause.
+ <p>
+ Note that the detail message associated with <code>cause</code> is <i>not</i> automatically incorporated in this runtime exception's detail message.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>message</code> - the detail message (which is saved for later retrieval by the <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html?is-external=true#getMessage--" title="class or interface in java.lang"><code>Throwable.getMessage()</code></a> method).</dd>
+<dd><code>cause</code> - the cause (which is saved for later retrieval by the <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html?is-external=true#getCause--" title="class or interface in java.lang"><code>Throwable.getCause()</code></a> method). (A <code>null</code> value is permitted, and
+            indicates that the cause is nonexistent or unknown.)</dd>
+</dl>
 </li>
 </ul>
 </li>

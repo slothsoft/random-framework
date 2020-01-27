@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>CollectionRandomField.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Charts Coverage</a> &gt; <a href="../index.html" class="el_bundle">random</a> &gt; <a href="index.source.html" class="el_package">de.slothsoft.random.types</a> &gt; <span class="el_source">CollectionRandomField.java</span></div><h1>CollectionRandomField.java</h1><pre class="source lang-java linenums">package de.slothsoft.random.types;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Queue;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.function.Supplier;
+
+import de.slothsoft.random.RandomField;
+
+/**
+ * A {@link RandomField} representing an {@link Collection}.
+ *
+ * @author Stef Schulz
+ * @since 2.1.0
+ */
+
+public class CollectionRandomField implements RandomField {
+
+	/**
+	 * Returns a {@link Supplier} for creating instances of a collection class. Might
+	 * return null.
+	 *
+	 * @param collectionClass a collection class
+	 * @return a {@link Supplier} or null
+	 */
+
+	static Supplier&lt;Collection&lt;?&gt;&gt; createCollectionConstructor(Class&lt;?&gt; collectionClass) {
+<span class="fc bfc" id="L33" title="All 2 branches covered.">		if (collectionClass == List.class) {</span>
+<span class="fc" id="L34">			return ArrayList::new;</span>
+		}
+<span class="fc bfc" id="L36" title="All 2 branches covered.">		if (collectionClass == Set.class) {</span>
+<span class="fc" id="L37">			return TreeSet::new;</span>
+		}
+<span class="fc bfc" id="L39" title="All 2 branches covered.">		if (collectionClass == Queue.class) {</span>
+<span class="fc" id="L40">			return LinkedList::new;</span>
+		}
+<span class="fc bfc" id="L42" title="All 2 branches covered.">		if (collectionClass == Collection.class) {</span>
+<span class="fc" id="L43">			return ArrayList::new;</span>
+		}
+<span class="fc" id="L45">		return null;</span>
+	}
+
+	private final Supplier&lt;Collection&lt;?&gt;&gt; collectionConstructor;
+	private final RandomField elementRandomField;
+
+	private double nullProbability;
+<span class="fc" id="L52">	private int collectionSize = 3;</span>
+
+	/**
+	 * Constructor.
+	 *
+	 * @param collectionConstructor constructor to create the collection
+	 * @param elementRandomField a generator for the elements
+	 */
+
+<span class="fc" id="L61">	public CollectionRandomField(Supplier&lt;Collection&lt;?&gt;&gt; collectionConstructor, RandomField elementRandomField) {</span>
+<span class="fc" id="L62">		this.collectionConstructor = Objects.requireNonNull(collectionConstructor);</span>
+<span class="fc" id="L63">		this.elementRandomField = Objects.requireNonNull(elementRandomField);</span>
+<span class="fc" id="L64">	}</span>
+
+	@Override
+	@SuppressWarnings({&quot;rawtypes&quot;, &quot;unchecked&quot;})
+	public Object nextValue() {
+<span class="fc bfc" id="L69" title="All 2 branches covered.">		if (RND.nextDouble() &lt; this.nullProbability) {</span>
+<span class="fc" id="L70">			return null;</span>
+		}
+<span class="fc" id="L72">		final Collection result = this.collectionConstructor.get();</span>
+<span class="fc" id="L73">		final int actualCollectionSize = (int) Math.max(1, (1 + RND.nextGaussian()) * this.collectionSize);</span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">		for (int i = 0; i &lt; actualCollectionSize; i++) {</span>
+<span class="fc" id="L75">			result.add(this.elementRandomField.nextValue());</span>
+		}
+<span class="fc" id="L77">		return result;</span>
+	}
+
+	/**
+	 * Returns the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @return the probability between 0 and 1
+	 */
+
+	public double getNullProbability() {
+<span class="fc" id="L88">		return this.nullProbability;</span>
+	}
+
+	/**
+	 * Sets the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @param newNullProbability the probability between 0 and 1
+	 * @return this instance
+	 */
+
+	public CollectionRandomField nullProbability(double newNullProbability) {
+<span class="fc" id="L100">		setNullProbability(newNullProbability);</span>
+<span class="fc" id="L101">		return this;</span>
+	}
+
+	/**
+	 * Sets the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @param nullProbability the probability between 0 and 1
+	 */
+
+	public void setNullProbability(double nullProbability) {
+<span class="fc bfc" id="L112" title="All 4 branches covered.">		if (nullProbability &lt; 0 || nullProbability &gt; 1) {</span>
+<span class="fc" id="L113">			throw new IllegalArgumentException(&quot;Null probability must be between 0 and 1!&quot;);</span>
+		}
+<span class="fc" id="L115">		this.nullProbability = nullProbability;</span>
+<span class="fc" id="L116">	}</span>
+
+	/**
+	 * Returns the standard collection size. A Gaussian function is used to scatter the
+	 * actual collection size around this value.
+	 *
+	 * @return collection size
+	 */
+
+	public int getCollectionSize() {
+<span class="fc" id="L126">		return this.collectionSize;</span>
+	}
+
+	/**
+	 * Sets the standard collection size. A Gaussian function is used to scatter the
+	 * actual collection size around this value.
+	 *
+	 * @param newCollectionSize collection size
+	 * @return this instance
+	 */
+
+	public CollectionRandomField collectionSize(int newCollectionSize) {
+<span class="fc" id="L138">		setCollectionSize(newCollectionSize);</span>
+<span class="fc" id="L139">		return this;</span>
+	}
+
+	/**
+	 * Sets the standard collection size. A Gaussian function is used to scatter the
+	 * actual collection size around this value.
+	 *
+	 * @param collectionSize collection size
+	 */
+
+	public void setCollectionSize(int collectionSize) {
+<span class="fc" id="L150">		this.collectionSize = collectionSize;</span>
+<span class="fc" id="L151">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

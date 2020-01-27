@@ -11,10 +11,97 @@ import de.slothsoft.random.RandomField;
 
 <span class="fc" id="L12">public class BooleanRandomField implements RandomField {</span>
 
+	private double nullProbability;
+	private double trueProbability;
+
 	@Override
 	public Boolean nextValue() {
-<span class="fc" id="L16">		return Boolean.valueOf(RND.nextBoolean());</span>
+<span class="fc bfc" id="L19" title="All 2 branches covered.">		if (RND.nextDouble() &lt; this.nullProbability) {</span>
+<span class="fc" id="L20">			return null;</span>
+		}
+<span class="fc bfc" id="L22" title="All 2 branches covered.">		return Boolean.valueOf(RND.nextDouble() &lt; this.trueProbability);</span>
 	}
 
+	/**
+	 * Returns the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @return the probability between 0 and 1
+	 * @since 2.1.0
+	 */
+
+	public double getNullProbability() {
+<span class="fc" id="L34">		return this.nullProbability;</span>
+	}
+
+	/**
+	 * Sets the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @param newNullProbability the probability between 0 and 1
+	 * @return this instance
+	 * @since 2.1.0
+	 */
+
+	public BooleanRandomField nullProbability(double newNullProbability) {
+<span class="fc" id="L47">		setNullProbability(newNullProbability);</span>
+<span class="fc" id="L48">		return this;</span>
+	}
+
+	/**
+	 * Sets the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @param nullProbability the probability between 0 and 1
+	 * @since 2.1.0
+	 */
+
+	public void setNullProbability(double nullProbability) {
+<span class="fc bfc" id="L60" title="All 4 branches covered.">		if (nullProbability &lt; 0 || nullProbability &gt; 1) {</span>
+<span class="fc" id="L61">			throw new IllegalArgumentException(&quot;Null probability must be between 0 and 1!&quot;);</span>
+		}
+<span class="fc" id="L63">		this.nullProbability = nullProbability;</span>
+<span class="fc" id="L64">	}</span>
+
+	/**
+	 * Returns the probability for this field returning true. If the value is 0 then no
+	 * {@link #nextValue()} is true, if it is 1 then every {@link #nextValue()} is true.
+	 *
+	 * @return the probability between 0 and 1
+	 * @since 2.1.0
+	 */
+
+	public double getTrueProbability() {
+<span class="fc" id="L75">		return this.trueProbability;</span>
+	}
+
+	/**
+	 * Sets the probability for this field returning true. If the value is 0 then no
+	 * {@link #nextValue()} is true, if it is 1 then every {@link #nextValue()} is true.
+	 *
+	 * @param newTrueProbability the probability between 0 and 1
+	 * @return this instance
+	 * @since 2.1.0
+	 */
+
+	public BooleanRandomField trueProbability(double newTrueProbability) {
+<span class="fc" id="L88">		setTrueProbability(newTrueProbability);</span>
+<span class="fc" id="L89">		return this;</span>
+	}
+
+	/**
+	 * Sets the probability for this field returning true. If the value is 0 then no
+	 * {@link #nextValue()} is true, if it is 1 then every {@link #nextValue()} is true.
+	 *
+	 * @param trueProbability the probability between 0 and 1
+	 * @since 2.1.0
+	 */
+
+	public void setTrueProbability(double trueProbability) {
+<span class="fc bfc" id="L101" title="All 4 branches covered.">		if (trueProbability &lt; 0 || trueProbability &gt; 1) {</span>
+<span class="fc" id="L102">			throw new IllegalArgumentException(&quot;True probability must be between 0 and 1!&quot;);</span>
+		}
+<span class="fc" id="L104">		this.trueProbability = trueProbability;</span>
+<span class="fc" id="L105">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

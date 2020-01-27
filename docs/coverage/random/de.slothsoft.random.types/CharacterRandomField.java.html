@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>CharacterRandomField.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Charts Coverage</a> &gt; <a href="../index.html" class="el_bundle">random</a> &gt; <a href="index.source.html" class="el_package">de.slothsoft.random.types</a> &gt; <span class="el_source">CharacterRandomField.java</span></div><h1>CharacterRandomField.java</h1><pre class="source lang-java linenums">package de.slothsoft.random.types;
+
+import java.util.Objects;
+import java.util.Random;
+
+import de.slothsoft.random.RandomField;
+import de.slothsoft.random.types.wordgen.StandardWordGeneratorConfig;
+import de.slothsoft.random.types.wordgen.WordGeneratorConfig;
+
+/**
+ * Generates letters after a defined config stored in {@link WordGeneratorConfig}.
+ *
+ * @author Stef Schulz
+ * @since 2.1.0
+ */
+
+public class CharacterRandomField implements RandomField {
+
+<span class="fc" id="L19">	static final Random RND = new Random();</span>
+
+	private WordGeneratorConfig config;
+
+	private char[] configCharacters;
+	private double[] configCharactersProbabilities;
+	private double nullProbability;
+	private double capitalProbability;
+
+	/**
+	 * Default constructor.
+	 */
+
+<span class="fc" id="L32">	public CharacterRandomField() {</span>
+<span class="fc" id="L33">		setConfig(StandardWordGeneratorConfig.EVEN_DISTRIBUTION);</span>
+<span class="fc" id="L34">	}</span>
+
+	/**
+	 * Generates a brand new word.
+	 *
+	 * @return a word
+	 */
+
+	@Override
+	public Character nextValue() {
+<span class="fc bfc" id="L44" title="All 2 branches covered.">		if (RND.nextDouble() &lt; this.nullProbability) {</span>
+<span class="fc" id="L45">			return null;</span>
+		}
+<span class="fc" id="L47">		final double letterProbability = RND.nextDouble()</span>
+				* this.configCharactersProbabilities[this.configCharactersProbabilities.length - 1];
+<span class="pc bpc" id="L49" title="1 of 2 branches missed.">		for (int i = 0; i &lt; this.configCharacters.length; i++) {</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">			if (this.configCharactersProbabilities[i + 1] &gt; letterProbability) {</span>
+<span class="fc" id="L51">				char result = this.configCharacters[i];</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">				if (RND.nextDouble() &lt; this.capitalProbability) {</span>
+<span class="fc" id="L53">					result = Character.toUpperCase(result);</span>
+				} else {
+<span class="fc" id="L55">					result = Character.toLowerCase(result);</span>
+				}
+<span class="fc" id="L57">				return Character.valueOf(result);</span>
+			}
+		}
+		// should not happen
+<span class="nc" id="L61">		return Character.valueOf('!');</span>
+	}
+
+	private void updateFieldsFromConfig() {
+<span class="fc" id="L65">		this.configCharacters = Objects.requireNonNull(this.config.getSupportedCharacters());</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">		if (this.configCharacters.length == 0) {</span>
+<span class="fc" id="L67">			throw new IllegalArgumentException(&quot;At least one character must be supported by config: &quot; + this.config);</span>
+		}
+<span class="fc" id="L69">		this.configCharactersProbabilities = new double[this.configCharacters.length + 1];</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">		for (int i = 0; i &lt; this.configCharacters.length; i++) {</span>
+<span class="fc" id="L71">			this.configCharactersProbabilities[i + 1] = this.configCharactersProbabilities[i]</span>
+<span class="fc" id="L72">					+ this.config.getProbability(this.configCharacters[i]);</span>
+		}
+<span class="fc" id="L74">	}</span>
+
+	/**
+	 * Returns the used config.
+	 *
+	 * @return a config
+	 */
+
+	public WordGeneratorConfig getConfig() {
+<span class="fc" id="L83">		return this.config;</span>
+	}
+
+	/**
+	 * Sets the used config.
+	 *
+	 * @param newConfig a config
+	 * @return this instance
+	 */
+
+	public CharacterRandomField config(WordGeneratorConfig newConfig) {
+<span class="fc" id="L94">		setConfig(newConfig);</span>
+<span class="fc" id="L95">		return this;</span>
+	}
+
+	/**
+	 * Sets the used config.
+	 *
+	 * @param config a config
+	 */
+
+	public void setConfig(WordGeneratorConfig config) {
+<span class="fc" id="L105">		this.config = Objects.requireNonNull(config);</span>
+<span class="fc" id="L106">		updateFieldsFromConfig();</span>
+<span class="fc" id="L107">	}</span>
+
+	/**
+	 * Returns the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @return the probability between 0 and 1
+	 */
+
+	public double getNullProbability() {
+<span class="fc" id="L117">		return this.nullProbability;</span>
+	}
+
+	/**
+	 * Sets the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @param newNullProbability the probability between 0 and 1
+	 * @return this instance
+	 */
+
+	public CharacterRandomField nullProbability(double newNullProbability) {
+<span class="fc" id="L129">		setNullProbability(newNullProbability);</span>
+<span class="fc" id="L130">		return this;</span>
+	}
+
+	/**
+	 * Sets the probability for this field returning null. If the value is 0 then no
+	 * {@link #nextValue()} is null, if it is 1 then every {@link #nextValue()} is null.
+	 *
+	 * @param nullProbability the probability between 0 and 1
+	 */
+
+	public void setNullProbability(double nullProbability) {
+<span class="fc bfc" id="L141" title="All 4 branches covered.">		if (nullProbability &lt; 0 || nullProbability &gt; 1) {</span>
+<span class="fc" id="L142">			throw new IllegalArgumentException(&quot;Null probability must be between 0 and 1!&quot;);</span>
+		}
+<span class="fc" id="L144">		this.nullProbability = nullProbability;</span>
+<span class="fc" id="L145">	}</span>
+
+	/**
+	 * Returns the probability for this field returning capital. If the value is 0 then no
+	 * {@link #nextValue()} is a capital letter, if it is 1 then every
+	 * {@link #nextValue()} is a capital letter.
+	 *
+	 * @return the probability between 0 and 1
+	 */
+
+	public double getCapitalProbability() {
+<span class="fc" id="L156">		return this.capitalProbability;</span>
+	}
+
+	/**
+	 * Sets the probability for this field returning capital. If the value is 0 then no
+	 * {@link #nextValue()} is a capital letter, if it is 1 then every
+	 * {@link #nextValue()} is a capital letter.
+	 *
+	 * @param newCapitalProbability the probability between 0 and 1
+	 * @return this instance
+	 */
+
+	public CharacterRandomField capitalProbability(double newCapitalProbability) {
+<span class="fc" id="L169">		setCapitalProbability(newCapitalProbability);</span>
+<span class="fc" id="L170">		return this;</span>
+	}
+
+	/**
+	 * Sets the probability for this field returning capital. If the value is 0 then no
+	 * {@link #nextValue()} is a capital letter, if it is 1 then every
+	 * {@link #nextValue()} is a capital letter.
+	 *
+	 * @param capitalProbability the probability between 0 and 1
+	 */
+
+	public void setCapitalProbability(double capitalProbability) {
+<span class="fc bfc" id="L182" title="All 4 branches covered.">		if (capitalProbability &lt; 0 || capitalProbability &gt; 1) {</span>
+<span class="fc" id="L183">			throw new IllegalArgumentException(&quot;Capital probability must be between 0 and 1!&quot;);</span>
+		}
+<span class="fc" id="L185">		this.capitalProbability = capitalProbability;</span>
+<span class="fc" id="L186">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
