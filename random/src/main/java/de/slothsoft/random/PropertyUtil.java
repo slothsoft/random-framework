@@ -23,8 +23,8 @@ final class PropertyUtil {
 		try {
 			final Method setter = getSetter(pojo.getClass(), propertyName);
 			setter.invoke(pojo, value);
-		} catch (final IllegalAccessException | InvocationTargetException e) {
-			throw new RandomException("Could not call setter " + propertyName + " on " + pojo, e);
+		} catch (final IllegalAccessException | InvocationTargetException | IllegalArgumentException e) {
+			throw new RandomException("Could not call setter " + propertyName + " on " + pojo + " for " + value, e);
 		}
 	}
 

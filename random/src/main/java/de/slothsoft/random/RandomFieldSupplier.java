@@ -13,9 +13,11 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.BiFunction;
 import java.util.function.Supplier;
 
+import de.slothsoft.random.types.ArrayRandomField;
 import de.slothsoft.random.types.BigDecimalRandomField;
 import de.slothsoft.random.types.BigIntegerRandomField;
 import de.slothsoft.random.types.BirthdayRandomField;
@@ -111,6 +113,7 @@ public abstract class RandomFieldSupplier {
 			suppliers.add(forFieldClass(LocalTime.class, LocalTimeRandomField::new));
 			suppliers.add(forFieldClass(LocalDate.class, LocalDateRandomField::new));
 
+			suppliers.add(new ArrayRandomFieldSupplier());
 			suppliers.add(forFieldClass(BigInteger.class, BigIntegerRandomField::new));
 			suppliers.add(forFieldClass(BigDecimal.class, BigDecimalRandomField::new));
 			suppliers.add(forFieldClass(Boolean.class, BooleanRandomField::new));
@@ -171,6 +174,23 @@ public abstract class RandomFieldSupplier {
 			return Enum.class.isAssignableFrom(fieldClass);
 		}
 
+	}
+
+	static class ArrayRandomFieldSupplier extends RandomFieldSupplier {
+
+		protected ArrayRandomFieldSupplier() {
+			super((n, c) -> {
+				final Class<?> elementClass = c.getComponentType();
+				final RandomField elementRandomField = createRandomFieldByField(n, elementClass);
+				Objects.requireNonNull(elementRandomField, "Cannot find random field for " + n + " (" + c + ")");
+				return new ArrayRandomField(elementClass, elementRandomField);
+			});
+		}
+
+		@Override
+		public boolean canSupply(String fieldName, Class<?> fieldClass) {
+			return fieldClass.isArray() && (findSupplierByField(fieldName, fieldClass.getComponentType()) != null);
+		}
 	}
 
 	private final Supplier<RandomField> supplier;

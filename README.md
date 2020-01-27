@@ -125,11 +125,13 @@ Even more examples are located [here](https://github.com/slothsoft/framework-ran
 
 The following classes and semantic fields are supported.
 
+- arrays
 - `BigDecimal`
 - `BigInteger`
 - `Boolean`
 - `Calendar`
 - `Character` and `char`
+- `Collection` (including `List`, `Set` and `Queue`
 - `Date` (and "birthdays", which have another range)
 - `Double` and `double`
 - `Enum`

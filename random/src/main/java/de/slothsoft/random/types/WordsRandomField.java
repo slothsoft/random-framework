@@ -96,7 +96,8 @@ public class WordsRandomField implements RandomField {
 	}
 
 	/**
-	 * Returns the number of paragraphs.
+	 * Returns the number of paragraphs. A Gaussian function is used to scatter the actual
+	 * paragraph length around this value.
 	 *
 	 * @return paragraph count
 	 */
@@ -106,7 +107,8 @@ public class WordsRandomField implements RandomField {
 	}
 
 	/**
-	 * Sets the number of paragraphs.
+	 * Sets the standard number of paragraphs. A Gaussian function is used to scatter the
+	 * actual paragraph length around this value.
 	 *
 	 * @param newParagraphCount paragraph count
 	 * @return this instance
@@ -118,7 +120,8 @@ public class WordsRandomField implements RandomField {
 	}
 
 	/**
-	 * Sets the number of paragraphs.
+	 * Sets the standard number of paragraphs. A Gaussian function is used to scatter the
+	 * actual paragraph length around this value.
 	 *
 	 * @param paragraphCount paragraph count
 	 */
