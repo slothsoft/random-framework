@@ -64,8 +64,8 @@ public class FirstNameRandomField implements RandomField {
 				InputStreamReader streamReader = new InputStreamReader(inputStream);
 				BufferedReader bufferedReader = new BufferedReader(streamReader)) {
 			return bufferedReader.lines().parallel().toArray(String[]::new);
-		} catch (final IOException e) {
-			throw new RuntimeException("Could not open: " + fileName);
+		} catch (final IOException | NullPointerException e) {
+			throw new IllegalArgumentException("Could not open: " + fileName);
 		}
 	}
 

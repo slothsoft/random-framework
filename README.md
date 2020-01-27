@@ -160,7 +160,23 @@ If something is missing, request it via [a new issue](https://github.com/slothso
 
 ### How to Release?
 
-The release process is basically [as defined in this guide](https://github.com/slothsoft/charts/wiki/How-To-Release).
+The release process is basically [as defined in this guide](https://github.com/slothsoft/charts/wiki/How-To-Release):
+
+- **Pre-Release Steps**
+    1. Check TODOs and FIXMEs: Create issues for the next milestone(s) or fix them 
+    1. Update documentation via `mvn clean verify -Pdoc` or the Eclipse launch config "Create Doc.launch" 
+    1. Commit documentation 
+    1. Update README.md with the planned version:
+        - **Getting Started** > **Installing** - change Maven version
+        - **Versions** - add new milestone / version here
+- **Release**
+    1. `mvn clean release:prepare -DreleaseVersion=2.1.0 -DdevelopmentVersion=2.2.0-SNAPSHOT -DscmCommentPrefix="[#26] " -B`
+    1. `mvn release:perform`
+    1. `git push origin -–tags`
+    1. `git push origin master`   
+- **Post-Release Steps**
+    1. Check that the project got released to [Sonatype](https://oss.sonatype.org/)
+
 
 ### How to Create a New Random Field?
 

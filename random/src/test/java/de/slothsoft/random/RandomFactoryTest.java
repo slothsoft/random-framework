@@ -105,4 +105,80 @@ public class RandomFactoryTest {
 		Assert.assertNull(this.factory.findRandomField(PROPERTY_VALUE));
 	}
 
+	public static class GuessablePojo {
+
+		private Boolean value;
+
+		public Boolean getValue() {
+			return this.value;
+		}
+
+		public void setValue(Boolean value) {
+			this.value = value;
+		}
+	}
+
+	@Test
+	public void testForClass() throws Exception {
+		final RandomFactory<GuessablePojo> forClassFactory = RandomFactory.forClass(GuessablePojo.class);
+
+		Assert.assertNotNull(forClassFactory);
+		Assert.assertNotNull(forClassFactory.getRandomField("value"));
+
+		final GuessablePojo pojo = forClassFactory.nextValue();
+		Assert.assertNotNull(pojo);
+		Assert.assertNotNull(pojo.getValue());
+	}
+
+	public static class NotGuessablePojo {
+
+		private Object value;
+
+		public Object getValue() {
+			return this.value;
+		}
+
+		public void setValue(Object value) {
+			this.value = value;
+		}
+	}
+
+	@Test
+	public void testForClassNotGuessable() throws Exception {
+		final RandomFactory<NotGuessablePojo> forClassFactory = RandomFactory.forClass(NotGuessablePojo.class);
+
+		Assert.assertNotNull(forClassFactory);
+		Assert.assertNull(forClassFactory.findRandomField("value"));
+
+		final NotGuessablePojo pojo = forClassFactory.nextValue();
+		Assert.assertNotNull(pojo);
+		Assert.assertNull(pojo.getValue());
+	}
+
+	public static class NotCreateablePojo {
+
+		private Boolean value;
+
+		public NotCreateablePojo(Boolean value) {
+			this.value = value;
+		}
+
+		public Boolean getValue() {
+			return this.value;
+		}
+
+		public void setValue(Boolean value) {
+			this.value = value;
+		}
+	}
+
+	@Test
+	public void testForClassNotCreatable() throws Exception {
+		try {
+			RandomFactory.forClass(NotCreateablePojo.class);
+			Assert.fail("The POJO should be uncreateable!");
+		} catch (final RandomException e) {
+			Assert.assertNotNull(e);
+		}
+	}
 }

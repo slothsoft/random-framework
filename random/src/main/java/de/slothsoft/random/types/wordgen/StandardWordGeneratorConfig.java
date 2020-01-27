@@ -25,11 +25,7 @@ public enum StandardWordGeneratorConfig implements WordGeneratorConfig {
 
 		@Override
 		WordGeneratorConfig createConfig() {
-			try (InputStream input = getClass().getResourceAsStream("english.properties")) {
-				return WordGeneratorConfigUtil.loadConfig(input);
-			} catch (final IOException e) {
-				throw new RuntimeException("Something went very wrong reading the English config!", e);
-			}
+			return readConfigFile("english.properties");
 		}
 	},
 
@@ -38,11 +34,7 @@ public enum StandardWordGeneratorConfig implements WordGeneratorConfig {
 
 		@Override
 		WordGeneratorConfig createConfig() {
-			try (InputStream input = getClass().getResourceAsStream("german.properties")) {
-				return WordGeneratorConfigUtil.loadConfig(input);
-			} catch (final IOException e) {
-				throw new RuntimeException("Something went very wrong reading the German config!", e);
-			}
+			return readConfigFile("german.properties");
 		}
 	};
 
@@ -56,6 +48,14 @@ public enum StandardWordGeneratorConfig implements WordGeneratorConfig {
 	}
 
 	abstract WordGeneratorConfig createConfig();
+
+	static WordGeneratorConfig readConfigFile(String fileName) {
+		try (InputStream input = StandardWordGeneratorConfig.class.getResourceAsStream(fileName)) {
+			return WordGeneratorConfigUtil.loadConfig(input);
+		} catch (final IOException | NullPointerException e) {
+			throw new IllegalArgumentException("Something went very wrong reading the config " + fileName + "!", e);
+		}
+	}
 
 	@Override
 	public char[] getSupportedCharacters() {

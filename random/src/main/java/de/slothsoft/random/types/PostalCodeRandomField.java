@@ -4,7 +4,8 @@ import de.slothsoft.random.RandomField;
 
 /**
  * A {@link RandomField} representing a {@link String} that should look like a postal
- * code.
+ * code. See <a href="https://en.wikipedia.org/wiki/List_of_postal_codes">list of postal
+ * codes</a>.
  *
  * @author Stef Schulz
  * @since 2.1.0
@@ -22,6 +23,9 @@ public class PostalCodeRandomField implements RandomField {
 	/** Pattern used in the US, e.g. "12345-6789". */
 	public static final String PATTERN_US = KEY_DIGIT + KEY_DIGIT + KEY_DIGIT + KEY_DIGIT + KEY_DIGIT + '-' + KEY_DIGIT
 			+ KEY_DIGIT + KEY_DIGIT + KEY_DIGIT;
+	/** Pattern used in Canada, e.g. "A0B 1C2". */
+	public static final String PATTERN_CANADA = KEY_LETTER + KEY_DIGIT + KEY_LETTER + ' ' + KEY_DIGIT + KEY_LETTER
+			+ KEY_DIGIT;
 
 	private final PatternRandomField patternField = new PatternRandomField(PATTERN_US);
 	private double nullProbability;

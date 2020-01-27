@@ -98,4 +98,9 @@ public class FirstNameRandomFieldTest extends AbstractRandomFieldTest {
 		}
 	}
 
+	@Test(expected = IllegalArgumentException.class)
+	public void testReadFileException() throws Exception {
+		FirstNameRandomField.readFile("unknown");
+	}
+
 }

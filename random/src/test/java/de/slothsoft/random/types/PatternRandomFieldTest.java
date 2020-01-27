@@ -24,7 +24,7 @@ public class PatternRandomFieldTest extends AbstractRandomFieldTest {
 		}
 	}
 
-	private PatternRandomField patternField;
+	private PatternRandomField patternRandomField;
 
 	public PatternRandomFieldTest() {
 		super(new Pojo());
@@ -32,80 +32,89 @@ public class PatternRandomFieldTest extends AbstractRandomFieldTest {
 
 	@Override
 	protected PatternRandomField createRandomField() {
-		this.patternField = new PatternRandomField("");
-		return this.patternField;
+		this.patternRandomField = new PatternRandomField("");
+		return this.patternRandomField;
 	}
 
 	@Test
 	public void testSetPattern() {
 		final String pattern = UUID.randomUUID().toString();
-		this.patternField.setPattern(pattern);
-		Assert.assertEquals(pattern, this.patternField.getPattern());
+		this.patternRandomField.setPattern(pattern);
+		Assert.assertEquals(pattern, this.patternRandomField.getPattern());
 	}
 
 	@Test
 	public void testPattern() {
 		final String pattern = UUID.randomUUID().toString();
-		this.patternField.pattern(pattern);
-		Assert.assertEquals(pattern, this.patternField.getPattern());
+		this.patternRandomField.pattern(pattern);
+		Assert.assertEquals(pattern, this.patternRandomField.getPattern());
+	}
+
+	@Test
+	public void testComponentNextValueIsNull() {
+		final String key = UUID.randomUUID().toString();
+		this.patternRandomField.addComponent(key, () -> null);
+
+		Assert.assertEquals("", this.patternRandomField.pattern(key).nextValue());
+		Assert.assertEquals("!!", this.patternRandomField.pattern("!" + key + "!").nextValue());
 	}
 
 	@Test
 	public void testAddComponent() {
 		final String key = UUID.randomUUID().toString();
-		this.patternField.setPattern(key + ':');
+		this.patternRandomField.setPattern(key + ':');
 
-		Assert.assertEquals(key + ':', this.patternField.nextValue());
+		Assert.assertEquals(key + ':', this.patternRandomField.nextValue());
 
-		this.patternField.addComponent(key, () -> "D");
+		this.patternRandomField.addComponent(key, () -> "D");
 
-		Assert.assertEquals("D:", this.patternField.nextValue());
+		Assert.assertEquals("D:", this.patternRandomField.nextValue());
 	}
 
 	@Test
 	public void testAddComponents() {
 		final String key1 = UUID.randomUUID().toString();
 		final String key2 = UUID.randomUUID().toString();
-		this.patternField.setPattern(key1 + " vs. " + key2);
+		this.patternRandomField.setPattern(key1 + " vs. " + key2);
 
-		Assert.assertEquals(this.patternField.getPattern(), this.patternField.nextValue());
+		Assert.assertEquals(this.patternRandomField.getPattern(), this.patternRandomField.nextValue());
 
 		final Map<String, RandomField> components = new HashMap<>();
 		components.put(key1, () -> "A");
 		components.put(key2, () -> "B");
-		this.patternField.addComponents(components);
+		this.patternRandomField.addComponents(components);
 
-		Assert.assertEquals("A vs. B", this.patternField.nextValue());
+		Assert.assertEquals("A vs. B", this.patternRandomField.nextValue());
 	}
 
 	@Test
 	public void testRemoveComponent() {
 		final String key = UUID.randomUUID().toString();
-		this.patternField.setPattern(key + ':');
+		this.patternRandomField.setPattern(key + ':');
 
-		Assert.assertEquals(key + ':', this.patternField.nextValue());
+		Assert.assertEquals(key + ':', this.patternRandomField.nextValue());
 
-		this.patternField.addComponent(key, () -> "D");
-		this.patternField.removeComponent(key);
+		this.patternRandomField.addComponent(key, () -> "D");
+		this.patternRandomField.removeComponent(key);
 
-		Assert.assertEquals(key + ':', this.patternField.nextValue());
+		Assert.assertEquals(key + ':', this.patternRandomField.nextValue());
 	}
 
 	@Test
 	public void testRemoveComponents() {
 		final String key1 = UUID.randomUUID().toString();
 		final String key2 = UUID.randomUUID().toString();
-		this.patternField.setPattern(key1 + " vs. " + key2);
+		this.patternRandomField.setPattern(key1 + " vs. " + key2);
 
-		Assert.assertEquals(this.patternField.getPattern(), this.patternField.nextValue());
+		Assert.assertEquals(this.patternRandomField.getPattern(), this.patternRandomField.nextValue());
 
 		final Map<String, RandomField> components = new HashMap<>();
 		components.put(key1, () -> "A");
 		components.put(key2, () -> "B");
-		this.patternField.addComponents(components);
-		this.patternField.removeComponents(components.keySet());
+		this.patternRandomField.addComponents(components);
+		this.patternRandomField.removeComponents(components.keySet());
 
-		Assert.assertEquals(this.patternField.getPattern(), this.patternField.nextValue());
+		Assert.assertEquals(this.patternRandomField.getPattern(), this.patternRandomField.nextValue());
 	}
 
 	@Override

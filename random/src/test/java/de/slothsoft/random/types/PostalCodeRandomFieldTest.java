@@ -59,4 +59,16 @@ public class PostalCodeRandomFieldTest extends AbstractRandomFieldTest {
 		}
 	}
 
+	@Test
+	public void testPatternCanada() throws Exception {
+		this.field.pattern(PostalCodeRandomField.PATTERN_CANADA);
+
+		Assert.assertEquals(PostalCodeRandomField.PATTERN_CANADA, this.field.getPattern());
+
+		for (int i = 0; i < 100; i++) {
+			final String nextValue = this.field.nextValue();
+			Assert.assertTrue("Value is broken: " + nextValue, Character.isAlphabetic(nextValue.charAt(0)));
+		}
+	}
+
 }
